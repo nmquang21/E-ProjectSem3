@@ -26,5 +26,23 @@ namespace E_ProjectSem3.Controllers
 
             return View();
         }
+        public ActionResult Recipes()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult RecipeDetail()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult Categories()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
