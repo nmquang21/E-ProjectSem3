@@ -11,7 +11,7 @@ namespace E_ProjectSem3.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return View("~/Views/Admin/View.cshtml");
         }
     }
 }
