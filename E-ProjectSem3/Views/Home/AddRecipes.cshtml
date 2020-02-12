@@ -1,0 +1,824 @@
+﻿
+@{
+    ViewBag.Title = "AddRecipes";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="os-container top-bar-w">
+    <div class="top-bar ">
+        <ul class="bar-breadcrumbs">
+            <li><a href="http://neptune.pinsupreme.com">Home</a></li>
+            <li>Submit Recipe</li>
+        </ul>
+        <ul class="bar-social" style="">
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-facebook"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-pinterest"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-youtube"></i></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="os-container">
+    <div class="page-intro-header with-background" style="background-image:url(~/Content/assets/wp-content/uploads/2015/09/pattern_01-500x500.png); background-repeat: repeat; background-position: top left; ">
+        <h2>Submit Recipe</h2>
+    </div>
+</div>
+<div class="os-container">
+
+    <div class="page-w ">
+        <div class="page-content">
+            <article id="page-568" class="post-568 page type-page status-publish has-post-thumbnail hentry">
+                <div class="frontend-publisher-w">
+                    <h2 class="form-header">Submit your recipe</h2>
+                    <form id="frontend-publisher" class="acf-form" action="" method="post">
+                        <div id="acf-form-data" class="acf-hidden">
+                            <input type="hidden" id="_acf_screen" name="_acf_screen" value="acf_form" /><input type="hidden" id="_acf_post_id" name="_acf_post_id" value="new_post" /><input type="hidden" id="_acf_validation" name="_acf_validation"
+                                                                                                                                                                                             value="1" /><input type="hidden" id="_acf_form" name="_acf_form" value="bitNbnBPOThtcnRTMThvWVFYQjdhc2pOdjlJS0w3eGVmRUUvc2FGd1M2bGhySm1iTVVQNkIrREowNHpTRzJOVmhWUGdTZFJRenE4N0xTb2trWGROODRSKzVWNmFtdHhoNkp0YXR0b2lOeVArbFVsaWtXOW12anZYdmdkMlhlY3hQRkJSV2VYZ2FPbW00UXdCa09KNGlITFVScG9CTGpqQ3J3TE5hQ2prbFhNVGJBRUdtdXM5Znd2NGRxWjRudnFmZGdvaGl5Wld2S2ZsZVpmaXppbS9PVXdxOGxLcVk1NHZPdDFRTEp0VFh3SzNYbjI1TllWa0JuL2dKNmNzNXBvbTFpcmxjKzZSbWRvMk1acjFFSEQxY3FsQ1V0dFVDSHl4dFRMYU9XT201aEZjekZtVVJ1SlYwaEVERWQ5Ym4rQ3pwK05yL01RVXpxK2lxbWVSa2hYaEZJcEdJMCtjT3JMSWRMUlZlaE1ZYVA1OFpOTHNjNWRHbUZ1d01qZWRLa3EyWlR2S0JtTFFGNDBTeC8zUHE1THhma1NGM1dYOThFWVRvYldCMmdVQ2E5OVRDMjBYUXNZWEZRL1RMcThxQmRFVy9zVDJjeWxBdk95d2pJZitObmtoUWFqRDVjWHdzTG12YUF1dk84Q0dST1B0Q3Nab2NiS0YydjU2bk51SkhObzlMeWlLSkJWYkJXN3I0bDNrTmsvcFBiRDNleUtoYXlzeVRoYmZBQW50bkNMbGJPSUE3YXVBdjQzSXVLa2VhNHhkQjRPL2pUaTR5UHRaeUdES3ZCZ0lIN0UzdG9sWVJVMjZtK3lMbGp3SFBTbm5PeWtZWFU5MUt6bUpLUXVwUU1PQWFFa1ZIRnRmLzZXcU4wWkNJVkNxcldERUZiVWNHR3JmRklPbzZ5Uk5jVWdPQUdIYlp1b3lhdG5HWW44T2dQRkprSFdlYk9tUi9PK2ltMWlyVlN0QTRqMlBzSHNVRWY5V0J0Wm5zK1ZWN1A2cVI5aW5JbHNJSGt3ZUZtQXpVRG82d1BKRHhFeWVySmI2ZXZ4UVh0RUhGQlpSenI4ZUdVTmplc3dGVmRtN1RqYmFhSjlmcnFmNjJJdGtpRmZqWFFnYzM5N3hxQ0RWK1hqcmtFRDQyRDJzSjRNUEFMYVlpd0hjc1RPWHkwMGVHZzB6OEQ2a0RhUFFQQmkrcU1PakcvTU9lK1pzWENxbmVtcTJwV1VobzVBMk9PSGR3MjF5UDBIVndxbi9TTVBucTNBb3Z4b0NNUlNJNmdteklzNEF2WHVyL0lhaTFmUk5xRGFHdHE5RzhUL0FoUkZNb2tGS3lhVzZhYWNVa1J6bE9rQVZsTTVqVWtuYzdDQ1dzYTFlazltbGJUWE5JdC8rcWZUMW9JS0lsczNKTWhYN1dYT091SVBaRVRPaE1hdWhDMk9xK2N3RDhVQU5Zd2JUOTdtYUZYUEJwbTM3dTNGUDJYdlBjaTJsRXYvcGVNNW84R241T3ZIQnBLRjBLTFltVnljK0xDYWdIM0c2K1VFamdjRkdrOUZoWnF3UWJzRThEekNkamNlcSt3blJ0a3l3K1NBckxRYjBhT080ZGZzYlVmOFFCazhPdUhaRlF0WlppV0UzS29BcXYxY0tka3YxWUtScE9FOEo4ZGpEelphcCtjV1dTM1dzVVROMVRDbGxSNHMrbXZKcVhSTS81WExNME1aSUFaN2JPV3lyTCtFbURqcksxRlNYR0xlVnpIZ3NOa2QxYW1qMVVtRG9XN2lLakN2OFhNdm5LR2Z3OHhIYjNRVllWakp4UmVCZkQvTzV3MkFIYXhtM041WmlmWGl4MU9idWNGb2x5TThRSkhhNHRpYz06OpxShxo+ysV4NHtzo6qJ9U0=" /><input type="hidden" id="_acf_nonce" name="_acf_nonce" value="ad184c4781" /><input type="hidden" id="_acf_changed" name="_acf_changed" value="0" />
+                        </div>
+                        <div class="acf-fields acf-form-fields -top">
+                            <div class="acf-field acf-field-text acf-field--post-title is-required" data-name="_post_title" data-type="text" data-key="_post_title" data-required="1">
+                                <div class="acf-label">
+                                    <label for="acf-_post_title">Title <span class="acf-required">*</span></label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-wrap"><input type="text" id="acf-_post_title" name="acf[_post_title]" required="required" /></div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-wysiwyg acf-field--post-content" data-name="_post_content" data-type="wysiwyg" data-key="_post_content">
+                                <div class="acf-label">
+                                    <label for="acf-_post_content">Content</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div id="acf-hidden-wp-editor" class="acf-hidden">
+                                        <div id="wp-acf_content-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+                                            <link rel='stylesheet' id='dashicons-css' href='~/Content/assets/wp-includes/css/dashicons.min.css' type='text/css' media='all' />
+                                            <link rel='stylesheet' id='editor-buttons-css' href='~/Content/assets/wp-includes/css/editor.min.css' type='text/css' media='all' />
+                                            <div id="wp-acf_content-editor-tools" class="wp-editor-tools hide-if-no-js">
+                                                <div class="wp-editor-tabs">
+                                                    <button type="button" id="acf_content-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="acf_content">Visual</button>
+                                                    <button type="button" id="acf_content-html" class="wp-switch-editor switch-html" data-wp-editor-id="acf_content">Text</button>
+                                                </div>
+                                            </div>
+                                            <div id="wp-acf_content-editor-container" class="wp-editor-container">
+                                                <div id="qt_acf_content_toolbar" class="quicktags-toolbar"></div><textarea class="wp-editor-area" rows="20" autocomplete="off" cols="40" name="acf_content" id="acf_content"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="wp-acf-editor-5e44240fc4bfc-wrap" class="acf-editor-wrap wp-core-ui wp-editor-wrap tmce-active" data-toolbar="full">
+                                        <div id="wp-acf-editor-5e44240fc4bfc-editor-tools" class="wp-editor-tools hide-if-no-js">
+                                            <div class="wp-editor-tabs">
+                                                <button id="acf-editor-5e44240fc4bfc-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="acf-editor-5e44240fc4bfc" type="button">Visual</button>
+                                                <button id="acf-editor-5e44240fc4bfc-html" class="wp-switch-editor switch-html" data-wp-editor-id="acf-editor-5e44240fc4bfc" type="button">Text</button>
+                                            </div>
+                                        </div>
+                                        <div id="wp-acf-editor-5e44240fc4bfc-editor-container" class="wp-editor-container">
+                                            <textarea id="acf-editor-5e44240fc4bfc" class="wp-editor-area" name="acf[_post_content]" style="height:300px;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-text acf-field-5585d30d3c4ca" data-name="sub_title" data-type="text" data-key="field_5585d30d3c4ca">
+                                <div class="acf-label">
+                                    <label for="acf-field_5585d30d3c4ca">Sub Title</label>
+                                    <p class="description">Text that will appear under recipe title on the single recipe page (optional)</p>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-wrap"><input type="text" id="acf-field_5585d30d3c4ca" name="acf[field_5585d30d3c4ca]" /></div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-image acf-field-562d4f5e113d3 acf-featured-image-field" data-name="acf_featured_image" data-type="image" data-key="field_562d4f5e113d3">
+                                <div class="acf-label">
+                                    <label for="acf-field_562d4f5e113d3">Featured Image</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-image-uploader" data-preview_size="thumbnail" data-library="all" data-mime_types="" data-uploader="basic">
+                                        <input type="hidden" name="acf[field_562d4f5e113d3]" value="" />
+                                        <div class="show-if-value image-wrap" style="max-width: 150px">
+                                            <img data-name="image" src="" alt="" />
+                                            <div class="acf-actions -hover">
+                                                <a class="acf-icon -cancel dark" data-name="remove" href="#" title="Remove"></a>
+                                            </div>
+                                        </div>
+                                        <div class="hide-if-value">
+
+
+                                            <label class="acf-basic-uploader">
+                                                <input type="file" name="acf[field_562d4f5e113d3]" id="acf-field_562d4f5e113d3" />
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-taxonomy acf-field-5752b4d33d004" style="width:33%;" data-name="recipe_category" data-type="taxonomy" data-key="field_5752b4d33d004" data-width="33">
+                                <div class="acf-label">
+                                    <label for="acf-field_5752b4d33d004">Recipe Category</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-taxonomy-field" data-save="1" data-ftype="checkbox" data-taxonomy="category" data-allow_null="0">
+                                        <input type="hidden" type="hidden" name="acf[field_5752b4d33d004]" />
+                                        <div class="categorychecklist-holder">
+                                            <ul class="acf-checkbox-list acf-bl">
+                                                <li data-id="16"><label><input type="checkbox" name="acf[field_5752b4d33d004][]" value="16" /> <span>Chicken</span></label></li>
+                                                <li data-id="17"><label><input type="checkbox" name="acf[field_5752b4d33d004][]" value="17" /> <span>Fast Food</span></label></li>
+                                                <li data-id="18"><label><input type="checkbox" name="acf[field_5752b4d33d004][]" value="18" /> <span>Fish</span></label></li>
+                                                <li data-id="19"><label><input type="checkbox" name="acf[field_5752b4d33d004][]" value="19" /> <span>Pizza</span></label></li>
+                                                <li data-id="20"><label><input type="checkbox" name="acf[field_5752b4d33d004][]" value="20" /> <span>Salads</span></label></li>
+                                                <li data-id="21"><label><input type="checkbox" name="acf[field_5752b4d33d004][]" value="21" /> <span>Soups</span></label></li>
+                                                <li data-id="1"><label><input type="checkbox" name="acf[field_5752b4d33d004][]" value="1" /> <span>Uncategorized</span></label></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-taxonomy acf-field-5752b56e95b71" style="width:33%;" data-name="recipe_cuisine" data-type="taxonomy" data-key="field_5752b56e95b71" data-width="33">
+                                <div class="acf-label">
+                                    <label for="acf-field_5752b56e95b71">Recipe Cuisine</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-taxonomy-field" data-save="1" data-ftype="checkbox" data-taxonomy="recipe_cuisine" data-allow_null="1">
+                                        <input type="hidden" type="hidden" name="acf[field_5752b56e95b71]" />
+                                        <div class="categorychecklist-holder">
+                                            <ul class="acf-checkbox-list acf-bl">
+                                                <li data-id="36"><label><input type="checkbox" name="acf[field_5752b56e95b71][]" value="36" /> <span>Brazilian</span></label></li>
+                                                <li data-id="45"><label><input type="checkbox" name="acf[field_5752b56e95b71][]" value="45" /> <span>French</span></label></li>
+                                                <li data-id="53"><label><input type="checkbox" name="acf[field_5752b56e95b71][]" value="53" /> <span>Italian</span></label></li>
+                                                <li data-id="58"><label><input type="checkbox" name="acf[field_5752b56e95b71][]" value="58" /> <span>Mexican</span></label></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-taxonomy acf-field-5752b60c3159e" style="width:33%;" data-name="recipe_features" data-type="taxonomy" data-key="field_5752b60c3159e" data-width="33">
+                                <div class="acf-label">
+                                    <label for="acf-field_5752b60c3159e">Recipe Features</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-taxonomy-field" data-save="1" data-ftype="checkbox" data-taxonomy="recipe_feature" data-allow_null="1">
+                                        <input type="hidden" type="hidden" name="acf[field_5752b60c3159e]" />
+                                        <div class="categorychecklist-holder">
+                                            <ul class="acf-checkbox-list acf-bl">
+                                                <li data-id="47"><label><input type="checkbox" name="acf[field_5752b60c3159e][]" value="47" /> <span>Gluten Free</span></label></li>
+                                                <li data-id="66"><label><input type="checkbox" name="acf[field_5752b60c3159e][]" value="66" /> <span>Spicy</span></label></li>
+                                                <li data-id="69"><label><input type="checkbox" name="acf[field_5752b60c3159e][]" value="69" /> <span>Vegan</span></label></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-select acf-field-55b2a339197d0" data-name="layout_type_for_single_recipe" data-type="select" data-key="field_55b2a339197d0">
+                                <div class="acf-label">
+                                    <label for="acf-field_55b2a339197d0">Layout Type</label>
+                                </div>
+                                <div class="acf-input">
+                                    <select id="acf-field_55b2a339197d0" class="" name="acf[field_55b2a339197d0]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="0"><option value="default" selected="selected" data-i="default">Default</option><option value="big_image">Big Image</option><option value="half_left_image">Image on a left half</option><option value="half_right_image">Image on a right half</option><option value="big_image_titled">Big Image with Title over it</option></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-image acf-field-5656a512552da" data-name="custom_image_for_header" data-type="image" data-key="field_5656a512552da">
+                                <div class="acf-label">
+                                    <label for="acf-field_5656a512552da">Custom image for Big Header</label>
+                                    <p class="description">
+                                        If you select "Big Image with Title over it" in the "layout" select box, then your recipe featured image will be used as a background for the title text, you can however override that image by selecting an image
+                                        in this field.
+                                    </p>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-image-uploader" data-preview_size="thumbnail" data-library="all" data-mime_types="" data-uploader="basic">
+                                        <input type="hidden" name="acf[field_5656a512552da]" value="" />
+                                        <div class="show-if-value image-wrap" style="max-width: 150px">
+                                            <img data-name="image" src="" alt="" />
+                                            <div class="acf-actions -hover">
+                                                <a class="acf-icon -cancel dark" data-name="remove" href="#" title="Remove"></a>
+                                            </div>
+                                        </div>
+                                        <div class="hide-if-value">
+
+
+                                            <label class="acf-basic-uploader">
+                                                <input type="file" name="acf[field_5656a512552da]" id="acf-field_5656a512552da" />
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-select acf-field-5657a3e9e56f5" data-name="recipe_details_position" data-type="select" data-key="field_5657a3e9e56f5">
+                                <div class="acf-label">
+                                    <label for="acf-field_5657a3e9e56f5">Recipe Details Meta Position</label>
+                                    <p class="description">You can select where should recipe details appear (like cooking time, like count, difficulty etc)</p>
+                                </div>
+                                <div class="acf-input">
+                                    <select id="acf-field_5657a3e9e56f5" class="" name="acf[field_5657a3e9e56f5]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="0"><option value="default" selected="selected" data-i="default">Default</option><option value="split">Some on the left side and some on the right side</option><option value="single">In one box on top</option></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-textarea acf-field-5588af3018cb3" style="width:50%;" data-name="quick_description" data-type="textarea" data-key="field_5588af3018cb3" data-width="50">
+                                <div class="acf-label">
+                                    <label for="acf-field_5588af3018cb3">Quick Description</label>
+                                </div>
+                                <div class="acf-input">
+                                    <textarea id="acf-field_5588af3018cb3" name="acf[field_5588af3018cb3]" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-text acf-field-5585b6e2453f8" style="width:20%;" data-name="recipe_serves" data-type="text" data-key="field_5585b6e2453f8" data-width="20">
+                                <div class="acf-label">
+                                    <label for="acf-field_5585b6e2453f8">Serves</label>
+                                    <p class="description">How many people does it serve</p>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-wrap"><input type="text" id="acf-field_5585b6e2453f8" name="acf[field_5585b6e2453f8]" /></div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-select acf-field-5585b766453f9" style="width:30%;" data-name="recipe_difficulty" data-type="select" data-key="field_5585b766453f9" data-width="30">
+                                <div class="acf-label">
+                                    <label for="acf-field_5585b766453f9">Difficulty</label>
+                                    <p class="description">How difficult is to cook this recipe on a scale from 1 to 5</p>
+                                </div>
+                                <div class="acf-input">
+                                    <select id="acf-field_5585b766453f9" class="" name="acf[field_5585b766453f9]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="0"><option value="1">Easy</option><option value="2" selected="selected" data-i="0">Medium</option><option value="3">Hard</option></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-text acf-field-563041000427e" style="width:25%;" data-name="recipe_preparation_time" data-type="text" data-key="field_563041000427e" data-width="25">
+                                <div class="acf-label">
+                                    <label for="acf-field_563041000427e">Preparation Time</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-wrap"><input type="text" id="acf-field_563041000427e" name="acf[field_563041000427e]" /></div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-text acf-field-56303fcf0427d" style="width:25%;" data-name="recipe_just_cooking_time" data-type="text" data-key="field_56303fcf0427d" data-width="25">
+                                <div class="acf-label">
+                                    <label for="acf-field_56303fcf0427d">Cooking Time</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-wrap"><input type="text" id="acf-field_56303fcf0427d" name="acf[field_56303fcf0427d]" /></div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-text acf-field-5585b6d1453f7" style="width:25%;" data-name="recipe_cooking_time" data-type="text" data-key="field_5585b6d1453f7" data-width="25">
+                                <div class="acf-label">
+                                    <label for="acf-field_5585b6d1453f7">Total Time</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-wrap"><input type="text" id="acf-field_5585b6d1453f7" name="acf[field_5585b6d1453f7]" /></div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-text acf-field-563062b0f356d" style="width:25%;" data-name="recipe_cooking_temperature" data-type="text" data-key="field_563062b0f356d" data-width="25">
+                                <div class="acf-label">
+                                    <label for="acf-field_563062b0f356d">Cooking Temperature</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-wrap"><input type="text" id="acf-field_563062b0f356d" name="acf[field_563062b0f356d]" /></div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-true-false acf-field-56206d699ae9c" data-name="searchable_ingredients" data-type="true_false" data-key="field_56206d699ae9c">
+                                <div class="acf-label">
+                                    <label for="acf-field_56206d699ae9c">Searchable Ingredients</label>
+                                    <p class="description">IMPORTANT! If you are using "searchable ingredients" - do not use comma in the ingredient name, system will think you are trying to add multiple ingredients when it sees a comma.</p>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-true-false">
+                                        <input type="hidden" name="acf[field_56206d699ae9c]" value="0" /> <label>
+                                            <input type="checkbox" id="acf-field_56206d699ae9c" name="acf[field_56206d699ae9c]" value="1" class="" autocomplete="off" checked="checked" />
+                                            <span class="message">Make ingredients searchable</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-repeater acf-field-5585b695453f5" data-name="ingredients" data-type="repeater" data-key="field_5585b695453f5">
+                                <div class="acf-label">
+                                    <label for="acf-field_5585b695453f5">Ingredients</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-repeater -empty -table" data-min="0" data-max="0">
+                                        <input type="hidden" name="acf[field_5585b695453f5]" value="" />
+                                        <table class="acf-table">
+
+                                            <thead>
+                                                <tr>
+                                                    <th class="acf-row-handle"></th>
+
+                                                    <th class="acf-th" data-name="ingredient_obj" data-type="taxonomy" data-key="field_5620350d903a1" data-width="20" style="width: 20%;">
+                                                        Ingredient
+                                                    </th>
+                                                    <th class="acf-th" data-name="ingredient_name" data-type="text" data-key="field_5585317d9b50b" data-width="20" style="width: 20%;">
+                                                        Name
+                                                    </th>
+                                                    <th class="acf-th" data-name="ingredient_amount" data-type="text" data-key="field_558531f69b50c" data-width="20" style="width: 20%;">
+                                                        Amount
+                                                    </th>
+                                                    <th class="acf-th" data-name="ingredient_note" data-type="text" data-key="field_558532249b50d">
+                                                        Note
+                                                    </th>
+                                                    <th class="acf-th" data-name="separator" data-type="true_false" data-key="field_5588b2c5b4dc5" data-width="15" style="width: 15%;">
+                                                        Separator?
+                                                    </th>
+                                                    <th class="acf-th" data-name="custom_link" data-type="url" data-key="field_59195b56d9540">
+                                                        Custom Link URL
+                                                    </th>
+
+                                                    <th class="acf-row-handle"></th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr class="acf-row acf-clone" data-id="acfcloneindex">
+
+                                                    <td class="acf-row-handle order" title="Drag to reorder">
+                                                        <a class="acf-icon -collapse small" href="#" data-event="collapse-row" title="Click to toggle"></a>
+                                                        <span>1</span>
+                                                    </td>
+
+
+                                                    <td class="acf-field acf-field-taxonomy acf-field-5620350d903a1 -collapsed-target" data-name="ingredient_obj" data-type="taxonomy" data-key="field_5620350d903a1" data-conditions="[[{&quot;field&quot;:&quot;field_56206d699ae9c&quot;,&quot;operator&quot;:&quot;==&quot;,&quot;value&quot;:&quot;1&quot;},{&quot;field&quot;:&quot;field_5588b2c5b4dc5&quot;,&quot;operator&quot;:&quot;!=&quot;,&quot;value&quot;:&quot;1&quot;}]]">
+                                                        <div class="acf-input">
+                                                            <div class="acf-taxonomy-field" data-save="1" data-ftype="select" data-taxonomy="recipe_ingredient" data-allow_null="0">
+                                                                <input type="hidden" id="acf-field_5585b695453f5-acfcloneindex-field_5620350d903a1-input" name="acf[field_5585b695453f5][acfcloneindex][field_5620350d903a1]" /><select id="acf-field_5585b695453f5-acfcloneindex-field_5620350d903a1"
+                                                                                                                                                                                                                                        class="" name="acf[field_5585b695453f5][acfcloneindex][field_5620350d903a1]" data-ui="1" data-ajax="1" data-multiple="0" data-placeholder="Select" data-allow_null="0"></select>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="acf-field acf-field-text acf-field-5585317d9b50b" data-name="ingredient_name" data-type="text" data-key="field_5585317d9b50b" data-conditions="[[{&quot;field&quot;:&quot;field_56206d699ae9c&quot;,&quot;operator&quot;:&quot;!=&quot;,&quot;value&quot;:&quot;1&quot;}],[{&quot;field&quot;:&quot;field_5588b2c5b4dc5&quot;,&quot;operator&quot;:&quot;==&quot;,&quot;value&quot;:&quot;1&quot;}]]">
+                                                        <div class="acf-input">
+                                                            <div class="acf-input-wrap"><input type="text" id="acf-field_5585b695453f5-acfcloneindex-field_5585317d9b50b" name="acf[field_5585b695453f5][acfcloneindex][field_5585317d9b50b]" /></div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="acf-field acf-field-text acf-field-558531f69b50c" data-name="ingredient_amount" data-type="text" data-key="field_558531f69b50c" data-conditions="[[{&quot;field&quot;:&quot;field_5588b2c5b4dc5&quot;,&quot;operator&quot;:&quot;!=&quot;,&quot;value&quot;:&quot;1&quot;}]]">
+                                                        <div class="acf-input">
+                                                            <div class="acf-input-wrap"><input type="text" id="acf-field_5585b695453f5-acfcloneindex-field_558531f69b50c" name="acf[field_5585b695453f5][acfcloneindex][field_558531f69b50c]" /></div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="acf-field acf-field-text acf-field-558532249b50d" data-name="ingredient_note" data-type="text" data-key="field_558532249b50d">
+                                                        <div class="acf-input">
+                                                            <div class="acf-input-wrap"><input type="text" id="acf-field_5585b695453f5-acfcloneindex-field_558532249b50d" name="acf[field_5585b695453f5][acfcloneindex][field_558532249b50d]" /></div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="acf-field acf-field-true-false acf-field-5588b2c5b4dc5" data-name="separator" data-type="true_false" data-key="field_5588b2c5b4dc5">
+                                                        <div class="acf-input">
+                                                            <div class="acf-true-false">
+                                                                <input type="hidden" name="acf[field_5585b695453f5][acfcloneindex][field_5588b2c5b4dc5]" value="0" /> <label>
+                                                                    <input type="checkbox" id="acf-field_5585b695453f5-acfcloneindex-field_5588b2c5b4dc5" name="acf[field_5585b695453f5][acfcloneindex][field_5588b2c5b4dc5]" value="1" class="" autocomplete="off" />
+                                                                    <span class="message">Separator?</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="acf-field acf-field-url acf-field-59195b56d9540" data-name="custom_link" data-type="url" data-key="field_59195b56d9540">
+                                                        <div class="acf-input">
+                                                            <div class="acf-input-wrap acf-url">
+                                                                <i class="acf-icon -globe -small"></i><input type="url" id="acf-field_5585b695453f5-acfcloneindex-field_59195b56d9540" name="acf[field_5585b695453f5][acfcloneindex][field_59195b56d9540]" />
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+
+
+                                                    <td class="acf-row-handle remove">
+                                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
+                                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="acf-actions">
+                                            <a class="acf-button button button-primary" href="#" data-event="add-row">Add Ingredient</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-repeater acf-field-5588b3032df0c" data-name="steps" data-type="repeater" data-key="field_5588b3032df0c">
+                                <div class="acf-label">
+                                    <label for="acf-field_5588b3032df0c">Steps</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-repeater -empty -block" data-min="0" data-max="0">
+                                        <input type="hidden" name="acf[field_5588b3032df0c]" value="" />
+                                        <table class="acf-table">
+
+
+                                            <tbody>
+                                                <tr class="acf-row acf-clone" data-id="acfcloneindex">
+
+                                                    <td class="acf-row-handle order" title="Drag to reorder">
+                                                        <a class="acf-icon -collapse small" href="#" data-event="collapse-row" title="Click to toggle"></a>
+                                                        <span>1</span>
+                                                    </td>
+
+                                                    <td class="acf-fields">
+                                                        <div class="acf-field acf-field-text acf-field-5588b33d2df0e" style="width:70%;" data-name="step_title" data-type="text" data-key="field_5588b33d2df0e" data-width="70">
+                                                            <div class="acf-label">
+                                                                <label for="acf-field_5588b3032df0c-acfcloneindex-field_5588b33d2df0e">Step Title (optional)</label>
+                                                            </div>
+                                                            <div class="acf-input">
+                                                                <div class="acf-input-wrap"><input type="text" id="acf-field_5588b3032df0c-acfcloneindex-field_5588b33d2df0e" name="acf[field_5588b3032df0c][acfcloneindex][field_5588b33d2df0e]" /></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="acf-field acf-field-text acf-field-5588b3902df10" style="width:30%;" data-name="step_duration" data-type="text" data-key="field_5588b3902df10" data-width="30">
+                                                            <div class="acf-label">
+                                                                <label for="acf-field_5588b3032df0c-acfcloneindex-field_5588b3902df10">Step Duration (optional)</label>
+                                                            </div>
+                                                            <div class="acf-input">
+                                                                <div class="acf-input-wrap"><input type="text" id="acf-field_5588b3032df0c-acfcloneindex-field_5588b3902df10" name="acf[field_5588b3032df0c][acfcloneindex][field_5588b3902df10]" /></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" data-name="step_description" data-type="textarea" data-key="field_5588b30c2df0d">
+                                                            <div class="acf-label">
+                                                                <label for="acf-field_5588b3032df0c-acfcloneindex-field_5588b30c2df0d">Step Description</label>
+                                                            </div>
+                                                            <div class="acf-input">
+                                                                <textarea id="acf-field_5588b3032df0c-acfcloneindex-field_5588b30c2df0d" name="acf[field_5588b3032df0c][acfcloneindex][field_5588b30c2df0d]" rows="4"></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="acf-field acf-field-gallery acf-field-5588b35a2df0f" data-name="step_images" data-type="gallery" data-key="field_5588b35a2df0f" data-conditions="[[{&quot;field&quot;:&quot;field_5588b46ff67bf&quot;,&quot;operator&quot;:&quot;==&quot;,&quot;value&quot;:&quot;1&quot;}]]">
+                                                            <div class="acf-label">
+                                                                <label for="acf-field_5588b3032df0c-acfcloneindex-field_5588b35a2df0f">Step Images</label>
+                                                            </div>
+                                                            <div class="acf-input">
+                                                                <div id="acf-field_5588b3032df0c-acfcloneindex-field_5588b35a2df0f" class="acf-gallery" data-library="all" data-preview_size="thumbnail" data-min="" data-max="" data-mime_types="" data-insert="append" data-columns="4" style="height:400px">
+                                                                    <input type="hidden" name="acf[field_5588b3032df0c][acfcloneindex][field_5588b35a2df0f]" value="" />
+                                                                    <div class="acf-gallery-main">
+                                                                        <div class="acf-gallery-attachments">
+                                                                        </div>
+                                                                        <div class="acf-gallery-toolbar">
+                                                                            <ul class="acf-hl">
+                                                                                <li>
+                                                                                    <a href="#" class="acf-button button button-primary acf-gallery-add">Add to gallery</a>
+                                                                                </li>
+                                                                                <li class="acf-fr">
+                                                                                    <select class="acf-gallery-sort">
+                                                                                        <option value="">Bulk actions</option>
+                                                                                        <option value="date">Sort by date uploaded</option>
+                                                                                        <option value="modified">Sort by date modified</option>
+                                                                                        <option value="title">Sort by title</option>
+                                                                                        <option value="reverse">Reverse current order</option>
+                                                                                    </select>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="acf-gallery-side">
+                                                                        <div class="acf-gallery-side-inner">
+                                                                            <div class="acf-gallery-side-data"></div>
+                                                                            <div class="acf-gallery-toolbar">
+                                                                                <ul class="acf-hl">
+                                                                                    <li>
+                                                                                        <a href="#" class="acf-button button acf-gallery-close">Close</a>
+                                                                                    </li>
+                                                                                    <li class="acf-fr">
+                                                                                        <a class="acf-button button button-primary acf-gallery-update" href="#">Update</a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="acf-field acf-field-true-false acf-field-5588b46ff67bf" data-name="step_has_images" data-type="true_false" data-key="field_5588b46ff67bf">
+                                                            <div class="acf-label">
+                                                                <label for="acf-field_5588b3032df0c-acfcloneindex-field_5588b46ff67bf">Add Images for this Step</label>
+                                                            </div>
+                                                            <div class="acf-input">
+                                                                <div class="acf-true-false">
+                                                                    <input type="hidden" name="acf[field_5588b3032df0c][acfcloneindex][field_5588b46ff67bf]" value="0" /> <label>
+                                                                        <input type="checkbox" id="acf-field_5588b3032df0c-acfcloneindex-field_5588b46ff67bf" name="acf[field_5588b3032df0c][acfcloneindex][field_5588b46ff67bf]" value="1" class="" autocomplete="off" />
+                                                                        <span class="message">Step has images</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </td>
+                                                    <td class="acf-row-handle remove">
+                                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
+                                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="acf-actions">
+                                            <a class="acf-button button button-primary" href="#" data-event="add-row">Add Step</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-repeater acf-field-558bba316bc22" data-name="nutritions" data-type="repeater" data-key="field_558bba316bc22">
+                                <div class="acf-label">
+                                    <label for="acf-field_558bba316bc22">Nutritions</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-repeater -empty -table" data-min="0" data-max="0">
+                                        <input type="hidden" name="acf[field_558bba316bc22]" value="" />
+                                        <table class="acf-table">
+
+                                            <thead>
+                                                <tr>
+                                                    <th class="acf-row-handle"></th>
+
+                                                    <th class="acf-th" data-name="nutrition_name" data-type="text" data-key="field_558bba3a6bc23">
+                                                        Nutrition Name
+                                                    </th>
+                                                    <th class="acf-th" data-name="nutrition_value" data-type="text" data-key="field_558bba486bc24">
+                                                        Nutrition Value
+                                                    </th>
+                                                    <th class="acf-th" data-name="nutrition_extra_info" data-type="textarea" data-key="field_558bba516bc25">
+                                                        Nutrition Extra Info
+                                                    </th>
+                                                    <th class="acf-th" data-name="google_rich_meta_field" data-type="select" data-key="field_5752abd7c7346">
+                                                        Google Rich Meta Field
+                                                        <p class="description">Optional: you can pick a google rich meta element to show in the meta scheme</p>
+                                                    </th>
+
+                                                    <th class="acf-row-handle"></th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr class="acf-row acf-clone" data-id="acfcloneindex">
+
+                                                    <td class="acf-row-handle order" title="Drag to reorder">
+                                                        <a class="acf-icon -collapse small" href="#" data-event="collapse-row" title="Click to toggle"></a>
+                                                        <span>1</span>
+                                                    </td>
+
+
+                                                    <td class="acf-field acf-field-text acf-field-558bba3a6bc23 -collapsed-target" data-name="nutrition_name" data-type="text" data-key="field_558bba3a6bc23">
+                                                        <div class="acf-input">
+                                                            <div class="acf-input-wrap"><input type="text" id="acf-field_558bba316bc22-acfcloneindex-field_558bba3a6bc23" name="acf[field_558bba316bc22][acfcloneindex][field_558bba3a6bc23]" /></div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="acf-field acf-field-text acf-field-558bba486bc24" data-name="nutrition_value" data-type="text" data-key="field_558bba486bc24">
+                                                        <div class="acf-input">
+                                                            <div class="acf-input-wrap"><input type="text" id="acf-field_558bba316bc22-acfcloneindex-field_558bba486bc24" name="acf[field_558bba316bc22][acfcloneindex][field_558bba486bc24]" /></div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="acf-field acf-field-textarea acf-field-558bba516bc25" data-name="nutrition_extra_info" data-type="textarea" data-key="field_558bba516bc25">
+                                                        <div class="acf-input">
+                                                            <textarea id="acf-field_558bba316bc22-acfcloneindex-field_558bba516bc25" name="acf[field_558bba316bc22][acfcloneindex][field_558bba516bc25]" rows="2"></textarea>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="acf-field acf-field-select acf-field-5752abd7c7346" data-name="google_rich_meta_field" data-type="select" data-key="field_5752abd7c7346">
+                                                        <div class="acf-input">
+                                                            <select id="acf-field_558bba316bc22-acfcloneindex-field_5752abd7c7346" class="" name="acf[field_558bba316bc22][acfcloneindex][field_5752abd7c7346]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="1"><option value="" selected="selected" data-i="0">- Select -</option><option value="servingSize">Serving Size</option><option value="calories">Calories</option><option value="proteinContent">Protein</option><option value="fatContent">Fat</option><option value="carbohydrateContent">Carbohydrates</option><option value="saturatedFatContent">Saturated Fat</option><option value="transFatContent">Trans Fat</option><option value="cholesterolContent">Cholesterol</option><option value="fiberContent">Fiber</option><option value="sodiumContent">Sodium</option><option value="sugarContent">Sugar</option></select>
+                                                        </div>
+                                                    </td>
+
+
+
+                                                    <td class="acf-row-handle remove">
+                                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
+                                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="acf-actions">
+                                            <a class="acf-button button button-primary" href="#" data-event="add-row">Add Nutrition</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-post-object acf-field-57e88f8e63c51" data-name="show_selected_posts_as_relative" data-type="post_object" data-key="field_57e88f8e63c51">
+                                <div class="acf-label">
+                                    <label for="acf-field_57e88f8e63c51">Show Selected Recipes as Relative (Optional)</label>
+                                    <p class="description">
+                                        By default theme will output posts that have the same tags as selected recipe or that belong to the same category as related (you can set it in theme settings -> general -> single post tag). You can also override
+                                        that by selecting a specific set of posts to show in related posts area.
+                                    </p>
+                                </div>
+                                <div class="acf-input">
+                                    <input type="hidden" id="acf-field_57e88f8e63c51-input" name="acf[field_57e88f8e63c51]" /><select id="acf-field_57e88f8e63c51" class="" name="acf[field_57e88f8e63c51][]" data-ui="1" data-ajax="1" data-multiple="1"
+                                                                                                                                      data-placeholder="Select" data-allow_null="0" multiple="multiple" size="1"></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-tab acf-field-5632dfe9520f0" data-type="tab" data-key="field_5632dfe9520f0">
+                                <div class="acf-label">
+                                    <label for="acf-field_5632dfe9520f0">Featured Recipes</label>
+                                </div>
+                                <div class="acf-input">
+                                    <a href="" class="acf-tab-button" data-placement="top" data-endpoint="0" data-key="field_5632dfe9520f0">Featured Recipes</a>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-true-false acf-field-55a441d80869c" data-name="show_featured_recipes_slider" data-type="true_false" data-key="field_55a441d80869c">
+                                <div class="acf-label">
+                                    <label for="acf-field_55a441d80869c">Show Featured Recipes Slider</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-true-false">
+                                        <input type="hidden" name="acf[field_55a441d80869c]" value="0" /> <label>
+                                            <input type="checkbox" id="acf-field_55a441d80869c" name="acf[field_55a441d80869c]" value="1" class="" autocomplete="off" />
+                                            <span class="message">Show Featured Recipes Slider</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-post-object acf-field-55a443b80869d" data-name="featured_recipes" data-type="post_object" data-key="field_55a443b80869d" data-conditions="[[{&quot;field&quot;:&quot;field_55a441d80869c&quot;,&quot;operator&quot;:&quot;==&quot;,&quot;value&quot;:&quot;1&quot;}]]">
+                                <div class="acf-label">
+                                    <label for="acf-field_55a443b80869d">Featured Recipes</label>
+                                </div>
+                                <div class="acf-input">
+                                    <input type="hidden" id="acf-field_55a443b80869d-input" name="acf[field_55a443b80869d]" /><select id="acf-field_55a443b80869d" class="" name="acf[field_55a443b80869d][]" data-ui="1" data-ajax="1" data-multiple="1"
+                                                                                                                                      data-placeholder="Select" data-allow_null="0" multiple="multiple" size="1"></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-image acf-field-5619dfc72f594" data-name="featured_recipes_background_image" data-type="image" data-key="field_5619dfc72f594">
+                                <div class="acf-label">
+                                    <label for="acf-field_5619dfc72f594">Featured Recipes Background image</label>
+                                    <p class="description">Background image for featured recipes slider</p>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-image-uploader" data-preview_size="thumbnail" data-library="all" data-mime_types="" data-uploader="basic">
+                                        <input type="hidden" name="acf[field_5619dfc72f594]" value="" />
+                                        <div class="show-if-value image-wrap" style="max-width: 150px">
+                                            <img data-name="image" src="" alt="" />
+                                            <div class="acf-actions -hover">
+                                                <a class="acf-icon -cancel dark" data-name="remove" href="#" title="Remove"></a>
+                                            </div>
+                                        </div>
+                                        <div class="hide-if-value">
+
+
+                                            <label class="acf-basic-uploader">
+                                                <input type="file" name="acf[field_5619dfc72f594]" id="acf-field_5619dfc72f594" />
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-select acf-field-5632d871520ee" data-name="featured_recipes_layout_type" data-type="select" data-key="field_5632d871520ee">
+                                <div class="acf-label">
+                                    <label for="acf-field_5632d871520ee">Featured Recipes Layout Type</label>
+                                </div>
+                                <div class="acf-input">
+                                    <select id="acf-field_5632d871520ee" class="" name="acf[field_5632d871520ee]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="0"><option value="mixed" selected="selected" data-i="mixed">Mixed tiles</option><option value="full">Full tiles</option><option value="wide">Wide tiles</option><option value="small">Small tiles</option></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-true-false acf-field-5632df82520ef" data-name="make_featured_recipes_fixed_width" data-type="true_false" data-key="field_5632df82520ef">
+                                <div class="acf-label">
+                                    <label for="acf-field_5632df82520ef">Make Featured Recipes fixed width</label>
+                                    <p class="description">Check this box if you want your featured recipes block to be same width as the rest of the content. Leave unchecked if you want it to occupy full width of the screen.</p>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-true-false">
+                                        <input type="hidden" name="acf[field_5632df82520ef]" value="0" /> <label>
+                                            <input type="checkbox" id="acf-field_5632df82520ef" name="acf[field_5632df82520ef]" value="1" class="" autocomplete="off" />
+                                            <span class="message">Make Featured Recipe Panel Fixed width</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-tab acf-field-5632e04f520f2" data-type="tab" data-key="field_5632e04f520f2">
+                                <div class="acf-label">
+                                    <label for="acf-field_5632e04f520f2">Page Background Settings</label>
+                                </div>
+                                <div class="acf-input">
+                                    <a href="" class="acf-tab-button" data-placement="top" data-endpoint="0" data-key="field_5632e04f520f2">Page Background Settings</a>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-image acf-field-55f2990b6a9a1" data-name="background_image" data-type="image" data-key="field_55f2990b6a9a1">
+                                <div class="acf-label">
+                                    <label for="acf-field_55f2990b6a9a1">Custom background Image</label>
+                                    <p class="description">Leave blank to use the one that is set in Theme Settings - Apperance panel</p>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-image-uploader" data-preview_size="thumbnail" data-library="all" data-mime_types="" data-uploader="basic">
+                                        <input type="hidden" name="acf[field_55f2990b6a9a1]" value="" />
+                                        <div class="show-if-value image-wrap" style="max-width: 150px">
+                                            <img data-name="image" src="" alt="" />
+                                            <div class="acf-actions -hover">
+                                                <a class="acf-icon -cancel dark" data-name="remove" href="#" title="Remove"></a>
+                                            </div>
+                                        </div>
+                                        <div class="hide-if-value">
+
+
+                                            <label class="acf-basic-uploader">
+                                                <input type="file" name="acf[field_55f2990b6a9a1]" id="acf-field_55f2990b6a9a1" />
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-select acf-field-563d60a5ef874" data-name="background_image_size" data-type="select" data-key="field_563d60a5ef874">
+                                <div class="acf-label">
+                                    <label for="acf-field_563d60a5ef874">Background Image Size</label>
+                                </div>
+                                <div class="acf-input">
+                                    <select id="acf-field_563d60a5ef874" class="" name="acf[field_563d60a5ef874]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="0"><option value="big">Big</option><option value="small">Small</option><option value="default" selected="selected" data-i="default">Default</option></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-select acf-field-55f2b3effda15" data-name="parallax_background" data-type="select" data-key="field_55f2b3effda15">
+                                <div class="acf-label">
+                                    <label for="acf-field_55f2b3effda15">Parallax Background</label>
+                                    <p class="description">You can set parallax background settings on per page basis, or just leave at blank to inherit from what is set in the Theme Settings - Appearance panel</p>
+                                </div>
+                                <div class="acf-input">
+                                    <select id="acf-field_55f2b3effda15" class="" name="acf[field_55f2b3effda15]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="0"><option value="default" selected="selected" data-i="default">Default</option><option value="no">No</option><option value="yes">Yes</option></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-tab acf-field-564c051dd64a1" data-name="custom_header_settings" data-type="tab" data-key="field_564c051dd64a1">
+                                <div class="acf-label">
+                                    <label for="acf-field_564c051dd64a1">Custom Header Settings</label>
+                                </div>
+                                <div class="acf-input">
+                                    <a href="" class="acf-tab-button" data-placement="top" data-endpoint="0" data-key="field_564c051dd64a1">Custom Header Settings</a>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-true-false acf-field-564c1d6f8eecd" data-name="enable_custom_header_settings" data-type="true_false" data-key="field_564c1d6f8eecd">
+                                <div class="acf-label">
+                                    <label for="acf-field_564c1d6f8eecd">Enable Custom Header Settings</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-true-false">
+                                        <input type="hidden" name="acf[field_564c1d6f8eecd]" value="0" /> <label>
+                                            <input type="checkbox" id="acf-field_564c1d6f8eecd" name="acf[field_564c1d6f8eecd]" value="1" class="" autocomplete="off" />
+                                            <span class="message">Enable custom header settings</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-select acf-field-564c049d3f264" data-name="top_menu_type" data-type="select" data-key="field_564c049d3f264" data-conditions="[[{&quot;field&quot;:&quot;field_564c1d6f8eecd&quot;,&quot;operator&quot;:&quot;==&quot;,&quot;value&quot;:&quot;1&quot;}]]">
+                                <div class="acf-label">
+                                    <label for="acf-field_564c049d3f264">Top Menu Type</label>
+                                </div>
+                                <div class="acf-input">
+                                    <select id="acf-field_564c049d3f264" class="" name="acf[field_564c049d3f264]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="0"><option value="version_1" selected="selected" data-i="version_1">Version 1 (Logo on the left and then menu and search)</option><option value="version_2">Version 2 (Big Logo above menu)</option></select>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-image acf-field-564c04a63f265" data-name="logo_image" data-type="image" data-key="field_564c04a63f265" data-conditions="[[{&quot;field&quot;:&quot;field_564c1d6f8eecd&quot;,&quot;operator&quot;:&quot;==&quot;,&quot;value&quot;:&quot;1&quot;}]]">
+                                <div class="acf-label">
+                                    <label for="acf-field_564c04a63f265">Logo Image</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-image-uploader" data-preview_size="thumbnail" data-library="all" data-mime_types="" data-uploader="basic">
+                                        <input type="hidden" name="acf[field_564c04a63f265]" value="" />
+                                        <div class="show-if-value image-wrap" style="max-width: 150px">
+                                            <img data-name="image" src="" alt="" />
+                                            <div class="acf-actions -hover">
+                                                <a class="acf-icon -cancel dark" data-name="remove" href="#" title="Remove"></a>
+                                            </div>
+                                        </div>
+                                        <div class="hide-if-value">
+
+
+                                            <label class="acf-basic-uploader">
+                                                <input type="file" name="acf[field_564c04a63f265]" id="acf-field_564c04a63f265" />
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-number acf-field-564c04b13f266" style="width:20%;" data-name="logo_image_width" data-type="number" data-key="field_564c04b13f266" data-width="20" data-conditions="[[{&quot;field&quot;:&quot;field_564c1d6f8eecd&quot;,&quot;operator&quot;:&quot;==&quot;,&quot;value&quot;:&quot;1&quot;}]]">
+                                <div class="acf-label">
+                                    <label for="acf-field_564c04b13f266">Logo Image Width</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-append">px</div>
+                                    <div class="acf-input-wrap"><input type="number" id="acf-field_564c04b13f266" class="acf-is-appended" name="acf[field_564c04b13f266]" value="210" step="any" /></div>
+                                </div>
+                            </div>
+                            <div class="acf-field acf-field-text acf-field--validate-email" style="display:none !important;" data-name="_validate_email" data-type="text" data-key="_validate_email">
+                                <div class="acf-label">
+                                    <label for="acf-_validate_email">Validate Email</label>
+                                </div>
+                                <div class="acf-input">
+                                    <div class="acf-input-wrap"><input type="text" id="acf-_validate_email" name="acf[_validate_email]" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="acf-form-submit">
+                            <input type="submit" class="acf-button button button-primary button-large" value="Submit Recipe" /> <span class="acf-spinner"></span>
+                        </div>
+                    </form>
+                </div>
+            </article>
+        </div>
+
+    </div>
+</div>
+

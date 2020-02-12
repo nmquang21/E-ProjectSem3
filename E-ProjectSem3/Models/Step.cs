@@ -26,6 +26,8 @@ namespace E_ProjectSem3.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter extra information")]
         public string ExtraInfor { get; set; }
 
+        public string ImagePath { get; set; }
+
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
