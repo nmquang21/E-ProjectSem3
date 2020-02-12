@@ -31,7 +31,6 @@ namespace E_ProjectSem3.Models
             ErrorMessage = "Entered phone format is not valid.")]
         public string Phone { get; set; }
 
-        public virtual WishList WishList { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Recipe> Recipes { get; set; }
 

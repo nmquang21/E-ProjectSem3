@@ -10,8 +10,9 @@ namespace E_ProjectSem3.Models
     public class Nutrition
     {
         [Key]
-        public int NutritionId { get; set; }
-        public virtual Recipe Recipe { get; set; }
+        public int NutritionId { get; set; }   
+
+        public int UserId { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter description step")]
         [DisplayName(" Step Description")]

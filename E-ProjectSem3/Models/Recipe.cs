@@ -23,8 +23,6 @@ namespace E_ProjectSem3.Models
         public int NutritionId { get; set; }
         public virtual Nutrition Nutrition { get; set; }
 
-        public virtual WishList WishList { get; set; }
-
         public virtual ICollection<Step> Steps { get; set; }
         public virtual ICollection<ContestUser> ContestUsers { get; set; }
 
