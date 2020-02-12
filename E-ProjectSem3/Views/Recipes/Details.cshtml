@@ -1,0 +1,162 @@
+﻿@model E_ProjectSem3.Models.Recipe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recipe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nutrition.StepDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nutrition.StepDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApproveId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApproveId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FeaturedImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeaturedImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Difficulty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Difficulty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreparationMinute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreparationMinute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CookingMinute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CookingMinute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CookingTemp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CookingTemp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nutritions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nutritions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Video)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Video)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -12,10 +12,7 @@ namespace E_ProjectSem3.Models
         public int WishListId { get; set; }
 
         public int UserId { get; set; }
-        public virtual User User { get; set; }
-
         public int RecipeId { get; set; }
-        public virtual Recipe Recipe { get; set; }
 
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

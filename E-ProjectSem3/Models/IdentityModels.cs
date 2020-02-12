@@ -25,9 +25,21 @@ namespace E_ProjectSem3.Models
         {
         }
 
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Contest> Contests { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Nutrition> Nutritions { get; set; }
+        public DbSet<Prize> Prizes { get; set; }
+        public DbSet<Step> Steps { get; set; }
+        public DbSet<WishList> WishLists { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<E_ProjectSem3.Models.User> Users1 { get; set; }
     }
 }

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<E_ProjectSem3.Models.Nutrition>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StepDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StepImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StepDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StepImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeletedAt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NutritionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NutritionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NutritionId })
+        </td>
+    </tr>
+}
+
+</table>
