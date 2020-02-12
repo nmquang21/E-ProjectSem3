@@ -190,6 +190,10 @@
     <Compile Include="Migrations\202002121546035_AddModel.Designer.cs">
       <DependentUpon>202002121546035_AddModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002121656539_Addimage.cs" />
+    <Compile Include="Migrations\202002121656539_Addimage.Designer.cs">
+      <DependentUpon>202002121656539_Addimage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -668,6 +672,9 @@
     <Content Include="Content\fonts\orion-font.woff2" />
     <Content Include="Content\vendor\jquery.cookie\component.json" />
     <Content Include="Content\vendor\jquery.cookie\cookie.jquery.json" />
+    <Content Include="Content\assets\font\osfont.ttf" />
+    <Content Include="Content\assets\font\osfont.woff" />
+    <Content Include="Content\assets\font\osfont.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -742,6 +749,8 @@
     <Content Include="Views\Nutritions\Details.cshtml" />
     <Content Include="Views\Nutritions\Edit.cshtml" />
     <Content Include="Views\Nutritions\Index.cshtml" />
+    <Content Include="Views\Home\AddRecipes.cshtml" />
+    <Content Include="Views\Shared\_LayoutRecipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -765,6 +774,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002121546035_AddModel.resx">
       <DependentUpon>202002121546035_AddModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002121656539_Addimage.resx">
+      <DependentUpon>202002121656539_Addimage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
