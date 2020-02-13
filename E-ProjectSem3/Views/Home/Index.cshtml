@@ -562,9 +562,18 @@
         <div class="archive-posts masonry-grid-w per-row-3">
             <div class="masonry-grid" data-layout-mode="fitRows">
 
-                @foreach (var item in Model)
+                @for (var i = 0; i< Model.Count(); i++ )
                 {
-                    <div class="masonry-item any third first-in-row">
+                    var zzz = "";
+                    if (i % 3 == 0)
+                    {
+                        zzz = "first-in-row";
+                    }
+                    else
+                    {
+                        zzz = "";
+                    }
+                    <div class="masonry-item any third @(zzz)">
                         <article class="archive-item any full_full post-206 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-chicken tag-cheese tag-hot tag-quick recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-haricots-verts-trimmed recipe_ingredient-large-eggs recipe_ingredient-skin-on-salmon-fillet recipe_cuisine-italian">
                             <div class="archive-item-i">
                                 <div class="extra-styling-box"></div>
@@ -582,17 +591,17 @@
                                     </div>
                                 </div>
                                 <div class="archive-item-media">
-                                    <a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="archive-item-media-thumbnail fader-activator" style="background-image: url(/Content/assets/wp-content/uploads/2015/07/recipe17-1024x683.jpg); background-size: cover;">
+                                    <a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="archive-item-media-thumbnail fader-activator" style="background-image: url(@(Model.ElementAt(i).FeaturedImage)); background-size: cover;">
                                         <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
                                     </a>
                                 </div>
                                 <div class="archive-item-content">
                                     <header class="archive-item-header">
-                                        <h3 class="entry-title"><a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" rel="bookmark">@(item.Title)</a></h3>
+                                        <h3 class="entry-title"><a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" rel="bookmark">@(Model.ElementAt(i).Title)</a></h3>
                                     </header>
                                     <div class="archive-item-meta">
                                         <div class="archive-item-meta-cooking-time">
-                                            Cooking Time: @(item.CookingMinute)
+                                            Cooking Time: @(Model.ElementAt(i).CookingMinute)
                                         </div>
 
                                         <div class="archive-item-meta-categories">
