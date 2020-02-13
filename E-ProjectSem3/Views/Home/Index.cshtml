@@ -591,13 +591,13 @@
                                     </div>
                                 </div>
                                 <div class="archive-item-media">
-                                    <a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="archive-item-media-thumbnail fader-activator" style="background-image: url(@(Model.ElementAt(i).FeaturedImage)); background-size: cover;">
+                                    <a href="/Home/RecipeDetail/@(Model.ElementAt(i).Id)" class="archive-item-media-thumbnail fader-activator" style="background-image: url(@(Model.ElementAt(i).FeaturedImage)); background-size: cover;">
                                         <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
                                     </a>
                                 </div>
                                 <div class="archive-item-content">
                                     <header class="archive-item-header">
-                                        <h3 class="entry-title"><a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" rel="bookmark">@(Model.ElementAt(i).Title)</a></h3>
+                                        <h3 class="entry-title"><a href="/Home/RecipeDetail/@(Model.ElementAt(i).Id)" rel="bookmark">@(Model.ElementAt(i).Title)</a></h3>
                                     </header>
                                     <div class="archive-item-meta">
                                         <div class="archive-item-meta-cooking-time">

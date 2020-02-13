@@ -9,22 +9,21 @@ namespace E_ProjectSem3.Models
     public class Comment
     {
         [Key]
-        public int CommentId { get; set; }
-
-        public int ApproveId { get; set; }
-
+        public int Id { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your content ")]
         public string Content { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public DateTime DeletedAt { get; set; }
 
+        public int RecipeId { get; set; }
         public int UserId { get; set; }
+        public int ApproveId { get; set; }
+
         public enum Status
         {
             Active = 1,
-            DeActive = 0,
-            Deleted = -1
+            NonActive = 0,
         }
-        public DateTime? CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public DateTime? DeletedAt { get; set; }
     }
 }

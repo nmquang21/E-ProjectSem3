@@ -10,14 +10,13 @@ namespace E_ProjectSem3.Models
     public class Nutrition
     {
         [Key]
-        public int NutritionId { get; set; }
-
+        public int Id { get; set; }
         public string Name { get; set; }
-
         public int Value { get; set; }
-
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
+
+        public int RecipeId { get; set; }
     }
 }
