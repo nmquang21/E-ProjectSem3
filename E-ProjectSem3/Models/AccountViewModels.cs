@@ -8,6 +8,8 @@ namespace E_ProjectSem3.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -79,6 +81,14 @@ namespace E_ProjectSem3.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -1,7 +1,7 @@
-﻿
+﻿@model E_ProjectSem3.Models.Recipe
 @{
     ViewBag.Title = "RecipeDetail";
-    Layout = "~/Views/Shared/_LayoutRecipe.cshtml";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
 <div class="os-container top-bar-w">
@@ -69,7 +69,7 @@
             <div class="single-main-media">
                 <div class="single-main-media-image-w active fader-activator  osetin-lightbox-trigger" data-lightbox-caption="Squash soup with Parmesan croutons" data-lightbox-img-src="~/Content/assets/wp-content/uploads/2015/06/recipe3-875x1300.jpg">
                     <span class="image-fader lighter"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    <img class="" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-875x1300.jpg" alt="Squash soup with Parmesan croutons" />
+                    <img class="" src="@(Model.FeaturedImage)" alt="Squash soup with Parmesan croutons" />
                 </div>
             </div>
             <div class="side-meta-box">
@@ -299,7 +299,7 @@
     <div class="single-panel-main">
 
         <div class="single-title">
-            <h1>Squash soup with Parmesan croutons</h1>
+            <h1>@(Model.Title)</h1>
             <h3>Smooth, creamy and a little bit spicy</h3>
         </div>
 
@@ -329,7 +329,7 @@
         </div>
         <div class="single-meta">
             <ul>
-                <li class="single-meta-cooking-time"><i class="os-icon os-icon-thin-clock-busy"></i> <span>30 min</span></li>
+                <li class="single-meta-cooking-time"><i class="os-icon os-icon-thin-clock-busy"></i> <span>@(Model.CookingMinute) min</span></li>
                 <li class="single-meta-serves"><i class="os-icon os-icon-thin-serve"></i> <span>Serves 1</span></li>
                 <li class="single-meta-difficulty"><i class="os-icon os-icon-thin-cook"></i> <span>Medium</span></li>
             </ul>
@@ -433,15 +433,7 @@
                     <a href="https://plus.google.com/share?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" target="_blank" class="archive-item-share-link aisl-googleplus"><i class="os-icon os-icon-social-googleplus"></i></a>
                 </div>
                 <p>
-                    This fantastic soup is best made with varieties of squash that have dense, orange flesh, such as butternut or onion squash. It&#8217;s important to use good chicken stock and season the soup well to bring out the nutty, sweet flavour
-                    of the squash. Once you&#8217;ve mastered this recipe, you can take the soup in different ways by adding pearl barley, dried pasta, or some chopped smoked bacon. Even the smallest amount of dried porcini. PS I made this in
-                    my pressure cooker the other day, with really great results – it&#8217;s so quick!
-                </p>
-                <p>
-                    Put a very large saucepan on a medium heat and pour in a couple of lugs of olive oil. Add the sage leaves and fry for around 30 seconds or until dark green and crisp. Quickly remove them with a slotted spoon to a bowl lined with
-                    kitchen paper – you&#8217;ll use these for sprinkling over at the end <a href="https://newzpharmacy.com/">moved here</a>. In the pan you&#8217;ll be left with a beautifully flavoured oil, so put it back on the heat and throw
-                    in your onion, celery, carrot, garlic, rosemary leaves, chilli and a good pinch of salt and pepper. Cook gently for about 10 minutes until the vegetables are sweet and soft. Add the squash and the stock to the pan, bring to
-                    the boil and simmer for around half an hour.
+                    @(Model.Content)
                 </p>
             </div>
 
@@ -552,7 +544,7 @@
                 </li>
                 <li class="social-bottom-author">
                     <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="40" height="40" alt="" class="default avatar" /></a> <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"
-                                                                                                                                                                                                                                                 title="Posts by Julia May" rel="author">Julia May</a>
+                                                                                                                                                                                                                                    title="Posts by Julia May" rel="author">Julia May</a>
                 </li>
             </ul>
         </div>

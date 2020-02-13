@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace E_ProjectSem3.Controllers
 {
+
     public class AdminController : Controller
     {
         // GET: Admin

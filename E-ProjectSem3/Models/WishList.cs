@@ -9,7 +9,7 @@ namespace E_ProjectSem3.Models
     public class WishList
     {
         [Key]
-        public int WishListId { get; set; }
+        public int Id { get; set; }
 
         public int UserId { get; set; }
         public int RecipeId { get; set; }
