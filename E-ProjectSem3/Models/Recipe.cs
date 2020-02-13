@@ -15,7 +15,6 @@ namespace E_ProjectSem3.Models
         public int ApproveId { get; set; }
 
         public int UserId { get; set; }
-        public virtual User User { get; set; }
 
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
@@ -24,6 +23,7 @@ namespace E_ProjectSem3.Models
         public virtual Nutrition Nutrition { get; set; }
 
         public virtual ICollection<Step> Steps { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
         public virtual ICollection<ContestUser> ContestUsers { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter title")]
@@ -54,14 +54,9 @@ namespace E_ProjectSem3.Models
         [DisplayName("Cooking Tempareture")]
         public int CookingTemp { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter cooking nutrition  ")]
-        public string Nutritions { get; set; }
-
         public string Video { get; set; }
 
-        public DateTime? CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public DateTime? DeletedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
     }
 }

@@ -10,17 +10,11 @@ namespace E_ProjectSem3.Models
     public class Nutrition
     {
         [Key]
-        public int NutritionId { get; set; }   
+        public int NutritionId { get; set; }
 
-        public int UserId { get; set; }
+        public string Name { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter description step")]
-        [DisplayName(" Step Description")]
-        public string StepDescription { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter image step")]
-        [DisplayName(" Step Image")]
-        public string StepImage { get; set; }
+        public int Value { get; set; }
 
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

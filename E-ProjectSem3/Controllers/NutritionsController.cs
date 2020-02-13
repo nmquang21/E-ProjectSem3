@@ -46,7 +46,7 @@ namespace E_ProjectSem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NutritionId,UserId,StepDescription,StepImage,CreatedAt,UpdatedAt,DeletedAt")] Nutrition nutrition)
+        public ActionResult Create([Bind(Include = "NutritionId,Name,Value,CreatedAt,UpdatedAt,DeletedAt")] Nutrition nutrition)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace E_ProjectSem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NutritionId,UserId,StepDescription,StepImage,CreatedAt,UpdatedAt,DeletedAt")] Nutrition nutrition)
+        public ActionResult Edit([Bind(Include = "NutritionId,Name,Value,CreatedAt,UpdatedAt,DeletedAt")] Nutrition nutrition)
         {
             if (ModelState.IsValid)
             {

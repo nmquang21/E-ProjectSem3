@@ -194,6 +194,26 @@
     <Compile Include="Migrations\202002121656539_Addimage.Designer.cs">
       <DependentUpon>202002121656539_Addimage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002131212200_Fix1.cs" />
+    <Compile Include="Migrations\202002131212200_Fix1.Designer.cs">
+      <DependentUpon>202002131212200_Fix1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002131223035_Fix2.cs" />
+    <Compile Include="Migrations\202002131223035_Fix2.Designer.cs">
+      <DependentUpon>202002131223035_Fix2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002131230149_Fix3.cs" />
+    <Compile Include="Migrations\202002131230149_Fix3.Designer.cs">
+      <DependentUpon>202002131230149_Fix3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002131231027_Fix4.cs" />
+    <Compile Include="Migrations\202002131231027_Fix4.Designer.cs">
+      <DependentUpon>202002131231027_Fix4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002131234141_Fix5.cs" />
+    <Compile Include="Migrations\202002131234141_Fix5.Designer.cs">
+      <DependentUpon>202002131234141_Fix5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -207,7 +227,6 @@
     <Compile Include="Models\Prize.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\Step.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -729,11 +748,8 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Recipes\Create.cshtml" />
-    <Content Include="Views\Recipes\Delete.cshtml" />
-    <Content Include="Views\Recipes\Details.cshtml" />
-    <Content Include="Views\Recipes\Edit.cshtml" />
-    <Content Include="Views\Recipes\Index.cshtml" />
+    <Content Include="Views\Home\AddRecipes.cshtml" />
+    <Content Include="Views\Shared\_LayoutRecipe.cshtml" />
     <Content Include="Views\Steps\Create.cshtml" />
     <Content Include="Views\Steps\Delete.cshtml" />
     <Content Include="Views\Steps\Details.cshtml" />
@@ -749,8 +765,11 @@
     <Content Include="Views\Nutritions\Details.cshtml" />
     <Content Include="Views\Nutritions\Edit.cshtml" />
     <Content Include="Views\Nutritions\Index.cshtml" />
-    <Content Include="Views\Home\AddRecipes.cshtml" />
-    <Content Include="Views\Shared\_LayoutRecipe.cshtml" />
+    <Content Include="Views\Recipes\Create.cshtml" />
+    <Content Include="Views\Recipes\Delete.cshtml" />
+    <Content Include="Views\Recipes\Details.cshtml" />
+    <Content Include="Views\Recipes\Edit.cshtml" />
+    <Content Include="Views\Recipes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -777,6 +796,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002121656539_Addimage.resx">
       <DependentUpon>202002121656539_Addimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002131212200_Fix1.resx">
+      <DependentUpon>202002131212200_Fix1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002131223035_Fix2.resx">
+      <DependentUpon>202002131223035_Fix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002131230149_Fix3.resx">
+      <DependentUpon>202002131230149_Fix3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002131231027_Fix4.resx">
+      <DependentUpon>202002131231027_Fix4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002131234141_Fix5.resx">
+      <DependentUpon>202002131234141_Fix5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
