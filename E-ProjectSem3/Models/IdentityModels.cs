@@ -40,6 +40,5 @@ namespace E_ProjectSem3.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<E_ProjectSem3.Models.User> Users1 { get; set; }
     }
 }

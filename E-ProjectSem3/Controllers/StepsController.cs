@@ -48,7 +48,7 @@ namespace E_ProjectSem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StepId,RecipeId,Index,Name,Value,ExtraInfor,CreatedAt,UpdatedAt,DeletedAt")] Step step)
+        public ActionResult Create([Bind(Include = "StepId,RecipeId,Index,Name,Value,ExtraInfor,ImagePath,CreatedAt,UpdatedAt,DeletedAt")] Step step)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace E_ProjectSem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StepId,RecipeId,Index,Name,Value,ExtraInfor,CreatedAt,UpdatedAt,DeletedAt")] Step step)
+        public ActionResult Edit([Bind(Include = "StepId,RecipeId,Index,Name,Value,ExtraInfor,ImagePath,CreatedAt,UpdatedAt,DeletedAt")] Step step)
         {
             if (ModelState.IsValid)
             {

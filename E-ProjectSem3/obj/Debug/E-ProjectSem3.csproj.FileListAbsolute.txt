@@ -215,3 +215,8 @@ C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectS
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.GenerateResource.cache
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.AddModel.resources
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Addimage.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Fix1.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Fix2.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Fix3.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Fix4.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Fix5.resources

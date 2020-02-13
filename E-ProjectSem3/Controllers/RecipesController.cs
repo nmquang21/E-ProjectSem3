@@ -17,7 +17,7 @@ namespace E_ProjectSem3.Controllers
         // GET: Recipes
         public ActionResult Index()
         {
-            var recipes = db.Recipes.Include(r => r.Category).Include(r => r.Nutrition).Include(r => r.User);
+            var recipes = db.Recipes.Include(r => r.Category).Include(r => r.Nutrition);
             return View(recipes.ToList());
         }
 
@@ -40,8 +40,7 @@ namespace E_ProjectSem3.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
-            ViewBag.NutritionId = new SelectList(db.Nutritions, "NutritionId", "StepDescription");
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName");
+            ViewBag.NutritionId = new SelectList(db.Nutritions, "NutritionId", "Name");
             return View();
         }
 
@@ -50,18 +49,18 @@ namespace E_ProjectSem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RecipeId,ApproveId,UserId,CategoryId,NutritionId,Title,Description,Content,FeaturedImage,Detail,Difficulty,PreparationMinute,CookingMinute,CookingTemp,Nutritions,Video,CreatedAt,UpdatedAt,DeletedAt")] Recipe recipe)
+        public ActionResult Create([Bind(Include = "RecipeId,ApproveId,UserId,CategoryId,NutritionId,Title,Description,Content,FeaturedImage,Detail,Difficulty,PreparationMinute,CookingMinute,CookingTemp,Video,CreatedAt")] Recipe recipe)
         {
             if (ModelState.IsValid)
             {
+                recipe.CreatedAt = DateTime.Now;
                 db.Recipes.Add(recipe);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", recipe.CategoryId);
-            ViewBag.NutritionId = new SelectList(db.Nutritions, "NutritionId", "StepDescription", recipe.NutritionId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", recipe.UserId);
+            ViewBag.NutritionId = new SelectList(db.Nutritions, "NutritionId", "Name", recipe.NutritionId);
             return View(recipe);
         }
 
@@ -78,8 +77,7 @@ namespace E_ProjectSem3.Controllers
                 return HttpNotFound();
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", recipe.CategoryId);
-            ViewBag.NutritionId = new SelectList(db.Nutritions, "NutritionId", "StepDescription", recipe.NutritionId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", recipe.UserId);
+            ViewBag.NutritionId = new SelectList(db.Nutritions, "NutritionId", "Name", recipe.NutritionId);
             return View(recipe);
         }
 
@@ -88,7 +86,7 @@ namespace E_ProjectSem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RecipeId,ApproveId,UserId,CategoryId,NutritionId,Title,Description,Content,FeaturedImage,Detail,Difficulty,PreparationMinute,CookingMinute,CookingTemp,Nutritions,Video,CreatedAt,UpdatedAt,DeletedAt")] Recipe recipe)
+        public ActionResult Edit([Bind(Include = "RecipeId,ApproveId,UserId,CategoryId,NutritionId,Title,Description,Content,FeaturedImage,Detail,Difficulty,PreparationMinute,CookingMinute,CookingTemp,Video,CreatedAt")] Recipe recipe)
         {
             if (ModelState.IsValid)
             {
@@ -97,8 +95,7 @@ namespace E_ProjectSem3.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", recipe.CategoryId);
-            ViewBag.NutritionId = new SelectList(db.Nutritions, "NutritionId", "StepDescription", recipe.NutritionId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", recipe.UserId);
+            ViewBag.NutritionId = new SelectList(db.Nutritions, "NutritionId", "Name", recipe.NutritionId);
             return View(recipe);
         }
 
