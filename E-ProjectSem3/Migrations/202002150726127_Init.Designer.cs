@@ -13,7 +13,7 @@ namespace E_ProjectSem3.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202002131456413_Init"; }
+            get { return "202002150726127_Init"; }
         }
         
         string IMigrationMetadata.Source
