@@ -9,6 +9,7 @@
         border-radius: 4px;
         border-color: #adc9da;
     }
+
     input[type="number"] {
         border: 1px solid #adc9da;
     }
@@ -50,7 +51,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="text" id="acf-_post_title" name="title" required="required"/>
+                                        <input type="text" id="acf-_post_title" name="title" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +66,7 @@
                                         <option value="0">Not-Free</option>
                                     </select>
                                 </div>
-                            </div>    
+                            </div>
 
                             <div class="acf-field acf-field-wysiwyg acf-field--post-content">
                                 <div class="acf-label">
@@ -110,7 +111,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="text" id="post_image" name="featuredImage" required="required"/>
+                                        <input type="text" id="post_image" name="featuredImage" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +159,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="number" id="acf-field_563041000427e" name="preparationMinute" required="required"/>
+                                        <input type="number" id="acf-field_563041000427e" name="preparationMinute" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +171,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="number" id="acf-field_56303fcf0427d" name="cookingMinute" required="required"/>
+                                        <input type="number" id="acf-field_56303fcf0427d" name="cookingMinute" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +183,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="number" id="acf-field_563062b0f356d" name="cookingTemp" required="required"/>
+                                        <input type="number" id="acf-field_563062b0f356d" name="cookingTemp" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -383,42 +384,47 @@
 
     </div>
 </div>
+<div id="add-success" data-msg="@(TempData["AddSuccess"])"></div>
+
 @section Scripts{
     <script>
     jQuery(document).ready(function($) {
+        if ($('#add-success').data('msg') == "Success") {
+            showSuccessToast();
+        };
         var index = 1;
         $('#btn-add-nutrition').click(function() {
             index++;
             var contentNutrition = `<tr class="acf-row acf-clone nutrition">
 
-                                            <td class="acf-row-handle order">
-                                                <span>${index}</span>
-                                            </td>
+                                                    <td class="acf-row-handle order">
+                                                        <span>${index}</span>
+                                                    </td>
 
-                                            <td class="acf-field acf-field-text acf-field-558bba3a6bc23 -collapsed-target" data-name="nutrition_name" data-type="text">
-                                                <div class="acf-input">
-                                                    <div class="acf-input-wrap">
-                                                        <input type="text" id="" name="listNutrition[${index - 1
-                }].Name}" />
-                                                    </div>
-                                                </div>
-                                            </td>
+                                                    <td class="acf-field acf-field-text acf-field-558bba3a6bc23 -collapsed-target" data-name="nutrition_name" data-type="text">
+                                                        <div class="acf-input">
+                                                            <div class="acf-input-wrap">
+                                                                <input type="text" id="" name="listNutrition[${index -
+                1}].Name}" />
+                                                            </div>
+                                                        </div>
+                                                    </td>
 
-                                            <td class="acf-field acf-field-text acf-field-558bba486bc24" data-name="nutrition_value" data-type="text">
-                                                <div class="acf-input">
-                                                    <div class="acf-input-wrap">
-                                                        <input type="text" id="" name="listNutrition[${index - 1
-                }].Value" />
-                                                    </div>
-                                                </div>
-                                            </td>
+                                                    <td class="acf-field acf-field-text acf-field-558bba486bc24" data-name="nutrition_value" data-type="text">
+                                                        <div class="acf-input">
+                                                            <div class="acf-input-wrap">
+                                                                <input type="text" id="" name="listNutrition[${index -
+                1}].Value" />
+                                                            </div>
+                                                        </div>
+                                                    </td>
 
-                                            <td class="acf-row-handle remove">
-                                                <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                                <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
-                                            </td>
+                                                    <td class="acf-row-handle remove">
+                                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
+                                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                                    </td>
 
-                                        </tr>`;
+                                                </tr>`;
             $('.list-nutrition').prepend(contentNutrition);
         });
 
@@ -426,30 +432,31 @@
         $('#btn-add-ingredient').click(function() {
             indexCT++;
             var contentCT = `<tr class="acf-row acf-clone ct">
-                                    <td class="acf-row-handle order" title="Drag to reorder">
-                                        <span>${indexCT}</span>
-                                    </td>
-                                    <td class="acf-field acf-field-text acf-field-5585317d9b50b">
-                                        <div class="acf-input">
-                                            <div class="acf-input-wrap">
-                                                <input type="text" id="" name="listIngredient[${indexCT - 1}].Name" />
-                                            </div>
-                                        </div>
-                                    </td>
+                                            <td class="acf-row-handle order" title="Drag to reorder">
+                                                <span>${indexCT}</span>
+                                            </td>
+                                            <td class="acf-field acf-field-text acf-field-5585317d9b50b">
+                                                <div class="acf-input">
+                                                    <div class="acf-input-wrap">
+                                                        <input type="text" id="" name="listIngredient[${indexCT - 1
+                }].Name" />
+                                                    </div>
+                                                </div>
+                                            </td>
 
-                                    <td class="acf-field acf-field-text acf-field-558531f69b50c">
-                                        <div class="acf-input">
-                                            <div class="acf-input-wrap">
-                                                <input type="text" id="" name="listIngredient[${indexCT - 1
+                                            <td class="acf-field acf-field-text acf-field-558531f69b50c">
+                                                <div class="acf-input">
+                                                    <div class="acf-input-wrap">
+                                                        <input type="text" id="" name="listIngredient[${indexCT - 1
                 }].Amount" />
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="acf-row-handle remove">
-                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
-                                    </td>
-                                </tr>`;
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="acf-row-handle remove">
+                                                <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
+                                                <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                            </td>
+                                        </tr>`;
             $('.list-ct').prepend(contentCT);
         });
 
@@ -457,50 +464,53 @@
         $('#btn-add-step').click(function() {
             indexStep++;
             var contentStep = `<tr class="acf-row step">
-                                        <td class="acf-row-handle order ui-sortable-handle">
-                                            <input type="text" id="" name="listStep[${indexStep - 1}].Index" value="${
-                indexStep}">
-                                        </td>
+                                                <td class="acf-row-handle order ui-sortable-handle">
+                                                    <input type="text" id="" name="listStep[${indexStep - 1
+                }].Index" value="${indexStep}">
+                                                </td>
 
-                                        <td class="acf-fields">
-                                            <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 50%" data-width="30" data-name="step_description" data-type="textarea">
-                                                <div class="acf-label">
-                                                    <label for="step_title">Title</label>
-                                                </div>
-                                                <div class="acf-input">
-                                                    <input type="text" id="step_title" name="listStep[${indexStep - 1
-                }].Title">
-                                                </div>
-                                            </div>
-                                            <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 50%" data-width="30" data-name="step_description" data-type="textarea">
-                                                <div class="acf-label">
-                                                    <label for="image-step">Image</label>
-                                                </div>
-                                                <div class="acf-input">
-                                                    <input type="text" id="image-step" name="listStep[${indexStep - 1
-                }].ImagePath">
-                                                </div>
-                                            </div>
+                                                <td class="acf-fields">
+                                                    <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 50%" data-width="30" data-name="step_description" data-type="textarea">
+                                                        <div class="acf-label">
+                                                            <label for="step_title">Title</label>
+                                                        </div>
+                                                        <div class="acf-input">
+                                                            <input type="text" id="step_title" name="listStep[${
+                indexStep - 1}].Title">
+                                                        </div>
+                                                    </div>
+                                                    <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 50%" data-width="30" data-name="step_description" data-type="textarea">
+                                                        <div class="acf-label">
+                                                            <label for="image-step">Image</label>
+                                                        </div>
+                                                        <div class="acf-input">
+                                                            <input type="text" id="image-step" name="listStep[${
+                indexStep - 1}].ImagePath">
+                                                        </div>
+                                                    </div>
 
-                                            <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" data-name="step_description" data-type="textarea">
-                                                <div class="acf-label">
-                                                    <label for="step_description">Description</label>
-                                                </div>
-                                                <div class="acf-input">
-                                                    <textarea id="step_description" name="listStep[${indexStep - 1}].Description" rows="4"></textarea>
-                                                </div>
-                                            </div>
+                                                    <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" data-name="step_description" data-type="textarea">
+                                                        <div class="acf-label">
+                                                            <label for="step_description">Description</label>
+                                                        </div>
+                                                        <div class="acf-input">
+                                                            <textarea id="step_description" name="listStep[${
+                indexStep - 1}].Description" rows="4"></textarea>
+                                                        </div>
+                                                    </div>
 
 
-                                        </td>
-                                        <td class="acf-row-handle remove">
-                                            <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                            <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
-                                        </td>
+                                                </td>
+                                                <td class="acf-row-handle remove">
+                                                    <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
+                                                    <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                                </td>
 
-                                    </tr>`;
+                                            </tr>`;
             $('.list-step').prepend(contentStep);
         });
         })
     </script>
 }
+
+

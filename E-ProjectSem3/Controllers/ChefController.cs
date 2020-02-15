@@ -13,6 +13,11 @@ namespace E_ProjectSem3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Chef
+        public ActionResult AddRecipes()
+        {
+            ViewBag.Categories = db.Categories.Where(c => c.DeletedAt == null).OrderBy(c => c.Name).ToList();
+            return View();
+        }
         public ActionResult SubmitRecipe(string title, string recipeType, string content, string featuredImage,
             string categoryId, string difficulty, string description, int preparationMinute, int cookingMinute,
             int cookingTemp, List<Ingredient> listIngredient, List<Step> listStep, List<Nutrition> listNutrition)
@@ -28,7 +33,7 @@ namespace E_ProjectSem3.Controllers
             newRecipe.PreparationMinute = preparationMinute;
             newRecipe.CookingMinute = cookingMinute;
             newRecipe.CookingTemp = cookingTemp;
-
+            newRecipe.ViewCount = 0;
 
             var id = User.Identity.GetUserId();
             ApplicationUser appUser = new ApplicationUser();
@@ -104,7 +109,7 @@ namespace E_ProjectSem3.Controllers
                 Console.WriteLine(e);
                 throw;
             }
-            return RedirectToAction("Recipes","Home");
+            return RedirectToAction("AddRecipes");
         }
     }
 }

@@ -261,7 +261,7 @@
                         @if (User.IsInRole("chef") || User.IsInRole("admin"))
                         {
                             <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
-                                <a href="/Home/AddRecipes">Submit recipe</a>
+                                <a href="/Chef/AddRecipes">Submit recipe</a>
                             </li>
                         }
                         <li id="menu-item-448" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448">
@@ -270,6 +270,12 @@
                         <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
                             <a href="#">About Me</a>
                         </li>
+                        @if (!User.IsInRole("silver") && !User.IsInRole("gold"))
+                        {
+                            <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                                <a href="/Home/MemberShip">Membership</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <div class="search-trigger"><i class="os-icon os-icon-thin-search"></i></div>
@@ -437,9 +443,9 @@
         <div class="main-search-form-overlay">
         </div>
         <div class="main-search-form">
-            <form method="get" class="search-form" action="http://neptune.pinsupreme.com/" autocomplete="off">
+            <form method="get" class="search-form" action="@Url.Action("Recipes","Home")" autocomplete="off">
                 <div class="search-field-w">
-                    <input type="search" autocomplete="off" class="search-field" placeholder="Search …" value="" name="s" title="Search for:" />
+                    <input type="search" autocomplete="off" class="search-field" placeholder="Search …" value="" name="search" title="Search for:" />
                     <input type="submit" class="search-submit" value="Search" />
                 </div>
             </form>

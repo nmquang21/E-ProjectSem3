@@ -8,6 +8,21 @@
             showHideTransition: 'slide',
             icon: 'success',
             loaderBg: '#f96868',
+            position: {
+                right: 20,
+                top: 40
+            }
+        })
+    };
+    showSuccessAddRecipe = function () {
+        'use strict';
+        resetToastPosition();
+        $.toast({
+            heading: 'Success',
+            text: 'Created recipe.',
+            showHideTransition: 'slide',
+            icon: 'success',
+            loaderBg: '#f96868',
             position: 'top-right'
         })
     };

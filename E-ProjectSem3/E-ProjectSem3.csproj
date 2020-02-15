@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqKit, Version=1.1.17.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqKit.1.1.17\lib\net45\LinqKit.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -81,6 +84,12 @@
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -190,6 +199,18 @@
     <Compile Include="Migrations\202002150735337_Fix.cs" />
     <Compile Include="Migrations\202002150735337_Fix.Designer.cs">
       <DependentUpon>202002150735337_Fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002151205599_view.cs" />
+    <Compile Include="Migrations\202002151205599_view.Designer.cs">
+      <DependentUpon>202002151205599_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002151220207_view1.cs" />
+    <Compile Include="Migrations\202002151220207_view1.Designer.cs">
+      <DependentUpon>202002151220207_view1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002151221533_view2.cs" />
+    <Compile Include="Migrations\202002151221533_view2.Designer.cs">
+      <DependentUpon>202002151221533_view2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
@@ -736,15 +757,14 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Home\AddRecipes.cshtml" />
     <Content Include="Views\Shared\_LayoutRecipe.cshtml" />
     <Content Include="Views\AccountRoles\Create.cshtml" />
     <Content Include="Views\Home\MemberShip.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
+    <Content Include="Views\Chef\AddRecipes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Chef\" />
     <Folder Include="Views\Membership\" />
   </ItemGroup>
   <ItemGroup>
@@ -766,6 +786,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002150735337_Fix.resx">
       <DependentUpon>202002150735337_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151205599_view.resx">
+      <DependentUpon>202002151205599_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151220207_view1.resx">
+      <DependentUpon>202002151220207_view1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151221533_view2.resx">
+      <DependentUpon>202002151221533_view2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

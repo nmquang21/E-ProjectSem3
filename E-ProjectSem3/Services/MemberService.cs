@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -16,10 +17,6 @@ namespace E_ProjectSem3.Services
         public bool CheckExpiredMember(ApplicationUser user)
         {
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            if (user == null)
-            {
-                return false;
-            }
             var listRole = UserManager.GetRoles(user.Id);
             var listMemberType = db.Members.ToList();
             foreach (var member in listMemberType)
@@ -38,7 +35,7 @@ namespace E_ProjectSem3.Services
                     }
 
                     var createdAt = listUserMemberShip[0].CreatedAt;
-                    if (createdAt.AddMinutes(listUserMemberShip[0].Member.ExpiredMonths) < DateTime.Now)
+                    if (createdAt.AddMonths(listUserMemberShip[0].Member.ExpiredMonths) < DateTime.Now)
                     {
                         //Xoa memberShip neu het han:
                         db.Memberships.Remove(listUserMemberShip[0]);
@@ -53,10 +50,9 @@ namespace E_ProjectSem3.Services
                     {
                         return false;
                     }
-
                 }
             }
-            return false;
+            return true;
         }
     }
 }
