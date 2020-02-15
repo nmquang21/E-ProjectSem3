@@ -31,6 +31,7 @@ namespace E_ProjectSem3.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter cooking tempareture ")]
         [DisplayName("Cooking Tempareture")]
         public int CookingTemp { get; set; }
+        public int ViewCount { get; set; }
         public string Video { get; set; }
         public int Status { get; set; }
         public int Type { get; set; }

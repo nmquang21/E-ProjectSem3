@@ -8,8 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using E_ProjectSem3.Models;
 using E_ProjectSem3.Services;
+using LinqKit;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 
 namespace E_ProjectSem3.Controllers
 {
@@ -17,14 +19,25 @@ namespace E_ProjectSem3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private MemberService memberService = new MemberService();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var recipes = db.Recipes;
+
+            ViewBag.ListCategories = db.Categories.Where(c => c.DeletedAt == null).OrderBy(c => c.Name).ToList();
+            ViewBag.DataSliderSmall = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
+            ViewBag.DataSliderBig = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
+
+            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).OrderBy(r => r.Title).ToList();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            ViewBag.CurrentPage = page ?? 1;
+            ViewBag.PageTotal = Math.Ceiling((double)listRecipe.Count() / pageSize);
+
+
 
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Check expired member ship:
             ViewBag.Expired = "";
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && (User.IsInRole("silver") || User.IsInRole("gold")))
             {
                 var id = User.Identity.GetUserId();
                 var user = UserManager.FindById(id);
@@ -75,7 +88,7 @@ namespace E_ProjectSem3.Controllers
 
                 db.SaveChanges();
             }
-            return View(recipes.ToList());
+            return View(listRecipe.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult About()
@@ -91,15 +104,60 @@ namespace E_ProjectSem3.Controllers
 
             return View();
         }
-        public ActionResult Recipes()
+        public ActionResult Recipes(string search, int? page, int? category)
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.ListCategories = db.Categories.Where(c => c.DeletedAt == null).OrderBy(c=>c.Name).ToList();
+            ViewBag.CurrentCategory = category;
+            ViewBag.Search = search;
+            ViewBag.DataSlider = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).Take(8).ToList();
 
-            return View();
+            var predicate = PredicateBuilder.New<Recipe>(true);
+            if (search != null)
+            {
+                page = 1;
+            }
+            var listRecipe = from r in db.Recipes select r;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                predicate = predicate.Or(r => r.Title.Contains(search));
+            }
+            if (category > 0)
+            {
+                predicate = predicate.Or(r => r.Category.Id == (int)category);
+            }
+
+            predicate = predicate.And(c => c.Status == (int)Recipe.RecipeStatus.Active);
+            predicate = predicate.And(c => c.DeletedAt == null);
+            listRecipe = listRecipe.Where(predicate).OrderBy(r => r.Title);
+
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            ViewBag.CurrentPage = page ?? 1;
+            ViewBag.PageTotal = Math.Ceiling((double)listRecipe.Count() / pageSize);
+
+            Debug.WriteLine(page);
+            Debug.WriteLine(Math.Ceiling((double)listRecipe.Count() / pageSize));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            //Check expired member ship:
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = UserManager.FindById(userId);
+                if (memberService.CheckExpiredMember(user) == true)
+                {
+                    TempData["Expired"] = "Expired!";
+                }
+                if (UserManager.IsInRole(userId, "silver") || UserManager.IsInRole(userId, "gold"))
+                {
+                    ViewBag.StillMember = true;
+                }
+            }
+            
+            return View(listRecipe.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult RecipeDetail(int? id)
         {
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,13 +169,7 @@ namespace E_ProjectSem3.Controllers
             }
             return View(recipe);
         }
-        public ActionResult AddRecipes()
-        {
-            ViewBag.Categories = db.Categories.OrderBy(c => c.Name).ToList();
-            return View();
-        }
 
-        
         public ActionResult Categories()
         {
             ViewBag.Message = "Your contact page.";
