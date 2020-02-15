@@ -12,12 +12,9 @@ namespace E_ProjectSem3.Models
         public int Id { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter index")]
         public int Index { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter name step")]
-        public string Name { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter value")]
-        public double Value { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter extra information")]
-        public string ExtraInfor { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter title step")]
+        public string Title { get; set; }
+        public string Description { get; set; }
         public string ImagePath { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

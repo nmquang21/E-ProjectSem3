@@ -680,7 +680,7 @@ div.userpro-submit input[type=submit].userpro-button {
     vertical-align: baseline !important;
     display: inline-block !important;
     padding: 0 10px !important;
-    margin: 0 !important;
+    margin: 0px 0px 5px 0px !important;
     margin-right: 15px !important;
     top: 0 !important;
 }
@@ -688,7 +688,7 @@ div.userpro-submit input[type=submit].userpro-button {
 div.userpro-submit input {
     vertical-align: baseline !important;
     display: inline-block !important;
-    width: auto !important;
+    width: 100% !important;
     font-size: 13px !important;
     height: 30px !important;
     line-height: 30px !important;
@@ -1823,9 +1823,7 @@ a.userpro-online-item-name.admin {
 /* social connect buttons */
 
 div.userpro-social-connect {
-    position: absolute;
-    right: 0;
-    top: 14px;
+
 }
 
 div.userpro-social-connect a {

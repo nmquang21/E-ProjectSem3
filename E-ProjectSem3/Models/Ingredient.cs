@@ -12,9 +12,8 @@ namespace E_ProjectSem3.Models
         public int Id { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter name ingredient")]
         public string Name { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter amout")]
-        public double Amout { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter note")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter amount")]
+        public double Amount { get; set; }
         public string Note { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

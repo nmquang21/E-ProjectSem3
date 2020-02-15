@@ -54,15 +54,16 @@ namespace E_ProjectSem3
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1013518799030173",
+               appSecret: "43d044bb04b69ac248bf6aa16895d38e"
+               );
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "801616126800-ao0vvrduthel8q54jdcvbl57mp9cjnbv.apps.googleusercontent.com",
+                ClientSecret = "NYUpP2ctaUXFC0L-vaD_-IFf"
+            });
         }
     }
 }

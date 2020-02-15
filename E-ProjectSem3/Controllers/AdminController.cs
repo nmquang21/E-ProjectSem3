@@ -10,6 +10,7 @@ namespace E_ProjectSem3.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View("~/Views/Admin/View.cshtml");
