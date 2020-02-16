@@ -1,5 +1,10 @@
-﻿<!DOCTYPE html>
-
+﻿@using E_ProjectSem3.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+<!DOCTYPE html>
+@{
+    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+}
 <html lang="en-US" id="arve">
 
 <head>
@@ -115,6 +120,9 @@
     <link rel='stylesheet' id='userpro_jquery_ui_style-css' href='~/Content/assets/wp-content/plugins/userpro/css/userpro-jquery-ui.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-bookmarks.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav_list-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-collections.css' type='text/css' media='all' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" rel="stylesheet"/>
+    <link href="~/Content/assets/custom.css" rel="stylesheet" />
+
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/jquery.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/jquery-migrate.min.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/osetin-meal-planner/assets/bower_components/chartist/dist/chartist.min.js'></script>
@@ -176,13 +184,42 @@
         <div class="os-container top-profile-links-box-container">
             <div class="top-profile-links-box-w">
                 <div class="top-profile-links-box" style="">
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                        {
+                            @Html.AntiForgeryToken()
                     <ul>
-                        <li><a href="#" class="popup-login"><i class="os-icon os-icon-head"></i> <span>Login</span></a></li>
-                        <li><a href="#" class="popup-register"><i class="os-icon os-icon-home-03"></i> <span>Register</span></a></li>
-                        <li><a href="http://neptune.pinsupreme.com/cart/"><i class="os-icon os-icon-finance-28"></i> <span>Cart is empty</span></a></li>
+                        <li><span>Logged in as <strong>@(User.Identity.GetUserName())</strong></span></li>
+
+                        @if(UserManager.IsInRole(User.Identity.GetUserId(), "silver"))
+                        {
+                        <li><span>Silver member</span></li>
+                        }
+                        @if (UserManager.IsInRole(User.Identity.GetUserId(), "gold"))
+                        {
+                            <li><span>Gold member</span></li>
+                        }
+                        <li><a href="#"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
+                        <li><a href="#"><i class="os-icon os-icon-ui-33"></i> <span>My Bookmarks</span></a></li>
+                        <li><a href="#"><i class="os-icon os-icon-phone-21"></i> <span>My Meal Plans</span></a></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-12"></i> <span>Logout</span></a></li>
                     </ul>
+                        }
+                    }
+                    else
+                    {
+                        <ul>
+                            <li><a href="@Url.Action("Login", "Account")" class="popup-login"><i class="os-icon os-icon-head"></i> <span>Login</span></a></li>
+                            <li><a href="@Url.Action("Register", "Account")" class="popup-register"><i class="os-icon os-icon-home-03"></i> <span>Register</span></a></li>
+                        </ul>
+                    }
+
                 </div>
             </div>
+
+
         </div>
         <div class="os-container main-header-w main-header-version_1">
             <div class="main-header color-scheme-light " style="background-color:#FFFFFF; ">
@@ -194,106 +231,29 @@
                 <div class="top-menu menu-activated-on-hover">
                     <ul id="header-menu" class="menu">
                         <li id="menu-item-480" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-480">
-                            <a href="#">Home Layouts</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-722 current_page_item menu-item-724"><a href="http://neptune.pinsupreme.com/hero-posts/" aria-current="page">Hero Posts</a></li>
-                                <li id="menu-item-694" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-694"><a href="http://neptune.pinsupreme.com/masonry-v1/">Masonry V1</a></li>
-                                <li id="menu-item-486" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-486"><a href="http://neptune.pinsupreme.com/magazine-v2/">Magazine V2</a></li>
-                                <li id="menu-item-487" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-487"><a href="http://neptune.pinsupreme.com/4-columns/">4 Columns</a></li>
-                                <li id="menu-item-488" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-488"><a href="http://neptune.pinsupreme.com/3-columns/">3 Columns</a></li>
-                                <li id="menu-item-489" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-489"><a href="http://neptune.pinsupreme.com/2-columns/">2 Columns</a></li>
-                                <li id="menu-item-742" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-742"><a href="http://neptune.pinsupreme.com/full-width/">Full Width</a></li>
-                                <li id="menu-item-743" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-743"><a href="http://neptune.pinsupreme.com/half-image/">Half Image</a></li>
-                                <li id="menu-item-747" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-747"><a href="http://neptune.pinsupreme.com/3-columns-no-sidebar/">No Sidebar</a></li>
-                            </ul>
+                            <a href="/Home">Home</a>
                         </li>
                         <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
-                            <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/">Recipe</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-481" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-481">
-                                    <a href="#">Recipe Layouts</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-734" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-734"><a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/">Hero Header</a></li>
-                                        <li id="menu-item-485" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-485"><a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/">Image on left</a></li>
-                                        <li id="menu-item-484" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-484"><a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/">Image on right</a></li>
-                                        <li id="menu-item-482" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-482"><a href="http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/">Big Image</a></li>
-                                        <li id="menu-item-1021" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-1021"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/">Multiple Images</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-735" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-735">
-                                    <a href="#">Recipe Formats</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-737" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-737"><a href="http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/">Video</a></li>
-                                        <li id="menu-item-738" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-738"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/">Gallery of Images</a></li>
-                                        <li id="menu-item-736" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-736"><a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/">Just Image</a></li>
-                                        <li id="menu-item-998" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-998"><a href="http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/">GIF Image Video</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <a href="/Home/Recipes">Recipes</a>
                         </li>
-                        <li id="menu-item-448" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448"><a href="http://neptune.pinsupreme.com/categories/">Categories</a></li>
-                        <li id="menu-item-570" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-570">
-                            <a href="#">Features</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-571" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-571"><a href="http://neptune.pinsupreme.com/submit-recipe/">Submit Recipe</a></li>
-                                <li id="menu-item-581" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-581"><a href="http://neptune.pinsupreme.com/search-by-ingredients/">Search by Ingredients</a></li>
-                                <li id="menu-item-682" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-682">
-                                    <a href="http://neptune.pinsupreme.com/shop/">Shop</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-684" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-684"><a href="http://neptune.pinsupreme.com/shop/">Product Archive</a></li>
-                                        <li id="menu-item-683" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-683"><a href="http://neptune.pinsupreme.com/product/happy-ninja-2/">Single Product</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-574" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-574">
-                                    <a href="#">Users</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-572" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-572"><a href="http://neptune.pinsupreme.com/profile-2/login/">Login</a></li>
-                                        <li id="menu-item-573" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-573"><a href="http://neptune.pinsupreme.com/profile-2/register/">Register</a></li>
-                                        <li id="menu-item-582" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-582"><a href="http://neptune.pinsupreme.com/profile/VyXmEQaraRJpN7cpVArCtNAfC/">Profile</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-543" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-543">
-                                    <a href="/forums">Forum</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-544" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-544"><a href="/forums">Forum Index</a></li>
-                                        <li id="menu-item-545" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-545"><a href="/forums/topic/how-do-you-cook-meat/">Topic Discussion</a></li>
-                                        <li id="menu-item-546" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-546"><a href="/forums/user/vyxmeqararjpn7cpvarctnafc/">User Profile</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li id="menu-item-479" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-479">
-                            <a href="#">Layouts</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-616" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-616">
-                                    <a href="#">Top Slider Layouts</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-612" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-612"><a href="http://neptune.pinsupreme.com/slider-full-2/">Slider Mixed</a></li>
-                                        <li id="menu-item-614" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-614"><a href="http://neptune.pinsupreme.com/slider-wide/">Slider Wide</a></li>
-                                        <li id="menu-item-613" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-613"><a href="http://neptune.pinsupreme.com/slider-full/">Slider Full</a></li>
-                                        <li id="menu-item-615" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a href="http://neptune.pinsupreme.com/slider-small/">Slider Small</a></li>
-                                        <li id="menu-item-691" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-691"><a href="http://neptune.pinsupreme.com/slider-small-boxed/">Slider Boxed</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-550" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-550">
-                                    <a href="#">Header Layouts</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-551" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-551"><a href="http://neptune.pinsupreme.com/">Compact</a></li>
-                                        <li id="menu-item-552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-552"><a href="http://neptune.pinsupreme.com/menu-version-2/">Big Logo</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        @if (Request.IsAuthenticated && (UserManager.IsInRole(User.Identity.GetUserId(), "chef") || UserManager.IsInRole(User.Identity.GetUserId(), "admin")))
+                        {
+                            <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                                <a href="/Chef/AddRecipes">Submit recipe</a>
+                            </li>
+                        }
+                        <li id="menu-item-448" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448">
+                            <a href="/Home/Categories">Categories</a>
                         </li>
                         <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
-                            <a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-335" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-335"><a href="http://neptune.pinsupreme.com/about-us/">About Me</a></li>
-                                <li id="menu-item-712" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-712"><a href="http://neptune.pinsupreme.com/our-authors/">List all Authors</a></li>
-                                <li id="menu-item-1044" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1044"><a href="http://neptune.pinsupreme.com/submit-recipe/">Submit Recipe</a></li>
-                                <li id="menu-item-334" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-334"><a href="http://neptune.pinsupreme.com/contact-us/">Contact</a></li>
-                                <li id="menu-item-578" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-578"><a href="http://neptune.pinsupreme.com/chicken-fajitas-with-french-fries/">Regular blog post</a></li>
-                            </ul>
+                            <a href="#">About Me</a>
                         </li>
+                        @if (!Request.IsAuthenticated || (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold")))
+                        {
+                            <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                                <a href="/Home/MemberShip">Membership</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <div class="search-trigger"><i class="os-icon os-icon-thin-search"></i></div>
@@ -303,105 +263,22 @@
             <div class="mobile-header-menu-w menu-activated-on-click color-scheme-dark" style="">
                 <ul id="mobile-header-menu" class="menu">
                     <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-480">
-                        <a href="#">Home Layouts</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-722 current_page_item menu-item-724"><a href="http://neptune.pinsupreme.com/hero-posts/" aria-current="page">Hero Posts</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-694"><a href="http://neptune.pinsupreme.com/masonry-v1/">Masonry V1</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-486"><a href="http://neptune.pinsupreme.com/magazine-v2/">Magazine V2</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-487"><a href="http://neptune.pinsupreme.com/4-columns/">4 Columns</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-488"><a href="http://neptune.pinsupreme.com/3-columns/">3 Columns</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-489"><a href="http://neptune.pinsupreme.com/2-columns/">2 Columns</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-742"><a href="http://neptune.pinsupreme.com/full-width/">Full Width</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-743"><a href="http://neptune.pinsupreme.com/half-image/">Half Image</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-747"><a href="http://neptune.pinsupreme.com/3-columns-no-sidebar/">No Sidebar</a></li>
-                        </ul>
+                        <a href="/Home">Home Layouts</a>
                     </li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
-                        <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/">Recipe</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-481">
-                                <a href="#">Recipe Layouts</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-734"><a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/">Hero Header</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-485"><a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/">Image on left</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-484"><a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/">Image on right</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-482"><a href="http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/">Big Image</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-1021"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/">Multiple Images</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-735">
-                                <a href="#">Recipe Formats</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-737"><a href="http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/">Video</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-738"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/">Gallery of Images</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-736"><a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/">Just Image</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-998"><a href="http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/">GIF Image Video</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <a href="/Home/Recipes">Recipes</a>
                     </li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448"><a href="http://neptune.pinsupreme.com/categories/">Categories</a></li>
-                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-570">
-                        <a href="#">Features</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-571"><a href="http://neptune.pinsupreme.com/submit-recipe/">Submit Recipe</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-581"><a href="http://neptune.pinsupreme.com/search-by-ingredients/">Search by Ingredients</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-682">
-                                <a href="http://neptune.pinsupreme.com/shop/">Shop</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-684"><a href="http://neptune.pinsupreme.com/shop/">Product Archive</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-683"><a href="http://neptune.pinsupreme.com/product/happy-ninja-2/">Single Product</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-574">
-                                <a href="#">Users</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-572"><a href="http://neptune.pinsupreme.com/profile-2/login/">Login</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-573"><a href="http://neptune.pinsupreme.com/profile-2/register/">Register</a></li>
-                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-582"><a href="http://neptune.pinsupreme.com/profile/VyXmEQaraRJpN7cpVArCtNAfC/">Profile</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-543">
-                                <a href="/forums">Forum</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-544"><a href="/forums">Forum Index</a></li>
-                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-545"><a href="/forums/topic/how-do-you-cook-meat/">Topic Discussion</a></li>
-                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-546"><a href="/forums/user/vyxmeqararjpn7cpvarctnafc/">User Profile</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-479">
-                        <a href="#">Layouts</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-616">
-                                <a href="#">Top Slider Layouts</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-612"><a href="http://neptune.pinsupreme.com/slider-full-2/">Slider Mixed</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-614"><a href="http://neptune.pinsupreme.com/slider-wide/">Slider Wide</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-613"><a href="http://neptune.pinsupreme.com/slider-full/">Slider Full</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a href="http://neptune.pinsupreme.com/slider-small/">Slider Small</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-691"><a href="http://neptune.pinsupreme.com/slider-small-boxed/">Slider Boxed</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-550">
-                                <a href="#">Header Layouts</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-551"><a href="http://neptune.pinsupreme.com/">Compact</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-552"><a href="http://neptune.pinsupreme.com/menu-version-2/">Big Logo</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    @if (User.IsInRole("chef") || User.IsInRole("admin"))
+                    {
+                        <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                            <a href="/Home/AddRecipes">Submit recipe</a>
+                        </li>
+                    }
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448">
+                        <a href="/Home/Categories">Categories</a>
                     </li>
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
-                        <a href="#">Pages</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-335"><a href="http://neptune.pinsupreme.com/about-us/">About Me</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-712"><a href="http://neptune.pinsupreme.com/our-authors/">List all Authors</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1044"><a href="http://neptune.pinsupreme.com/submit-recipe/">Submit Recipe</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-334"><a href="http://neptune.pinsupreme.com/contact-us/">Contact</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-578"><a href="http://neptune.pinsupreme.com/chicken-fajitas-with-french-fries/">Regular blog post</a></li>
-                        </ul>
+                        <a href="#">About me</a>
                     </li>
                 </ul>
             </div>
@@ -543,9 +420,9 @@
         </div>
         <div class="main-search-form-overlay"></div>
         <div class="main-search-form">
-            <form method="get" class="search-form" action="http://neptune.pinsupreme.com/" autocomplete="off">
+            <form method="get" class="search-form" action="@Url.Action("Recipes","Home")" autocomplete="off">
                 <div class="search-field-w">
-                    <input type="search" autocomplete="off" class="search-field" placeholder="Search …" value="" name="s" title="Search for:" />
+                    <input type="search" autocomplete="off" class="search-field" placeholder="Search …" value="" name="search" title="Search for:" />
                     <input type="submit" class="search-submit" value="Search" />
                 </div>
             </form>
@@ -654,8 +531,8 @@
         };
         /* ]]> */
     </script>
-    <script type='text/javascript' src='~/Content/assets/wp-content/plugins/userpro/scripts/up-custom-script.js'></script>
-    <script type='text/javascript' src='~/Content/assets/wp-content/plugins/userpro/addons/timeline/assets/js/timeline.js'></script>
+    @*<script type='text/javascript' src='~/Content/assets/wp-content/plugins/userpro/scripts/up-custom-script.js'></script>
+        <script type='text/javascript' src='~/Content/assets/wp-content/plugins/userpro/addons/timeline/assets/js/timeline.js'></script>*@
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
@@ -723,8 +600,8 @@
         };
         /* ]]> */
     </script>
-    <script type='text/javascript' src='~/Content/assets/wp-content/plugins/userpro/scripts/scripts.min.js'></script>
-    <script type='text/javascript' src='~/Content/assets/wp-content/plugins/userpro/scripts/performance.js'></script>
+    @*<script type='text/javascript' src='~/Content/assets/wp-content/plugins/userpro/scripts/scripts.min.js'></script>*@
+    @*<script type='text/javascript' src='~/Content/assets/wp-content/plugins/userpro/scripts/performance.js'></script>*@
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/wp-embed.min.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/advanced-responsive-video-embedder/public/arve.min.js'></script>
     <script type='text/javascript'>
@@ -740,7 +617,7 @@
     <script type='text/javascript'>
         /* <![CDATA[ */
         var mc4wp_forms_config = [];
-                    /* ]]> */
+                        /* ]]> */
     </script>
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js'></script>
     <!--[if lte IE 9]>

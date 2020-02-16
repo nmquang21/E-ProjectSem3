@@ -1,1504 +1,527 @@
-﻿
+﻿@model PagedList.IPagedList<E_ProjectSem3.Models.Recipe>
+@using System.Globalization
+@using E_ProjectSem3.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Recipes";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 }
-
-<div class="featured-recipes-slider-w featured-layout-mixed" style="background-image: url(/Content/assets/wp-content/themes/neptune-by-osetin/assets/img/patterns/flowers_light.jpg); background-repeat: repeat;">
-    <div class="featured-recipes-fade-left">
-        <div class="icon-w"><i class="os-icon os-icon-chevron-left"></i></div>
-    </div>
-    <div class="featured-recipes-fade-right">
-        <div class="icon-w"><i class="os-icon os-icon-chevron-right"></i></div>
-    </div>
-    <div class="featured-recipes-slider-i owl-carousel featured-recipes-owl-slider">
-        <div class="featured-recipes-slider-item">
-            <div class="featured-recipes-item full_full">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/mexican-style-barbecued-corn/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/mexican-style-barbecued-corn/">Mexican-style barbecued corn</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/pizza/" rel="category tag">Pizza</a></li>
-                                <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 2 hours
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" rel="stylesheet" />
+<style>
+    .swal2-show {
+        font-size: 14px;
+        width: 500px;
+        height: 300px;
+    }
+</style>
+    <div class="featured-recipes-slider-w featured-layout-mixed" style="background-image: url(/Content/assets/wp-content/themes/neptune-by-osetin/assets/img/patterns/flowers_light.jpg); background-repeat: repeat;">
+        <div class="featured-recipes-fade-left">
+            <div class="icon-w"><i class="os-icon os-icon-chevron-left"></i></div>
         </div>
-        <div class="featured-recipes-slider-item">
-            <div class="featured-recipes-item half_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe7-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/">Barbecoa Bloody Mary</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
-                                <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 40 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="featured-recipes-item half_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe14-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/">Cheesy pasta with crispy pangritata</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/fast-food/" rel="category tag">Fast Food</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 10 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="featured-recipes-item full_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/step5-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/">Roasted chicken breast with cherry</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 20 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="featured-recipes-fade-right">
+            <div class="icon-w"><i class="os-icon os-icon-chevron-right"></i></div>
         </div>
-        <div class="featured-recipes-slider-item">
-            <div class="featured-recipes-item full_full">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/">Green salad with cherries</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/fast-food/" rel="category tag">Fast Food</a></li>
-                                <li><a href="http://neptune.pinsupreme.com/category/pizza/" rel="category tag">Pizza</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 20 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="featured-recipes-slider-item">
-            <div class="featured-recipes-item full_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/">Green veggies with flavoured butter</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
-                                <li><a href="http://neptune.pinsupreme.com/category/salads/" rel="category tag">Salads</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 20 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="featured-recipes-slider-i owl-carousel featured-recipes-owl-slider">
 
-            <div class="featured-recipes-item half_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe14-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/">Antipasti of mozzarella, chilli, &#038; lemon crostini</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/chicken/" rel="category tag">Chicken</a></li>
-                                <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 12 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @for (var i = 0; i < ViewBag.DataSlider.Count; i = i + 4)
+            {
+                var recipe1 = ViewBag.DataSlider[i] as Recipe;
+                var recipe2 = ViewBag.DataSlider[i+1] as Recipe;
+                var recipe3 = ViewBag.DataSlider[i+2] as Recipe;
+                var recipe4 = ViewBag.DataSlider[i+3] as Recipe;
+                <div class="featured-recipes-slider-item">
 
-            <div class="featured-recipes-item half_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/new-york-vanilla-cheesecake-with-blueberries/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/step5-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/new-york-vanilla-cheesecake-with-blueberries/">New York vanilla cheesecake with blueberries</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
-                                <li><a href="http://neptune.pinsupreme.com/category/salads/" rel="category tag">Salads</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 15 min
+                    <div class="featured-recipes-item full_full">
+                        <div class="featured-recipes-item-i">
+                            <div class="featured-recipe-media-w">
+                                <a href="/Home/RecipeDetail/@(recipe1.Id)" class="featured-recipe-thumbnail fader-activator" style="background-image: url(@(recipe1.FeaturedImage)); background-size: cover;">
+                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                </a>
                             </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="featured-recipes-slider-item">
-            <div class="featured-recipes-item full_full">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/06/recipe3-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/">Classic tomato salsa with basil</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 30 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
+                            <div class="featured-recipe-content-w">
+                                <div class="featured-recipe-title-w">
+                                    <h3 class="featured-recipe-title"><a href="/Home/RecipeDetail/@(recipe1.Id)">@(recipe1.Title)</a></h3>
+                                </div>
+                                <div class="featured-recipe-categories-w">
+                                    <ul class="post-categories">
+                                        <li><a href="#" rel="category tag">@(recipe1.Category.Name)</a></li>
+                                    </ul>
+                                </div>
+                                <div class="featured-recipe-details-w">
+                                    <div class="featured-recipe-cooking-time">
+                                        Cooking Time: @(recipe1.CookingMinute) min
+                                    </div>
+                                    <div class="featured-recipe-features">
+                                        <ul>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="featured-recipes-slider-item">
-            <div class="featured-recipes-item half_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-pancetta-leeks-thyme/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe12-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-pancetta-leeks-thyme/">Roasted chicken breast</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/pizza/" rel="category tag">Pizza</a></li>
-                                <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 30 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="featured-recipes-item half_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe2-optimized-400x400.gif); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/">GIF Smoked salmon rolls with basil sause</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 20 min
-                            </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
 
-            <div class="featured-recipes-item full_half">
-                <div class="featured-recipes-item-i">
-                    <div class="featured-recipe-media-w">
-                        <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="featured-recipe-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/06/recipe3-400x400.jpg); background-size: cover;">
-                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                        </a>
-                    </div>
-                    <div class="featured-recipe-content-w">
-                        <div class="featured-recipe-title-w">
-                            <h3 class="featured-recipe-title"><a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/">Squash soup with Parmesan croutons</a></h3>
-                        </div>
-                        <div class="featured-recipe-categories-w">
-                            <ul class="post-categories">
-                                <li><a href="http://neptune.pinsupreme.com/category/salads/" rel="category tag">Salads</a></li>
-                            </ul>
-                        </div>
-                        <div class="featured-recipe-details-w">
-                            <div class="featured-recipe-cooking-time">
-                                Cooking Time: 30 min
+                <div class="featured-recipes-slider-item">
+
+                    <div class="featured-recipes-item half_half">
+                        <div class="featured-recipes-item-i">
+                            <div class="featured-recipe-media-w">
+                                <a href="/Home/RecipeDetail/@(recipe2.Id)" class="featured-recipe-thumbnail fader-activator" style="background-image: url(@(recipe2.FeaturedImage)); background-size: cover;">
+                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                </a>
                             </div>
-                            <div class="featured-recipe-features">
-                                <ul>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
-                                    <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
-                                </ul>
+                            <div class="featured-recipe-content-w">
+                                <div class="featured-recipe-title-w">
+                                    <h3 class="featured-recipe-title"><a href="/Home/RecipeDetail/@(recipe2.Id)">@(recipe2.Title)</a></h3>
+                                </div>
+                                <div class="featured-recipe-categories-w">
+                                    <ul class="post-categories">
+                                        <li><a href="#" rel="category tag">@(recipe2.Category.Name)</a></li>
+                                    </ul>
+                                </div>
+                                <div class="featured-recipe-details-w">
+                                    <div class="featured-recipe-cooking-time">
+                                        Cooking Time: @(recipe2.CookingMinute) min
+                                    </div>
+                                    <div class="featured-recipe-features">
+                                        <ul>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="featured-recipes-item half_half">
+                        <div class="featured-recipes-item-i">
+                            <div class="featured-recipe-media-w">
+                                <a href="/Home/RecipeDetail/@(recipe3.Id)" class="featured-recipe-thumbnail fader-activator" style="background-image: url(@(recipe3.FeaturedImage)); background-size: cover;">
+                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                </a>
+                            </div>
+                            <div class="featured-recipe-content-w">
+                                <div class="featured-recipe-title-w">
+                                    <h3 class="featured-recipe-title"><a href="/Home/RecipeDetail/@(recipe3.Id)">@(recipe3.Title)</a></h3>
+                                </div>
+                                <div class="featured-recipe-categories-w">
+                                    <ul class="post-categories">
+                                        <li><a href="#" rel="category tag">@(recipe3.Category.Name)</a></li>
+                                    </ul>
+                                </div>
+                                <div class="featured-recipe-details-w">
+                                    <div class="featured-recipe-cooking-time">
+                                        Cooking Time: @(recipe3.CookingMinute) min
+                                    </div>
+                                    <div class="featured-recipe-features">
+                                        <ul>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="featured-recipes-item full_half">
+                        <div class="featured-recipes-item-i">
+                            <div class="featured-recipe-media-w">
+                                <a href="/Home/RecipeDetail/@(recipe4.Id)" class="featured-recipe-thumbnail fader-activator" style="background-image: url(@(recipe4.FeaturedImage)); background-size: cover;">
+                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                </a>
+                            </div>
+                            <div class="featured-recipe-content-w">
+                                <div class="featured-recipe-title-w">
+                                    <h3 class="featured-recipe-title"><a href="/Home/RecipeDetail/@(recipe4.Id)">@(recipe4.Title)</a></h3>
+                                </div>
+                                <div class="featured-recipe-categories-w">
+                                    <ul class="post-categories">
+                                        <li><a href="#" rel="category tag">@(recipe4.Category.Name)</a></li>
+                                    </ul>
+                                </div>
+                                <div class="featured-recipe-details-w">
+                                    <div class="featured-recipe-cooking-time">
+                                        Cooking Time: @(recipe4.CookingMinute) min
+                                    </div>
+                                    <div class="featured-recipe-features">
+                                        <ul>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></li>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></li>
+                                            <li><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
 
         </div>
     </div>
-</div>
-<div class="os-container">
-    <div class="archive-posts-w with-sidebar sidebar-location-right ">
-        <div class="archive-posts masonry-grid-w per-row-3">
-            <div class="masonry-grid" data-layout-mode="fitRows">
-                <div class="masonry-item any third first-in-row">
-                    <article class="archive-item any full_full post-206 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-chicken tag-cheese tag-hot tag-quick recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-haricots-verts-trimmed recipe_ingredient-large-eggs recipe_ingredient-skin-on-salmon-fillet recipe_cuisine-italian">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fsteamed-broccoli-with-vinegar-souce%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17.jpg&#038;description=%20%203%20Columns" target="_blank"
-                                           class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe17-1024x683.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" rel="bookmark">Steamed broccoli with vinegar</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 15 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/chicken/" rel="category tag">Chicken</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/italian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
-                                                <span class="single-recipe-cuisine-label">Italian</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    Put your wine, shallot, herbs and peppercorns into a small pot and bring to the boil, then simmer slowly for 3 or 4 minutes or...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 23, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="206" data-vote-action="vote" data-votes-count="477">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    477
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third">
-                    <article class="archive-item any full_full post-204 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fast-food category-pizza tag-chicken tag-hot tag-sushi tag-whole-grains recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-butter recipe_ingredient-chicken-breast recipe_ingredient-drained-capers-patted-dry recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-skin-on-salmon-fillet recipe_ingredient-small-purple-potatoes recipe_ingredient-whole-grain-dijon-mustard recipe_cuisine-french">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fgreen-salad-with-cherries%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1.jpg&#038;description=%20%203%20Columns" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe1-1024x770.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/" rel="bookmark">Green salad with cherries</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 20 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/fast-food/" rel="category tag">Fast Food</a></li>
-                                            <li><a href="http://neptune.pinsupreme.com/category/pizza/" rel="category tag">Pizza</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/french/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
-                                                <span class="single-recipe-cuisine-label">French</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    This salad recipe may seem a bit boring and insignificant, but this recipe is sort of the basic foundation of salads. It will help you learn how to wash, look...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 23, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="204" data-vote-action="vote" data-votes-count="321">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    321
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third last-in-row">
-                    <article class="archive-item any full_full post-202 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-salads tag-broccoli tag-corn tag-mushrooms recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-drained-capers-patted-dry recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-potatoes recipe_cuisine-french">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fsquash-soup-with-parmesan-croutons%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3.jpg&#038;description=%20%203%20Columns" target="_blank"
-                                           class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/06/recipe3-689x1024.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" rel="bookmark">Squash soup with Parmesan croutons</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 30 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/salads/" rel="category tag">Salads</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/french/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
-                                                <span class="single-recipe-cuisine-label">French</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    Put a very large saucepan on a medium heat and pour in a couple of lugs of olive oil. Add the sage leaves and fry for around 30 seconds or...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 23, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="202" data-vote-action="vote" data-votes-count="211">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    211
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third first-in-row">
-                    <article class="archive-item any full_full post-200 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fish category-salads tag-quick tag-spicy tag-sushi tag-whole-grains recipe_feature-gluten-free recipe_feature-vegan recipe_cuisine-mexican">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fgreen-veggies-with-flavoured-butter%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16.jpg&#038;description=%20%203%20Columns" target="_blank"
-                                           class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe16-683x1024.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" rel="bookmark">Green veggies with flavoured butter</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 20 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
-                                            <li><a href="http://neptune.pinsupreme.com/category/salads/" rel="category tag">Salads</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/mexican/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Mexican">
-                                                <span class="single-recipe-cuisine-label">Mexican</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/mx.png" alt="Mexican" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    This wonderfully herby butter gives festive greens loads of flavour, and you can prep it in advance. This wonderfully herby butter gives festive greens loads...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 23, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="200" data-vote-action="vote" data-votes-count="159">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    159
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third">
-                    <article class="archive-item any full_full post-64 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fish tag-beef tag-broccoli tag-chicken tag-spicy recipe_feature-spicy recipe_feature-vegan recipe_ingredient-drained-capers-patted-dry recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-haricots-verts-trimmed recipe_cuisine-italian">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fgluten-free-beef-lasagne%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3.jpg&#038;description=%20%203%20Columns" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/06/recipe3-689x1024.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" rel="bookmark">Classic tomato salsa with basil</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 30 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/italian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
-                                                <span class="single-recipe-cuisine-label">Italian</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    An old-school dish that everyone loves, this gluten-free lasagne recipe and members, the slight planning brief the doctor one long literature couldn't ticking descriptions, she palace for are which the...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 22, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="64" data-vote-action="vote" data-votes-count="541">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    541
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third last-in-row">
-                    <article class="archive-item any full_full post-181 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-soups tag-beef tag-cheese tag-chicken tag-corn tag-sushi recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_cuisine-italian">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Froasted-chicken-breast-with-cherry-tomatoes-asparagus%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/step5.jpg&#038;description=%20%203%20Columns"
-                                           target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/step5-685x1024.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/" rel="bookmark">Roasted chicken breast with cherry</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 20 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/italian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
-                                                <span class="single-recipe-cuisine-label">Italian</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    Why save a roast for when the family come over? This mini version's great any day of the week. Why save a roast for when the family come over? This...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 17, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="181" data-vote-action="vote" data-votes-count="162">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    162
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third first-in-row">
-                    <article class="archive-item any full_full post-179 osetin_recipe type-osetin_recipe status-publish format-video has-post-thumbnail hentry category-chicken category-soups tag-beef tag-broccoli tag-corn tag-hot recipe_feature-gluten-free recipe_feature-spicy recipe_ingredient-butter recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-haricots-verts-trimmed recipe_ingredient-large-eggs recipe_ingredient-skim-milk recipe_ingredient-small-purple-potatoes recipe_cuisine-brazilian">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fantipasti-of-mozzarella-chilli-lemon-crostini%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14.jpg&#038;description=%20%203%20Columns"
-                                           target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <div class="arve-wrapper" data-mode="normal" data-provider="vimeo" id="arve-113612644" style="max-width:2000px;" itemscope itemtype="http://schema.org/VideoObject">
-                                    <div class="arve-embed-container" style="padding-bottom:56.250000%">
-                                        <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="arve-iframe fitvidsignore" frameborder="0" name sandbox="allow-scripts allow-same-origin allow-presentation allow-popups allow-popups-to-escape-sandbox allow-forms"
-                                                scrolling="no" src="https://player.vimeo.com/video/113612644?html5=1&#038;title=1&#038;byline=0&#038;portrait=0&#038;autoplay=0" width="480" height="270"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/" rel="bookmark">Antipasti of mozzarella, chilli, &#038; lemon crostini</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 12 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/chicken/" rel="category tag">Chicken</a></li>
-                                            <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/brazilian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Brazilian">
-                                                <span class="single-recipe-cuisine-label">Brazilian</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/br.png" alt="Brazilian" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    Heat a griddle pan until it&#8217;s really smoking hot, then griddle each slice of ciabatta for a couple of minutes on each side until they...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 17, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="179" data-vote-action="vote" data-votes-count="180">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    180
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third">
-                    <article class="archive-item any full_full post-177 osetin_recipe type-osetin_recipe status-publish format-gallery has-post-thumbnail hentry category-fast-food tag-quick tag-spicy tag-whole-grains recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-haricots-verts-trimmed recipe_cuisine-italian">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fcheesy-pasta-with-crispy-pangritata%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14.jpg&#038;description=%20%203%20Columns" target="_blank"
-                                           class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe14-1024x683.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                                <div class="gallery-image-source active" data-gallery-image-url="http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14-1024x683.jpg"></div>
-                                <div class="gallery-image-source " data-gallery-image-url="http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-1024x683.jpg"></div>
-                                <div class="gallery-image-source " data-gallery-image-url="http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe18-1024x765.jpg"></div>
-                                <div class="gallery-image-source " data-gallery-image-url="http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe12-1024x716.jpg"></div>
-                                <div class="gallery-image-source " data-gallery-image-url="http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe15-1024x683.jpg"></div>
-                                <div class="gallery-image-previous"><i class="os-icon os-icon-angle-left"></i></div>
-                                <div class="gallery-image-next"><i class="os-icon os-icon-angle-right"></i></div>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" rel="bookmark">Cheesy pasta with crispy pangritata</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 10 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/fast-food/" rel="category tag">Fast Food</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/italian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
-                                                <span class="single-recipe-cuisine-label">Italian</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    To make the pangritata, lightly toast the sourdough. Peel the garlic, then blitz in a food processor with the toasted bread, herbs and walnuts until fine. Preheat a non-stick frying...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 17, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="177" data-vote-action="vote" data-votes-count="283">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    283
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third last-in-row">
-                    <article class="archive-item any full_full post-176 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fish category-salads tag-beef tag-cheese tag-mushrooms recipe_feature-gluten-free recipe_feature-spicy recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-large-eggs recipe_ingredient-mayonaise recipe_ingredient-potatoes recipe_ingredient-skim-milk recipe_cuisine-french">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fnew-york-vanilla-cheesecake-with-blueberries%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/new-york-vanilla-cheesecake-with-blueberries/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/new-york-vanilla-cheesecake-with-blueberries/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/step5.jpg&#038;description=%20%203%20Columns" target="_blank"
-                                           class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/new-york-vanilla-cheesecake-with-blueberries/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/new-york-vanilla-cheesecake-with-blueberries/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/step5-685x1024.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/new-york-vanilla-cheesecake-with-blueberries/" rel="bookmark">New York vanilla cheesecake with blueberries</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 15 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
-                                            <li><a href="http://neptune.pinsupreme.com/category/salads/" rel="category tag">Salads</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/french/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
-                                                <span class="single-recipe-cuisine-label">French</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    Prepare the base. Mix the biscuits and butter in a bowl, press into the base of the tin and cook for 10 minutes. Cool on a rack. Prepare the base....
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 17, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="176" data-vote-action="vote" data-votes-count="129">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    129
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third first-in-row">
-                    <article class="archive-item any full_full post-123 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-soups tag-broccoli tag-hot tag-mushrooms recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_cuisine-italian">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fsmoked-salmon-rolls%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe2-optimized.gif&#038;description=%20%203%20Columns" target="_blank"
-                                           class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/preview2-1300x1294.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                    <span class="gif-label"><i class="os-icon os-icon-basic1-082_movie_video_camera"></i><span>GIF</span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/smoked-salmon-rolls/" rel="bookmark">GIF Smoked salmon rolls with basil sause</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 20 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/italian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
-                                                <span class="single-recipe-cuisine-label">Italian</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    These are a kind of sushi-style take on a classic combination of smoked salmon and crème frache inside a pancake. You can make them up...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">July 1, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="123" data-vote-action="vote" data-votes-count="72">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    72
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third">
-                    <article class="archive-item any full_full post-91 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fish category-soups recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-haricots-verts-trimmed recipe_ingredient-large-eggs recipe_ingredient-skin-on-salmon-fillet recipe_ingredient-small-purple-potatoes recipe_ingredient-whole-grain-dijon-mustard recipe_cuisine-french">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fbarbecoa-bloody-mary%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe7.jpg&#038;description=%20%203%20Columns" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe7-1024x683.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/barbecoa-bloody-mary/" rel="bookmark">Barbecoa Bloody Mary</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 40 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
-                                            <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/french/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
-                                                <span class="single-recipe-cuisine-label">French</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    Fry the bacon in a small frying pan over a medium-high heat for around 5 minutes, or until golden and crisp, turning halfway. The slight planning brief the doctor one...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">June 29, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="91" data-vote-action="vote" data-votes-count="101">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    101
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-                <div class="masonry-item any third last-in-row">
-                    <article class="archive-item any full_full post-90 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-pizza category-soups tag-cheese tag-mushrooms recipe_feature-spicy recipe_feature-vegan recipe_ingredient-drained-capers-patted-dry recipe_ingredient-haricots-verts-trimmed recipe_ingredient-kosher-salt recipe_ingredient-large-eggs recipe_ingredient-skin-on-salmon-fillet recipe_ingredient-small-purple-potatoes recipe_cuisine-brazilian">
-                        <div class="archive-item-i">
-                            <div class="extra-styling-box"></div>
-                            <div class="archive-item-share-w active">
-                                <div class="archive-item-share-trigger">
-                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                                    <div class="archive-item-share-label">Share</div>
-                                    <div class="archive-item-share-icons">
-                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Froasted-chicken-breast-with-pancetta-leeks-thyme%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-pancetta-leeks-thyme/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-pancetta-leeks-thyme/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe12.jpg&#038;description=%20%203%20Columns"
-                                           target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                                        <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-pancetta-leeks-thyme/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="archive-item-media">
-                                <a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-pancetta-leeks-thyme/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe12-1024x716.jpg); background-size: cover;">
-                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                                </a>
-                            </div>
-                            <div class="archive-item-content">
-                                <header class="archive-item-header">
-                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-pancetta-leeks-thyme/" rel="bookmark">Roasted chicken breast</a></h3>
-                                </header>
-                                <div class="archive-item-meta">
-                                    <div class="archive-item-meta-cooking-time">
-                                        Cooking Time: 30 min
-                                    </div>
-
-                                    <div class="archive-item-meta-categories">
-                                        <ul class="post-categories">
-                                            <li><a href="http://neptune.pinsupreme.com/category/pizza/" rel="category tag">Pizza</a></li>
-                                            <li><a href="http://neptune.pinsupreme.com/category/soups/" rel="category tag">Soups</a></li>
-                                        </ul>
-                                    </div>
-                                    <ul class="archive-item-meta-cuisines">
-                                        <li>
-                                            <a href="http://neptune.pinsupreme.com/cuisine/brazilian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Brazilian">
-                                                <span class="single-recipe-cuisine-label">Brazilian</span>
-                                                <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/br.png" alt="Brazilian" /></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="archive-item-content-text">
-                                    Why save a good-old roast for the weekend? This mini roast chicken for one rules any day. Why save a good-old roast for the weekend? This mini roast chicken for...
-                                </div>
-                                <div class="archive-item-author-meta">
-                                    <div class="author-avatar-w">
-                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                                    </div>
-                                    <div class="author-details">
-                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
-                                        <div class="archive-item-date-posted">June 26, 2015</div>
-                                    </div>
-                                    <div class="archive-item-views-count-likes">
-                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="90" data-vote-action="vote" data-votes-count="79">
-                                            <span class="slide-button-i">
-                                                <i class="os-icon os-icon-ui-03"></i>
-                                                <span class="slide-button-label osetin-vote-action-label">
-                                                    Like
-                                                </span>
-                                                <span class="slide-button-sub-label osetin-vote-count ">
-                                                    79
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    </article>
-                </div>
-            </div>
-            <div class="archive-pagination classic-pagination">
-                <div class="archive-pagination-prev"></div>
-                <div class="archive-pagination-next"><a href="http://neptune.pinsupreme.com/3-columns/page/2/">Next Entries</a></div>
-            </div>
-        </div>
-        <div class="archive-sidebar color-scheme-light " style="">
-            <aside id="osetin_author_widget-1" class="widget-odd widget-first widget-1 with-ribbon widget widget_osetin_author_widget">
-                <div class="shortcode-about-author">
-                    <h3 class="saa-header header-ribbon">About Me</h3>
-                    <div class="saa-avatar"><img src="~/Content/assets/wp-content/uploads/2016/12/alba.png" alt="About Me" /></div>
-                    <div class="saa-content">
-                        <p>I love cooking and blogging. Using a fork, break salmon. Halve reserved potatoes and eggs crosswise.</p>
-                    </div>
-                </div>
-            </aside>
-            <aside id="osetin_social_widget-1" class="widget-even widget-2 widget widget_osetin_social_widget">
-                <ul class="shortcode-social-links">
-                    <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
-                    <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-facebook"></i></a></li>
-                    <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-pinterest"></i></a></li>
-                    <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-youtube"></i></a></li>
-                </ul>
-            </aside>
-            <aside id="mc4wp_form_widget-2" class="widget-odd widget-3 widget widget_mc4wp_form_widget">
-                <h3 class="widget-title"><span>Our Newsletter</span></h3>
-                <script>
-                    (function () {
-                        if (!window.mc4wp) {
-                            window.mc4wp = {
-                                listeners: [],
-                                forms: {
-                                    on: function (event, callback) {
-                                        window.mc4wp.listeners.push({
-                                            event: event,
-                                            callback: callback
-                                        });
-                                    }
-                                }
-                            }
+    <div class="os-container">
+        <div class="archive-posts-w with-sidebar sidebar-location-right ">
+            <div class="archive-posts masonry-grid-w per-row-3">
+                <div class="masonry-grid" data-layout-mode="fitRows">
+                    @for (var i = 0; i < Model.Count(); i++)
+                    {
+                        var recipe = Model[i] as Recipe;
+                        bool liked = recipe.WishLists.Where(w => w.UserId == User.Identity.GetUserId()).ToList().Count == 1;
+                        var zzz = "";
+                        if (i % 3 == 0)
+                        {
+                            zzz = "first-in-row";
                         }
-                    })();
-                </script>
-                <!-- Mailchimp for WordPress v4.7.4 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
-                <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-916 mc4wp-form-basic" method="post" data-id="916" data-name="Default sign-up form">
-                    <div class="mc4wp-form-fields">
-                        <p>
-                            <div style="font-size: 12px; margin-bottom: 10px;">Subscribe for our weekly recipes tips, we promise to not spam you</div>
-                            <input type="email" id="mc4wp_email" name="EMAIL" placeholder="Your email address" required />
-                        </p>
-                        <p>
-                            <input type="submit" value="Subscribe">
-                        </p>
-                    </div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1581438465" /><input type="hidden" name="_mc4wp_form_id" value="916" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
-                    <div class="mc4wp-response"></div>
-                </form>
-                <!-- / Mailchimp for WordPress Plugin -->
-            </aside>
-            <aside id="osetin_categories_widget-1" class="widget-even widget-4 with-ribbon widget widget_osetin_categories_widget">
-                <h3 class="widget-title"><span>Categories</span></h3>
-                <div class="shortcode-categories-icons">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/chicken/"><img src="~/Content/assets/wp-content/uploads/2015/09/356.png" alt="Chicken" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/chicken/">Chicken</a></h3>
+                        else
+                        {
+                            zzz = "";
+                        }
+                        <div class="masonry-item any third @(zzz)">
+                            <article class="archive-item any full_full post-206 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-chicken tag-cheese tag-hot tag-quick recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-haricots-verts-trimmed recipe_ingredient-large-eggs recipe_ingredient-skin-on-salmon-fillet recipe_cuisine-italian">
+                                <div class="archive-item-i">
+                                    <div class="extra-styling-box"></div>
+                                    <div class="archive-item-share-w active">
+                                        <div class="archive-item-share-trigger">
+                                            <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
+                                            <div class="archive-item-share-label">Share</div>
+                                            <div class="archive-item-share-icons">
+                                                <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fsteamed-broccoli-with-vinegar-souce%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
+                                                <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/&amp;text=++3+Columns" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
+                                                <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17.jpg&#038;description=%20%203%20Columns" target="_blank"
+                                                   class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
+                                                <a href="mailto:?Subject=  3 Columns&amp;Body=%20http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="archive-item-media">
+                                        <a href="/Home/RecipeDetail/@(recipe.Id)" class="archive-item-media-thumbnail fader-activator" style="background-image: url(@(recipe.FeaturedImage)); background-size: cover;">
+                                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                        </a>
+                                    </div>
+                                    <div class="archive-item-content">
+                                        <header class="archive-item-header">
+                                            <h3 class="entry-title"><a href="/Home/RecipeDetail/@(recipe.Id)" rel="bookmark">@(recipe.Title)</a></h3>
+                                        </header>
+                                        <div class="archive-item-meta">
+                                            <div class="archive-item-meta-cooking-time">
+                                                Cooking Time: @(recipe.CookingMinute) min
+                                            </div>
+
+                                            <div class="archive-item-meta-categories">
+                                                <ul class="post-categories">
+                                                    <li><a href="#" rel="category tag">@(recipe.Category.Name)</a></li>
+                                                </ul>
+                                            </div>
+                                            @if (recipe.ApplicationUser.Id == User.Identity.GetUserId())
+                                            {
+                                                <ul class="archive-item-meta-cuisines">
+                                                    <li>
+                                                        <a href="#" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Your recipe">
+                                                            <span class="single-recipe-cuisine-image"><img src="https://res.cloudinary.com/dev20/image/upload/v1581839681/Jame/recipe-icon_qeqogv.png" alt="Italian" style="height: 28px;" /></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            }else if (recipe.Type == (int)Recipe.RecipeType.NotFree && (!Request.IsAuthenticated || (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold") && recipe.ApplicationUser.Id != User.Identity.GetUserId())))
+                                            {
+                                            <ul class="archive-item-meta-cuisines">
+                                                <li>
+                                                    <a href="/Home/Membership" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Become member">
+                                                        <span class="single-recipe-cuisine-image"><img src="https://res.cloudinary.com/dev20/image/upload/v1581777158/Jame/becomeamember-02_oybvw6.png" alt="Italian" style="height: 28px;" /></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            }
+
+                                        </div>
+                                        <div class="archive-item-content-text">
+                                            Put your wine, shallot, herbs and peppercorns into a small pot and bring to the boil, then simmer slowly for 3 or 4 minutes or...
+                                        </div>
+                                        <div class="archive-item-author-meta">
+                                            <div class="author-avatar-w">
+                                                <a href="#"><img src="@(recipe.ApplicationUser.Avatar)" width="96" height="96" alt="" class="default avatar" /></a>
+                                            </div>
+                                            <div class="author-details">
+                                                <h4 class="author-name"><a href="#">@(recipe.ApplicationUser.FirstName)</a></h4>
+                                                <div class="archive-item-date-posted">@(Convert.ToDateTime(recipe.CreatedAt).ToString("M"))</div>
+                                            </div>
+                                            <div class="archive-item-views-count-likes">
+                                                <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="206" data-vote-action="vote" data-votes-count="477">
+                                                    <span class="slide-button-i">
+                                                        
+                                                        
+                                                            <span class="btn-unlike" data-id="@(recipe.Id)" style="display: @(liked?"contents":"none")">
+                                                                <i class="fas fa-heart" style="font-size: 18px;"></i>
+                                                                <span class="slide-button-label">
+                                                                    Liked
+                                                                </span>
+                                                            </span>
+                                                        
+                                                            <span class="btn-like" data-id="@(recipe.Id)" style="display: @(liked?"none":"contents")">
+                                                                <i class="far fa-heart" style="font-size: 18px;"></i>
+                                                                <span class="slide-button-label">
+                                                                    Like
+                                                                </span>
+                                                            </span>
+                                                       
+
+                                                        <span class="slide-button-sub-label like-count">
+                                                            @(recipe.WishLists.Count)
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fast-food/"><img src="~/Content/assets/wp-content/uploads/2015/09/341.png" alt="Fast Food" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/fast-food/">Fast Food</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fish/"><img src="~/Content/assets/wp-content/uploads/2015/09/349.png" alt="Fish" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/fish/">Fish</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/pizza/"><img src="~/Content/assets/wp-content/uploads/2015/09/306.png" alt="Pizza" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/pizza/">Pizza</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/salads/"><img src="~/Content/assets/wp-content/uploads/2015/09/45.png" alt="Salads" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/salads/">Salads</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/soups/"><img src="~/Content/assets/wp-content/uploads/2015/09/85.png" alt="Soups" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/soups/">Soups</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                            </article>
+                        </div>
+                    }
+
+
+                    @if (Model.Count == 0)
+                    {
+                        <div style="text-align: center">
+                            <h4>Not recipe found!</h4>
+                        </div>
+                    }
                 </div>
-            </aside>
-            <aside id="widget_tptn_pop-1" class="widget-odd widget-5 with-ribbon widget tptn_posts_list_widget">
-                <h3 class="widget-title"><span>Popular Recipes</span></h3>
-                <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
-                    <ul>
-                        <li>
-                            <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="Classic tomato salsa with basil" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb"><a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link"><span class="tptn_title">Classic tomato salsa with basil</span></a><span class="tptn_excerpt"> An old-school dish that everyone loves, this gluten-free lasagne recipe&hellip;</span></span>
-                        </li>
-                        <li>
-                            <a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/07/recipe17-150x150.jpg" class="tptn_thumb tptn_featured" alt="Steamed broccoli with vinegar" title="Steamed broccoli with vinegar" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb">
-                                <a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><span class="tptn_title">Steamed broccoli with vinegar</span></a>
-                                <span class="tptn_excerpt"> Put your wine, shallot, herbs and peppercorns into a small&hellip;</span>
-                            </span>
-                        </li>
-                        <li>
-                            <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Squash soup with Parmesan croutons" title="Squash soup with Parmesan croutons" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb">
-                                <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><span class="tptn_title">Squash soup with Parmesan croutons</span></a>
-                                <span class="tptn_excerpt"> Put a very large saucepan on a medium heat and&hellip;</span>
-                            </span>
-                        </li>
-                    </ul>
-                    <div class="tptn_clear"></div>
-                </div>
-            </aside>
-            <aside id="osetin_cuisines_widget-1" class="widget-even widget-6 with-ribbon widget widget_osetin_cuisines_widget">
-                <h3 class="widget-title"><span>Popular Cuisines</span></h3>
-                <div class="shortcode-categories-icons">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/brazilian/"><img src="~/Content/assets/wp-content/uploads/2015/11/br.png" alt="Brazilian" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/cuisine/brazilian/">Brazilian</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/french/"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/cuisine/french/">French</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/italian/"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/cuisine/italian/">Italian</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/mexican/"><img src="~/Content/assets/wp-content/uploads/2015/11/mx.png" alt="Mexican" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/cuisine/mexican/">Mexican</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </aside>
-            <aside id="text-2" class="widget-odd widget-7 widget widget_text">
-                <div class="textwidget"><a href="/"><img src="~/Content/assets/wp-content/uploads/2015/09/magic_placeholder_2.jpg" alt="magic box" /></a></div>
-            </aside>
-            <aside id="tag_cloud-1" class="widget-even widget-last widget-8 with-ribbon widget widget_tag_cloud">
-                <h3 class="widget-title"><span>Popular Tags</span></h3>
-                <div class="tagcloud">
-                    <a href="http://neptune.pinsupreme.com/tag/beef/" class="tag-cloud-link tag-link-22 tag-link-position-1" style="font-size: 15.777777777778pt;" aria-label="beef (4 items)">beef</a>
-                    <a href="http://neptune.pinsupreme.com/tag/broccoli/" class="tag-cloud-link tag-link-23 tag-link-position-2" style="font-size: 15.777777777778pt;" aria-label="broccoli (4 items)">broccoli</a>
-                    <a href="http://neptune.pinsupreme.com/tag/cheese/" class="tag-cloud-link tag-link-24 tag-link-position-3" style="font-size: 15.777777777778pt;" aria-label="cheese (4 items)">cheese</a>
-                    <a href="http://neptune.pinsupreme.com/tag/chicken/" class="tag-cloud-link tag-link-25 tag-link-position-4" style="font-size: 15.777777777778pt;" aria-label="chicken (4 items)">chicken</a>
-                    <a href="http://neptune.pinsupreme.com/tag/corn/" class="tag-cloud-link tag-link-26 tag-link-position-5" style="font-size: 15.777777777778pt;" aria-label="corn (4 items)">corn</a>
-                    <a href="http://neptune.pinsupreme.com/tag/hot/" class="tag-cloud-link tag-link-27 tag-link-position-6" style="font-size: 22pt;" aria-label="hot (5 items)">hot</a>
-                    <a href="http://neptune.pinsupreme.com/tag/mushrooms/" class="tag-cloud-link tag-link-28 tag-link-position-7" style="font-size: 15.777777777778pt;" aria-label="mushrooms (4 items)">mushrooms</a>
-                    <a href="http://neptune.pinsupreme.com/tag/quick/" class="tag-cloud-link tag-link-29 tag-link-position-8" style="font-size: 15.777777777778pt;" aria-label="quick (4 items)">quick</a>
-                    <a href="http://neptune.pinsupreme.com/tag/spicy/" class="tag-cloud-link tag-link-30 tag-link-position-9" style="font-size: 8pt;" aria-label="spicy (3 items)">spicy</a>
-                    <a href="http://neptune.pinsupreme.com/tag/sushi/" class="tag-cloud-link tag-link-31 tag-link-position-10" style="font-size: 8pt;" aria-label="sushi (3 items)">sushi</a>
-                    <a href="http://neptune.pinsupreme.com/tag/whole-grains/" class="tag-cloud-link tag-link-32 tag-link-position-11" style="font-size: 15.777777777778pt;" aria-label="whole grains (4 items)">whole grains</a>
-                </div>
-            </aside>
+                
+                @if (Model.Count >= 0 )
+                {
+                    <div class="archive-pagination classic-pagination">
+                        @if (ViewBag.CurrentPage > 1){
+                            <div class="archive-pagination-prev">
+                                <a href="@Url.Action("Recipes", new {page = ViewBag.CurrentPage-1, search = ViewBag.Search, category = ViewBag.CurrentCatalog})">Previous Entries</a>
+                            </div>
+                        }
+
+                        @if (ViewBag.CurrentPage < ViewBag.PageTotal)
+                        {
+                            <div class="archive-pagination-next">
+                                <a href="@Url.Action("Recipes", new {page = ViewBag.CurrentPage+1, search = ViewBag.Search, category = ViewBag.CurrentCatalog})">Next Entries</a>
+                            </div>
+                        }
+                    
+                    </div>
+                }
+
+            </div>
+            <div class="archive-sidebar color-scheme-light " style="">
+                <aside id="osetin_categories_widget-1" class="widget-even widget-4 with-ribbon widget widget_osetin_categories_widget">
+                    <h3 class="widget-title"><span>Categories</span></h3>
+                    <div class="shortcode-categories-icons">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/chicken/"><img src="~/Content/assets/wp-content/uploads/2015/09/356.png" alt="Chicken" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/category/chicken/">Chicken</a></h3>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fast-food/"><img src="~/Content/assets/wp-content/uploads/2015/09/341.png" alt="Fast Food" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/category/fast-food/">Fast Food</a></h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fish/"><img src="~/Content/assets/wp-content/uploads/2015/09/349.png" alt="Fish" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/category/fish/">Fish</a></h3>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/pizza/"><img src="~/Content/assets/wp-content/uploads/2015/09/306.png" alt="Pizza" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/category/pizza/">Pizza</a></h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/salads/"><img src="~/Content/assets/wp-content/uploads/2015/09/45.png" alt="Salads" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/category/salads/">Salads</a></h3>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/soups/"><img src="~/Content/assets/wp-content/uploads/2015/09/85.png" alt="Soups" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/category/soups/">Soups</a></h3>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </aside>
+                <aside id="widget_tptn_pop-1" class="widget-odd widget-5 with-ribbon widget tptn_posts_list_widget">
+                    <h3 class="widget-title"><span>Popular Recipes</span></h3>
+                    <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
+                        <ul>
+                            <li>
+                                <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="Classic tomato salsa with basil" sizes="(max-width: 150px) 100vw, 150px" /></a>
+                                <span class="tptn_after_thumb"><a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link"><span class="tptn_title">Classic tomato salsa with basil</span></a><span class="tptn_excerpt"> An old-school dish that everyone loves, this gluten-free lasagne recipe&hellip;</span></span>
+                            </li>
+                            <li>
+                                <a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/07/recipe17-150x150.jpg" class="tptn_thumb tptn_featured" alt="Steamed broccoli with vinegar" title="Steamed broccoli with vinegar" sizes="(max-width: 150px) 100vw, 150px" /></a>
+                                <span class="tptn_after_thumb">
+                                    <a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><span class="tptn_title">Steamed broccoli with vinegar</span></a>
+                                    <span class="tptn_excerpt"> Put your wine, shallot, herbs and peppercorns into a small&hellip;</span>
+                                </span>
+                            </li>
+                            <li>
+                                <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Squash soup with Parmesan croutons" title="Squash soup with Parmesan croutons" sizes="(max-width: 150px) 100vw, 150px" /></a>
+                                <span class="tptn_after_thumb">
+                                    <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><span class="tptn_title">Squash soup with Parmesan croutons</span></a>
+                                    <span class="tptn_excerpt"> Put a very large saucepan on a medium heat and&hellip;</span>
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="tptn_clear"></div>
+                    </div>
+                </aside>
+                <aside id="osetin_cuisines_widget-1" class="widget-even widget-6 with-ribbon widget widget_osetin_cuisines_widget">
+                    <h3 class="widget-title"><span>Popular Cuisines</span></h3>
+                    <div class="shortcode-categories-icons">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/brazilian/"><img src="~/Content/assets/wp-content/uploads/2015/11/br.png" alt="Brazilian" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/cuisine/brazilian/">Brazilian</a></h3>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/french/"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/cuisine/french/">French</a></h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/italian/"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/cuisine/italian/">Italian</a></h3>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/mexican/"><img src="~/Content/assets/wp-content/uploads/2015/11/mx.png" alt="Mexican" /></a></div>
+                                    <div class="sci-title">
+                                        <h3><a href="http://neptune.pinsupreme.com/cuisine/mexican/">Mexican</a></h3>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </aside>
+                <aside id="text-2" class="widget-odd widget-7 widget widget_text">
+                    <div class="textwidget"><a href="/"><img src="~/Content/assets/wp-content/uploads/2015/09/magic_placeholder_2.jpg" alt="magic box" /></a></div>
+                </aside>
+                <aside id="tag_cloud-1" class="widget-even widget-last widget-8 with-ribbon widget widget_tag_cloud">
+                    <h3 class="widget-title"><span>Popular Tags</span></h3>
+                    <div class="tagcloud">
+                        <a href="http://neptune.pinsupreme.com/tag/beef/" class="tag-cloud-link tag-link-22 tag-link-position-1" style="font-size: 15.777777777778pt;" aria-label="beef (4 items)">beef</a>
+                        <a href="http://neptune.pinsupreme.com/tag/broccoli/" class="tag-cloud-link tag-link-23 tag-link-position-2" style="font-size: 15.777777777778pt;" aria-label="broccoli (4 items)">broccoli</a>
+                        <a href="http://neptune.pinsupreme.com/tag/cheese/" class="tag-cloud-link tag-link-24 tag-link-position-3" style="font-size: 15.777777777778pt;" aria-label="cheese (4 items)">cheese</a>
+                        <a href="http://neptune.pinsupreme.com/tag/chicken/" class="tag-cloud-link tag-link-25 tag-link-position-4" style="font-size: 15.777777777778pt;" aria-label="chicken (4 items)">chicken</a>
+                        <a href="http://neptune.pinsupreme.com/tag/corn/" class="tag-cloud-link tag-link-26 tag-link-position-5" style="font-size: 15.777777777778pt;" aria-label="corn (4 items)">corn</a>
+                        <a href="http://neptune.pinsupreme.com/tag/hot/" class="tag-cloud-link tag-link-27 tag-link-position-6" style="font-size: 22pt;" aria-label="hot (5 items)">hot</a>
+                        <a href="http://neptune.pinsupreme.com/tag/mushrooms/" class="tag-cloud-link tag-link-28 tag-link-position-7" style="font-size: 15.777777777778pt;" aria-label="mushrooms (4 items)">mushrooms</a>
+                        <a href="http://neptune.pinsupreme.com/tag/quick/" class="tag-cloud-link tag-link-29 tag-link-position-8" style="font-size: 15.777777777778pt;" aria-label="quick (4 items)">quick</a>
+                        <a href="http://neptune.pinsupreme.com/tag/spicy/" class="tag-cloud-link tag-link-30 tag-link-position-9" style="font-size: 8pt;" aria-label="spicy (3 items)">spicy</a>
+                        <a href="http://neptune.pinsupreme.com/tag/sushi/" class="tag-cloud-link tag-link-31 tag-link-position-10" style="font-size: 8pt;" aria-label="sushi (3 items)">sushi</a>
+                        <a href="http://neptune.pinsupreme.com/tag/whole-grains/" class="tag-cloud-link tag-link-32 tag-link-position-11" style="font-size: 15.777777777778pt;" aria-label="whole grains (4 items)">whole grains</a>
+                    </div>
+                </aside>
+            </div>
         </div>
     </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+@section Scripts{
+    <script>
+        jQuery(document).ready(function($) {
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var msg = url.searchParams.get("msg");
+            if (msg == "Become a member") {
+                Swal.fire({
+                    title: '<strong>It is not free!</strong>',
+                    icon: 'warning',
+                    html:
+                        'Become a ' +
+                            '<a href="/Home/Membership">member</a> ' +
+                            'to access more recipes.',
 
+                    background: '#fff url(/images/trees.png)',
+                    backdrop: ` rgba(0,0,123,0.4)
+                                url("https://media.giphy.com/media/dTX1p9kkP8dPZyUd09/giphy.gif")
+                                right top
+                                no-repeat`
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.cancel) {
+                        //after cancel:
+
+                    }
+                })
+            }
+
+            //Like:
+            $('.btn-like').click(function() {
+                var id = $(this).data('id');
+                var btn = $(this);
+                $.ajax({
+                    url: `/Recipe/LikeAjax?id=${id}`,
+                    type: 'POST',
+                    success: function(responseData) {
+                        if (responseData.data == "NotLogIn") {
+                            alert("Not Log In");
+                        } else {
+                            btn.css('display', 'none');
+                            btn.prev('.btn-unlike').css('display', 'contents');
+                            btn.parent('.slide-button-i').children('.like-count').html(responseData.data);
+                        }
+                        console.log(responseData);
+                        console.log(btn.parent('.slide-button-i').children('.like-count'));
+                    }
+                });
+            });
+            //Unlike:
+            $('.btn-unlike').click(function() {
+                var id = $(this).data('id');
+                var btn = $(this);
+                $.ajax({
+                    url: `/Recipe/UnLikeAjax?id=${id}`,
+                    type: 'POST',
+                    success: function(responseData) {
+                        if (responseData.data == "NotLogIn") {
+                            alert("Not Log In");
+                        } else {
+                            btn.css('display', 'none');
+                            btn.next('.btn-like').css('display', 'contents');
+                            btn.parent('.slide-button-i').children('.like-count').html(responseData.data);
+                        }
+                        console.log(responseData);
+                        console.log(btn.parent('.slide-button-i').children('.like-count'));
+                    }
+                });
+            });
+
+
+        })
+    </script>
+}

@@ -4,56 +4,6 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-@*<h2>@ViewBag.Title.</h2>
-
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-12 control-label", style = "text-align: left;" })
-            <div class="col-md-12">
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", style = "height: 50px;" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.LastName, new { @class = "col-md-12 control-label", style = "text-align: left;" })
-            <div class="col-md-12">
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "height: 50px;" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Register" />
-            </div>
-        </div>
-    }
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }*@
-
-
 <div class="os-container top-bar-w">
     <div class="top-bar ">
         <ul class="bar-breadcrumbs">
@@ -77,385 +27,403 @@
 
 <div class="os-container">
 
-    <div class="page-w with-sidebar sidebar-location-right">
-        <div class="page-content">
-            <article id="page-561" class="post-561 page type-page status-publish has-post-thumbnail hentry">
-                <a href="#" class="userpro-close-popup">Close</a>
-                <div class="userpro userpro-528 userpro-float">
-                    <div class="userpro-head">
-                        <div class="userpro-left">Register an Account</div>
-                        <div class="userpro-right"><a href="#" data-template="login">Already a member?</a></div>
+<div class="page-w with-sidebar sidebar-location-right">
+<div class="page-content">
+    <article id="page-561" class="post-561 page type-page status-publish has-post-thumbnail hentry">
+        <a href="#" class="userpro-close-popup">Close</a>
+        <div class="userpro userpro-528 userpro-float">
+            <div class="userpro-head">
+                <div class="userpro-left">Register an Account</div>
+                <div class="userpro-right"><a href="@Url.Action("Login", "Account")">Already a member?</a></div>
+                <div class="userpro-clear"></div>
+            </div>
+
+            <div class="userpro-body">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                    <div class='userpro-field  userpro-field-user_pass '>
+                        <div class='userpro-label iconed'>
+                            @Html.LabelFor(m => m.FirstName, new { @class = "", style = "" })
+                            <div class='required'>*</div>
+                        </div>
+                        <div class='userpro-input'>
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "", style = "height: 50px;" })
+                            <div class='userpro-clear'></div>
+                        </div>
+                    </div>
+                    <div class='userpro-clear'></div>
+
+                    <div class='userpro-field  userpro-field-user_pass '>
+                        <div class='userpro-label iconed'>
+                            @Html.LabelFor(m => m.LastName, new { @class = "", style = "" })
+                            <div class='required'>*</div>
+                        </div>
+                        <div class='userpro-input'>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "", style = "height: 50px;" })
+                            <div class='userpro-clear'></div>
+                        </div>
+                    </div>
+                    <div class='userpro-clear'></div>
+
+
+                    <div class='userpro-field  userpro-field-user_pass '>
+                        <div class='userpro-label iconed'>
+                            @Html.LabelFor(m => m.Email, new { @class = "" })
+                            <div class='required'>*</div>
+                        </div>
+                        <div class='userpro-input'>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "", style = "height: 50px;" })
+                            <div class='userpro-clear'></div>
+                        </div>
+                    </div>
+                    <div class='userpro-clear'></div>
+
+                    <div class='userpro-field  userpro-field-user_pass '>
+                        <div class='userpro-label iconed'>
+                            @Html.LabelFor(m => m.Password, new { @class = "" })
+                            <div class='required'>*</div>
+                        </div>
+                        <div class='userpro-input'>
+                            @Html.PasswordFor(m => m.Password, new { @class = "", style = "height: 50px;" })
+                            <div class='userpro-clear'></div>
+                        </div>
+                    </div>
+                    <div class='userpro-clear'></div>
+
+                    <div class='userpro-field  userpro-field-user_pass '>
+                        <div class='userpro-label iconed'>
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "" })
+                            <div class='required'>*</div>
+                        </div>
+                        <div class='userpro-input'>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "", style = "height: 50px;" })
+                            <div class='userpro-clear'></div>
+                        </div>
+                    </div>
+                    <div class='userpro-clear'></div>
+
+
+                    <div class='userpro-field  userpro-field-user_pass '>
+                        <div class='userpro-label iconed'>
+                            <label for="select-role">Role</label>
+                            <div class='required'>*</div>
+                        </div>
+                        <div class='userpro-input'>
+                            <select id="select-role" name="role">
+                                <option value="user">User</option>
+                                <option value="chef">Chef</option>
+                            </select>
+                            <div class='userpro-clear'></div>
+                        </div>
+                    </div>
+                    <div class='userpro-clear'></div>
+
+
+
+                    <div class="userpro-field userpro-submit userpro-column">
+
+                        <div class="userpro-social-connect"></div>
                         <div class="userpro-clear"></div>
-                    </div>
+                        <input type="submit" value="Register" class="userpro-button" />
 
-                    <div class="userpro-body">
+                        <input type="button" value="Login" class="userpro-button secondary" />
 
-                        <form action="@Url.Action("Register", "Account")" method="post" data-action="register">
-                            <div class='userpro-field  userpro-field-user_login ' data-key='user_login'>
-                                <div class='userpro-label iconed'>
-                                    <label for='firstName'>First Name</label>
-                                    <div class='required'>*</div>
-                                </div>
-                                <div class='userpro-input'>
-                                    <input type='text' name='firstName' id='firstName' value="" placeholder=''/>
-                                    <div class='userpro-clear'></div>
-                                </div>
-                            </div>
-                            <div class='userpro-clear'></div>
-
-
-                            <div class='userpro-field  userpro-field-user_login ' data-key='user_login'>
-                                <div class='userpro-label iconed'>
-                                    <label for='lastName'>Last Name</label>
-                                    <div class='required'>*</div>
-                                </div>
-                                <div class='userpro-input'>
-                                    <input type='text' name='lastName' id='lastName' value="" placeholder=''/>
-                                    <div class='userpro-clear'></div>
-                                </div>
-                            </div>
-                            <div class='userpro-clear'></div>
-
-
-                            <div class='userpro-field  userpro-field-user_email ' data-key='user_email'>
-                                <div class='userpro-label iconed'>
-                                    <label for='user_email'>E-mail</label>
-                                    <div class='required'>*</div>
-                                </div>
-                                <div class='userpro-input'>
-                                    <input type='text' name='email' id='user_email' value="" placeholder=''/>
-                                    <div class='userpro-clear'></div>
-                                </div>
-                            </div>
-                            <div class='userpro-clear'></div>
-                            
-                            
-
-                            <div class='userpro-field  userpro-field-user_pass ' data-key='user_pass'>
-                                <div class='userpro-label iconed'>
-                                    <label for='user_pass'>Password</label>
-                                    <div class='required'>*</div><span class="userpro-tip" title="Your password must be 8 characters long at least."></span>
-                                </div>
-                                <div class='userpro-input'>
-                                    <input type='password' name='passWord' id='user_pass' value='' placeholder=''/>
-                                    <div class='userpro-clear'></div>
-                                </div>
-                            </div>
-                            <div class='userpro-clear'></div>
-                            
-
-                            <div class='userpro-field  userpro-field-user_pass_confirm ' data-key='user_pass_confirm'>
-                                <div class='userpro-label iconed'>
-                                    <label for='user_pass_confirm'>Confirm your Password</label>
-                                    <div class='required'>*</div>
-                                </div>
-                                <div class='userpro-input'>
-                                    <input type='password' id='user_pass_confirm' value='' placeholder=''/>
-                                    <div class='userpro-clear'></div>
-                                </div>
-                            </div>
-                            <div class='userpro-clear'></div>
-
-
-
-                            <div class="userpro-field userpro-submit userpro-column">
-
-                                <div class="userpro-social-connect"></div>
-                                <div class="userpro-clear"></div>
-                                <input type="submit" value="Register" class="userpro-button" />
-
-                                <input type="button" value="Login" class="userpro-button secondary" data-template="login" />
-
-                                <img src="~/Content/assets/wp-content/plugins/userpro/skins/elegant/img/loading.gif" alt="" class="userpro-loading" />
-                                <div class="userpro-clear"></div>
-
-                            </div>
-
-                        </form>
+                        <img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/skins/elegant/img/loading.gif" alt="" class="userpro-loading" />
+                        <div class="userpro-clear"></div>
 
                     </div>
+                }
+            </div>
 
-                </div>
-
-
-                <style type="text/css">
-                    div.userpro-awsm-pic {
-                        margin-left: -48px;
-                        top: -48px;
-                    }
-
-                        div.userpro-awsm-pic img {
-                            width: 86px;
-                            height: 86px;
-                        }
-
-                    div.userpro,
-                    div.emd-main,
-                    div.emd-filters,
-                    div.userpro-search-results,
-                    div.userpro-label label,
-                    div.userpro input,
-                    div.userpro textarea,
-                    div.userpro select,
-                    div.userpro-field textarea.userpro_editor,
-                    div.userpro-msg-overlay-content,
-                    div.userpro-msg-overlay-content input,
-                    div.userpro-msg-overlay-content textarea,
-                    div.userpro-notifier {
-                        font-family: Roboto;
-                    }
-
-                    div.userpro-528 {
-                        max-width: 480px;
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-bottom: 30px;
-                    }
-
-                        div.userpro-528.userpro-nostyle {
-                            max-width: 250px;
-                        }
-
-                        div.userpro-528.userpro-users {
-                            max-width: 100% !important;
-                        }
-
-                        div.userpro-528 div.userpro-user {
-                            margin-top: 15px;
-                            margin-left: 30px;
-                            margin-right: 30px;
-                        }
-
-                            div.userpro-528 div.userpro-user a.userpro-user-img {
-                                width: 120px;
-                                height: 120px;
-                            }
-
-                                div.userpro-528 div.userpro-user a.userpro-user-img span {
-                                    top: -120px;
-                                    line-height: 120px;
-                                }
-
-                            div.userpro-528 div.userpro-user div.userpro-user-link {
-                                width: 120px;
-                            }
-
-                            div.userpro-528 div.userpro-user a.userpro-user-img,
-                            div.userpro-528 div.userpro-user a.userpro-user-img span {
-                                border-radius: 999px !important;
-                            }
-
-                        div.userpro-528 div.userpro-list-item-i {
-                            width: 50px;
-                            height: 50px;
-                        }
-
-                        div.userpro-528 div.userpro-online-item-i {
-                            width: 30px;
-                            height: 30px;
-                        }
-
-                        div.userpro-528 div.userpro-online-item {
-                            border-bottom: 0px !important;
-                            padding: 10px 0 0 0;
-                        }
-
-                            div.userpro-528 div.userpro-online-item img.userpro-profile-badge,
-                            div.userpro-528 div.userpro-online-item img.userpro-profile-badge-right {
-                                max-width: 14px !important;
-                                max-height: 14px !important;
-                            }
-
-                        div.userpro-528 div.userpro-profile-img {
-                            width: 80px;
-                        }
-
-                    div.emd-user {
-                        width: 22%;
-                        margin-left: 2% !important;
-                    }
-                </style>
-
-
-            </article>
         </div>
 
-        <div class="page-sidebar">
 
-            <aside id="osetin_author_widget-1" class="widget-odd widget-first widget-1 with-ribbon widget widget_osetin_author_widget">
-                <div class="shortcode-about-author">
-                    <h3 class="saa-header header-ribbon">About Me</h3>
-                    <div class="saa-avatar"><img src="~/Content/assets/wp-content/uploads/2016/12/alba.png" alt="About Me" /></div>
-                    <div class="saa-content">
-                        <p>I love cooking and blogging. Using a fork, break salmon. Halve reserved potatoes and eggs crosswise.</p>
-                    </div>
-                </div>
-            </aside>
-            <aside id="osetin_social_widget-1" class="widget-even widget-2 widget widget_osetin_social_widget">
-                <ul class="shortcode-social-links">
-                    <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
-                    <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-facebook"></i></a></li>
-                    <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-pinterest"></i></a></li>
-                    <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-youtube"></i></a></li>
-                </ul>
-            </aside>
-            <aside id="mc4wp_form_widget-2" class="widget-odd widget-3 widget widget_mc4wp_form_widget">
-                <h3 class="widget-title"><span>Our Newsletter</span></h3>
-                <script>
-                    (function() {
-                        if (!window.mc4wp) {
-                            window.mc4wp = {
-                                listeners: [],
-                                forms: {
-                                    on: function(event, callback) {
-                                        window.mc4wp.listeners.push({
-                                            event: event,
-                                            callback: callback
-                                        });
-                                    }
-                                }
-                            }
-                        }
-                    })();
-                </script>
-                <!-- Mailchimp for WordPress v4.7.4 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
-                <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-916 mc4wp-form-basic" method="post" data-id="916" data-name="Default sign-up form">
-                    <div class="mc4wp-form-fields">
-                        <p>
-                            <div style="font-size: 12px; margin-bottom: 10px;">Subscribe for our weekly recipes tips, we promise to not spam you</div>
-                            <input type="email" id="mc4wp_email" name="EMAIL" placeholder="Your email address" required />
-                        </p>
-                        <p>
-                            <input type="submit" value="Subscribe">
-                        </p>
-                    </div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1581608096" /><input type="hidden" name="_mc4wp_form_id" value="916" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
-                    <div class="mc4wp-response"></div>
-                </form>
-                <!-- / Mailchimp for WordPress Plugin -->
-            </aside>
-            <aside id="osetin_categories_widget-1" class="widget-even widget-4 with-ribbon widget widget_osetin_categories_widget">
-                <h3 class="widget-title"><span>Categories</span></h3>
-                <div class="shortcode-categories-icons">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/chicken/"><img src="~/Content/assets/wp-content/uploads/2015/09/356.png" alt="Chicken" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/chicken/">Chicken</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fast-food/"><img src="~/Content/assets/wp-content/uploads/2015/09/341.png" alt="Fast Food" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/fast-food/">Fast Food</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fish/"><img src="~/Content/assets/wp-content/uploads/2015/09/349.png" alt="Fish" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/fish/">Fish</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/pizza/"><img src="~/Content/assets/wp-content/uploads/2015/09/306.png" alt="Pizza" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/pizza/">Pizza</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/salads/"><img src="~/Content/assets/wp-content/uploads/2015/09/45.png" alt="Salads" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/salads/">Salads</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/soups/"><img src="~/Content/assets/wp-content/uploads/2015/09/85.png" alt="Soups" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/category/soups/">Soups</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </aside>
-            <aside id="widget_tptn_pop-1" class="widget-odd widget-5 with-ribbon widget tptn_posts_list_widget">
-                <h3 class="widget-title"><span>Popular Recipes</span></h3>
-                <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
-                    <ul>
-                        <li>
-                            <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="Classic tomato salsa with basil" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-100x100.jpg 100w" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb"><a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link"><span class="tptn_title">Classic tomato salsa with basil</span></a><span class="tptn_excerpt"> An old-school dish that everyone loves, this gluten-free lasagne recipe&hellip;</span></span>
-                        </li>
-                        <li>
-                            <a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/07/recipe17-150x150.jpg" class="tptn_thumb tptn_featured" alt="Steamed broccoli with vinegar" title="Steamed broccoli with vinegar" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-100x100.jpg 100w" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb"><a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><span class="tptn_title">Steamed broccoli with vinegar</span></a><span class="tptn_excerpt"> Put your wine, shallot, herbs and peppercorns into a small&hellip;</span></span>
-                        </li>
-                        <li>
-                            <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Squash soup with Parmesan croutons" title="Squash soup with Parmesan croutons" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-100x100.jpg 100w" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb"><a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><span class="tptn_title">Squash soup with Parmesan croutons</span></a><span class="tptn_excerpt"> Put a very large saucepan on a medium heat and&hellip;</span></span>
-                        </li>
-                    </ul>
-                    <div class="tptn_clear"></div>
-                </div>
-            </aside>
-            <aside id="osetin_cuisines_widget-1" class="widget-even widget-6 with-ribbon widget widget_osetin_cuisines_widget">
-                <h3 class="widget-title"><span>Popular Cuisines</span></h3>
-                <div class="shortcode-categories-icons">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/brazilian/"><img src="~/Content/assets/wp-content/uploads/2015/11/br.png" alt="Brazilian" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/cuisine/brazilian/">Brazilian</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/french/"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/cuisine/french/">French</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/italian/"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/cuisine/italian/">Italian</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/mexican/"><img src="~/Content/assets/wp-content/uploads/2015/11/mx.png" alt="Mexican" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="http://neptune.pinsupreme.com/cuisine/mexican/">Mexican</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </aside>
-            <aside id="text-2" class="widget-odd widget-7 widget widget_text">
-                <div class="textwidget"><a href="/"><img src="~/Content/assets/wp-content/uploads/2015/09/magic_placeholder_2.jpg" alt="magic box" /></a></div>
-            </aside>
-            <aside id="tag_cloud-1" class="widget-even widget-last widget-8 with-ribbon widget widget_tag_cloud">
-                <h3 class="widget-title"><span>Popular Tags</span></h3>
-                <div class="tagcloud">
-                    <a href="http://neptune.pinsupreme.com/tag/beef/" class="tag-cloud-link tag-link-22 tag-link-position-1" style="font-size: 15.777777777778pt;" aria-label="beef (4 items)">beef</a>
-                    <a href="http://neptune.pinsupreme.com/tag/broccoli/" class="tag-cloud-link tag-link-23 tag-link-position-2" style="font-size: 15.777777777778pt;" aria-label="broccoli (4 items)">broccoli</a>
-                    <a href="http://neptune.pinsupreme.com/tag/cheese/" class="tag-cloud-link tag-link-24 tag-link-position-3" style="font-size: 15.777777777778pt;" aria-label="cheese (4 items)">cheese</a>
-                    <a href="http://neptune.pinsupreme.com/tag/chicken/" class="tag-cloud-link tag-link-25 tag-link-position-4" style="font-size: 15.777777777778pt;" aria-label="chicken (4 items)">chicken</a>
-                    <a href="http://neptune.pinsupreme.com/tag/corn/" class="tag-cloud-link tag-link-26 tag-link-position-5" style="font-size: 15.777777777778pt;" aria-label="corn (4 items)">corn</a>
-                    <a href="http://neptune.pinsupreme.com/tag/hot/" class="tag-cloud-link tag-link-27 tag-link-position-6" style="font-size: 22pt;" aria-label="hot (5 items)">hot</a>
-                    <a href="http://neptune.pinsupreme.com/tag/mushrooms/" class="tag-cloud-link tag-link-28 tag-link-position-7" style="font-size: 15.777777777778pt;" aria-label="mushrooms (4 items)">mushrooms</a>
-                    <a href="http://neptune.pinsupreme.com/tag/quick/" class="tag-cloud-link tag-link-29 tag-link-position-8" style="font-size: 15.777777777778pt;" aria-label="quick (4 items)">quick</a>
-                    <a href="http://neptune.pinsupreme.com/tag/spicy/" class="tag-cloud-link tag-link-30 tag-link-position-9" style="font-size: 8pt;" aria-label="spicy (3 items)">spicy</a>
-                    <a href="http://neptune.pinsupreme.com/tag/sushi/" class="tag-cloud-link tag-link-31 tag-link-position-10" style="font-size: 8pt;" aria-label="sushi (3 items)">sushi</a>
-                    <a href="http://neptune.pinsupreme.com/tag/whole-grains/" class="tag-cloud-link tag-link-32 tag-link-position-11" style="font-size: 15.777777777778pt;" aria-label="whole grains (4 items)">whole grains</a>
-                </div>
-            </aside>
-        </div>
-    </div>
+        <style type="text/css">
+            div.userpro-awsm-pic {
+                margin-left: -48px;
+                top: -48px;
+            }
+
+            div.userpro-awsm-pic img {
+                width: 86px;
+                height: 86px;
+            }
+
+            div.userpro,
+            div.emd-main,
+            div.emd-filters,
+            div.userpro-search-results,
+            div.userpro-label label,
+            div.userpro input,
+            div.userpro textarea,
+            div.userpro select,
+            div.userpro-field textarea.userpro_editor,
+            div.userpro-msg-overlay-content,
+            div.userpro-msg-overlay-content input,
+            div.userpro-msg-overlay-content textarea,
+            div.userpro-notifier {
+                font-family: Roboto;
+            }
+
+            div.userpro-528 {
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 30px;
+            }
+
+            div.userpro-528.userpro-nostyle {
+                max-width: 250px;
+            }
+
+            div.userpro-528.userpro-users {
+                max-width: 100% !important;
+            }
+
+            div.userpro-528 div.userpro-user {
+                margin-top: 15px;
+                margin-left: 30px;
+                margin-right: 30px;
+            }
+
+            div.userpro-528 div.userpro-user a.userpro-user-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            div.userpro-528 div.userpro-user a.userpro-user-img span {
+                top: -120px;
+                line-height: 120px;
+            }
+
+            div.userpro-528 div.userpro-user div.userpro-user-link {
+                width: 120px;
+            }
+
+            div.userpro-528 div.userpro-user a.userpro-user-img,
+            div.userpro-528 div.userpro-user a.userpro-user-img span {
+                border-radius: 999px !important;
+            }
+
+            div.userpro-528 div.userpro-list-item-i {
+                width: 50px;
+                height: 50px;
+            }
+
+            div.userpro-528 div.userpro-online-item-i {
+                width: 30px;
+                height: 30px;
+            }
+
+            div.userpro-528 div.userpro-online-item {
+                border-bottom: 0px !important;
+                padding: 10px 0 0 0;
+            }
+
+            div.userpro-528 div.userpro-online-item img.userpro-profile-badge,
+            div.userpro-528 div.userpro-online-item img.userpro-profile-badge-right {
+                max-width: 14px !important;
+                max-height: 14px !important;
+            }
+
+            div.userpro-528 div.userpro-profile-img {
+                width: 80px;
+            }
+
+            div.emd-user {
+                width: 22%;
+                margin-left: 2% !important;
+            }
+        </style>
+
+
+    </article>
 </div>
+
+<div class="page-sidebar">
+
+    <aside id="osetin_author_widget-1" class="widget-odd widget-first widget-1 with-ribbon widget widget_osetin_author_widget">
+        <div class="shortcode-about-author">
+            <h3 class="saa-header header-ribbon">About Me</h3>
+            <div class="saa-avatar"><img src="~/Content/assets/wp-content/uploads/2016/12/alba.png" alt="About Me" /></div>
+            <div class="saa-content">
+                <p>I love cooking and blogging. Using a fork, break salmon. Halve reserved potatoes and eggs crosswise.</p>
+            </div>
+        </div>
+    </aside>
+    <aside id="osetin_social_widget-1" class="widget-even widget-2 widget widget_osetin_social_widget">
+        <ul class="shortcode-social-links">
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-facebook"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-pinterest"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-youtube"></i></a></li>
+        </ul>
+    </aside>
+    <aside id="mc4wp_form_widget-2" class="widget-odd widget-3 widget widget_mc4wp_form_widget">
+        <h3 class="widget-title"><span>Our Newsletter</span></h3>
+        <script>
+            (function() {
+                if (!window.mc4wp) {
+                    window.mc4wp = {
+                        listeners: [],
+                        forms: {
+                            on: function(event, callback) {
+                                window.mc4wp.listeners.push({
+                                    event: event,
+                                    callback: callback
+                                });
+                            }
+                        }
+                    }
+                }
+            })();
+        </script>
+        <!-- Mailchimp for WordPress v4.7.4 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+        <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-916 mc4wp-form-basic" method="post" data-id="916" data-name="Default sign-up form">
+            <div class="mc4wp-form-fields">
+                <p>
+                    <div style="font-size: 12px; margin-bottom: 10px;">Subscribe for our weekly recipes tips, we promise to not spam you</div>
+                    <input type="email" id="mc4wp_email" name="EMAIL" placeholder="Your email address" required />
+                </p>
+                <p>
+                    <input type="submit" value="Subscribe">
+                </p>
+            </div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1581608096" /><input type="hidden" name="_mc4wp_form_id" value="916" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
+            <div class="mc4wp-response"></div>
+        </form>
+        <!-- / Mailchimp for WordPress Plugin -->
+    </aside>
+    <aside id="osetin_categories_widget-1" class="widget-even widget-4 with-ribbon widget widget_osetin_categories_widget">
+        <h3 class="widget-title"><span>Categories</span></h3>
+        <div class="shortcode-categories-icons">
+            <table>
+                <tr>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/chicken/"><img src="~/Content/assets/wp-content/uploads/2015/09/356.png" alt="Chicken" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/category/chicken/">Chicken</a></h3>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fast-food/"><img src="~/Content/assets/wp-content/uploads/2015/09/341.png" alt="Fast Food" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/category/fast-food/">Fast Food</a></h3>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fish/"><img src="~/Content/assets/wp-content/uploads/2015/09/349.png" alt="Fish" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/category/fish/">Fish</a></h3>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/pizza/"><img src="~/Content/assets/wp-content/uploads/2015/09/306.png" alt="Pizza" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/category/pizza/">Pizza</a></h3>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/salads/"><img src="~/Content/assets/wp-content/uploads/2015/09/45.png" alt="Salads" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/category/salads/">Salads</a></h3>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/soups/"><img src="~/Content/assets/wp-content/uploads/2015/09/85.png" alt="Soups" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/category/soups/">Soups</a></h3>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </aside>
+    <aside id="widget_tptn_pop-1" class="widget-odd widget-5 with-ribbon widget tptn_posts_list_widget">
+        <h3 class="widget-title"><span>Popular Recipes</span></h3>
+        <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
+            <ul>
+                <li>
+                    <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="Classic tomato salsa with basil" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-100x100.jpg 100w" sizes="(max-width: 150px) 100vw, 150px" /></a>
+                    <span class="tptn_after_thumb"><a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link"><span class="tptn_title">Classic tomato salsa with basil</span></a><span class="tptn_excerpt"> An old-school dish that everyone loves, this gluten-free lasagne recipe&hellip;</span></span>
+                </li>
+                <li>
+                    <a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/07/recipe17-150x150.jpg" class="tptn_thumb tptn_featured" alt="Steamed broccoli with vinegar" title="Steamed broccoli with vinegar" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-100x100.jpg 100w" sizes="(max-width: 150px) 100vw, 150px" /></a>
+                    <span class="tptn_after_thumb"><a href="http://neptune.pinsupreme.com/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><span class="tptn_title">Steamed broccoli with vinegar</span></a><span class="tptn_excerpt"> Put your wine, shallot, herbs and peppercorns into a small&hellip;</span></span>
+                </li>
+                <li>
+                    <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Squash soup with Parmesan croutons" title="Squash soup with Parmesan croutons" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-100x100.jpg 100w" sizes="(max-width: 150px) 100vw, 150px" /></a>
+                    <span class="tptn_after_thumb"><a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><span class="tptn_title">Squash soup with Parmesan croutons</span></a><span class="tptn_excerpt"> Put a very large saucepan on a medium heat and&hellip;</span></span>
+                </li>
+            </ul>
+            <div class="tptn_clear"></div>
+        </div>
+    </aside>
+    <aside id="osetin_cuisines_widget-1" class="widget-even widget-6 with-ribbon widget widget_osetin_cuisines_widget">
+        <h3 class="widget-title"><span>Popular Cuisines</span></h3>
+        <div class="shortcode-categories-icons">
+            <table>
+                <tr>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/brazilian/"><img src="~/Content/assets/wp-content/uploads/2015/11/br.png" alt="Brazilian" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/cuisine/brazilian/">Brazilian</a></h3>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/french/"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/cuisine/french/">French</a></h3>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/italian/"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/cuisine/italian/">Italian</a></h3>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/cuisine/mexican/"><img src="~/Content/assets/wp-content/uploads/2015/11/mx.png" alt="Mexican" /></a></div>
+                        <div class="sci-title">
+                            <h3><a href="http://neptune.pinsupreme.com/cuisine/mexican/">Mexican</a></h3>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </aside>
+    <aside id="text-2" class="widget-odd widget-7 widget widget_text">
+        <div class="textwidget"><a href="/"><img src="~/Content/assets/wp-content/uploads/2015/09/magic_placeholder_2.jpg" alt="magic box" /></a></div>
+    </aside>
+    <aside id="tag_cloud-1" class="widget-even widget-last widget-8 with-ribbon widget widget_tag_cloud">
+        <h3 class="widget-title"><span>Popular Tags</span></h3>
+        <div class="tagcloud">
+            <a href="http://neptune.pinsupreme.com/tag/beef/" class="tag-cloud-link tag-link-22 tag-link-position-1" style="font-size: 15.777777777778pt;" aria-label="beef (4 items)">beef</a>
+            <a href="http://neptune.pinsupreme.com/tag/broccoli/" class="tag-cloud-link tag-link-23 tag-link-position-2" style="font-size: 15.777777777778pt;" aria-label="broccoli (4 items)">broccoli</a>
+            <a href="http://neptune.pinsupreme.com/tag/cheese/" class="tag-cloud-link tag-link-24 tag-link-position-3" style="font-size: 15.777777777778pt;" aria-label="cheese (4 items)">cheese</a>
+            <a href="http://neptune.pinsupreme.com/tag/chicken/" class="tag-cloud-link tag-link-25 tag-link-position-4" style="font-size: 15.777777777778pt;" aria-label="chicken (4 items)">chicken</a>
+            <a href="http://neptune.pinsupreme.com/tag/corn/" class="tag-cloud-link tag-link-26 tag-link-position-5" style="font-size: 15.777777777778pt;" aria-label="corn (4 items)">corn</a>
+            <a href="http://neptune.pinsupreme.com/tag/hot/" class="tag-cloud-link tag-link-27 tag-link-position-6" style="font-size: 22pt;" aria-label="hot (5 items)">hot</a>
+            <a href="http://neptune.pinsupreme.com/tag/mushrooms/" class="tag-cloud-link tag-link-28 tag-link-position-7" style="font-size: 15.777777777778pt;" aria-label="mushrooms (4 items)">mushrooms</a>
+            <a href="http://neptune.pinsupreme.com/tag/quick/" class="tag-cloud-link tag-link-29 tag-link-position-8" style="font-size: 15.777777777778pt;" aria-label="quick (4 items)">quick</a>
+            <a href="http://neptune.pinsupreme.com/tag/spicy/" class="tag-cloud-link tag-link-30 tag-link-position-9" style="font-size: 8pt;" aria-label="spicy (3 items)">spicy</a>
+            <a href="http://neptune.pinsupreme.com/tag/sushi/" class="tag-cloud-link tag-link-31 tag-link-position-10" style="font-size: 8pt;" aria-label="sushi (3 items)">sushi</a>
+            <a href="http://neptune.pinsupreme.com/tag/whole-grains/" class="tag-cloud-link tag-link-32 tag-link-position-11" style="font-size: 15.777777777778pt;" aria-label="whole grains (4 items)">whole grains</a>
+        </div>
+    </aside>
+</div>
+</div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,6 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using E_ProjectSem3.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+<!DOCTYPE html>
 <html lang="en-US" id="arve">
-
+@{
+    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +28,7 @@
                 "concatemoji": "\/Content\/assets\/wp-includes\/js\/wp-emoji-release.min.js"
             }
         };
-        ! function(e, a, t) {
+        ! function (e, a, t) {
             var r, n, o, i, p = a.createElement("canvas"),
                 s = p.getContext && p.getContext("2d");
 
@@ -50,14 +55,14 @@
                 t.src = e, t.defer = t.type = "text/javascript", a.getElementsByTagName("head")[0].appendChild(t)
             }
             for (i = Array("flag", "emoji"), t.supports = {
-                    everything: !0,
-                    everythingExceptFlag: !0
-                }, o = 0; o < i.length; o++) t.supports[i[o]] = l(i[o]), t.supports.everything = t.supports.everything && t.supports[i[o]], "flag" !== i[o] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[i[o]]);
-            t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function() {
+                everything: !0,
+                everythingExceptFlag: !0
+            }, o = 0; o < i.length; o++) t.supports[i[o]] = l(i[o]), t.supports.everything = t.supports.everything && t.supports[i[o]], "flag" !== i[o] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[i[o]]);
+            t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function () {
                 t.DOMReady = !0
-            }, t.supports.everything || (n = function() {
+            }, t.supports.everything || (n = function () {
                 t.readyCallback()
-            }, a.addEventListener ? (a.addEventListener("DOMContentLoaded", n, !1), e.addEventListener("load", n, !1)) : (e.attachEvent("onload", n), a.attachEvent("onreadystatechange", function() {
+            }, a.addEventListener ? (a.addEventListener("DOMContentLoaded", n, !1), e.addEventListener("load", n, !1)) : (e.attachEvent("onload", n), a.attachEvent("onreadystatechange", function () {
                 "complete" === a.readyState && t.readyCallback()
             })), (r = t.source || {}).concatemoji ? d(r.concatemoji) : r.wpemoji && r.twemoji && (d(r.twemoji), d(r.wpemoji)))
         }(window, document, window._wpemojiSettings);
@@ -121,8 +126,9 @@
     <link rel='stylesheet' id='userpro_jquery_ui_style-css' href='~/Content/assets/wp-content/plugins/userpro/css/userpro-jquery-ui.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-bookmarks.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav_list-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-collections.css' type='text/css' media='all' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" rel="stylesheet">
     <link href="~/Content/assets/custom.css" rel="stylesheet" />
-    
+
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/jquery.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/jquery-migrate.min.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/osetin-meal-planner/assets/bower_components/chartist/dist/chartist.min.js'></script>
@@ -134,7 +140,7 @@
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/ui/core.min.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/ui/datepicker.min.js'></script>
     <script type='text/javascript'>
-        jQuery(document).ready(function(jQuery) {
+        jQuery(document).ready(function (jQuery) {
             jQuery.datepicker.setDefaults({
                 "closeText": "Close",
                 "currentText": "Today",
@@ -185,11 +191,12 @@
         var ajaxurl = "http://neptune.pinsupreme.com/wp-admin/admin-ajax.php"
     </script>
     <noscript>
-    <style>
-        .woocommerce-product-gallery {
-            opacity: 1 !important;
-        }
-    </style></noscript>
+        <style>
+            .woocommerce-product-gallery {
+                opacity: 1 !important;
+            }
+        </style>
+    </noscript>
     <style type="text/css">
         .recentcomments a {
             display: inline !important;
@@ -210,14 +217,35 @@
         <div class="os-container top-profile-links-box-container">
             <div class="top-profile-links-box-w">
                 <div class="top-profile-links-box" style="">
-                    <ul>
-                        <li><span>Logged in as <strong>giazzz35</strong></span></li>
-                        <li><a href="~/Content/assets/profile/giazzz/"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
-                        <li><a href="~/Content/assets/bookmarks/"><i class="os-icon os-icon-ui-33"></i> <span>My Bookmarks</span></a></li>
-                        <li><a href="~/Content/assets/my-meal-plans/"><i class="os-icon os-icon-phone-21"></i> <span>My Meal Plans</span></a></li>
-                        <li><a href="~/Content/assets/wp-login.php?action=logout&amp;_wpnonce=ef76c5d8d2&redirect_to=http%3A%2F%2Fneptune.pinsupreme.com%2Fsubmit-recipe%2F%3Floggedout%3Dtrue"><i class="os-icon os-icon-signs-12"></i> <span>Logout</span></a></li>
-                        <li><a href="~/Content/assets/cart/"><i class="os-icon os-icon-finance-28"></i> <span>Cart is empty</span></a></li>
-                    </ul>
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <ul>
+                                <li><span>Logged in as <strong>@(User.Identity.GetUserName())</strong></span></li>
+                                @if (UserManager.IsInRole(User.Identity.GetUserId(),"silver"))
+                                {
+                                    <li><span>Silver member</span></li>
+                                }
+                                @if (UserManager.IsInRole(User.Identity.GetUserId(),"gold"))
+                                {
+                                    <li><span>Gold member</span></li>
+                                }
+                                <li><a href="#"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
+                                <li><a href="#"><i class="os-icon os-icon-ui-33"></i> <span>My Bookmarks</span></a></li>
+                                <li><a href="#"><i class="os-icon os-icon-phone-21"></i> <span>My Meal Plans</span></a></li>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-12"></i> <span>Logout</span></a></li>
+                            </ul>
+                        }
+                    }
+                    else
+                    {
+                        <ul>
+                            <li><a href="@Url.Action("Login", "Account")" ><i class="os-icon os-icon-head"></i> <span>Login</span></a></li>
+                            <li><a href="@Url.Action("Register", "Account")"><i class="os-icon os-icon-home-03"></i> <span>Register</span></a></li>
+                        </ul>
+                    }
                 </div>
             </div>
         </div>
@@ -230,107 +258,30 @@
                 </div>
                 <div class="top-menu menu-activated-on-hover">
                     <ul id="header-menu" class="menu">
-                        <li id="menu-item-480" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-480">
-                            <a href="#">Home Layouts</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="~/Content/assets/hero-posts/">Hero Posts</a></li>
-                                <li id="menu-item-694" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-694"><a href="~/Content/assets/masonry-v1/">Masonry V1</a></li>
-                                <li id="menu-item-486" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-486"><a href="~/Content/assets/magazine-v2/">Magazine V2</a></li>
-                                <li id="menu-item-487" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-487"><a href="~/Content/assets/4-columns/">4 Columns</a></li>
-                                <li id="menu-item-488" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-488"><a href="~/Content/assets/3-columns/">3 Columns</a></li>
-                                <li id="menu-item-489" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-489"><a href="~/Content/assets/2-columns/">2 Columns</a></li>
-                                <li id="menu-item-742" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-742"><a href="~/Content/assets/full-width/">Full Width</a></li>
-                                <li id="menu-item-743" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-743"><a href="~/Content/assets/half-image/">Half Image</a></li>
-                                <li id="menu-item-747" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-747"><a href="~/Content/assets/3-columns-no-sidebar/">No Sidebar</a></li>
-                            </ul>
+                        <li id="menu-item-480" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-480">
+                            <a href="/Home">Home</a>
                         </li>
                         <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
-                            <a href="~/Content/assets/recipe/gluten-free-beef-lasagne/">Recipe</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-481" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-481">
-                                    <a href="#">Recipe Layouts</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-734" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-734"><a href="~/Content/assets/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/">Hero Header</a></li>
-                                        <li id="menu-item-485" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-485"><a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/">Image on left</a></li>
-                                        <li id="menu-item-484" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-484"><a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/">Image on right</a></li>
-                                        <li id="menu-item-482" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-482"><a href="~/Content/assets/recipe/barbecoa-bloody-mary/">Big Image</a></li>
-                                        <li id="menu-item-1021" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-1021"><a href="~/Content/assets/recipe/cheesy-pasta-with-crispy-pangritata/">Multiple Images</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-735" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-735">
-                                    <a href="#">Recipe Formats</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-737" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-737"><a href="~/Content/assets/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/">Video</a></li>
-                                        <li id="menu-item-738" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-738"><a href="~/Content/assets/recipe/cheesy-pasta-with-crispy-pangritata/">Gallery of Images</a></li>
-                                        <li id="menu-item-736" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-736"><a href="~/Content/assets/recipe/green-salad-with-cherries/">Just Image</a></li>
-                                        <li id="menu-item-998" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-998"><a href="~/Content/assets/recipe/smoked-salmon-rolls/">GIF Image Video</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <a href="/Home/Recipes">Recipes</a>
                         </li>
-                        <li id="menu-item-448" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448"><a href="~/Content/assets/categories/">Categories</a></li>
-                        <li id="menu-item-570" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-570">
-                            <a href="#">Features</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-571" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-568 current_page_item menu-item-571"><a href="~/Content/assets/submit-recipe/" aria-current="page">Submit Recipe</a></li>
-                                <li id="menu-item-581" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-581"><a href="~/Content/assets/search-by-ingredients/">Search by Ingredients</a></li>
-                                <li id="menu-item-682" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-682">
-                                    <a href="~/Content/assets/shop/">Shop</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-684" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-684"><a href="~/Content/assets/shop/">Product Archive</a></li>
-                                        <li id="menu-item-683" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-683"><a href="~/Content/assets/product/happy-ninja-2/">Single Product</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-574" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-574">
-                                    <a href="#">Users</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-572" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-572"><a href="~/Content/assets/profile-2/login/">Login</a></li>
-                                        <li id="menu-item-573" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-573"><a href="~/Content/assets/profile-2/register/">Register</a></li>
-                                        <li id="menu-item-582" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-582"><a href="~/Content/assets/profile/VyXmEQaraRJpN7cpVArCtNAfC/">Profile</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-543" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-543">
-                                    <a href="/forums">Forum</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-544" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-544"><a href="/forums">Forum Index</a></li>
-                                        <li id="menu-item-545" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-545"><a href="/forums/topic/how-do-you-cook-meat/">Topic Discussion</a></li>
-                                        <li id="menu-item-546" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-546"><a href="/forums/user/vyxmeqararjpn7cpvarctnafc/">User Profile</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        @if (UserManager.IsInRole(User.Identity.GetUserId(),"chef") || UserManager.IsInRole(User.Identity.GetUserId(),"admin"))
+                        {
+                            <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                                <a href="/Chef/AddRecipes">Submit recipe</a>
+                            </li>
+                        }
+                        <li id="menu-item-448" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448">
+                            <a href="/Home/Categories">Categories</a>
                         </li>
-                        <li id="menu-item-479" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-479">
-                            <a href="#">Layouts</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-616" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-616">
-                                    <a href="#">Top Slider Layouts</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-612" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-612"><a href="~/Content/assets/slider-full-2/">Slider Mixed</a></li>
-                                        <li id="menu-item-614" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-614"><a href="~/Content/assets/slider-wide/">Slider Wide</a></li>
-                                        <li id="menu-item-613" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-613"><a href="~/Content/assets/slider-full/">Slider Full</a></li>
-                                        <li id="menu-item-615" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a href="~/Content/assets/slider-small/">Slider Small</a></li>
-                                        <li id="menu-item-691" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-691"><a href="~/Content/assets/slider-small-boxed/">Slider Boxed</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-550" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-550">
-                                    <a href="#">Header Layouts</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-551" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-551"><a href="~/Content/assets/">Compact</a></li>
-                                        <li id="menu-item-552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-552"><a href="~/Content/assets/menu-version-2/">Big Logo</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
+                            <a href="#">About Me</a>
                         </li>
-                        <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-540">
-                            <a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li id="menu-item-335" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-335"><a href="~/Content/assets/about-us/">About Me</a></li>
-                                <li id="menu-item-712" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-712"><a href="~/Content/assets/our-authors/">List all Authors</a></li>
-                                <li id="menu-item-1044" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-568 current_page_item menu-item-1044"><a href="~/Content/assets/submit-recipe/" aria-current="page">Submit Recipe</a></li>
-                                <li id="menu-item-334" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-334"><a href="~/Content/assets/contact-us/">Contact</a></li>
-                                <li id="menu-item-578" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-578"><a href="~/Content/assets/chicken-fajitas-with-french-fries/">Regular blog post</a></li>
-                            </ul>
-                        </li>
+                        @if (!UserManager.IsInRole(User.Identity.GetUserId(),"silver") && !UserManager.IsInRole(User.Identity.GetUserId(),"gold"))
+                        {
+                            <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                                <a href="/Home/MemberShip">Membership</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <div class="search-trigger"><i class="os-icon os-icon-thin-search"></i></div>
@@ -339,106 +290,23 @@
         <div class="mobile-header-w">
             <div class="mobile-header-menu-w menu-activated-on-click color-scheme-dark" style="">
                 <ul id="mobile-header-menu" class="menu">
-                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-480">
-                        <a href="#">Home Layouts</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="~/Content/assets/hero-posts/">Hero Posts</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-694"><a href="~/Content/assets/masonry-v1/">Masonry V1</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-486"><a href="~/Content/assets/magazine-v2/">Magazine V2</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-487"><a href="~/Content/assets/4-columns/">4 Columns</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-488"><a href="~/Content/assets/3-columns/">3 Columns</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-489"><a href="~/Content/assets/2-columns/">2 Columns</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-742"><a href="~/Content/assets/full-width/">Full Width</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-743"><a href="~/Content/assets/half-image/">Half Image</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-747"><a href="~/Content/assets/3-columns-no-sidebar/">No Sidebar</a></li>
-                        </ul>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-480">
+                        <a href="/Home">Home Layouts</a>
                     </li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
-                        <a href="~/Content/assets/recipe/gluten-free-beef-lasagne/">Recipe</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-481">
-                                <a href="#">Recipe Layouts</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-734"><a href="~/Content/assets/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/">Hero Header</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-485"><a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/">Image on left</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-484"><a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/">Image on right</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-482"><a href="~/Content/assets/recipe/barbecoa-bloody-mary/">Big Image</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-1021"><a href="~/Content/assets/recipe/cheesy-pasta-with-crispy-pangritata/">Multiple Images</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-735">
-                                <a href="#">Recipe Formats</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-737"><a href="~/Content/assets/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/">Video</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-738"><a href="~/Content/assets/recipe/cheesy-pasta-with-crispy-pangritata/">Gallery of Images</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-736"><a href="~/Content/assets/recipe/green-salad-with-cherries/">Just Image</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-998"><a href="~/Content/assets/recipe/smoked-salmon-rolls/">GIF Image Video</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <a href="/Home/Recipes">Recipes</a>
                     </li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448"><a href="~/Content/assets/categories/">Categories</a></li>
-                    <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-570">
-                        <a href="#">Features</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-568 current_page_item menu-item-571"><a href="~/Content/assets/submit-recipe/" aria-current="page">Submit Recipe</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-581"><a href="~/Content/assets/search-by-ingredients/">Search by Ingredients</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-682">
-                                <a href="~/Content/assets/shop/">Shop</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-684"><a href="~/Content/assets/shop/">Product Archive</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-683"><a href="~/Content/assets/product/happy-ninja-2/">Single Product</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-574">
-                                <a href="#">Users</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-572"><a href="~/Content/assets/profile-2/login/">Login</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-573"><a href="~/Content/assets/profile-2/register/">Register</a></li>
-                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-582"><a href="~/Content/assets/profile/VyXmEQaraRJpN7cpVArCtNAfC/">Profile</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-543">
-                                <a href="/forums">Forum</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-544"><a href="/forums">Forum Index</a></li>
-                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-545"><a href="/forums/topic/how-do-you-cook-meat/">Topic Discussion</a></li>
-                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-546"><a href="/forums/user/vyxmeqararjpn7cpvarctnafc/">User Profile</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    @if (User.IsInRole("chef") || User.IsInRole("admin"))
+                    {
+                        <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                            <a href="/Home/AddRecipes">Submit recipe</a>
+                        </li>
+                    }
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448">
+                        <a href="/Home/Categories">Categories</a>
                     </li>
-                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-479">
-                        <a href="#">Layouts</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-616">
-                                <a href="#">Top Slider Layouts</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-612"><a href="~/Content/assets/slider-full-2/">Slider Mixed</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-614"><a href="~/Content/assets/slider-wide/">Slider Wide</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-613"><a href="~/Content/assets/slider-full/">Slider Full</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a href="~/Content/assets/slider-small/">Slider Small</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-691"><a href="~/Content/assets/slider-small-boxed/">Slider Boxed</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-550">
-                                <a href="#">Header Layouts</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-551"><a href="~/Content/assets/">Compact</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-552"><a href="~/Content/assets/menu-version-2/">Big Logo</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-540">
-                        <a href="#">Pages</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-335"><a href="~/Content/assets/about-us/">About Me</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-712"><a href="~/Content/assets/our-authors/">List all Authors</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-568 current_page_item menu-item-1044"><a href="~/Content/assets/submit-recipe/" aria-current="page">Submit Recipe</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-334"><a href="~/Content/assets/contact-us/">Contact</a></li>
-                            <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-578"><a href="~/Content/assets/chicken-fajitas-with-french-fries/">Regular blog post</a></li>
-                        </ul>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
+                        <a href="#">About me</a>
                     </li>
                 </ul>
             </div>
@@ -456,7 +324,7 @@
         </div>
 
         <!-- Body: -->
-
+        @RenderBody()
 
         <div class="os-container">
             <div class="pre-footer widgets-count-4" style="background-image:background-repeat: repeat; background-position: top left;; ">
@@ -490,15 +358,15 @@
                     <div class="tptn_posts  tptn_posts_widget tptn_posts_widget2">
                         <ul>
                             <li>
-                                <a href="~/Content/assets/recipe/gluten-free-beef-lasagne/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-100x100.jpg" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="Classic tomato salsa with basil" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-100x100.jpg 100w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-300x300.jpg 300w" sizes="(max-width: 50px) 100vw, 50px" /></a>
+                                <a href="~/Content/assets/recipe/gluten-free-beef-lasagne/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-100x100.jpg" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="Classic tomato salsa with basil" sizes="(max-width: 50px) 100vw, 50px" /></a>
                                 <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/gluten-free-beef-lasagne/" class="tptn_link"><span class="tptn_title">Classic tomato salsa with basil</span></a></span>
                             </li>
                             <li>
-                                <a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/07/recipe17-100x100.jpg" class="tptn_thumb tptn_featured" alt="Steamed broccoli with vinegar" title="Steamed broccoli with vinegar" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-100x100.jpg 100w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe17-300x300.jpg 300w" sizes="(max-width: 50px) 100vw, 50px" /></a>
+                                <a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/07/recipe17-100x100.jpg" class="tptn_thumb tptn_featured" alt="Steamed broccoli with vinegar" title="Steamed broccoli with vinegar" sizes="(max-width: 50px) 100vw, 50px" /></a>
                                 <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><span class="tptn_title">Steamed broccoli with vinegar</span></a></span>
                             </li>
                             <li>
-                                <a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-100x100.jpg" class="tptn_thumb tptn_featured" alt="Squash soup with Parmesan croutons" title="Squash soup with Parmesan croutons" srcset="http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-100x100.jpg 100w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-300x300.jpg 300w" sizes="(max-width: 50px) 100vw, 50px" /></a>
+                                <a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-100x100.jpg" class="tptn_thumb tptn_featured" alt="Squash soup with Parmesan croutons" title="Squash soup with Parmesan croutons" sizes="(max-width: 50px) 100vw, 50px" /></a>
                                 <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><span class="tptn_title">Squash soup with Parmesan croutons</span></a></span>
                             </li>
                         </ul>
@@ -581,9 +449,9 @@
         <div class="main-search-form-overlay">
         </div>
         <div class="main-search-form">
-            <form method="get" class="search-form" action="http://neptune.pinsupreme.com/" autocomplete="off">
+            <form method="get" class="search-form" action="@Url.Action("Recipes","Home")" autocomplete="off">
                 <div class="search-field-w">
-                    <input type="search" autocomplete="off" class="search-field" placeholder="Search …" value="" name="s" title="Search for:" />
+                    <input type="search" autocomplete="off" class="search-field" placeholder="Search …" value="" name="search" title="Search for:" />
                     <input type="submit" class="search-submit" value="Search" />
                 </div>
             </form>
@@ -1230,9 +1098,10 @@
         };
         acf.l10n = [];
     </script>
-    <script type="text/javascript">
-        acf.doAction('prepare');
-    </script>
+<script type="text/javascript">
+    acf.doAction('prepare');
+</script>
+@RenderSection("Scripts",false)
 </body>
 
 </html>

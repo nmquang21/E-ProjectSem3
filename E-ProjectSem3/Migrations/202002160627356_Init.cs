@@ -14,6 +14,8 @@ namespace E_ProjectSem3.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
                         Description = c.String(nullable: false),
+                        Image = c.String(),
+                        Icon = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
@@ -26,15 +28,16 @@ namespace E_ProjectSem3.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         ApproveId = c.Int(nullable: false),
-                        Title = c.String(nullable: false),
-                        Description = c.String(nullable: false),
-                        Content = c.String(nullable: false),
+                        Title = c.String(),
+                        Description = c.String(),
+                        Content = c.String(),
                         FeaturedImage = c.String(),
-                        Detail = c.String(nullable: false),
-                        Difficulty = c.String(nullable: false),
+                        Detail = c.String(),
+                        Difficulty = c.String(),
                         PreparationMinute = c.Int(nullable: false),
                         CookingMinute = c.Int(nullable: false),
                         CookingTemp = c.Int(nullable: false),
+                        ViewCount = c.Int(nullable: false),
                         Video = c.String(),
                         Status = c.Int(nullable: false),
                         Type = c.Int(nullable: false),
@@ -43,21 +46,21 @@ namespace E_ProjectSem3.Migrations
                         UpdatedAt = c.DateTime(),
                         ApplicationUser_Id = c.String(maxLength: 128),
                         Category_Id = c.Int(),
-                        Nutrition_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
                 .ForeignKey("dbo.Categories", t => t.Category_Id)
-                .ForeignKey("dbo.Nutritions", t => t.Nutrition_Id)
                 .Index(t => t.ApplicationUser_Id)
-                .Index(t => t.Category_Id)
-                .Index(t => t.Nutrition_Id);
+                .Index(t => t.Category_Id);
             
             CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Avatar = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -168,8 +171,8 @@ namespace E_ProjectSem3.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Amout = c.Double(nullable: false),
-                        Note = c.String(nullable: false),
+                        Amount = c.String(nullable: false),
+                        Note = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
@@ -185,13 +188,15 @@ namespace E_ProjectSem3.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Value = c.Int(nullable: false),
+                        Value = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
                         RecipeId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Recipes", t => t.RecipeId, cascadeDelete: true)
+                .Index(t => t.RecipeId);
             
             CreateTable(
                 "dbo.Steps",
@@ -199,9 +204,8 @@ namespace E_ProjectSem3.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Index = c.Int(nullable: false),
-                        Name = c.String(nullable: false),
-                        Value = c.Double(nullable: false),
-                        ExtraInfor = c.String(nullable: false),
+                        Title = c.String(nullable: false),
+                        Description = c.String(),
                         ImagePath = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
@@ -211,6 +215,22 @@ namespace E_ProjectSem3.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Recipes", t => t.RecipeId, cascadeDelete: true)
                 .Index(t => t.RecipeId);
+            
+            CreateTable(
+                "dbo.WishLists",
+                c => new
+                    {
+                        RecipeId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        CreatedAt = c.DateTime(),
+                        UpdatedAt = c.DateTime(),
+                        DeletedAt = c.DateTime(),
+                    })
+                .PrimaryKey(t => new { t.RecipeId, t.UserId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.Recipes", t => t.RecipeId, cascadeDelete: true)
+                .Index(t => t.RecipeId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Comments",
@@ -228,35 +248,75 @@ namespace E_ProjectSem3.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Members",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        MemberType = c.String(),
+                        RoleName = c.String(),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ExpiredMonths = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Memberships",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        CreatedAt = c.DateTime(nullable: false),
+                        MemberId = c.Int(nullable: false),
+                        ApplicationUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
+                .ForeignKey("dbo.Members", t => t.MemberId, cascadeDelete: true)
+                .Index(t => t.MemberId)
+                .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
+                "dbo.OrderInfoes",
+                c => new
+                    {
+                        OrderId = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(),
+                        Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.String(),
+                        UpdatedAt = c.String(),
+                        DeletedAt = c.String(),
+                        OrderDescription = c.String(),
+                        BankCode = c.String(),
+                        vnp_TransactionNo = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        vpn_Message = c.String(),
+                        vpn_TxnResponseCode = c.String(),
+                    })
+                .PrimaryKey(t => t.OrderId);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 256),
+                        Description = c.String(),
+                        CreatedAt = c.DateTime(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
-            CreateTable(
-                "dbo.WishLists",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        RecipeId = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(),
-                        UpdatedAt = c.DateTime(),
-                        DeletedAt = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id);
             
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Memberships", "MemberId", "dbo.Members");
+            DropForeignKey("dbo.Memberships", "ApplicationUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.WishLists", "RecipeId", "dbo.Recipes");
+            DropForeignKey("dbo.WishLists", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Steps", "RecipeId", "dbo.Recipes");
-            DropForeignKey("dbo.Recipes", "Nutrition_Id", "dbo.Nutritions");
+            DropForeignKey("dbo.Nutritions", "RecipeId", "dbo.Recipes");
             DropForeignKey("dbo.Ingredients", "RecipeId", "dbo.Recipes");
             DropForeignKey("dbo.ContestUsers", "Recipe_Id", "dbo.Recipes");
             DropForeignKey("dbo.ContestUsers", "Prizes_PrizeId", "dbo.Prizes");
@@ -268,7 +328,12 @@ namespace E_ProjectSem3.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Memberships", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.Memberships", new[] { "MemberId" });
+            DropIndex("dbo.WishLists", new[] { "UserId" });
+            DropIndex("dbo.WishLists", new[] { "RecipeId" });
             DropIndex("dbo.Steps", new[] { "RecipeId" });
+            DropIndex("dbo.Nutritions", new[] { "RecipeId" });
             DropIndex("dbo.Ingredients", new[] { "RecipeId" });
             DropIndex("dbo.Prizes", new[] { "Contest_Id" });
             DropIndex("dbo.ContestUsers", new[] { "Recipe_Id" });
@@ -279,12 +344,14 @@ namespace E_ProjectSem3.Migrations
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.Recipes", new[] { "Nutrition_Id" });
             DropIndex("dbo.Recipes", new[] { "Category_Id" });
             DropIndex("dbo.Recipes", new[] { "ApplicationUser_Id" });
-            DropTable("dbo.WishLists");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.OrderInfoes");
+            DropTable("dbo.Memberships");
+            DropTable("dbo.Members");
             DropTable("dbo.Comments");
+            DropTable("dbo.WishLists");
             DropTable("dbo.Steps");
             DropTable("dbo.Nutritions");
             DropTable("dbo.Ingredients");

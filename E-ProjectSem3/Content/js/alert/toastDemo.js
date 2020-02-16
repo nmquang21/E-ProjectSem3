@@ -1,28 +1,49 @@
 (function($) {
-  showSuccessToast = function() {
-    'use strict';
-    resetToastPosition();
-    $.toast({
-      heading: 'Success',
-      text: 'You did it!',
-      showHideTransition: 'slide',
-      icon: 'success',
-      loaderBg: '#f96868',
-      position: 'top-right'
-    })
-  };
-  showInfoToast = function() {
-    'use strict';
-    resetToastPosition();
-    $.toast({
-      heading: 'Info',
-      text: 'And these were just the basic demos! Scroll down to check further details on how to customize the output.',
-      showHideTransition: 'slide',
-      icon: 'info',
-      loaderBg: '#46c35f',
-      position: 'top-right'
-    })
-  };
+    showSuccessToast = function () {
+        'use strict';
+        resetToastPosition();
+        $.toast({
+            heading: 'Success',
+            text: `You are ${$('#show-message').data('success')} member.`,
+            showHideTransition: 'slide',
+            icon: 'success',
+            loaderBg: '#f96868',
+            position: {
+                left: 20,
+                top: 20
+            }
+        })
+    };
+    showSuccessAddRecipe = function () {
+        'use strict';
+        resetToastPosition();
+        $.toast({
+            heading: 'Success',
+            text: ' Recipe has been created.',
+            showHideTransition: 'slide',
+            icon: 'success',
+            loaderBg: '#f96868',
+            position: {
+                left: 20,
+                top: 20
+            }
+        })
+    };
+    showInfoToast = function () {
+        'use strict';
+        resetToastPosition();
+        $.toast({
+            heading: 'Hello',
+            text: 'Your membership expired!',
+            showHideTransition: 'slide',
+            icon: 'info',
+            loaderBg: '#46c35f',
+            position: {
+                left: 20,
+                top: 20
+            }
+        })
+    };
   showWarningToast = function() {
     'use strict';
     resetToastPosition();

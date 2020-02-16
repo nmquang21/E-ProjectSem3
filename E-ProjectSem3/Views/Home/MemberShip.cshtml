@@ -1,95 +1,14 @@
-﻿@using E_ProjectSem3.Models
-@model LoginViewModel
+﻿
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "MemberShip";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
-
-@*<link href="~/Content/assets/wp-content/themes/style.css" rel="stylesheet" />*@
-    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
-    <style>
-        div.all-wrapper .userpro-field.userpro-submit, div.userpro-overlay-inner .userpro-field.userpro-submit {
-            border-top: none !important;
-        }
-        .dt-sc-social-logins-divider {
-            clear: both;
-            display: block;
-            margin: 0 auto;
-            position: relative;
-            text-align: center;
-            width: 40%;
-            font-size: 18px;
-        }
-
-        .dt-sc-social-logins-divider:after {
-            border-top: 1px solid;
-            bottom: 0;
-            content: "";
-            height: 1px;
-            margin: auto;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 42%;
-        }
-        .dt-sc-social-logins-divider:before{
-            border-top: 1px solid;
-            bottom: 0;
-            content: "";
-            height: 1px;
-            margin: auto;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 42%;
-        }
-
-        .dt-sc-social-facebook-connect:hover {
-            color: #3b5998;
-            background-color: inherit;
-        }
-
-        .dt-sc-social-facebook-connect {
-            background-color: #3b5998;
-            border-radius: 3px;
-            clear: both;
-            color: #fff;
-            display: block;
-            margin: 0 auto;
-            padding: 5px 0;
-            text-align: center;
-            width: 220px;
-            position: relative;
-            border: 1px solid #3b5998;
-        }
-
-        .dt-sc-social-googleplus-connect:hover {
-            color: #dd4b39;
-            background-color: inherit;
-        }
-        .dt-sc-social-googleplus-connect {
-            background-color: #dd4b39;
-            border: 1px solid #dd4b39;
-        }
-        .dt-sc-social-facebook-connect, .dt-sc-social-googleplus-connect {
-            border-radius: 3px;
-            clear: both;
-            display: block;
-            margin: 0 auto;
-            padding: 5px 0;
-            text-align: center;
-            width: 220px;
-            position: relative;
-            color:#fff;
-        }
-    </style>
-
-
+<link href="~/Content/assets/membership.css" rel="stylesheet" />
 <div class="os-container top-bar-w">
     <div class="top-bar ">
         <ul class="bar-breadcrumbs">
             <li><a href="http://neptune.pinsupreme.com">Home</a></li>
-            <li>Login</li>
+            <li>Membership</li>
         </ul>
         <ul class="bar-social" style="">
             <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
@@ -102,199 +21,100 @@
 
 <div class="os-container">
     <div class="page-intro-header with-background" style="background-image: url(http://neptune.pinsupreme.com/wp-content/uploads/2015/09/pattern_06-500x5001.png); background-repeat: repeat; background-position: top left; ">
-        <h2>Login</h2>
+        <h2>Membership</h2>
     </div>
 </div>
 
 <div class="os-container">
 
     <div class="page-w with-sidebar sidebar-location-right">
-        <div class="page-content">
-            <article id="page-562" class="post-562 page type-page status-publish has-post-thumbnail hentry">
+        <div class="archive-posts masonry-grid-w magazine-v1" style="padding-right: 50px;">
+            <div class="masonry-grid" data-layout-mode="fitRows">
+                <div class="sticky-roll-w">
+                    <div class="owl-carousel sticky-posts-owl-slider owl-theme owl-loaded">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1500px;">
+                                <div class="owl-item active" style="width: 750px; margin-right: 0px;">
+                                    <article class="archive-item any full_full_over post-202 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-salads tag-broccoli tag-corn tag-mushrooms recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-drained-capers-patted-dry recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-potatoes recipe_cuisine-french">
+                                        <div class="archive-item-i">
+                                            <div class="extra-styling-box"></div>
+                                            <div class="archive-item-media">
+                                                <a href="http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3-875x1300.jpg); background-size: cover;">
+                                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                                </a>
+                                            </div>
 
-                <a href="#" class="userpro-close-popup">Close</a>
-                <div class="userpro userpro-967 userpro-float">
+                                            <div class="archive-item-content archive-item-conten-left">
+                                                <header class="archive-item-header">
+                                                    <h3 class="entry-title">
+                                                        <a href="#" rel="bookmark">Silver member</a>
+                                                    </h3>
+                                                </header>
+                                                <div class="archive-item-content-text">
+                                                    Purchase this level to have access to all recipes for:
+                                                    <p>1 Month(s) - $10</p>
+                                                </div>
+                                                <div class="archive-item-deep-meta">
+                                                    <div class="archive-item-read-more-btn">
+                                                        <button type="button" class="pay-submit" style="margin-bottom: 10px;">Pay Using Paypal</button>
 
-                    <div class="userpro-head">
-                        <div class="userpro-left">Login</div>
+                                                        <form action="@Url.Action("VnPayMembership","Membership")" method="post">
+                                                            <input type="hidden" name="amount" value="10" />
+                                                            <input type="hidden" name="description" value="Silver" />
 
-                        <div class="userpro-right">
-                            <a href="@Url.Action("ForgotPassword","Account")">Forgot your password?</a>
+                                                            <button type="submit" class="pay-submit" style="position: relative;">
+                                                                <img src="https://vnpayment.vnpay.vn/Resources/website/images/logo.png" alt="VnPay" style="width: 25px; position: absolute;" />
+                                                                Pay Using VnPay
+                                                            </button>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="archive-item-content">
+                                                <header class="archive-item-header">
+                                                    <h3 class="entry-title">
+                                                        <a href="#" rel="bookmark">Gold member</a>
+                                                    </h3>
+                                                </header>
+                                                <div class="archive-item-content-text">
+                                                    Purchase this level to have access to all recipes for:
+                                                    <p>1 Year(s) - $100</p>
+                                                </div>
+                                                <div class="archive-item-deep-meta">
+
+                                                    <div class="archive-item-read-more-btn">
+                                                        <button type="button" class="pay-submit" style="margin-bottom: 10px;">Pay Using Paypal</button>
+
+                                                        <form action="@Url.Action("VnPayMembership","Membership")" method="post">
+                                                            <input type="hidden" name="amount" value="100"/>
+                                                            <input type="hidden" name="description" value="Gold"/>
+                                                            
+                                                            <button type="submit" class="pay-submit" style="position: relative;">
+                                                                <img src="https://vnpayment.vnpay.vn/Resources/website/images/logo.png" alt="VnPay" style="width: 25px; position: absolute;" />
+                                                                Pay Using VnPay
+                                                            </button>
+                                                        </form>
+
+                                                    </div>
+
+                                                    
+                                                    
+                                                    
+
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="userpro-clear"></div>
                     </div>
-
-                    <div class="userpro-body">
-                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                            <div class='userpro-field  userpro-field-username_or_email ' data-key='username_or_email'>
-                                <div class='userpro-label iconed'>
-                                    @Html.LabelFor(m => m.Email, new { @class = "" })
-                                    <div class='required'>*</div>
-                                </div>
-                                <div class='userpro-input'>
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "" })
-                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                    <div class='userpro-clear'></div>
-                                </div>
-                            </div>
-                            <div class='userpro-clear'></div>
-
-                            <div class='userpro-field  userpro-field-username_or_email ' data-key='username_or_email'>
-                                <div class='userpro-label iconed'>
-                                    @Html.LabelFor(m => m.Password, new { @class = "" })
-                                    <div class='required'>*</div>
-                                </div>
-                                <div class='userpro-input'>
-                                    @Html.PasswordFor(m => m.Password, new { @class = "" })
-                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                    <div class='userpro-clear'></div>
-                                </div>
-                            </div>
-                            <div class='userpro-clear'></div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <div class="checkbox">
-                                        @Html.CheckBoxFor(m => m.RememberMe)
-                                        @Html.LabelFor(m => m.RememberMe)
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="userpro-field userpro-submit userpro-column">
-                                <div class="userpro-social-connect"></div>
-                                <div class="userpro-clear"></div>
-                                <input type="submit" value="Login" class="userpro-button" />
-                                <a href="@Url.Action("Register","Account")">
-                                    <input type="button" value="Create an Account" class="userpro-button secondary" />
-                                </a>
-
-
-                                <img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/skins/elegant/img/loading.gif" alt="" class="userpro-loading" />
-                                <div class="userpro-clear"></div>
-                            </div>
-
-                        }
-                        <div class="userpro-field userpro-submit userpro-column">
-                            <div class="userpro-social-connect" style="text-align: center;">
-                                <section id="socialLoginForm">
-                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                                </section>
-                            </div>
-                        </div>
-
-
-                    </div>
-
                 </div>
-
-
-                <style type="text/css">
-                    div.userpro-awsm-pic {
-                        margin-left: -48px;
-                        top: -48px;
-                    }
-
-                        div.userpro-awsm-pic img {
-                            width: 86px;
-                            height: 86px;
-                        }
-
-                    div.userpro,
-                    div.emd-main,
-                    div.emd-filters,
-                    div.userpro-search-results,
-                    div.userpro-label label,
-                    div.userpro input,
-                    div.userpro textarea,
-                    div.userpro select,
-                    div.userpro-field textarea.userpro_editor,
-                    div.userpro-msg-overlay-content,
-                    div.userpro-msg-overlay-content input,
-                    div.userpro-msg-overlay-content textarea,
-                    div.userpro-notifier {
-                        font-family: Roboto;
-                    }
-
-                    div.userpro-967 {
-                        max-width: 480px;
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-bottom: 30px;
-                    }
-
-                        div.userpro-967.userpro-nostyle {
-                            max-width: 250px;
-                        }
-
-                        div.userpro-967.userpro-users {
-                            max-width: 100% !important;
-                        }
-
-                        div.userpro-967 div.userpro-user {
-                            margin-top: 15px;
-                            margin-left: 30px;
-                            margin-right: 30px;
-                        }
-
-                            div.userpro-967 div.userpro-user a.userpro-user-img {
-                                width: 120px;
-                                height: 120px;
-                            }
-
-                                div.userpro-967 div.userpro-user a.userpro-user-img span {
-                                    top: -120px;
-                                    line-height: 120px;
-                                }
-
-                            div.userpro-967 div.userpro-user div.userpro-user-link {
-                                width: 120px;
-                            }
-
-                            div.userpro-967 div.userpro-user a.userpro-user-img,
-                            div.userpro-967 div.userpro-user a.userpro-user-img span {
-                                border-radius: 999px !important;
-                            }
-
-                        div.userpro-967 div.userpro-list-item-i {
-                            width: 50px;
-                            height: 50px;
-                        }
-
-                        div.userpro-967 div.userpro-online-item-i {
-                            width: 30px;
-                            height: 30px;
-                        }
-
-                        div.userpro-967 div.userpro-online-item {
-                            border-bottom: 0px !important;
-                            padding: 10px 0 0 0;
-                        }
-
-                            div.userpro-967 div.userpro-online-item img.userpro-profile-badge,
-                            div.userpro-967 div.userpro-online-item img.userpro-profile-badge-right {
-                                max-width: 14px !important;
-                                max-height: 14px !important;
-                            }
-
-                        div.userpro-967 div.userpro-profile-img {
-                            width: 80px;
-                        }
-
-                    div.emd-user {
-                        width: 22%;
-                        margin-left: 2% !important;
-                    }
-                </style>
-
-
-            </article>
+            </div>
         </div>
 
         <div class="page-sidebar">
@@ -319,21 +139,21 @@
             <aside id="mc4wp_form_widget-2" class="widget-odd widget-3 widget widget_mc4wp_form_widget">
                 <h3 class="widget-title"><span>Our Newsletter</span></h3>
                 <script>
-                            (function() {
-                                if (!window.mc4wp) {
-                                    window.mc4wp = {
-                                        listeners: [],
-                                        forms: {
-                                            on: function(event, callback) {
-                                                window.mc4wp.listeners.push({
-                                                    event: event,
-                                                    callback: callback
-                                                });
-                                            }
-                                        }
+                    (function () {
+                        if (!window.mc4wp) {
+                            window.mc4wp = {
+                                listeners: [],
+                                forms: {
+                                    on: function (event, callback) {
+                                        window.mc4wp.listeners.push({
+                                            event: event,
+                                            callback: callback
+                                        });
                                     }
                                 }
-                            })();
+                            }
+                        }
+                    })();
                 </script>
                 <!-- Mailchimp for WordPress v4.7.4 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
                 <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-916 mc4wp-form-basic" method="post" data-id="916" data-name="Default sign-up form">
@@ -481,3 +301,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

@@ -52,9 +52,6 @@ body.browser-msie .acf-repeater .acf-row-handle .acf-icon.-minus {
     height: 1px
 }
 
-.acf-repeater .acf-row.acf-clone {
-    display: none !important
-}
 
 .acf-repeater .acf-row:hover>.acf-row-handle .acf-icon,
 .acf-repeater .acf-row.-hover>.acf-row-handle .acf-icon {
@@ -82,10 +79,7 @@ body.browser-msie .acf-repeater .acf-row-handle .acf-icon.-minus {
     border-bottom: 0 none
 }
 
-.acf-repeater.-empty.-row>table,
-.acf-repeater.-empty.-block>table {
-    display: none
-}
+
 
 .acf-repeater .acf-row.-collapsed>.acf-field {
     display: none !important
