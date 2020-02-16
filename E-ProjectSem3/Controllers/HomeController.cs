@@ -106,7 +106,6 @@ namespace E_ProjectSem3.Controllers
         [AllowAnonymous]
         public ActionResult Recipes(string search, int? page, int? category)
         {
-            ViewBag.ListCategories = db.Categories.Where(c => c.DeletedAt == null).OrderBy(c=>c.Name).ToList();
             ViewBag.CurrentCategory = category;
             ViewBag.Search = search;
             ViewBag.DataSlider = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).Take(8).ToList();
