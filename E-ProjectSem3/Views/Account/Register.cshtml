@@ -1,4 +1,5 @@
-﻿@model E_ProjectSem3.Models.RegisterViewModel
+﻿@using E_ProjectSem3.Models
+@model E_ProjectSem3.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -300,49 +301,8 @@
     <aside id="osetin_categories_widget-1" class="widget-even widget-4 with-ribbon widget widget_osetin_categories_widget">
         <h3 class="widget-title"><span>Categories</span></h3>
         <div class="shortcode-categories-icons">
-            <table>
-                <tr>
-                    <td>
-                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/chicken/"><img src="~/Content/assets/wp-content/uploads/2015/09/356.png" alt="Chicken" /></a></div>
-                        <div class="sci-title">
-                            <h3><a href="http://neptune.pinsupreme.com/category/chicken/">Chicken</a></h3>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fast-food/"><img src="~/Content/assets/wp-content/uploads/2015/09/341.png" alt="Fast Food" /></a></div>
-                        <div class="sci-title">
-                            <h3><a href="http://neptune.pinsupreme.com/category/fast-food/">Fast Food</a></h3>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/fish/"><img src="~/Content/assets/wp-content/uploads/2015/09/349.png" alt="Fish" /></a></div>
-                        <div class="sci-title">
-                            <h3><a href="http://neptune.pinsupreme.com/category/fish/">Fish</a></h3>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/pizza/"><img src="~/Content/assets/wp-content/uploads/2015/09/306.png" alt="Pizza" /></a></div>
-                        <div class="sci-title">
-                            <h3><a href="http://neptune.pinsupreme.com/category/pizza/">Pizza</a></h3>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/salads/"><img src="~/Content/assets/wp-content/uploads/2015/09/45.png" alt="Salads" /></a></div>
-                        <div class="sci-title">
-                            <h3><a href="http://neptune.pinsupreme.com/category/salads/">Salads</a></h3>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="sci-media"><a href="http://neptune.pinsupreme.com/category/soups/"><img src="~/Content/assets/wp-content/uploads/2015/09/85.png" alt="Soups" /></a></div>
-                        <div class="sci-title">
-                            <h3><a href="http://neptune.pinsupreme.com/category/soups/">Soups</a></h3>
-                        </div>
-                    </td>
-                </tr>
+            <table class="category-ajax">
+                
             </table>
         </div>
     </aside>
@@ -426,4 +386,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
 }

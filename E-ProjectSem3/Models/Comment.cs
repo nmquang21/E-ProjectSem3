@@ -12,9 +12,9 @@ namespace E_ProjectSem3.Models
         public int Id { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your content ")]
         public string Content { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public DateTime DeletedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public int RecipeId { get; set; }
         public int UserId { get; set; }

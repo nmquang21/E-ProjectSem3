@@ -185,6 +185,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountRolesController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ChefController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -196,6 +197,10 @@
     <Compile Include="Migrations\202002160627356_Init.cs" />
     <Compile Include="Migrations\202002160627356_Init.Designer.cs">
       <DependentUpon>202002160627356_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002161706272_Comment.cs" />
+    <Compile Include="Migrations\202002161706272_Comment.Designer.cs">
+      <DependentUpon>202002161706272_Comment.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
@@ -487,6 +492,7 @@
     <Content Include="Content\js\alert\jquery.toast.min.js" />
     <Content Include="Content\js\alert\sweetalert.min.js" />
     <Content Include="Content\js\alert\toastDemo.js" />
+    <Content Include="Content\js\CategoriesAjax.js" />
     <Content Include="Content\js\Chart.min.js" />
     <Content Include="Content\js\charts-custom.js" />
     <Content Include="Content\js\charts-home.js" />
@@ -496,6 +502,8 @@
     <Content Include="Content\js\dataTables.bootstrap4.js" />
     <Content Include="Content\js\front.js" />
     <Content Include="Content\js\jquery.dataTables.js" />
+    <Content Include="Content\js\Like.js" />
+    <Content Include="Content\js\PopularRecipe.js" />
     <Content Include="Content\js\utils.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -769,6 +777,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002160627356_Init.resx">
       <DependentUpon>202002160627356_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161706272_Comment.resx">
+      <DependentUpon>202002161706272_Comment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

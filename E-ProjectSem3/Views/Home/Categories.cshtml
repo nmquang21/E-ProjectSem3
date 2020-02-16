@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<E_ProjectSem3.Models.Category>
+
 @{
     ViewBag.Title = "Categories";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -32,43 +33,15 @@
             <article id="page-415" class="post-415 page type-page status-publish has-post-thumbnail hentry">
                 <div class="category-tiles columns-3">
 
+                    @foreach (var cate in Model)
+                    {
+                        <a href="@Url.Action("Recipes","Home",new{category = cate.Id})" class="category-tile" style="background-image:url(@(cate.Image)); background-repeat: repeat; background-position: center center;  background-size: cover;">
+                            <div class="category-fader"></div>
+                            <h3>@(cate.Name)</h3>
+                        </a>
+                    }
 
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_type&amp;term=grouped" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe17.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Chicken</h3>
-                    </a>
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_type&amp;term=variable" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe6.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Pizza</h3>
-                    </a>
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_visibility&amp;term=exclude-from-catalog" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe14.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Fast Food</h3>
-                    </a>
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_type&amp;term=external" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/step8.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Deserts</h3>
-                    </a>
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_visibility&amp;term=featured" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/post1.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Salads</h3>
-                    </a>
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_visibility&amp;term=outofstock" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe12.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Soups</h3>
-                    </a>
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_visibility&amp;term=outofstock" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe7.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Sushi</h3>
-                    </a>
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_visibility&amp;term=featured" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe10.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Baked Food</h3>
-                    </a>
-                    <a href="http://neptune.pinsupreme.com/?taxonomy=product_visibility&amp;term=featured" class="category-tile" style="background-image:url(/Content/assets/wp-content/uploads/2015/08/bg1.jpg); background-repeat: repeat; background-position: center center;  background-size: cover;">
-                        <div class="category-fader"></div>
-                        <h3>Vegan</h3>
-                    </a>
+
                 </div>
             </article>
         </div>

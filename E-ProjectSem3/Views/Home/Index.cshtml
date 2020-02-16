@@ -14,6 +14,10 @@
 <!-- Body -->
 <div class="os-container hero-roll-w">
     <div class="owl-carousel hero-posts-owl-slider">
+        @for (int i = 0; i < ViewBag.DataSliderBig.Count; i++)
+        {
+            var recipe = ViewBag.DataSliderBig[i] as Recipe;
+            bool liked = recipe.WishLists.Where(w => w.UserId == User.Identity.GetUserId()).ToList().Count == 1;
         <article class="archive-item any hero post-204 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fast-food category-pizza tag-chicken tag-hot tag-sushi tag-whole-grains recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-butter recipe_ingredient-chicken-breast recipe_ingredient-drained-capers-patted-dry recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-skin-on-salmon-fillet recipe_ingredient-small-purple-potatoes recipe_ingredient-whole-grain-dijon-mustard recipe_cuisine-french">
             <div class="archive-item-i">
                 <div class="extra-styling-box"></div>
@@ -30,28 +34,27 @@
                     </div>
                 </div>
                 <div class="archive-item-media">
-                    <a href="~/Content/assets/recipe/green-salad-with-cherries/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe1.jpg); background-size: cover;">
+                    <a href="/Home/RecipeDetail/@(recipe.Id)" class="archive-item-media-thumbnail fader-activator" style="background-image: url(@(recipe.FeaturedImage)); background-size: cover;">
                         <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
                     </a>
                 </div>
                 <div class="archive-item-content">
                     <header class="archive-item-header">
-                        <h3 class="entry-title"><a href="~/Content/assets/recipe/green-salad-with-cherries/" rel="bookmark">Green salad with cherries</a></h3>
+                        <h3 class="entry-title"><a href="/Home/RecipeDetail/@(recipe.Id)" rel="bookmark">@(recipe.Title)</a></h3>
                     </header>
                     <div class="archive-item-meta">
                         <div class="archive-item-meta-cooking-time">
-                            Cooking Time: 20 min
+                            Cooking Time: @(recipe.CookingMinute) min
                         </div>
 
                         <div class="archive-item-meta-categories">
                             <ul class="post-categories">
-                                <li><a href="~/Content/assets/category/fast-food/" rel="category tag">Fast Food</a></li>
-                                <li><a href="~/Content/assets/category/pizza/" rel="category tag">Pizza</a></li>
+                                <li><a href="/Home/Recipes?category=@(recipe.Category.Id)" rel="category tag">@(recipe.Category.Name)</a></li>
                             </ul>
                         </div>
                         <ul class="archive-item-meta-cuisines">
                             <li>
-                                <a href="~/Content/assets/cuisine/french/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
+                                <a href="#" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
                                     <span class="single-recipe-cuisine-label">French</span>
                                     <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></span>
                                 </a>
@@ -63,102 +66,35 @@
                     </div>
                     <div class="archive-item-author-meta">
                         <div class="author-avatar-w">
-                            <a href="~/Content/assets/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
+                            <a href="~/Content/assets/author/askjfds78dfdk/">
+                                <img src="@(recipe.ApplicationUser.Avatar)" width="96" height="96" alt="" class="default avatar"/>
+                            </a>
                         </div>
                         <div class="author-details">
-                            <h4 class="author-name"><a href="~/Content/assets/author/askjfds78dfdk/">Julia May</a></h4>
-                            <div class="archive-item-date-posted">July 23, 2015</div>
+                            <h4 class="author-name"><a href="#">@(recipe.ApplicationUser.FirstName)</a></h4>
+                            <div class="archive-item-date-posted">@(Convert.ToDateTime(recipe.CreatedAt).ToString("M"))</div>
                         </div>
                         <div class="archive-item-views-count-likes">
                             <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="204" data-vote-action="vote" data-votes-count="321">
                                 <span class="slide-button-i">
-                                    <i class="os-icon os-icon-ui-03"></i>
-                                    <span class="slide-button-label osetin-vote-action-label">Like</span>
-                                    <span class="slide-button-sub-label osetin-vote-count ">321</span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="archive-item-deep-meta">
-                        <div class="archive-item-rating-and-read-more">
-                            <div class="archive-item-read-more-btn">
-                                <div class="read-more-link"><a href="~/Content/assets/recipe/green-salad-with-cherries/">Read More</a></div>
-                            </div>
-                        </div>
 
-                        <div class="archive-item-comments">
-                            <a href="~/Content/assets/recipe/green-salad-with-cherries/#singlePostComments"><i class="os-icon os-icon-thin-comment"></i> <span><span class="dsq-postid" data-dsqidentifier="204 http://local.neptune:8888/?post_type=osetin_recipe&#038;p=204">Comment</span></span></a>
-                        </div>
-                        <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>2,224 Views</span></div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </article>
-        <article class="archive-item any hero post-177 osetin_recipe type-osetin_recipe status-publish format-gallery has-post-thumbnail hentry category-fast-food tag-quick tag-spicy tag-whole-grains recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-haricots-verts-trimmed recipe_cuisine-italian">
-            <div class="archive-item-i">
-                <div class="extra-styling-box"></div>
-                <div class="archive-item-share-w active">
-                    <div class="archive-item-share-trigger">
-                        <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                        <div class="archive-item-share-label">Share</div>
-                        <div class="archive-item-share-icons">
-                            <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fcheesy-pasta-with-crispy-pangritata%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                            <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/&amp;text=++Hero+Posts" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                            <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14.jpg&#038;description=%20%20Hero%20Posts" target="_blank"
-                               class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                            <a href="mailto:?Subject=  Hero Posts&amp;Body=%20http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="archive-item-media">
-                    <a href="~/Content/assets/recipe/cheesy-pasta-with-crispy-pangritata/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe14.jpg); background-size: cover;">
-                        <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </a>
-                </div>
-                <div class="archive-item-content">
-                    <header class="archive-item-header">
-                        <h3 class="entry-title"><a href="~/Content/assets/recipe/cheesy-pasta-with-crispy-pangritata/" rel="bookmark">Cheesy pasta with crispy pangritata</a></h3>
-                    </header>
-                    <div class="archive-item-meta">
-                        <div class="archive-item-meta-cooking-time">
-                            Cooking Time: 10 min
-                        </div>
-
-                        <div class="archive-item-meta-categories">
-                            <ul class="post-categories">
-                                <li><a href="~/Content/assets/category/fast-food/" rel="category tag">Fast Food</a></li>
-                            </ul>
-                        </div>
-                        <ul class="archive-item-meta-cuisines">
-                            <li>
-                                <a href="~/Content/assets/cuisine/italian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
-                                    <span class="single-recipe-cuisine-label">Italian</span>
-                                    <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="archive-item-content-text">
-                        To make the pangritata, lightly toast the sourdough. Peel the garlic, then blitz in a food processor with the toasted...
-                    </div>
-                    <div class="archive-item-author-meta">
-                        <div class="author-avatar-w">
-                            <a href="~/Content/assets/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                        </div>
-                        <div class="author-details">
-                            <h4 class="author-name"><a href="~/Content/assets/author/askjfds78dfdk/">Julia May</a></h4>
-                            <div class="archive-item-date-posted">July 17, 2015</div>
-                        </div>
-                        <div class="archive-item-views-count-likes">
-                            <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="177" data-vote-action="vote" data-votes-count="283">
-                                <span class="slide-button-i">
-                                    <i class="os-icon os-icon-ui-03"></i>
-                                    <span class="slide-button-label osetin-vote-action-label">
-                                        Like
+                                    <span class="btn-unlike" data-id="@(recipe.Id)" style="display: @(liked?"contents":"none")">
+                                        <i class="fas fa-heart" style="font-size: 18px;"></i>
+                                        <span class="slide-button-label">
+                                            Liked
+                                        </span>
                                     </span>
-                                    <span class="slide-button-sub-label osetin-vote-count ">
-                                        283
+
+                                    <span class="btn-like" data-id="@(recipe.Id)" style="display: @(liked?"none":"contents")">
+                                        <i class="far fa-heart" style="font-size: 18px;"></i>
+                                        <span class="slide-button-label">
+                                            Like
+                                        </span>
+                                    </span>
+
+
+                                    <span class="slide-button-sub-label like-count">
+                                        @(recipe.WishLists.Count)
                                     </span>
                                 </span>
                             </a>
@@ -167,188 +103,27 @@
                     <div class="archive-item-deep-meta">
                         <div class="archive-item-rating-and-read-more">
                             <div class="archive-item-read-more-btn">
-                                <div class="read-more-link"><a href="~/Content/assets/recipe/cheesy-pasta-with-crispy-pangritata/">Read More</a></div>
+                                <div class="read-more-link"><a href="/Home/RecipeDetail/@(recipe.Id)">Read More</a></div>
                             </div>
                         </div>
 
                         <div class="archive-item-comments">
-                            <a href="~/Content/assets/recipe/cheesy-pasta-with-crispy-pangritata/#singlePostComments"><i class="os-icon os-icon-thin-comment"></i> <span><span class="dsq-postid" data-dsqidentifier="177 http://local.neptune:8888/?post_type=osetin_recipe&#038;p=177">Comment</span></span></a>
-                        </div>
-                        <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>1,750 Views</span></div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </article>
-        <article class="archive-item any hero post-179 osetin_recipe type-osetin_recipe status-publish format-video has-post-thumbnail hentry category-chicken category-soups tag-beef tag-broccoli tag-corn tag-hot recipe_feature-gluten-free recipe_feature-spicy recipe_ingredient-butter recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-haricots-verts-trimmed recipe_ingredient-large-eggs recipe_ingredient-skim-milk recipe_ingredient-small-purple-potatoes recipe_cuisine-brazilian">
-            <div class="archive-item-i">
-                <div class="extra-styling-box"></div>
-                <div class="archive-item-share-w active">
-                    <div class="archive-item-share-trigger">
-                        <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                        <div class="archive-item-share-label">Share</div>
-                        <div class="archive-item-share-icons">
-                            <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fantipasti-of-mozzarella-chilli-lemon-crostini%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                            <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/&amp;text=++Hero+Posts" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                            <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14.jpg&#038;description=%20%20Hero%20Posts"
-                               target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                            <a href="mailto:?Subject=  Hero Posts&amp;Body=%20http://neptune.pinsupreme.com/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="archive-item-media">
-                    <a href="~/Content/assets/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe14.jpg); background-size: cover;">
-                        <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </a>
-                </div>
-                <div class="archive-item-content">
-                    <header class="archive-item-header">
-                        <h3 class="entry-title"><a href="~/Content/assets/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/" rel="bookmark">Antipasti of mozzarella, chilli, &#038; lemon crostini</a></h3>
-                    </header>
-                    <div class="archive-item-meta">
-                        <div class="archive-item-meta-cooking-time">
-                            Cooking Time: 12 min
-                        </div>
-
-                        <div class="archive-item-meta-categories">
-                            <ul class="post-categories">
-                                <li><a href="~/Content/assets/category/chicken/" rel="category tag">Chicken</a></li>
-                                <li><a href="~/Content/assets/category/soups/" rel="category tag">Soups</a></li>
-                            </ul>
-                        </div>
-                        <ul class="archive-item-meta-cuisines">
-                            <li>
-                                <a href="~/Content/assets/cuisine/brazilian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Brazilian">
-                                    <span class="single-recipe-cuisine-label">Brazilian</span>
-                                    <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/br.png" alt="Brazilian" /></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="archive-item-content-text">
-                        Heat a griddle pan until it&#8217;s really smoking hot, then griddle each slice of ciabatta for a couple of minutes...
-                    </div>
-                    <div class="archive-item-author-meta">
-                        <div class="author-avatar-w">
-                            <a href="~/Content/assets/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                        </div>
-                        <div class="author-details">
-                            <h4 class="author-name"><a href="~/Content/assets/author/askjfds78dfdk/">Julia May</a></h4>
-                            <div class="archive-item-date-posted">July 17, 2015</div>
-                        </div>
-                        <div class="archive-item-views-count-likes">
-                            <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="179" data-vote-action="vote" data-votes-count="180">
-                                <span class="slide-button-i">
-                                    <i class="os-icon os-icon-ui-03"></i>
-                                    <span class="slide-button-label osetin-vote-action-label">
-                                        Like
-                                    </span>
-                                    <span class="slide-button-sub-label osetin-vote-count ">
-                                        180
-                                    </span>
+                            <a href="#">
+                                <i class="os-icon os-icon-thin-comment"></i> 
+                                <span>
+                                    <span class="dsq-postid">Comment()</span>
                                 </span>
                             </a>
                         </div>
-                    </div>
-                    <div class="archive-item-deep-meta">
-                        <div class="archive-item-rating-and-read-more">
-                            <div class="archive-item-rating">
-                                <div class="review-summary-average">
-                                    <div class="review-stars-w">
-                                        <i class="os-icon os-icon-star-full rating-star-on"></i><i class="os-icon os-icon-star-full rating-star-on"></i><i class="os-icon os-icon-star-full rating-star-on"></i><i class="os-icon os-icon-star-full rating-star-on"></i>
-                                        <i class="os-icon os-icon-star-full rating-star-on"></i>
-                                    </div>
-                                </div><a href="~/Content/assets/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/#osetinRecipeReviews" class="review-summary-total">1</a>
-                            </div>
-                            <div class="archive-item-read-more-btn">
-                                <div class="read-more-link"><a href="~/Content/assets/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/">Read More</a></div>
-                            </div>
-                        </div>
-
-                        <div class="archive-item-comments">
-                            <a href="~/Content/assets/recipe/antipasti-of-mozzarella-chilli-lemon-crostini/#singlePostComments"><i class="os-icon os-icon-thin-comment"></i> <span><span class="dsq-postid" data-dsqidentifier="179 http://local.neptune:8888/?post_type=osetin_recipe&#038;p=179">Comment</span></span></a>
-                        </div>
-                        <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>1,123 Views</span></div>
+                        <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>@(recipe.ViewCount) Views</span></div>
                     </div>
                 </div>
                 <div class="clear"></div>
             </div>
         </article>
-        <article class="archive-item any hero post-332 post type-post status-publish format-standard has-post-thumbnail hentry category-fish tag-chicken tag-hot tag-whole-grains">
-            <div class="archive-item-i">
-                <div class="extra-styling-box"></div>
-                <div class="archive-item-share-w active">
-                    <div class="archive-item-share-trigger">
-                        <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                        <div class="archive-item-share-label">Share</div>
-                        <div class="archive-item-share-icons">
-                            <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Fchicken-fajitas-with-french-fries%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                            <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/chicken-fajitas-with-french-fries/&amp;text=++Hero+Posts" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                            <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/chicken-fajitas-with-french-fries/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe15.jpg&#038;description=%20%20Hero%20Posts" target="_blank"
-                               class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                            <a href="mailto:?Subject=  Hero Posts&amp;Body=%20http://neptune.pinsupreme.com/chicken-fajitas-with-french-fries/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="archive-item-media">
-                    <a href="~/Content/assets/chicken-fajitas-with-french-fries/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(/Content/assets/wp-content/uploads/2015/07/recipe15.jpg); background-size: cover;">
-                        <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </a>
-                </div>
-                <div class="archive-item-content">
-                    <header class="archive-item-header">
-                        <h3 class="entry-title"><a href="~/Content/assets/chicken-fajitas-with-french-fries/" rel="bookmark">Regular blog post</a></h3>
-                    </header>
-                    <div class="archive-item-meta">
+        }
+        
 
-                        <div class="archive-item-meta-categories">
-                            <ul class="post-categories">
-                                <li><a href="~/Content/assets/category/fish/" rel="category tag">Fish</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                    <div class="archive-item-content-text">
-                        Rush willingly no small my the recommended. Long, music. Designers, had would if everyone the up still primarily dressed your...
-                    </div>
-                    <div class="archive-item-author-meta">
-                        <div class="author-avatar-w">
-                            <a href="~/Content/assets/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
-                        </div>
-                        <div class="author-details">
-                            <h4 class="author-name"><a href="~/Content/assets/author/askjfds78dfdk/">Julia May</a></h4>
-                            <div class="archive-item-date-posted">May 18, 2015</div>
-                        </div>
-                        <div class="archive-item-views-count-likes">
-                            <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="332" data-vote-action="vote" data-votes-count="23">
-                                <span class="slide-button-i">
-                                    <i class="os-icon os-icon-ui-03"></i>
-                                    <span class="slide-button-label osetin-vote-action-label">
-                                        Like
-                                    </span>
-                                    <span class="slide-button-sub-label osetin-vote-count ">
-                                        23
-                                    </span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="archive-item-deep-meta">
-                        <div class="archive-item-rating-and-read-more">
-                            <div class="archive-item-read-more-btn">
-                                <div class="read-more-link"><a href="~/Content/assets/chicken-fajitas-with-french-fries/">Read More</a></div>
-                            </div>
-                        </div>
-
-                        <div class="archive-item-comments">
-                            <a href="~/Content/assets/chicken-fajitas-with-french-fries/#singlePostComments"><i class="os-icon os-icon-thin-comment"></i> <span><span class="dsq-postid" data-dsqidentifier="332 http://local.neptune:8888/?p=4">Comment</span></span></a>
-                        </div>
-                        <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>648 Views</span></div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </article>
     </div>
 </div>
 
@@ -462,11 +237,12 @@
                                             <ul class="archive-item-meta-cuisines">
                                                 <li>
                                                     <a href="#" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Your recipe">
-                                                        <span class="single-recipe-cuisine-image"><img src="https://res.cloudinary.com/dev20/image/upload/v1581839681/Jame/recipe-icon_qeqogv.png" alt="Italian" style="height: 28px;"/></span>
+                                                        <span class="single-recipe-cuisine-image"><img src="https://res.cloudinary.com/dev20/image/upload/v1581839681/Jame/recipe-icon_qeqogv.png" alt="Italian" style="height: 28px;" /></span>
                                                     </a>
                                                 </li>
                                             </ul>
-                                        }else if (recipe.Type == (int)Recipe.RecipeType.NotFree && (!Request.IsAuthenticated || (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold") && recipe.ApplicationUser.Id != User.Identity.GetUserId())))
+                                        }
+                                        else if (recipe.Type == (int)Recipe.RecipeType.NotFree && (!Request.IsAuthenticated || (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold") && recipe.ApplicationUser.Id != User.Identity.GetUserId())))
                                         {
                                             <ul class="archive-item-meta-cuisines">
                                                 <li>
@@ -581,68 +357,15 @@
             <aside id="osetin_categories_widget-1" class="widget-even widget-4 with-ribbon widget widget_osetin_categories_widget">
                 <h3 class="widget-title"><span>Categories</span></h3>
                 <div class="shortcode-categories-icons">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="~/Content/assets/category/chicken/"><img src="~/Content/assets/wp-content/uploads/2015/09/356.png" alt="Chicken" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="~/Content/assets/category/chicken/">Chicken</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="~/Content/assets/category/fast-food/"><img src="~/Content/assets/wp-content/uploads/2015/09/341.png" alt="Fast Food" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="~/Content/assets/category/fast-food/">Fast Food</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="~/Content/assets/category/fish/"><img src="~/Content/assets/wp-content/uploads/2015/09/349.png" alt="Fish" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="~/Content/assets/category/fish/">Fish</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="~/Content/assets/category/pizza/"><img src="~/Content/assets/wp-content/uploads/2015/09/306.png" alt="Pizza" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="~/Content/assets/category/pizza/">Pizza</a></h3>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="sci-media"><a href="~/Content/assets/category/salads/"><img src="~/Content/assets/wp-content/uploads/2015/09/45.png" alt="Salads" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="~/Content/assets/category/salads/">Salads</a></h3>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="sci-media"><a href="~/Content/assets/category/soups/"><img src="~/Content/assets/wp-content/uploads/2015/09/85.png" alt="Soups" /></a></div>
-                                <div class="sci-title">
-                                    <h3><a href="~/Content/assets/category/soups/">Soups</a></h3>
-                                </div>
-                            </td>
-                        </tr>
+                    <table class="category-ajax">
                     </table>
                 </div>
             </aside>
             <aside id="widget_tptn_pop-1" class="widget-odd widget-5 with-ribbon widget tptn_posts_list_widget">
                 <h3 class="widget-title"><span>Popular Recipes</span></h3>
                 <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
-                    <ul>
-                        <li>
-                            <a href="~/Content/assets/recipe/gluten-free-beef-lasagne/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="Classic tomato salsa with basil" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/gluten-free-beef-lasagne/" class="tptn_link"><span class="tptn_title">Classic tomato salsa with basil</span></a><span class="tptn_excerpt"> An old-school dish that everyone loves, this gluten-free lasagne recipe&hellip;</span></span>
-                        </li>
-                        <li>
-                            <a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/07/recipe17-150x150.jpg" class="tptn_thumb tptn_featured" alt="Steamed broccoli with vinegar" title="Steamed broccoli with vinegar" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><span class="tptn_title">Steamed broccoli with vinegar</span></a><span class="tptn_excerpt"> Put your wine, shallot, herbs and peppercorns into a small&hellip;</span></span>
-                        </li>
-                        <li>
-                            <a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><img width="150" height="150" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-150x150.jpg" class="tptn_thumb tptn_featured" alt="Squash soup with Parmesan croutons" title="Squash soup with Parmesan croutons" sizes="(max-width: 150px) 100vw, 150px" /></a>
-                            <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><span class="tptn_title">Squash soup with Parmesan croutons</span></a><span class="tptn_excerpt"> Put a very large saucepan on a medium heat and&hellip;</span></span>
-                        </li>
+                    <ul class="popular-ajax-page">
+                        
                     </ul>
                     <div class="tptn_clear"></div>
                 </div>
@@ -710,6 +433,9 @@
 <!-- Notification -->
 <script src="~/Content/js/alert/jquery.toast.min.js"></script>
 <script src="~/Content/js/alert/toastDemo.js"></script>
+<script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
+<script type="text/javascript" src="~/Content/js/PopularRecipe.js"></script>
+<script type="text/javascript" src="~/Content/js/Like.js"></script>
 @section Scripts
 {
     <script>
@@ -720,6 +446,7 @@
             //if ($('#show-expired').data('expired') != "") {
             //    showInfoToast();
             //};
+            
         })
     </script>
 }

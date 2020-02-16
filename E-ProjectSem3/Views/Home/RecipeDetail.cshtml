@@ -1,15 +1,17 @@
-﻿@model E_ProjectSem3.Models.Recipe
+﻿@using Microsoft.AspNet.Identity
+@model E_ProjectSem3.Models.Recipe
 @{
     ViewBag.Title = "RecipeDetail";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    bool liked = Model.WishLists.Where(w => w.UserId == User.Identity.GetUserId()).ToList().Count == 1;
 }
 
 <div class="os-container top-bar-w">
     <div class="top-bar">
         <ul class="bar-breadcrumbs">
-            <li><a href="http://neptune.pinsupreme.com">Home</a></li>
-            <li><a href="http://neptune.pinsupreme.com/category/salads/" title="View all posts in Salads">Salads</a></li>
-            <li>Squash soup with Parmesan croutons</li>
+            <li><a href="/Home">Home</a></li>
+            <li><a href="/Home/Recipes?category=@(Model.Category.Id)" title="View all posts in Salads">@(Model.Category.Name)</a></li>
+            <li>@(Model.Title)</li>
         </ul>
         <ul class="bar-social" style="">
             <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
@@ -37,7 +39,7 @@
         <i class="os-icon os-icon-clock2"></i>
         <div class="timer-counter"></div>
         <button id="pause-resume-timer-btn" data-label-resume="Resume" data-label-pause="Pause">Pause</button>
-        <input id="timer-minutes" name="timer-minutes" type="text" value="10">
+        <input id="timer-minutes" name="timer-minutes" type="text" value="@(Model.CookingMinute)">
         <label id="timer-minutes-label" for="timer-minutes">min</label>
         <button id="stop-timer-btn" data-label-stop="Stop" data-label-start="Start Timer">Stop</button>
         <button id="start-timer-btn">Start Timer</button>
@@ -50,26 +52,28 @@
 
 
         <div id="vote_box" data-voting-in-progress="no">
-            <a class="user_vote_like" data-nonce="51db9a9cde" data-post_id="202" href="#">
+
+            <a class="user_vote_like" href="#">
                 <i class="os-icon os-icon-ui-05"></i>
-                <span id="vote_like_counter" data-votes="118" data-vote-status=""> 118 </span>
+                <span id=""> @(Model.WishLists.Count) </span>
             </a>
-            <a class="rotated user_vote_dislike" data-nonce="51db9a9cde" data-post_id="202" href="#">
-                <i class="os-icon os-icon-ui-06"></i>
-                <span id="vote_dislike_counter" data-votes="19" data-vote-status="">19</span>
-            </a>
-            <span style="display:none;" id="user_vote_label" data-loading-label=Loading… data-label=Vote>Vote</span>
+
+            <span style="display: none;" id="user_vote_label" data-loading-label=Loading… data-label=Vote>Vote</span>
         </div>
     </div>
-    <div class="add-to-meal-plan-btn-w"><a href="#" class="trigger-add-to-meal-plan add-to-mean-plan-btn" data-nonce="fa093960ea" data-post-id="202"><i class="mp-icon-ui-22"></i><span>Add to Meal Plan</span></a></div>
+    <div class="add-to-meal-plan-btn-w">
+        <a href="#" class="trigger-add-to-meal-plan add-to-mean-plan-btn" data-nonce="fa093960ea" data-post-id="202">
+            <i class="mp-icon-ui-22"></i><span>Add to Meal Plan</span>
+        </a>
+    </div>
 </div>
 <div class="single-panel os-container">
     <div class="single-panel-details move-on-scroll">
         <div class="single-panel-details-i">
             <div class="single-main-media">
-                <div class="single-main-media-image-w active fader-activator  osetin-lightbox-trigger" data-lightbox-caption="Squash soup with Parmesan croutons" data-lightbox-img-src="~/Content/assets/wp-content/uploads/2015/06/recipe3-875x1300.jpg">
+                <div class="single-main-media-image-w active fader-activator  osetin-lightbox-trigger" data-lightbox-caption="@(Model.Title)" data-lightbox-img-src="@(Model.FeaturedImage)">
                     <span class="image-fader lighter"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    <img class="" src="@(Model.FeaturedImage)" alt="Squash soup with Parmesan croutons" />
+                    <img class="" src="@(Model.FeaturedImage)" alt="@(Model.Title)" />
                 </div>
             </div>
             <div class="side-meta-box">
@@ -80,18 +84,32 @@
                             <span>Share</span>
                         </a>
                     </li>
-                    <li class="single-meta-views"><span>2,301 Views</span></li>
+                    <li class="single-meta-views"><span>@(Model.ViewCount) Views</span></li>
                     <li class="single-meta-likes">
-                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="202" data-vote-action="vote" data-votes-count="211">
+                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted">
+
                             <span class="slide-button-i">
-                                <i class="os-icon os-icon-ui-03"></i>
-                                <span class="slide-button-label osetin-vote-action-label">
-                                    Like
+
+                                <span class="btn-unlike" data-id="@(Model.Id)" style="display: @(liked?"contents":"none")">
+                                    <i class="fas fa-heart" style="font-size: 18px;"></i>
+                                    <span class="slide-button-label">
+                                        Liked
+                                    </span>
                                 </span>
-                                <span class="slide-button-sub-label osetin-vote-count ">
-                                    211
+
+                                <span class="btn-like" data-id="@(Model.Id)" style="display: @(liked?"none":"contents")">
+                                    <i class="far fa-heart" style="font-size: 18px;"></i>
+                                    <span class="slide-button-label">
+                                        Like
+                                    </span>
+                                </span>
+
+
+                                <span class="slide-button-sub-label like-count">
+                                    @(Model.WishLists.Count)
                                 </span>
                             </span>
+
                         </a>
                     </li>
                 </ul>
@@ -108,7 +126,7 @@
                 </div>
                 <div class="psb-url">
                     <div class="psb-url-heading">Or you can just copy and share this url</div>
-                    <input type="text" class="psb-url-input" value="http://pluto.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/">
+                    <input type="text" class="psb-url-input" value="">
                 </div>
             </div>
             <div class="single-recipe-ingredients-nutritions">
@@ -126,116 +144,27 @@
                         </div>
                     </div>
                     <table class="ingredients-table">
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="100g of">100g of</span>
-                                <span class="ingredient-name">Blue Cheese</span>
+                        @foreach (var ct in Model.Ingredients)
+                        {
+                            <tr>
+                                <td class="ingredient-action">
+                                    <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
+                                </td>
+                                <td>
+                                    <span class="ingredient-amount" data-initial-amount="@(ct.Amount) of">@(ct.Amount) of</span>
+                                    <span class="ingredient-name">@(ct.Name)</span>
+                                    @if (ct.Note != null)
+                                    {
+                                        <span class="ingredient-info-icon">
+                                            <i class="os-icon os-icon-info-round"></i>
+                                            <span class="ingredient-info-popup">@(ct.Note)</span>
+                                        </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                        
 
-                                <span class="ingredient-info-icon"><i class="os-icon os-icon-info-round"></i><span class="ingredient-info-popup">It should be raw, do not cook it</span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="1 pound of">1 pound of</span>
-                                <span class="ingredient-name"><a href="http://neptune.pinsupreme.com/ingredient/fresh-broccoli/" target="_blank">Fresh Broccoli</a></span>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="2 pieces of">2 pieces of</span>
-                                <span class="ingredient-name">Pork Chops</span>
-
-                                <span class="ingredient-info-icon"><i class="os-icon os-icon-info-round"></i><span class="ingredient-info-popup">It should be raw, do not cook it</span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="100g of">100g of</span>
-                                <span class="ingredient-name">Raw Walnuts</span>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="2">2</span>
-                                <span class="ingredient-name">Honey</span>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="150g of">150g of</span>
-                                <span class="ingredient-name">Fresh Rosemary</span>
-
-                                <span class="ingredient-info-icon"><i class="os-icon os-icon-info-round"></i><span class="ingredient-info-popup">It should be raw, do not cook it</span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <div class="ingredient-heading">For Dressing</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="3 pieces of">3 pieces of</span>
-                                <span class="ingredient-name"><a href="http://neptune.pinsupreme.com/ingredient/chicken-breast/" target="_blank">Chicken Breast</a></span>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="2lbs of">2lbs of</span>
-                                <span class="ingredient-name"><a href="http://neptune.pinsupreme.com/ingredient/drained-capers-patted-dry/" target="_blank">Drained capers patted dry</a></span>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="1 box of">1 box of</span>
-                                <span class="ingredient-name"><a href="http://neptune.pinsupreme.com/ingredient/ground-beef/" target="_blank">Ground Beef</a></span>
-
-                                <span class="ingredient-info-icon"><i class="os-icon os-icon-info-round"></i><span class="ingredient-info-popup">It should be raw, do not cook it</span></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ingredient-action">
-                                <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
-                            </td>
-                            <td>
-                                <span class="ingredient-amount" data-initial-amount="200g of">200g of</span>
-                                <span class="ingredient-name"><a href="http://neptune.pinsupreme.com/ingredient/potatoes/" target="_blank">Potatoes</a></span>
-
-                            </td>
-                        </tr>
                     </table>
                 </div>
 
@@ -244,30 +173,14 @@
                     <div class="close-btn"><i class="os-icon os-icon-plus"></i></div>
                     <h3><i class="os-icon os-icon-thin-info"></i> Nutritional information</h3>
                     <div class="single-nutritions-list">
-                        <div class="single-nutrition">
-                            <div class="single-nutrition-value">20g</div>
-                            <div class="single-nutrition-name">Fat</div>
-                        </div>
-                        <div class="single-nutrition">
-                            <div class="single-nutrition-value">10g</div>
-                            <div class="single-nutrition-name">Protein</div>
-                        </div>
-                        <div class="single-nutrition">
-                            <div class="single-nutrition-value">5g</div>
-                            <div class="single-nutrition-name">Carbs</div>
-                        </div>
-                        <div class="single-nutrition">
-                            <div class="single-nutrition-value">500</div>
-                            <div class="single-nutrition-name">Calories</div>
-                        </div>
-                        <div class="single-nutrition">
-                            <div class="single-nutrition-value">15g</div>
-                            <div class="single-nutrition-name">Sugars</div>
-                        </div>
-                        <div class="single-nutrition">
-                            <div class="single-nutrition-value">15g</div>
-                            <div class="single-nutrition-name">Trans Fat</div>
-                        </div>
+                        @foreach (var nutri in Model.Nutrition)
+                        {
+                            <div class="single-nutrition">
+                                <div class="single-nutrition-value">@(nutri.Value)</div>
+                                <div class="single-nutrition-name">@(nutri.Name)</div>
+                            </div>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -300,16 +213,16 @@
 
         <div class="single-title">
             <h1>@(Model.Title)</h1>
-            <h3>Smooth, creamy and a little bit spicy</h3>
+            <h3>Smooth</h3>
         </div>
 
         <div class="single-recipe-custom-taxonomies position-split">
             <div class="single-recipe-features">
                 <div class="single-recipe-features-header">Features:</div>
                 <ul>
-                    <li><a href="http://neptune.pinsupreme.com/feature/gluten-free/"><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></a></li>
-                    <li><a href="http://neptune.pinsupreme.com/feature/spicy/"><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></a></li>
-                    <li><a href="http://neptune.pinsupreme.com/feature/vegan/"><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></a></li>
+                    <li><a href="#"><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></a></li>
+                    <li><a href="#"><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></a></li>
+                    <li><a href="#"><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></a></li>
                 </ul>
             </div>
             <div class="single-recipe-cuisines">
@@ -325,27 +238,20 @@
             </div>
         </div>
         <div class="quick-description-quote position-split">
-            <p>This delicious butternut squash soup is a great base – try it with pasta or pearl barley thrown in</p>
+            <p>@(Model.Description)</p>
         </div>
         <div class="single-meta">
             <ul>
                 <li class="single-meta-cooking-time"><i class="os-icon os-icon-thin-clock-busy"></i> <span>@(Model.CookingMinute) min</span></li>
                 <li class="single-meta-serves"><i class="os-icon os-icon-thin-serve"></i> <span>Serves 1</span></li>
-                <li class="single-meta-difficulty"><i class="os-icon os-icon-thin-cook"></i> <span>Medium</span></li>
+                <li class="single-meta-difficulty"><i class="os-icon os-icon-thin-cook"></i> <span>@(Model.Difficulty)</span></li>
             </ul>
         </div>
 
-
-
-
         <div class="single-content" data-font-change-count="0">
-            <div class="cooking-mode-close-btn-w">
+            @*<div class="cooking-mode-close-btn-w">
                 <a href="#" class="cooking-mode-toggler cooking-mode-close-btn"><i class="os-icon os-icon-thin-close-round"></i></a>
             </div>
-
-
-
-
 
             <div class="single-print-ingredients">
                 <h2 class="bordered-title"><i class="os-icon os-icon-thin-paper-holes-text"></i> <span>Ingredients</span></h2>
@@ -412,7 +318,7 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div>*@
 
 
 
@@ -426,7 +332,9 @@
                     </div>
                     <span>Share</span>
                     <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fsquash-soup-with-parmesan-croutons%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-social-facebook"></i></a>
-                    <a href="http://www.yummly.com/urb/verify?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&#038;title=%20%20Squash%20soup%20with%20Parmesan%20croutons&#038;yumtype=button" target="_blank" class="archive-item-share-link aisl-linkedin"><img src="~/Content/assets/wp-content/themes/neptune-by-osetin/assets/img/yum-small.png" /></a>
+                    <a href="http://www.yummly.com/urb/verify?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&#038;title=%20%20Squash%20soup%20with%20Parmesan%20croutons&#038;yumtype=button" target="_blank" class="archive-item-share-link aisl-linkedin">
+                        <img src="~/Content/assets/wp-content/themes/neptune-by-osetin/assets/img/yum-small.png"/>
+                    </a>
                     <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&amp;text=++Squash+soup+with+Parmesan+croutons" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-social-twitter"></i></a>
                     <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3.jpg&#038;description=%20%20Squash%20soup%20with%20Parmesan%20croutons"
                        data-pin-custom="true" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-social-pinterest"></i></a>
@@ -537,31 +445,43 @@
             <ul>
                 <li class="social-bottom-comments">
                     <i class="os-icon os-icon-thin-comments"></i>
-                    <a href="#singlePostComments"><span class="dsq-postid" data-dsqidentifier="202 http://local.neptune:8888/?post_type=osetin_recipe&#038;p=202">Comment</span></a>
+                    <a href="#singlePostComments"><span class="dsq-postid">Comment(@(Model.Comments.Count))</span></a>
                 </li>
                 <li class="social-links">
                     <a href="https://facebook.com" class=""><i class="os-icon os-icon-social-twitter"></i></a><a href="https://facebook.com" class=""><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com" class=""><i class="os-icon os-icon-social-instagram"></i></a>
                 </li>
                 <li class="social-bottom-author">
-                    <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="40" height="40" alt="" class="default avatar" /></a> <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"
-                                                                                                                                                                                                                                    title="Posts by Julia May" rel="author">Julia May</a>
+                    <a href="#">
+                        <img src="@(Model.ApplicationUser.Avatar)" width="40" height="40" alt="" class="default avatar"/>
+                    </a> 
+                    <a href="#" title="Posts by @(Model.ApplicationUser.FirstName)" rel="author">@(Model.ApplicationUser.FirstName)</a>
                 </li>
             </ul>
         </div>
         <div class="single-post-about-author">
             <div class="author-avatar-w">
-                <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" /></a>
+                <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">
+                    <img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar"/>
+                </a>
             </div>
             <div class="author-details">
-                <h3 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h3>
+                <h3 class="author-name"><a href="#">@(Model.ApplicationUser.FirstName)</a></h3>
                 <div style="display:none;">
-                    <div class="post-date"><time class="entry-date updated" datetime="2015-07-23T21:02:33+00:00">Jul 23rd, 2015</time></div>
-                    <div class="post-author"><strong class="author vcard"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/" class="url fn n" rel="author">Julia May</a></strong></div>
+                    <div class="post-date">
+                        <time class="entry-date updated" datetime="@(Convert.ToDateTime(recipe.CreatedAt).ToString("M"))">@(Convert.ToDateTime(recipe.CreatedAt).ToString("M"))</time>
+                    </div>
+                    <div class="post-author">
+                        <strong class="author vcard">
+                            <a href="#" class="url fn n" rel="author">@(Model.ApplicationUser.FirstName)</a>
+                        </strong>
+                    </div>
                 </div>
                 <p>I love cooking and blogging. Using a fork, break salmon. Halve reserved potatoes and eggs crosswise.</p>
                 <div class="author-social-links">
-                    <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-twitter"></i></a><a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com"
-                                                                                                                                                                                                                                  class="profile-url"><i class="os-icon os-icon-social-instagram"></i></a>
+                    <a href="https://facebook.com" class="profile-url">
+                        <i class="os-icon os-icon-social-twitter"></i>
+                    </a>
+                    <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com"
                 </div>
             </div>
         </div>
@@ -572,7 +492,10 @@
                     <div class="review-summary-average">
                         <span class="review-summary-label">Average Rating: </span>
                         <div class="review-stars-w">
-                            <i class="os-icon os-icon-star-full rating-star-on"></i><i class="os-icon os-icon-star-full rating-star-on"></i><i class="os-icon os-icon-star-full rating-star-on"></i><i class="os-icon os-icon-star-full rating-star-on"></i>
+                            <i class="os-icon os-icon-star-full rating-star-on"></i>
+                            <i class="os-icon os-icon-star-full rating-star-on"></i>
+                            <i class="os-icon os-icon-star-full rating-star-on"></i>
+                            <i class="os-icon os-icon-star-full rating-star-on"></i>
                             <i class="os-icon os-icon-star-full rating-star-on"></i>
                         </div><span class="review-summary-average-stars">(5)</span>
                     </div>
@@ -599,7 +522,7 @@
                     </div>
                     <div class="review-body">
                         <p>
-                        <p>Great recipe, I baked it for my family, they loved it. Months a ancient in the applications being so fantastic a when showed few dishonourable we not if they over economics</p>
+                            <p>Great recipe, I baked it for my family, they loved it. Months a ancient in the applications being so fantastic a when showed few dishonourable we not if they over economics</p>
                         </p>
                     </div>
                     <div class="review-images">
@@ -648,64 +571,6 @@
                         </div>
                         <div class="acf-field acf-field-gallery acf-field-5746b4ae39091" data-name="review_images" data-type="gallery" data-key="field_5746b4ae39091">
                             <div class="acf-label">
-                                <label for="acf-field_5746b4ae39091">Review Images</label>
-                                <p class="description">You can optionally upload your own image along with a review</p>
-                            </div>
-                            <div class="acf-input">
-                                <div id="acf-hidden-wp-editor" class="acf-hidden">
-                                    <div id="wp-acf_content-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
-                                        <link rel='stylesheet' id='dashicons-css' href='http://neptune.pinsupreme.com/wp-includes/css/dashicons.min.css' type='text/css' media='all' />
-                                        <link rel='stylesheet' id='editor-buttons-css' href='http://neptune.pinsupreme.com/wp-includes/css/editor.min.css' type='text/css' media='all' />
-                                        <div id="wp-acf_content-editor-tools" class="wp-editor-tools hide-if-no-js">
-                                            <div class="wp-editor-tabs">
-                                                <button type="button" id="acf_content-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="acf_content">Visual</button>
-                                                <button type="button" id="acf_content-html" class="wp-switch-editor switch-html" data-wp-editor-id="acf_content">Text</button>
-                                            </div>
-                                        </div>
-                                        <div id="wp-acf_content-editor-container" class="wp-editor-container">
-                                            <div id="qt_acf_content_toolbar" class="quicktags-toolbar"></div><textarea class="wp-editor-area" rows="20" autocomplete="off" cols="40" name="acf_content" id="acf_content"></textarea>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div id="acf-field_5746b4ae39091" class="acf-gallery" data-library="uploadedTo" data-preview_size="thumbnail" data-min="" data-max="15" data-mime_types="jpeg,jpg,png" data-insert="append" data-columns="4" style="height:400px">
-                                    <input type="hidden" name="acf[field_5746b4ae39091]" value="" />
-                                    <div class="acf-gallery-main">
-                                        <div class="acf-gallery-attachments">
-                                        </div>
-                                        <div class="acf-gallery-toolbar">
-                                            <ul class="acf-hl">
-                                                <li>
-                                                    <a href="#" class="acf-button button button-primary acf-gallery-add">Add to gallery</a>
-                                                </li>
-                                                <li class="acf-fr">
-                                                    <select class="acf-gallery-sort">
-                                                        <option value="">Bulk actions</option>
-                                                        <option value="date">Sort by date uploaded</option>
-                                                        <option value="modified">Sort by date modified</option>
-                                                        <option value="title">Sort by title</option>
-                                                        <option value="reverse">Reverse current order</option>
-                                                    </select>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="acf-gallery-side">
-                                        <div class="acf-gallery-side-inner">
-                                            <div class="acf-gallery-side-data"></div>
-                                            <div class="acf-gallery-toolbar">
-                                                <ul class="acf-hl">
-                                                    <li>
-                                                        <a href="#" class="acf-button button acf-gallery-close">Close</a>
-                                                    </li>
-                                                    <li class="acf-fr">
-                                                        <a class="acf-button button button-primary acf-gallery-update" href="#">Update</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="acf-field acf-field-text acf-field--validate-email" style="display:none !important;" data-name="_validate_email" data-type="text" data-key="_validate_email">
@@ -854,7 +719,10 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="~/Content/js/Like.js"></script>
+@section Scripts{
+    
+}
 
 
 

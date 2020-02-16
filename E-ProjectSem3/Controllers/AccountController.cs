@@ -17,7 +17,6 @@ namespace E_ProjectSem3.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
         public AccountController()
         {
         }
