@@ -21,11 +21,9 @@ namespace E_ProjectSem3.Controllers
         private MemberService memberService = new MemberService();
         public ActionResult Index(int? page)
         {
-
-            ViewBag.ListCategories = db.Categories.Where(c => c.DeletedAt == null).OrderBy(c => c.Name).ToList();
+            ViewBag.ListCategories = db.Categories.Where(c => c.Icon != null && c.DeletedAt == null).OrderBy(c => c.Name).ToList();
             ViewBag.DataSliderSmall = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
-            ViewBag.DataSliderBig = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
-
+            ViewBag.DataSliderBig = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active && (r.Id >= 9 && r.Id <= 12 )).ToList();
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Check expired member ship:
             ViewBag.Expired = "";
@@ -92,20 +90,17 @@ namespace E_ProjectSem3.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
         [AllowAnonymous]
         public ActionResult Recipes(string search, int? page, int? category)
         {
+            ViewBag.ListCategories = db.Categories.Where(c => c.Icon != null && c.DeletedAt == null).OrderBy(c => c.Name).ToList();
             ViewBag.CurrentCategory = category;
             ViewBag.Search = search;
             ViewBag.DataSlider = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).Take(8).ToList();
@@ -191,9 +186,7 @@ namespace E_ProjectSem3.Controllers
 
         public ActionResult Categories()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(db.Categories.Where(c=>c.Description == "Main" && c.DeletedAt == null).ToList());
         }
         public ActionResult NotFound()
         {
@@ -202,6 +195,7 @@ namespace E_ProjectSem3.Controllers
         [Authorize]
         public ActionResult MemberShip()
         {
+            ViewBag.ListCategories = db.Categories.Where(c => c.Icon != null && c.DeletedAt == null).OrderBy(c => c.Name).ToList();
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Check expired member ship:
             var id = User.Identity.GetUserId();

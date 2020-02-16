@@ -83,5 +83,12 @@ namespace E_ProjectSem3.Controllers
             return Json(new { data = likeCount - 1 }, JsonRequestBehavior.AllowGet);
 
         }
+        public ActionResult GetPopularRecipesAjax()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active)
+                .OrderByDescending(r => r.ViewCount).Take(3).ToList();
+            return Json(new { data = listRecipe}, JsonRequestBehavior.AllowGet);
+        }
     }
 }

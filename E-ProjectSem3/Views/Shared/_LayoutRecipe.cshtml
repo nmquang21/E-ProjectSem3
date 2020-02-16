@@ -356,19 +356,8 @@
                 <aside id="widget_tptn_pop-2" class="widget-odd widget-3 widget tptn_posts_list_widget">
                     <h3 class="widget-title"><span>Popular Recipes</span></h3>
                     <div class="tptn_posts  tptn_posts_widget tptn_posts_widget2">
-                        <ul>
-                            <li>
-                                <a href="~/Content/assets/recipe/gluten-free-beef-lasagne/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-100x100.jpg" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="Classic tomato salsa with basil" sizes="(max-width: 50px) 100vw, 50px" /></a>
-                                <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/gluten-free-beef-lasagne/" class="tptn_link"><span class="tptn_title">Classic tomato salsa with basil</span></a></span>
-                            </li>
-                            <li>
-                                <a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/07/recipe17-100x100.jpg" class="tptn_thumb tptn_featured" alt="Steamed broccoli with vinegar" title="Steamed broccoli with vinegar" sizes="(max-width: 50px) 100vw, 50px" /></a>
-                                <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/steamed-broccoli-with-vinegar-souce/" class="tptn_link"><span class="tptn_title">Steamed broccoli with vinegar</span></a></span>
-                            </li>
-                            <li>
-                                <a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><img width="50" height="50" src="~/Content/assets/wp-content/uploads/2015/06/recipe3-100x100.jpg" class="tptn_thumb tptn_featured" alt="Squash soup with Parmesan croutons" title="Squash soup with Parmesan croutons" sizes="(max-width: 50px) 100vw, 50px" /></a>
-                                <span class="tptn_after_thumb"><a href="~/Content/assets/recipe/squash-soup-with-parmesan-croutons/" class="tptn_link"><span class="tptn_title">Squash soup with Parmesan croutons</span></a></span>
-                            </li>
+                        <ul class="popular-ajax">
+                            
                         </ul>
                         <div class="tptn_clear"></div>
                     </div>
@@ -376,49 +365,8 @@
                 <aside id="osetin_categories_widget-2" class="widget-even widget-last widget-4 widget widget_osetin_categories_widget">
                     <h3 class="widget-title"><span>Popular Categories</span></h3>
                     <div class="shortcode-categories-icons">
-                        <table>
-                            <tr>
-                                <td>
-                                    <div class="sci-media"><a href="~/Content/assets/category/chicken/"><img src="~/Content/assets/wp-content/uploads/2015/09/356.png" alt="Chicken" /></a></div>
-                                    <div class="sci-title">
-                                        <h3><a href="~/Content/assets/category/chicken/">Chicken</a></h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="sci-media"><a href="~/Content/assets/category/fast-food/"><img src="~/Content/assets/wp-content/uploads/2015/09/341.png" alt="Fast Food" /></a></div>
-                                    <div class="sci-title">
-                                        <h3><a href="~/Content/assets/category/fast-food/">Fast Food</a></h3>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="sci-media"><a href="~/Content/assets/category/fish/"><img src="~/Content/assets/wp-content/uploads/2015/09/349.png" alt="Fish" /></a></div>
-                                    <div class="sci-title">
-                                        <h3><a href="~/Content/assets/category/fish/">Fish</a></h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="sci-media"><a href="~/Content/assets/category/pizza/"><img src="~/Content/assets/wp-content/uploads/2015/09/306.png" alt="Pizza" /></a></div>
-                                    <div class="sci-title">
-                                        <h3><a href="~/Content/assets/category/pizza/">Pizza</a></h3>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="sci-media"><a href="~/Content/assets/category/salads/"><img src="~/Content/assets/wp-content/uploads/2015/09/45.png" alt="Salads" /></a></div>
-                                    <div class="sci-title">
-                                        <h3><a href="~/Content/assets/category/salads/">Salads</a></h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="sci-media"><a href="~/Content/assets/category/soups/"><img src="~/Content/assets/wp-content/uploads/2015/09/85.png" alt="Soups" /></a></div>
-                                    <div class="sci-title">
-                                        <h3><a href="~/Content/assets/category/soups/">Soups</a></h3>
-                                    </div>
-                                </td>
-                            </tr>
+                        <table class="category-ajax">
+
                         </table>
                     </div>
                 </aside>
@@ -1100,6 +1048,25 @@
     </script>
 <script type="text/javascript">
     acf.doAction('prepare');
+</script>
+<script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
+<script>
+    jQuery(document).ready(function ($) {
+        $.ajax({
+            url: '/Recipe/GetPopularRecipesAjax',
+            type: 'GET',
+            success: function (responseData) {
+                var html = '';
+                for (var i = 0; i < responseData.data.length; i++) {
+                    html += `<li>
+                                <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
+                                <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
+                            </li>`;
+                }
+                $('.popular-ajax').html(html);
+            }
+        });
+    })
 </script>
 @RenderSection("Scripts",false)
 </body>
