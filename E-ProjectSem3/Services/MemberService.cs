@@ -29,7 +29,7 @@ namespace E_ProjectSem3.Services
                     Debug.WriteLine(listUserMemberShip);
                     if (listUserMemberShip.Count == 0)
                     {
-                        UserManager.RemoveFromRole(user.Id, member.MemberType);
+                        UserManager.RemoveFromRole(user.Id, member.RoleName);
                         Debug.WriteLine("Da xoa role");
                         return true;
                     }

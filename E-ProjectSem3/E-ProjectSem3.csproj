@@ -189,28 +189,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
+    <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002150726127_Init.cs" />
-    <Compile Include="Migrations\202002150726127_Init.Designer.cs">
-      <DependentUpon>202002150726127_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002150735337_Fix.cs" />
-    <Compile Include="Migrations\202002150735337_Fix.Designer.cs">
-      <DependentUpon>202002150735337_Fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002151205599_view.cs" />
-    <Compile Include="Migrations\202002151205599_view.Designer.cs">
-      <DependentUpon>202002151205599_view.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002151220207_view1.cs" />
-    <Compile Include="Migrations\202002151220207_view1.Designer.cs">
-      <DependentUpon>202002151220207_view1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002151221533_view2.cs" />
-    <Compile Include="Migrations\202002151221533_view2.Designer.cs">
-      <DependentUpon>202002151221533_view2.cs</DependentUpon>
+    <Compile Include="Migrations\202002160627356_Init.cs" />
+    <Compile Include="Migrations\202002160627356_Init.Designer.cs">
+      <DependentUpon>202002160627356_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
@@ -766,6 +751,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Membership\" />
+    <Folder Include="Views\Recipe\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -781,20 +767,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002150726127_Init.resx">
-      <DependentUpon>202002150726127_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002150735337_Fix.resx">
-      <DependentUpon>202002150735337_Fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151205599_view.resx">
-      <DependentUpon>202002151205599_view.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151220207_view1.resx">
-      <DependentUpon>202002151220207_view1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151221533_view2.resx">
-      <DependentUpon>202002151221533_view2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002160627356_Init.resx">
+      <DependentUpon>202002160627356_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

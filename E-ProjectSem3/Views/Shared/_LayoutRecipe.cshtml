@@ -1,7 +1,11 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using E_ProjectSem3.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
 <!DOCTYPE html>
 <html lang="en-US" id="arve">
-
+@{
+    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +28,7 @@
                 "concatemoji": "\/Content\/assets\/wp-includes\/js\/wp-emoji-release.min.js"
             }
         };
-        ! function(e, a, t) {
+        ! function (e, a, t) {
             var r, n, o, i, p = a.createElement("canvas"),
                 s = p.getContext && p.getContext("2d");
 
@@ -51,14 +55,14 @@
                 t.src = e, t.defer = t.type = "text/javascript", a.getElementsByTagName("head")[0].appendChild(t)
             }
             for (i = Array("flag", "emoji"), t.supports = {
-                    everything: !0,
-                    everythingExceptFlag: !0
-                }, o = 0; o < i.length; o++) t.supports[i[o]] = l(i[o]), t.supports.everything = t.supports.everything && t.supports[i[o]], "flag" !== i[o] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[i[o]]);
-            t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function() {
+                everything: !0,
+                everythingExceptFlag: !0
+            }, o = 0; o < i.length; o++) t.supports[i[o]] = l(i[o]), t.supports.everything = t.supports.everything && t.supports[i[o]], "flag" !== i[o] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[i[o]]);
+            t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function () {
                 t.DOMReady = !0
-            }, t.supports.everything || (n = function() {
+            }, t.supports.everything || (n = function () {
                 t.readyCallback()
-            }, a.addEventListener ? (a.addEventListener("DOMContentLoaded", n, !1), e.addEventListener("load", n, !1)) : (e.attachEvent("onload", n), a.attachEvent("onreadystatechange", function() {
+            }, a.addEventListener ? (a.addEventListener("DOMContentLoaded", n, !1), e.addEventListener("load", n, !1)) : (e.attachEvent("onload", n), a.attachEvent("onreadystatechange", function () {
                 "complete" === a.readyState && t.readyCallback()
             })), (r = t.source || {}).concatemoji ? d(r.concatemoji) : r.wpemoji && r.twemoji && (d(r.twemoji), d(r.wpemoji)))
         }(window, document, window._wpemojiSettings);
@@ -122,8 +126,9 @@
     <link rel='stylesheet' id='userpro_jquery_ui_style-css' href='~/Content/assets/wp-content/plugins/userpro/css/userpro-jquery-ui.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-bookmarks.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav_list-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-collections.css' type='text/css' media='all' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" rel="stylesheet">
     <link href="~/Content/assets/custom.css" rel="stylesheet" />
-    
+
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/jquery.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/jquery-migrate.min.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/osetin-meal-planner/assets/bower_components/chartist/dist/chartist.min.js'></script>
@@ -135,7 +140,7 @@
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/ui/core.min.js'></script>
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/ui/datepicker.min.js'></script>
     <script type='text/javascript'>
-        jQuery(document).ready(function(jQuery) {
+        jQuery(document).ready(function (jQuery) {
             jQuery.datepicker.setDefaults({
                 "closeText": "Close",
                 "currentText": "Today",
@@ -186,11 +191,12 @@
         var ajaxurl = "http://neptune.pinsupreme.com/wp-admin/admin-ajax.php"
     </script>
     <noscript>
-    <style>
-        .woocommerce-product-gallery {
-            opacity: 1 !important;
-        }
-    </style></noscript>
+        <style>
+            .woocommerce-product-gallery {
+                opacity: 1 !important;
+            }
+        </style>
+    </noscript>
     <style type="text/css">
         .recentcomments a {
             display: inline !important;
@@ -218,11 +224,11 @@
                             @Html.AntiForgeryToken()
                             <ul>
                                 <li><span>Logged in as <strong>@(User.Identity.GetUserName())</strong></span></li>
-                                @if (User.IsInRole("silver"))
+                                @if (UserManager.IsInRole(User.Identity.GetUserId(),"silver"))
                                 {
                                     <li><span>Silver member</span></li>
                                 }
-                                @if (User.IsInRole("gold"))
+                                @if (UserManager.IsInRole(User.Identity.GetUserId(),"gold"))
                                 {
                                     <li><span>Gold member</span></li>
                                 }
@@ -258,7 +264,7 @@
                         <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                             <a href="/Home/Recipes">Recipes</a>
                         </li>
-                        @if (User.IsInRole("chef") || User.IsInRole("admin"))
+                        @if (UserManager.IsInRole(User.Identity.GetUserId(),"chef") || UserManager.IsInRole(User.Identity.GetUserId(),"admin"))
                         {
                             <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                                 <a href="/Chef/AddRecipes">Submit recipe</a>
@@ -270,7 +276,7 @@
                         <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
                             <a href="#">About Me</a>
                         </li>
-                        @if (!User.IsInRole("silver") && !User.IsInRole("gold"))
+                        @if (!UserManager.IsInRole(User.Identity.GetUserId(),"silver") && !UserManager.IsInRole(User.Identity.GetUserId(),"gold"))
                         {
                             <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                                 <a href="/Home/MemberShip">Membership</a>

@@ -26,18 +26,10 @@ namespace E_ProjectSem3.Controllers
             ViewBag.DataSliderSmall = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
             ViewBag.DataSliderBig = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
 
-            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).OrderBy(r => r.Title).ToList();
-            int pageSize = 9;
-            int pageNumber = (page ?? 1);
-            ViewBag.CurrentPage = page ?? 1;
-            ViewBag.PageTotal = Math.Ceiling((double)listRecipe.Count() / pageSize);
-
-
-
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Check expired member ship:
             ViewBag.Expired = "";
-            if (User.Identity.IsAuthenticated && (User.IsInRole("silver") || User.IsInRole("gold")))
+            if (Request.IsAuthenticated && (UserManager.IsInRole(User.Identity.GetUserId(), "silver") || UserManager.IsInRole(User.Identity.GetUserId(), "gold")))
             {
                 var id = User.Identity.GetUserId();
                 var user = UserManager.FindById(id);
@@ -46,6 +38,13 @@ namespace E_ProjectSem3.Controllers
                     ViewBag.Expired = "Expired";
                 }
             }
+
+            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).OrderBy(r => r.Title).ToList();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            ViewBag.CurrentPage = page ?? 1;
+            ViewBag.PageTotal = Math.Ceiling((double)listRecipe.Count() / pageSize);
+
 
             //Vn pay:
             ViewBag.ThanhToan = "";
@@ -104,12 +103,26 @@ namespace E_ProjectSem3.Controllers
 
             return View();
         }
+        [AllowAnonymous]
         public ActionResult Recipes(string search, int? page, int? category)
         {
             ViewBag.ListCategories = db.Categories.Where(c => c.DeletedAt == null).OrderBy(c=>c.Name).ToList();
             ViewBag.CurrentCategory = category;
             ViewBag.Search = search;
             ViewBag.DataSlider = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).Take(8).ToList();
+
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            //Check expired member ship:
+            ViewBag.Expired = "";
+            if (Request.IsAuthenticated && (UserManager.IsInRole(User.Identity.GetUserId(), "silver") || UserManager.IsInRole(User.Identity.GetUserId(), "gold")))
+            {
+                var id = User.Identity.GetUserId();
+                var user = UserManager.FindById(id);
+                if (memberService.CheckExpiredMember(user) == true)
+                {
+                    ViewBag.Expired = "Expired";
+                }
+            }
 
             var predicate = PredicateBuilder.New<Recipe>(true);
             if (search != null)
@@ -138,22 +151,7 @@ namespace E_ProjectSem3.Controllers
 
             Debug.WriteLine(page);
             Debug.WriteLine(Math.Ceiling((double)listRecipe.Count() / pageSize));
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            //Check expired member ship:
-            if (User.Identity.IsAuthenticated)
-            {
-                var userId = User.Identity.GetUserId();
-                var user = UserManager.FindById(userId);
-                if (memberService.CheckExpiredMember(user) == true)
-                {
-                    TempData["Expired"] = "Expired!";
-                }
-                if (UserManager.IsInRole(userId, "silver") || UserManager.IsInRole(userId, "gold"))
-                {
-                    ViewBag.StillMember = true;
-                }
-            }
-            
+
             return View(listRecipe.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult RecipeDetail(int? id)
@@ -167,6 +165,28 @@ namespace E_ProjectSem3.Controllers
             {
                 return HttpNotFound();
             }
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            //Check expired member ship:
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = UserManager.FindById(userId);
+                if (memberService.CheckExpiredMember(user))
+                {
+                    TempData["Expired"] = "Expired!";
+                }
+            }
+            if (recipe.Type == (int)Recipe.RecipeType.NotFree && (!Request.IsAuthenticated ||(!UserManager.IsInRole(User.Identity.GetUserId(),"silver") 
+                                && !UserManager.IsInRole(User.Identity.GetUserId(),"gold") && recipe.ApplicationUser.Id != User.Identity.GetUserId())))
+            {
+                var message = "Become a member";
+                return RedirectToAction("Recipes", "Home",new{msg=message});
+            }
+
+            recipe.ViewCount++;
+            db.Recipes.AddOrUpdate(recipe);
+            db.SaveChanges();
+
             return View(recipe);
         }
 
@@ -180,6 +200,7 @@ namespace E_ProjectSem3.Controllers
         {
             return View();
         }
+        [Authorize]
         public ActionResult MemberShip()
         {
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));

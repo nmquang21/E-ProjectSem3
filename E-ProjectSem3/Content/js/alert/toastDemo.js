@@ -4,13 +4,13 @@
         resetToastPosition();
         $.toast({
             heading: 'Success',
-            text: `You are ${$('#show-message').data('success')}`,
+            text: `You are ${$('#show-message').data('success')} member.`,
             showHideTransition: 'slide',
             icon: 'success',
             loaderBg: '#f96868',
             position: {
-                right: 20,
-                top: 40
+                left: 20,
+                top: 20
             }
         })
     };
@@ -19,11 +19,14 @@
         resetToastPosition();
         $.toast({
             heading: 'Success',
-            text: 'Created recipe.',
+            text: ' Recipe has been created.',
             showHideTransition: 'slide',
             icon: 'success',
             loaderBg: '#f96868',
-            position: 'top-right'
+            position: {
+                left: 20,
+                top: 20
+            }
         })
     };
     showInfoToast = function () {
@@ -35,7 +38,10 @@
             showHideTransition: 'slide',
             icon: 'info',
             loaderBg: '#46c35f',
-            position: 'top-right'
+            position: {
+                left: 20,
+                top: 20
+            }
         })
     };
   showWarningToast = function() {

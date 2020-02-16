@@ -270,6 +270,7 @@ C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\roslyn\VBCSCompi
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Antlr3.Runtime.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\EntityFramework.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\EntityFramework.SqlServer.dll
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\LinqKit.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\log4net.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.AspNet.Identity.EntityFramework.dll
@@ -286,6 +287,8 @@ C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.S
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Newtonsoft.Json.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Owin.dll
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.dll
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.Mvc.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.Helpers.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.Mvc.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.Optimization.dll
@@ -294,6 +297,7 @@ C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.WebPa
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.WebPages.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.WebPages.Razor.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\WebGrease.dll
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\LinqKit.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\log4net.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.AspNet.Identity.Owin.xml
@@ -305,6 +309,8 @@ C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.S
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.xml
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.Mvc.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.Helpers.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.Mvc.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\System.Web.Optimization.xml
@@ -318,19 +324,9 @@ C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\EntityFramework.
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\EntityFramework.SqlServer.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csprojAssemblyReference.cache
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Init.resources
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Fix.resources
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.GenerateResource.cache
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.CopyComplete
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.dll
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.pdb
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\LinqKit.dll
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.dll
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.Mvc.dll
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\LinqKit.xml
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.xml
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.Mvc.xml
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.view.resources
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.view1.resources
-C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.view2.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csprojAssemblyReference.cache
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Init.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.GenerateResource.cache

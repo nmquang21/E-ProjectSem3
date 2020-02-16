@@ -1,6 +1,10 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using E_ProjectSem3.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
 <!DOCTYPE html>
-
+@{
+    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+}
 <html lang="en-US" id="arve">
 
 <head>
@@ -116,7 +120,7 @@
     <link rel='stylesheet' id='userpro_jquery_ui_style-css' href='~/Content/assets/wp-content/plugins/userpro/css/userpro-jquery-ui.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-bookmarks.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav_list-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-collections.css' type='text/css' media='all' />
-    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" rel="stylesheet"/>
     <link href="~/Content/assets/custom.css" rel="stylesheet" />
 
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/jquery.js'></script>
@@ -186,21 +190,22 @@
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
                         {
                             @Html.AntiForgeryToken()
-                            <ul>
-                                <li><span>Logged in as <strong>@(User.Identity.GetUserName())</strong></span></li>
-                                @if (User.IsInRole("silver"))
-                                {
-                                    <li><span>Silver member</span></li>
-                                }
-                                @if (User.IsInRole("gold"))
-                                {
-                                    <li><span>Gold member</span></li>
-                                }
-                                <li><a href="#"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
-                                <li><a href="#"><i class="os-icon os-icon-ui-33"></i> <span>My Bookmarks</span></a></li>
-                                <li><a href="#"><i class="os-icon os-icon-phone-21"></i> <span>My Meal Plans</span></a></li>
-                                <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-12"></i> <span>Logout</span></a></li>
-                            </ul>
+                    <ul>
+                        <li><span>Logged in as <strong>@(User.Identity.GetUserName())</strong></span></li>
+
+                        @if(UserManager.IsInRole(User.Identity.GetUserId(), "silver"))
+                        {
+                        <li><span>Silver member</span></li>
+                        }
+                        @if (UserManager.IsInRole(User.Identity.GetUserId(), "gold"))
+                        {
+                            <li><span>Gold member</span></li>
+                        }
+                        <li><a href="#"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
+                        <li><a href="#"><i class="os-icon os-icon-ui-33"></i> <span>My Bookmarks</span></a></li>
+                        <li><a href="#"><i class="os-icon os-icon-phone-21"></i> <span>My Meal Plans</span></a></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-12"></i> <span>Logout</span></a></li>
+                    </ul>
                         }
                     }
                     else
@@ -231,7 +236,7 @@
                         <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                             <a href="/Home/Recipes">Recipes</a>
                         </li>
-                        @if (User.IsInRole("chef") || User.IsInRole("admin"))
+                        @if (Request.IsAuthenticated && (UserManager.IsInRole(User.Identity.GetUserId(), "chef") || UserManager.IsInRole(User.Identity.GetUserId(), "admin")))
                         {
                             <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                                 <a href="/Chef/AddRecipes">Submit recipe</a>
@@ -243,7 +248,7 @@
                         <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
                             <a href="#">About Me</a>
                         </li>
-                        @if (!User.IsInRole("silver") && !User.IsInRole("gold"))
+                        @if (!Request.IsAuthenticated || (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold")))
                         {
                             <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                                 <a href="/Home/MemberShip">Membership</a>

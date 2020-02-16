@@ -14,6 +14,8 @@ namespace E_ProjectSem3.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
                         Description = c.String(nullable: false),
+                        Image = c.String(),
+                        Icon = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
@@ -26,15 +28,16 @@ namespace E_ProjectSem3.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         ApproveId = c.Int(nullable: false),
-                        Title = c.String(nullable: false),
-                        Description = c.String(nullable: false),
-                        Content = c.String(nullable: false),
+                        Title = c.String(),
+                        Description = c.String(),
+                        Content = c.String(),
                         FeaturedImage = c.String(),
-                        Detail = c.String(nullable: false),
-                        Difficulty = c.String(nullable: false),
+                        Detail = c.String(),
+                        Difficulty = c.String(),
                         PreparationMinute = c.Int(nullable: false),
                         CookingMinute = c.Int(nullable: false),
                         CookingTemp = c.Int(nullable: false),
+                        ViewCount = c.Int(nullable: false),
                         Video = c.String(),
                         Status = c.Int(nullable: false),
                         Type = c.Int(nullable: false),
@@ -168,7 +171,7 @@ namespace E_ProjectSem3.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Amount = c.Double(nullable: false),
+                        Amount = c.String(nullable: false),
                         Note = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
@@ -185,7 +188,7 @@ namespace E_ProjectSem3.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Value = c.Int(nullable: false),
+                        Value = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
@@ -212,6 +215,22 @@ namespace E_ProjectSem3.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Recipes", t => t.RecipeId, cascadeDelete: true)
                 .Index(t => t.RecipeId);
+            
+            CreateTable(
+                "dbo.WishLists",
+                c => new
+                    {
+                        RecipeId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        CreatedAt = c.DateTime(),
+                        UpdatedAt = c.DateTime(),
+                        DeletedAt = c.DateTime(),
+                    })
+                .PrimaryKey(t => new { t.RecipeId, t.UserId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.Recipes", t => t.RecipeId, cascadeDelete: true)
+                .Index(t => t.RecipeId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Comments",
@@ -287,19 +306,6 @@ namespace E_ProjectSem3.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
-            CreateTable(
-                "dbo.WishLists",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        RecipeId = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(),
-                        UpdatedAt = c.DateTime(),
-                        DeletedAt = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
         }
         
         public override void Down()
@@ -307,6 +313,8 @@ namespace E_ProjectSem3.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Memberships", "MemberId", "dbo.Members");
             DropForeignKey("dbo.Memberships", "ApplicationUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.WishLists", "RecipeId", "dbo.Recipes");
+            DropForeignKey("dbo.WishLists", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Steps", "RecipeId", "dbo.Recipes");
             DropForeignKey("dbo.Nutritions", "RecipeId", "dbo.Recipes");
             DropForeignKey("dbo.Ingredients", "RecipeId", "dbo.Recipes");
@@ -322,6 +330,8 @@ namespace E_ProjectSem3.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Memberships", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Memberships", new[] { "MemberId" });
+            DropIndex("dbo.WishLists", new[] { "UserId" });
+            DropIndex("dbo.WishLists", new[] { "RecipeId" });
             DropIndex("dbo.Steps", new[] { "RecipeId" });
             DropIndex("dbo.Nutritions", new[] { "RecipeId" });
             DropIndex("dbo.Ingredients", new[] { "RecipeId" });
@@ -336,12 +346,12 @@ namespace E_ProjectSem3.Migrations
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Recipes", new[] { "Category_Id" });
             DropIndex("dbo.Recipes", new[] { "ApplicationUser_Id" });
-            DropTable("dbo.WishLists");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.OrderInfoes");
             DropTable("dbo.Memberships");
             DropTable("dbo.Members");
             DropTable("dbo.Comments");
+            DropTable("dbo.WishLists");
             DropTable("dbo.Steps");
             DropTable("dbo.Nutritions");
             DropTable("dbo.Ingredients");
