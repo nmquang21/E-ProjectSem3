@@ -2,13 +2,22 @@
 @using System.Globalization
 @using E_ProjectSem3.Models
 @using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
 @using PagedList.Mvc;
 
 @{
-        ViewBag.Title = "Recipes";
-        Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    ViewBag.Title = "Recipes";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+}
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" rel="stylesheet" />
+<style>
+    .swal2-show {
+        font-size: 14px;
+        width: 500px;
+        height: 300px;
     }
-
+</style>
     <div class="featured-recipes-slider-w featured-layout-mixed" style="background-image: url(/Content/assets/wp-content/themes/neptune-by-osetin/assets/img/patterns/flowers_light.jpg); background-repeat: repeat;">
         <div class="featured-recipes-fade-left">
             <div class="icon-w"><i class="os-icon os-icon-chevron-left"></i></div>
@@ -168,6 +177,7 @@
                     @for (var i = 0; i < Model.Count(); i++)
                     {
                         var recipe = Model[i] as Recipe;
+                        bool liked = recipe.WishLists.Where(w => w.UserId == User.Identity.GetUserId()).ToList().Count == 1;
                         var zzz = "";
                         if (i % 3 == 0)
                         {
@@ -213,14 +223,26 @@
                                                     <li><a href="#" rel="category tag">@(recipe.Category.Name)</a></li>
                                                 </ul>
                                             </div>
+                                            @if (recipe.ApplicationUser.Id == User.Identity.GetUserId())
+                                            {
+                                                <ul class="archive-item-meta-cuisines">
+                                                    <li>
+                                                        <a href="#" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Your recipe">
+                                                            <span class="single-recipe-cuisine-image"><img src="https://res.cloudinary.com/dev20/image/upload/v1581839681/Jame/recipe-icon_qeqogv.png" alt="Italian" style="height: 28px;" /></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            }else if (recipe.Type == (int)Recipe.RecipeType.NotFree && (!Request.IsAuthenticated || (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold") && recipe.ApplicationUser.Id != User.Identity.GetUserId())))
+                                            {
                                             <ul class="archive-item-meta-cuisines">
                                                 <li>
-                                                    <a href="#" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
-                                                        <span class="single-recipe-cuisine-label">Italian</span>
-                                                        <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/it.png" alt="Italian" /></span>
+                                                    <a href="/Home/Membership" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Become member">
+                                                        <span class="single-recipe-cuisine-image"><img src="https://res.cloudinary.com/dev20/image/upload/v1581777158/Jame/becomeamember-02_oybvw6.png" alt="Italian" style="height: 28px;" /></span>
                                                     </a>
                                                 </li>
                                             </ul>
+                                            }
+
                                         </div>
                                         <div class="archive-item-content-text">
                                             Put your wine, shallot, herbs and peppercorns into a small pot and bring to the boil, then simmer slowly for 3 or 4 minutes or...
@@ -236,12 +258,25 @@
                                             <div class="archive-item-views-count-likes">
                                                 <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="206" data-vote-action="vote" data-votes-count="477">
                                                     <span class="slide-button-i">
-                                                        <i class="os-icon os-icon-ui-03"></i>
-                                                        <span class="slide-button-label osetin-vote-action-label">
-                                                            Like
-                                                        </span>
-                                                        <span class="slide-button-sub-label osetin-vote-count ">
-                                                            477
+                                                        
+                                                        
+                                                            <span class="btn-unlike" data-id="@(recipe.Id)" style="display: @(liked?"contents":"none")">
+                                                                <i class="fas fa-heart" style="font-size: 18px;"></i>
+                                                                <span class="slide-button-label">
+                                                                    Liked
+                                                                </span>
+                                                            </span>
+                                                        
+                                                            <span class="btn-like" data-id="@(recipe.Id)" style="display: @(liked?"none":"contents")">
+                                                                <i class="far fa-heart" style="font-size: 18px;"></i>
+                                                                <span class="slide-button-label">
+                                                                    Like
+                                                                </span>
+                                                            </span>
+                                                       
+
+                                                        <span class="slide-button-sub-label like-count">
+                                                            @(recipe.WishLists.Count)
                                                         </span>
                                                     </span>
                                                 </a>
@@ -416,4 +451,77 @@
             </div>
         </div>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+@section Scripts{
+    <script>
+        jQuery(document).ready(function($) {
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var msg = url.searchParams.get("msg");
+            if (msg == "Become a member") {
+                Swal.fire({
+                    title: '<strong>It is not free!</strong>',
+                    icon: 'warning',
+                    html:
+                        'Become a ' +
+                            '<a href="/Home/Membership">member</a> ' +
+                            'to access more recipes.',
 
+                    background: '#fff url(/images/trees.png)',
+                    backdrop: ` rgba(0,0,123,0.4)
+                                url("https://media.giphy.com/media/dTX1p9kkP8dPZyUd09/giphy.gif")
+                                right top
+                                no-repeat`
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.cancel) {
+                        //after cancel:
+
+                    }
+                })
+            }
+
+            //Like:
+            $('.btn-like').click(function() {
+                var id = $(this).data('id');
+                var btn = $(this);
+                $.ajax({
+                    url: `/Recipe/LikeAjax?id=${id}`,
+                    type: 'POST',
+                    success: function(responseData) {
+                        if (responseData.data == "NotLogIn") {
+                            alert("Not Log In");
+                        } else {
+                            btn.css('display', 'none');
+                            btn.prev('.btn-unlike').css('display', 'contents');
+                            btn.parent('.slide-button-i').children('.like-count').html(responseData.data);
+                        }
+                        console.log(responseData);
+                        console.log(btn.parent('.slide-button-i').children('.like-count'));
+                    }
+                });
+            });
+            //Unlike:
+            $('.btn-unlike').click(function() {
+                var id = $(this).data('id');
+                var btn = $(this);
+                $.ajax({
+                    url: `/Recipe/UnLikeAjax?id=${id}`,
+                    type: 'POST',
+                    success: function(responseData) {
+                        if (responseData.data == "NotLogIn") {
+                            alert("Not Log In");
+                        } else {
+                            btn.css('display', 'none');
+                            btn.next('.btn-like').css('display', 'contents');
+                            btn.parent('.slide-button-i').children('.like-count').html(responseData.data);
+                        }
+                        console.log(responseData);
+                        console.log(btn.parent('.slide-button-i').children('.like-count'));
+                    }
+                });
+            });
+
+
+        })
+    </script>
+}

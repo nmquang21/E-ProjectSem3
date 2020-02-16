@@ -11,7 +11,7 @@ div.userpro-input label.userpro-checkbox span.checked {
     background: url(http://neptune.pinsupreme.com/wp-content/plugins/userpro/skins/elegant/img/checked-checkbox.png) no-repeat center;
 }
 
-i.fas:before, i.fa:before, i.fab:before {
+/*i.fas:before, i.fa:before, i.fab:before, i.far:before {
     font-family: FontAwesome !important;
     font-style: normal !important;
-}
+}*/

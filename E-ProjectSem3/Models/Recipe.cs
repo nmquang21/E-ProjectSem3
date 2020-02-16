@@ -44,6 +44,7 @@ namespace E_ProjectSem3.Models
         public virtual ICollection<Step> Steps { get; set; }
         public virtual ICollection<Ingredient> Ingredients { get; set; }
         public virtual ICollection<ContestUser> ContestUsers { get; set; }
+        public virtual ICollection<WishList> WishLists { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public enum RecipeStatus
