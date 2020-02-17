@@ -188,7 +188,6 @@ C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.AspNet.Identi
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Security.xml
-C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Security.Cookies.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Security.Facebook.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
@@ -209,8 +208,6 @@ C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.AspNet.Identi
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csprojAssemblyReference.cache
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Init.resources
-C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Member.resources
-C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Fix1.resources
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.GenerateResource.cache
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.CopyComplete
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.dll
@@ -331,3 +328,13 @@ C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectS
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Init.resources
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.GenerateResource.cache
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Comment.resources
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\LinqKit.dll
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\log4net.dll
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.dll
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.Mvc.dll
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\LinqKit.xml
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\log4net.xml
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.xml
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.Mvc.xml
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Comment.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.rate.resources

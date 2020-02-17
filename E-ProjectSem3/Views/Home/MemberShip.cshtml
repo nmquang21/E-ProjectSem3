@@ -56,7 +56,18 @@
                                                 </div>
                                                 <div class="archive-item-deep-meta">
                                                     <div class="archive-item-read-more-btn">
-                                                        <button type="button" class="pay-submit" style="margin-bottom: 10px;">Pay Using Paypal</button>
+                                                        
+                                                        <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                                            <input type="hidden" name="cmd" value="_xclick">
+                                                            <input type="hidden" name="business" value="sb-u3prf891076@business.example.com">
+                                                            <input type="hidden" name="currency_code" value="USD">
+                                                            <input type="hidden" name="item_name" value="OrderID">
+                                                            <input type="hidden" name="amount" value="10">
+                                                            <button type="submit" class="pay-submit" style="margin-bottom: 10px;">Pay Using Paypal</button>
+                                                        </form>
+
+
+
 
                                                         <form action="@Url.Action("VnPayMembership","Membership")" method="post">
                                                             <input type="hidden" name="amount" value="10" />
@@ -85,7 +96,14 @@
                                                 <div class="archive-item-deep-meta">
 
                                                     <div class="archive-item-read-more-btn">
-                                                        <button type="button" class="pay-submit" style="margin-bottom: 10px;">Pay Using Paypal</button>
+                                                        <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                                            <input type="hidden" name="cmd" value="_xclick">
+                                                            <input type="hidden" name="business" value="sb-u3prf891076@business.example.com">
+                                                            <input type="hidden" name="currency_code" value="USD">
+                                                            <input type="hidden" name="item_name" value="OrderID">
+                                                            <input type="hidden" name="amount" value="100">
+                                                            <button type="submit" class="pay-submit" style="margin-bottom: 10px;">Pay Using Paypal</button>
+                                                        </form>
 
                                                         <form action="@Url.Action("VnPayMembership","Membership")" method="post">
                                                             <input type="hidden" name="amount" value="100"/>
