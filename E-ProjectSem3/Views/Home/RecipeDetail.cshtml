@@ -468,7 +468,7 @@
                 <h3 class="author-name"><a href="#">@(Model.ApplicationUser.FirstName)</a></h3>
                 <div style="display:none;">
                     <div class="post-date">
-                        <time class="entry-date updated" datetime="@(Convert.ToDateTime(recipe.CreatedAt).ToString("M"))">@(Convert.ToDateTime(recipe.CreatedAt).ToString("M"))</time>
+                        <time class="entry-date updated" datetime="@(Convert.ToDateTime(Model.CreatedAt).ToString("M"))">@(Convert.ToDateTime(Model.CreatedAt).ToString("M"))</time>
                     </div>
                     <div class="post-author">
                         <strong class="author vcard">
@@ -637,88 +637,7 @@
         <span>Green salad with cherries</span>
     </a>
 </div>
-<div class="os-container">
-    <div class="related-recipes-w" style="background-image:url(http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/img/patterns/flowers_light.jpg); background-repeat: repeat;">
-        <div class="related-recipes-heading">
-            <h2 class="bordered-title"><span>Related Recipes:</span></h2>
-            <ul>
-                <li><a href="http://neptune.pinsupreme.com/tag/broccoli/" rel="tag">broccoli</a></li>
-                <li><a href="http://neptune.pinsupreme.com/tag/corn/" rel="tag">corn</a></li>
-                <li><a href="http://neptune.pinsupreme.com/tag/mushrooms/" rel="tag">mushrooms</a></li>
-            </ul>
-        </div>
-        <ul class="related-recipes">
 
-            <li>
-                <a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-pancetta-leeks-thyme/" class="fader-activator">
-                    <figure>
-                        <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe12-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe12-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe12-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe12-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe12-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe12-100x100.jpg 100w"
-                             sizes="(max-width: 400px) 100vw, 400px" /><span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </figure>
-                    <span>Roasted chicken breast</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="http://neptune.pinsupreme.com/recipe/mexican-style-barbecued-corn/" class="fader-activator">
-                    <figure>
-                        <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-100x100.jpg 100w"
-                             sizes="(max-width: 400px) 100vw, 400px" /><span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </figure>
-                    <span>Mexican-style barbecued corn</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="http://neptune.pinsupreme.com/recipe/roasted-chicken-breast-with-cherry-tomatoes-asparagus/" class="fader-activator">
-                    <figure>
-                        <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/step5-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/step5-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/step5-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/step5-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/step5-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/step5-100x100.jpg 100w"
-                             sizes="(max-width: 400px) 100vw, 400px" /><span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </figure>
-                    <span>Roasted chicken breast with cherry</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" class="fader-activator">
-                    <figure>
-                        <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe14-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe14-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14-100x100.jpg 100w"
-                             sizes="(max-width: 400px) 100vw, 400px" /><span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </figure>
-                    <span>Cheesy pasta with crispy pangritata</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/" class="fader-activator">
-                    <figure>
-                        <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-100x100.jpg 100w"
-                             sizes="(max-width: 400px) 100vw, 400px" /><span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </figure>
-                    <span>Green salad with cherries</span>
-                </a>
-            </li>
-
-        </ul>
-    </div>
-</div>
-<div class="os-container">
-    <div class="single-post-comments-w with-ads">
-        <div class="single-post-comments" id="singlePostComments">
-            <div id="disqus_thread">
-            </div>
-        </div>
-        <div class="single-post-comments-sidebar">
-            <aside id="text-6" class="widget-odd widget-last widget-first widget-1 widget widget_text">
-                <div class="textwidget"><a href="#"><img src="~/Content/assets/wp-content/uploads/2015/09/magic_placeholder.jpg" /></a></div>
-            </aside>
-        </div>
-    </div>
-</div>
 <script type="text/javascript" src="~/Content/js/Like.js"></script>
 @section Scripts{
     

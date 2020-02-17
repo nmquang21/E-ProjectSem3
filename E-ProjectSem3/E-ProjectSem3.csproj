@@ -187,6 +187,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ChefController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
@@ -201,6 +202,10 @@
     <Compile Include="Migrations\202002161706272_Comment.cs" />
     <Compile Include="Migrations\202002161706272_Comment.Designer.cs">
       <DependentUpon>202002161706272_Comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002171413232_rate.cs" />
+    <Compile Include="Migrations\202002171413232_rate.Designer.cs">
+      <DependentUpon>202002171413232_rate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
@@ -755,6 +760,11 @@
     <Content Include="Views\Home\MemberShip.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Chef\AddRecipes.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -780,6 +790,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161706272_Comment.resx">
       <DependentUpon>202002161706272_Comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002171413232_rate.resx">
+      <DependentUpon>202002171413232_rate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
