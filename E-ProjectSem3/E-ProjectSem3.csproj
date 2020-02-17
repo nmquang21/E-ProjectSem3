@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202002171413232_rate.Designer.cs">
       <DependentUpon>202002171413232_rate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002171518456_r.cs" />
+    <Compile Include="Migrations\202002171518456_r.Designer.cs">
+      <DependentUpon>202002171518456_r.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -760,10 +764,6 @@
     <Content Include="Views\Home\MemberShip.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Chef\AddRecipes.cshtml" />
-    <Content Include="Views\Comments\Create.cshtml" />
-    <Content Include="Views\Comments\Delete.cshtml" />
-    <Content Include="Views\Comments\Details.cshtml" />
-    <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -793,6 +793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002171413232_rate.resx">
       <DependentUpon>202002171413232_rate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002171518456_r.resx">
+      <DependentUpon>202002171518456_r.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

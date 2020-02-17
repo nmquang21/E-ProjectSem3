@@ -338,3 +338,4 @@ C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.Mvc.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Comment.resources
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.rate.resources
+C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.r.resources

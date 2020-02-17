@@ -16,9 +16,8 @@ namespace E_ProjectSem3.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-
         public int RecipeId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int ApproveId { get; set; }
 
         public enum Status
