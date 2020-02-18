@@ -9,7 +9,9 @@
         border-radius: 4px;
         border-color: #adc9da;
     }
-
+    .acf-field[data-width]+.acf-field[data-width] {
+        border-left: none !important;
+    }
     input[type="number"] {
         border: 1px solid #adc9da;
     }
@@ -45,7 +47,7 @@
                         <div class="acf-fields acf-form-fields -top">
 
 
-                            <div class="acf-field acf-field-text acf-field--post-title is-required" data-required="1" style="width: 80%" data-width="30">
+                            <div class="acf-field acf-field-text acf-field--post-title is-required" data-required="1" style="width: 80%; padding-right: 15px;" data-width="30">
                                 <div class="acf-label">
                                     <label for="acf-_post_title">Title <span class="acf-required">*</span></label>
                                 </div>
@@ -121,7 +123,7 @@
                                 <div class="acf-label">
                                     <label for="acf-field_5585b766453f9">Recipe Category</label>
                                 </div>
-                                <div class="acf-input">
+                                <div class="acf-input" style="padding-right: 15px;">
                                     <select id="acf-field_5585b766453f9" class="" name="categoryId" placeholder="Select">
                                         @foreach (var cate in ViewBag.Categories)
                                         {
@@ -165,7 +167,7 @@
                             </div>
 
 
-                            <div class="acf-field acf-field-text acf-field-56303fcf0427d" style="width:33%;" data-width="25">
+                            <div class="acf-field acf-field-text acf-field-56303fcf0427d" style="width:33%; padding-left: 10px;" data-width="25">
                                 <div class="acf-label">
                                     <label for="acf-field_56303fcf0427d">Cooking Time<span class="acf-required">*</span></label>
                                 </div>
@@ -177,7 +179,7 @@
                             </div>
 
 
-                            <div class="acf-field acf-field-text acf-field-563062b0f356d" style="width:33%;" data-width="25">
+                            <div class="acf-field acf-field-text acf-field-563062b0f356d" style="width:33%; padding-left: 10px;" data-width="25">
                                 <div class="acf-label">
                                     <label for="acf-field_563062b0f356d">Cooking Temperature<span class="acf-required">*</span></label>
                                 </div>
@@ -231,15 +233,14 @@
                                                         </div>
                                                     </td>
                                                     <td class="acf-row-handle remove">
-                                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                                        <i class="fas fa-trash-alt delete-ct" style="cursor: pointer"></i>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
 
                                         <div class="acf-actions">
-                                            <a class="acf-button button button-primary" id="btn-add-ingredient">Add Ingredient</a>
+                                            @*<a class="acf-button button button-primary" id="btn-add-ingredient">Add Ingredient</a>*@
                                         </div>
 
                                     </div>
@@ -299,8 +300,7 @@
 
                                                     </td>
                                                     <td class="acf-row-handle remove">
-                                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                                        <i class="fas fa-trash-alt delete-step" style="cursor: pointer"></i>
                                                     </td>
 
                                                 </tr>
@@ -308,7 +308,7 @@
                                         </table>
 
                                         <div class="acf-actions">
-                                            <a class="acf-button button button-primary" id="btn-add-step">Add Step</a>
+                                            @*<a class="acf-button button button-primary" id="btn-add-step">Add Step</a>*@
                                         </div>
 
                                     </div>
@@ -358,8 +358,7 @@
                                                     </td>
 
                                                     <td class="acf-row-handle remove">
-                                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
+                                                        @*<i class="fas fa-trash-alt delete-nutri" style="cursor: pointer"></i>*@
                                                     </td>
 
                                                 </tr>
@@ -387,130 +386,7 @@
 <div id="add-success" data-msg="@(TempData["AddSuccess"])"></div>
 
 @section Scripts{
-    <script>
-    jQuery(document).ready(function($) {
-        if ($('#add-success').data('msg') == "Success") {
-            showSuccessToast();
-        };
-        var index = 1;
-        $('#btn-add-nutrition').click(function() {
-            index++;
-            var contentNutrition = `<tr class="acf-row acf-clone nutrition">
-
-                                                    <td class="acf-row-handle order">
-                                                        <span>${index}</span>
-                                                    </td>
-
-                                                    <td class="acf-field acf-field-text acf-field-558bba3a6bc23 -collapsed-target" data-name="nutrition_name" data-type="text">
-                                                        <div class="acf-input">
-                                                            <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listNutrition[${index -
-                1}].Name}" />
-                                                            </div>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="acf-field acf-field-text acf-field-558bba486bc24" data-name="nutrition_value" data-type="text">
-                                                        <div class="acf-input">
-                                                            <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listNutrition[${index -
-                1}].Value" />
-                                                            </div>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="acf-row-handle remove">
-                                                        <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                                        <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
-                                                    </td>
-
-                                                </tr>`;
-            $('.list-nutrition').prepend(contentNutrition);
-        });
-
-        var indexCT = 1;
-        $('#btn-add-ingredient').click(function() {
-            indexCT++;
-            var contentCT = `<tr class="acf-row acf-clone ct">
-                                            <td class="acf-row-handle order" title="Drag to reorder">
-                                                <span>${indexCT}</span>
-                                            </td>
-                                            <td class="acf-field acf-field-text acf-field-5585317d9b50b">
-                                                <div class="acf-input">
-                                                    <div class="acf-input-wrap">
-                                                        <input type="text" id="" name="listIngredient[${indexCT - 1
-                }].Name" />
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="acf-field acf-field-text acf-field-558531f69b50c">
-                                                <div class="acf-input">
-                                                    <div class="acf-input-wrap">
-                                                        <input type="text" id="" name="listIngredient[${indexCT - 1
-                }].Amount" />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="acf-row-handle remove">
-                                                <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                                <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
-                                            </td>
-                                        </tr>`;
-            $('.list-ct').prepend(contentCT);
-        });
-
-        var indexStep = 1;
-        $('#btn-add-step').click(function() {
-            indexStep++;
-            var contentStep = `<tr class="acf-row step">
-                                                <td class="acf-row-handle order ui-sortable-handle">
-                                                    <input type="text" id="" name="listStep[${indexStep - 1
-                }].Index" value="${indexStep}">
-                                                </td>
-
-                                                <td class="acf-fields">
-                                                    <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 50%" data-width="30" data-name="step_description" data-type="textarea">
-                                                        <div class="acf-label">
-                                                            <label for="step_title">Title</label>
-                                                        </div>
-                                                        <div class="acf-input">
-                                                            <input type="text" id="step_title" name="listStep[${
-                indexStep - 1}].Title">
-                                                        </div>
-                                                    </div>
-                                                    <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 50%" data-width="30" data-name="step_description" data-type="textarea">
-                                                        <div class="acf-label">
-                                                            <label for="image-step">Image</label>
-                                                        </div>
-                                                        <div class="acf-input">
-                                                            <input type="text" id="image-step" name="listStep[${
-                indexStep - 1}].ImagePath">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" data-name="step_description" data-type="textarea">
-                                                        <div class="acf-label">
-                                                            <label for="step_description">Description</label>
-                                                        </div>
-                                                        <div class="acf-input">
-                                                            <textarea id="step_description" name="listStep[${
-                indexStep - 1}].Description" rows="4"></textarea>
-                                                        </div>
-                                                    </div>
-
-
-                                                </td>
-                                                <td class="acf-row-handle remove">
-                                                    <a class="acf-icon -plus small acf-js-tooltip" href="#" data-event="add-row" title="Add row"></a>
-                                                    <a class="acf-icon -minus small acf-js-tooltip" href="#" data-event="remove-row" title="Remove row"></a>
-                                                </td>
-
-                                            </tr>`;
-            $('.list-step').prepend(contentStep);
-        });
-        })
-    </script>
+    <script src="~/Content/js/SubmitRecipe.js"></script>
 }
 
 

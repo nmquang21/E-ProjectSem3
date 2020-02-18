@@ -505,6 +505,7 @@
     <Content Include="Content\js\jquery.dataTables.js" />
     <Content Include="Content\js\Like.js" />
     <Content Include="Content\js\PopularRecipe.js" />
+    <Content Include="Content\js\SubmitRecipe.js" />
     <Content Include="Content\js\utils.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
