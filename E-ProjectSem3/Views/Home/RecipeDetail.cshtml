@@ -1,9 +1,11 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using E_ProjectSem3.Models
+@using Microsoft.AspNet.Identity
 @model E_ProjectSem3.Models.Recipe
 @{
     ViewBag.Title = "RecipeDetail";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
     bool liked = Model.WishLists.Where(w => w.UserId == User.Identity.GetUserId()).ToList().Count == 1;
+    var listComment = ViewBag.ListComment as List<Comment>;
 }
 
 <div class="os-container top-bar-w">
@@ -445,7 +447,7 @@
             <ul>
                 <li class="social-bottom-comments">
                     <i class="os-icon os-icon-thin-comments"></i>
-                    <a href="#singlePostComments"><span class="dsq-postid">Comment(@(Model.Comments.Count))</span></a>
+                    <a href="#singlePostComments"><span class="dsq-postid">Comment(@(listComment.Count))</span></a>
                 </li>
                 <li class="social-links">
                     <a href="https://facebook.com" class=""><i class="os-icon os-icon-social-twitter"></i></a><a href="https://facebook.com" class=""><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com" class=""><i class="os-icon os-icon-social-instagram"></i></a>
@@ -481,113 +483,119 @@
                     <a href="https://facebook.com" class="profile-url">
                         <i class="os-icon os-icon-social-twitter"></i>
                     </a>
-                    <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com"
+                    <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com"></a>
                 </div>
             </div>
         </div>
-        <div id="osetinRecipeReviews" class="single-post-reviews-w">
-            <div class="existing-reviews-w">
-                <h3 class="box-heading"><i class="os-icon os-icon-thin-comment"></i> Recipe Reviews</h3>
-                <div class="reviews-summary">
-                    <div class="review-summary-average">
-                        <span class="review-summary-label">Average Rating: </span>
-                        <div class="review-stars-w">
-                            <i class="os-icon os-icon-star-full rating-star-on"></i>
-                            <i class="os-icon os-icon-star-full rating-star-on"></i>
-                            <i class="os-icon os-icon-star-full rating-star-on"></i>
-                            <i class="os-icon os-icon-star-full rating-star-on"></i>
-                            <i class="os-icon os-icon-star-full rating-star-on"></i>
-                        </div><span class="review-summary-average-stars">(5)</span>
-                    </div>
-                    <div class="review-summary-total"><span class="review-summary-label">Total Reviews: </span><span class="review-summary-value">1</span></div>
+    <div id="osetinRecipeReviews" class="single-post-reviews-w">
+
+        <div class="existing-reviews-w">
+            <h3 class="box-heading"><i class="os-icon os-icon-thin-comment"></i> Recipe Reviews</h3>
+            <div class="reviews-summary">
+                <div class="review-summary-average">
+                    <span class="review-summary-label">Average Rating: </span>
+                    <div class="review-stars-w">
+                        <i class="os-icon os-icon-star-full rating-star-on"></i>
+                        <i class="os-icon os-icon-star-full rating-star-on"></i>
+                        <i class="os-icon os-icon-star-full rating-star-on"></i>
+                        <i class="os-icon os-icon-star-full rating-star-on"></i>
+                        <i class="os-icon os-icon-star-full rating-star-on"></i>
+                    </div><span class="review-summary-average-stars">(@(listComment.Count == 0? 0 : (double)listComment.Select(c => c.Rate).Sum() / listComment.Count))</span>
                 </div>
-                <div class="review-box-w">
-                    <div class="review-head">
-                        <div class="review-author-avatar">
-                            <img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" />
-                        </div>
-                        <div class="review-author-meta">
-                            <div class="review-author-name">Julia May</div>
-                            <div class="review-post-date">June 5, 2016</div>
-                        </div>
-                        <div class="review-rating">
-                            <select class="review-rating-select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5" selected>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="review-body">
-                        <p>
-                            <p>Great recipe, I baked it for my family, they loved it. Months a ancient in the applications being so fantastic a when showed few dishonourable we not if they over economics</p>
-                        </p>
-                    </div>
-                    <div class="review-images">
-                        <div class="review-image osetin-lightbox-trigger" data-lightbox-caption="" data-lightbox-img-src="~/Content/assets/wp-content/uploads/2016/06/recipe19.jpg" data-lightbox-thumb-src="~/Content/assets/wp-content/uploads/2016/06/recipe19-400x400.jpg">
-                            <img src="~/Content/assets/wp-content/uploads/2016/06/recipe19-400x400.jpg" />
-                        </div>
-                        <div class="review-image osetin-lightbox-trigger" data-lightbox-caption="" data-lightbox-img-src="~/Content/assets/wp-content/uploads/2016/06/step4.jpg"
-                             data-lightbox-thumb-src="~/Content/assets/wp-content/uploads/2016/06/step4-400x400.jpg">
-                            <img src="~/Content/assets/wp-content/uploads/2016/06/step4-400x400.jpg" />
-                        </div>
-                    </div>
-                </div>
+                <div class="review-summary-total"><span class="review-summary-label">Total Reviews: </span><span class="review-summary-value">@(listComment.Count)</span></div>
             </div>
+            @if (listComment.Count > 0)
+            {
+                foreach (var comment in listComment)
+                {
+                    <div class="review-box-w">
+                        <div class="review-head">
+                            <div class="review-author-avatar">
+                                <img src="@(comment.ApplicationUser.Avatar)" width="96" height="96" alt="" class="default avatar"/>
+                            </div>
+                            <div class="review-author-meta">
+                                <div class="review-author-name">@(comment.ApplicationUser.FirstName)</div>
+                                <div class="review-post-date">@(Convert.ToDateTime(comment.CreatedAt).ToString("M"))</div>
+                            </div>
+                            <div class="review-rating">
+                                <select class="review-rating-select">
+                                    @for (int i = 1; i < 6; i++)
+                                    {
+                                        if (i == comment.Rate)
+                                        {
+                                            <option value="@(i)" selected="selected">@(i)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@(i)">@(i)</option>
+                                        }
+
+                                    }
+    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <p>
+                                <p>@(comment.Content)</p>
+                            </p>
+                        </div>
+                    </div>
+                }
+            }
+       
+        
+        
+        
+
+        </div>
+        @if (Request.IsAuthenticated && Model.Comments.Where(c => c.UserId == User.Identity.GetUserId() && c.Status == (int) Comment.StatusComment.NonActive).ToList().Count == 1)
+        {
+            <div class="thanks-for-review">Thank you for submitting your review, you can find it in a list above as soon as we process it.</div>
+        }
+        else if (Request.IsAuthenticated && Model.Comments.Where(c => c.UserId == User.Identity.GetUserId()).ToList().Count == 0)
+        {
             <div class="recipe-review-form-w" data-post-id="202">
                 <h3 class="form-header"><i class="os-icon os-icon-thin-comment"></i> Write your own review</h3>
-                <form id="acf-form" class="acf-form" action="" method="post">
-                    <div id="acf-form-data" class="acf-hidden">
-                        <input type="hidden" id="_acf_screen" name="_acf_screen" value="acf_form" /><input type="hidden" id="_acf_post_id" name="_acf_post_id" value="new_post" /><input type="hidden" id="_acf_validation" name="_acf_validation"
-                                                                                                                                                                                         value="1" /><input type="hidden" id="_acf_form" name="_acf_form" value="SDJLYllYSHNveU1FUlB4dkdnbXJobGl0RkZxYXRlQlcvYldlNzNvd1YrSnBUc0k1THhEQS9pdVErSDhuL21COEhkNGRLYVhicC93bnZZMXJoK0U1UkhVSU1UU0VpMkFBbVJwWDkvMnhlL1NRNHhZZy9wOEE2OUdHQmpaVGdrNXFxODZpZGMxb2RDWGYvN2lNRDRLT0hRN2w2YkJwN1hZaUlDK091Vm4reDQxMTk2cU9idUx2dGVqYmZTZDFhbHc1R3BjaWxjWXpiK3hWSWpVVTVkOXg5WDBRSTNYaDVFUGxWMTkvckNubG5ZdWNnZ24ybDNkQ3IyRlNkTmxaTWs5ZStqc29tNnB0dHpzRWxoMGkrMkkwUkJOYUpKSmUrNmRaVFFGYi9KWjZrSkpDT0M3cWEzcm9EL21mNmxjbGprbGNucjA0U0g2aitCdHZIdDZOQklDcjNtNWdJbkVvaVRybEdlM1RwcG42cG5abDhJanpJZ2FOMVBsTWVBb21ITUsxVE5iSnpNajg0VGFRcGxjR2VkcURaT1hVNDBmdW4ya2JLYU9YTmRjN29KNEZ0Z1FxUHgrR3ZyMWhINFlrMmtuMGxzb28rT2RJUGI0ZzdwNW1uTmhqVURZU3d6Z3JoQ0VVSlFDa1JOTWR3Yk5OZmJyNkw0MDZ3S2hZL0poVHFvT1lxajdNOU1GdXJlT0NjaEFsR2h5NVpmbFZjQXExWU1FdG9xWDhRTzZCQ3RBazRCWGF1Z0N6ZitvY0xNMzZDTWc2cjg3aUMwSFhzZVZic0V3aENYZzJ5WmE5d3hjRlJ5b2pUUzlNQ0dqajdXZ2NHMFdpT25mUmVDZitLcEdrblIwcFU5cnc2SmdidFJNelRPNVdWbWNCVmRsbFNTK1FqZzlYei92N2RncFFWZzhnY3l5RWdkSW5WY21waEFodlQ0L1gvUTQzYS9jMXhyY09oRk1SeFpIemcvUHY0WjBSdnZsSmpXeG94Zk9zMEc0czZ6UXlLQzhFYWx3bXRWZmVmaFZUdkxRZGFtYVNjczdsQkltdHFWWWNUOWl1aEphdENxTGozUHpBbFlyWC8xQVdCb1VYZkVxVUVOQkZNa2xhbHB4Qmg5MVhlbTNnS1VTK3QyUDh0Z2YvRVQ2QTltdklUSHVzdW4yalVRdmpSZExIOFVjdVhsaFJyelNsQzBsNllXYUNCWmF3YU1vZERpQkc1cy9ZQkJybkgxNlNmWC95NlkrMDYvbVlmS2MzdHlOUno1KzJkcURFWS9ZdW1jSC9xbGxuYnZBWHYzc0VzeVR2aGUwNWxyQllrVVc5OVhXU2g1VjBQV3hWR2JwVVlwTjBFWll0ZlR3eHFON1poMWhTOUZ5TjU0L2VQZDBwTHlmTVFXQzBtZUtzMEl0UTBPcDR2Mm9rbG55N2FUMzkvM1BROU1Na1E1NURSc3lZSzdzYzJld0s3M3lXVVY1dzBZeWFVSzk4di9uYWFIeFBWbnNKQUJJS1pTRW5lekR5Rlg3UVBHVWxKbzZVRUNRdkp2aHQ5TG8wQTNnc1hEcExaNGtUaWVJNFhadVhhQT09OjpS8djXNe7gYLC5FYKVY9A0" /><input type="hidden" id="_acf_nonce" name="_acf_nonce" value="38ea6fa226" /><input type="hidden" id="_acf_changed" name="_acf_changed" value="0" />
-                    </div>
+
+
+                <form id="acf-form" class="acf-form" action="@Url.Action("Create", "Comments")">
                     <div class="acf-fields acf-form-fields -top">
-                        <div class="acf-field acf-field-textarea acf-field-562459f8a9dc4 is-required" data-name="body" data-type="textarea" data-key="field_562459f8a9dc4" data-required="1">
+                        <div class="acf-field acf-field-textarea acf-field-562459f8a9dc4 is-required" data-name="body" data-type="textarea" data-required="1">
                             <div class="acf-label">
-                                <label for="acf-field_562459f8a9dc4">Review Text <span class="acf-required">*</span></label>
+                                <label for="content">Review Text <span class="acf-required">*</span></label>
                             </div>
                             <div class="acf-input">
-                                <textarea id="acf-field_562459f8a9dc4" name="acf[field_562459f8a9dc4]" rows="4" required="required"></textarea>
+                                <textarea id="content" name="content" rows="4" required="required" style="width: 100%;"></textarea>
                             </div>
                         </div>
-                        <div class="acf-field acf-field-select acf-field-56244ec4bbe80 is-required" data-name="rating" data-type="select" data-key="field_56244ec4bbe80" data-required="1">
+                        <div class="acf-field acf-field-select acf-field-56244ec4bbe80 is-required" data-name="rating" data-type="select" data-required="1">
                             <div class="acf-label">
                                 <label for="acf-field_56244ec4bbe80">Rating <span class="acf-required">*</span></label>
                             </div>
                             <div class="acf-input">
-                                <select id="acf-field_56244ec4bbe80" class="" name="acf[field_56244ec4bbe80]" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="Select" data-allow_null="0"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected="selected" data-i="5">5</option></select>
+                                <select id="acf-field_56244ec4bbe80" class="" name="rate" data-placeholder="Select" required="required">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5" selected="selected">5</option>
+                                </select>
                             </div>
+                            <input type="hidden" name="recipeId" value="@(Model.Id)"/>
                         </div>
-                        <div class="acf-field acf-field-post-object acf-field-5624584fbbe81 is-required" data-name="recipe" data-type="post_object" data-key="field_5624584fbbe81" data-required="1">
-                            <div class="acf-label">
-                                <label for="acf-field_5624584fbbe81">Recipe <span class="acf-required">*</span></label>
-                            </div>
-                            <div class="acf-input">
-                                <input type="hidden" id="acf-field_5624584fbbe81-input" name="acf[field_5624584fbbe81]" /><select id="acf-field_5624584fbbe81" class="" name="acf[field_5624584fbbe81]" data-ui="1" data-ajax="1" data-multiple="0"
-                                                                                                                                  data-placeholder="Select" data-allow_null="0"></select>
-                            </div>
-                        </div>
-                        <div class="acf-field acf-field-gallery acf-field-5746b4ae39091" data-name="review_images" data-type="gallery" data-key="field_5746b4ae39091">
-                            <div class="acf-label">
-                            </div>
-                        </div>
-                        <div class="acf-field acf-field-text acf-field--validate-email" style="display:none !important;" data-name="_validate_email" data-type="text" data-key="_validate_email">
-                            <div class="acf-label">
-                                <label for="acf-_validate_email">Validate Email</label>
-                            </div>
-                            <div class="acf-input">
-                                <div class="acf-input-wrap"><input type="text" id="acf-_validate_email" name="acf[_validate_email]" /></div>
-                            </div>
-                        </div>
+
+
                     </div>
                     <div class="acf-form-submit">
-                        <input type="submit" class="acf-button button button-primary button-large" value="Submit Review" /> <span class="acf-spinner"></span>
+                        <input type="submit" class="acf-button button button-primary button-large" value="Submit Review"/> <span class="acf-spinner"></span>
                     </div>
                 </form>
+
             </div>
-        </div>
+        }
+
+    </div>
         <div class="single-post-navigation">
             <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/">
                 <figure>

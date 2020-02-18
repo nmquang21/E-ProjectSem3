@@ -2,126 +2,64 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using E_ProjectSem3.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace E_ProjectSem3.Controllers
 {
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+       
         // GET: Comments
         public ActionResult Index()
         {
             return View(db.Comments.ToList());
         }
-
-        // GET: Comments/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comment);
-        }
-
+        [Authorize]
         // GET: Comments/Create
-        public ActionResult Create()
+        public ActionResult Create(string content, int rate, int recipeId)
         {
-            return View();
-        }
-
-        // POST: Comments/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Content,Rate,CreatedAt,UpdatedAt,DeletedAt,RecipeId,UserId,ApproveId")] Comment comment)
-        {
-            if (ModelState.IsValid)
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            if (content == null || recipeId == null)
             {
-                db.Comments.Add(comment);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("NotFound", "Home");
             }
 
-            return View(comment);
-        }
+            var userId = User.Identity.GetUserId();
+            var existComment = db.Comments.Where(c => c.RecipeId == recipeId && c.UserId == userId).ToList();
+            if (existComment.Count == 1)
+            {
+                return RedirectToAction("RecipeDetail", "Home", new { id = recipeId });
+            }
+            Comment cm = new Comment();
+            cm.Content = content;
+            cm.Rate = rate;
+            //cm.RecipeId = recipeId;
 
-        // GET: Comments/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comment);
-        }
+            var user = UserManager.FindById(userId);
+            var recipe = db.Recipes.Find(recipeId);
 
-        // POST: Comments/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Content,Rate,CreatedAt,UpdatedAt,DeletedAt,RecipeId,UserId,ApproveId")] Comment comment)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(comment).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(comment);
-        }
+            cm.UserId = User.Identity.GetUserId();
+            cm.ApplicationUser = user;
+            Debug.WriteLine(user);
+            Debug.WriteLine(cm.ApplicationUser);
+            cm.Recipe = recipe;
+            cm.Status = (int)Comment.StatusComment.NonActive;
+            cm.CreatedAt = DateTime.Now;
 
-        // GET: Comments/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comment);
-        }
-
-        // POST: Comments/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Comment comment = db.Comments.Find(id);
-            db.Comments.Remove(comment);
+            db.Comments.Add(cm);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+
+            return RedirectToAction("RecipeDetail","Home",new{id = recipeId});
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

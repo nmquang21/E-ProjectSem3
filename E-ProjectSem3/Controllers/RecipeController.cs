@@ -16,11 +16,11 @@ namespace E_ProjectSem3.Controllers
         // GET: Recipe
         public ActionResult LikeAjax(int id)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             if (!Request.IsAuthenticated)
             {
                 return Json(new { data = "NotLogIn" }, JsonRequestBehavior.AllowGet);
             }
-            db.Configuration.ProxyCreationEnabled = false;
             Recipe recipe = db.Recipes.Find(id);
             if (recipe == null)
             {

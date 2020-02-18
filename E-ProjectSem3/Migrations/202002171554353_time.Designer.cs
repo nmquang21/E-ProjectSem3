@@ -7,13 +7,13 @@ namespace E_ProjectSem3.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class rate : IMigrationMetadata
+    public sealed partial class time : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(rate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(time));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002171413232_rate"; }
+            get { return "202002171554353_time"; }
         }
         
         string IMigrationMetadata.Source
