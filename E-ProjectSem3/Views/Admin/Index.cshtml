@@ -53,7 +53,7 @@
 </section>
 <section>
     <div class="row mb-4">
-        <div class="col-lg-7 mb-4 mb-lg-0">
+        <div class="col-lg-12 mb-4 mb-lg-0">
             <div class="card">
                 <div class="card-header">
                     <h2 class="h6 text-uppercase mb-0">Current server uptime</h2>
@@ -61,35 +61,7 @@
                 <div class="card-body">
                     <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     <div class="chart-holder">
-                        <canvas id="lineChart1" style="max-height: 14rem !important;" class="w-100"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="row align-items-center flex-row">
-                        <div class="col-lg-5">
-                            <h2 class="mb-0 d-flex align-items-center"><span>86.4</span><span class="dot bg-green d-inline-block ml-3"></span></h2><span class="text-muted text-uppercase small">Work hours</span>
-                            <hr><small class="text-muted">Lorem ipsum dolor sit</small>
-                        </div>
-                        <div class="col-lg-7">
-                            <canvas id="pieChartHome1"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center flex-row">
-                        <div class="col-lg-5">
-                            <h2 class="mb-0 d-flex align-items-center"><span>1.724</span><span class="dot bg-violet d-inline-block ml-3"></span></h2><span class="text-muted text-uppercase small">Server time</span>
-                            <hr><small class="text-muted">Lorem ipsum dolor sit</small>
-                        </div>
-                        <div class="col-lg-7">
-                            <canvas id="pieChartHome2"></canvas>
-                        </div>
+                        <div id="myChart"></div>
                     </div>
                 </div>
             </div>
@@ -353,13 +325,81 @@
 @section scripts {
     <script>
         $.ajax({
-        url: `/Admin/GetChartDataRevenue?start=2020-02-01&end=2020-02-17`,
-        type: 'GET',
+            url: `/Admin/GetChartDataRevenue?start=2020-02-01&end=2020-02-17`,
+            method: 'GET',
             success: function (responseData) {
                 console.log(responseData);
             }
         });
     </script>
 }
-   
+
+@*@section scripts {
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script>
+        Highcharts.chart('myChart', {
+
+            title: {
+                text: 'Solar Employment Growth by Sector, 2010-2016'
+            },
+
+            subtitle: {
+                text: 'Source: thesolarfoundation.com'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Number of Revenues'
+                }
+            },
+
+            xAxis: {
+                accessibility: {
+                    rangeDescription: 'Range: 1 to 12'
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 1
+                }
+            },
+
+            series: [{
+                name: 'Revenue',
+                data: [20000, 30000, 43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175, 160000, 180000]
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+    </script>
+}*@
+
 
