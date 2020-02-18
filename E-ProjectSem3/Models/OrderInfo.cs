@@ -13,9 +13,9 @@ namespace E_ProjectSem3.Models
         public string UserId { get; set; }
         public decimal Amount { get; set; }
         public int Status { get; set; }
-        public string CreatedAt { get; set; }
-        public string UpdatedAt { get; set; }
-        public string DeletedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
         public string OrderDescription { get; set; }
         public string BankCode { get; set; }
         public decimal vnp_TransactionNo { get; set; }
