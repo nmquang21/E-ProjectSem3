@@ -181,7 +181,7 @@ namespace E_ProjectSem3.Controllers
             db.Recipes.AddOrUpdate(recipe);
             db.SaveChanges();
             Debug.WriteLine(recipe);
-            ViewBag.ListComment = recipe.Comments.Where(c => c.DeletedAt == null && c.Status == (int)Comment.StatusComment.Active).ToList();
+            ViewBag.ListComment = recipe.Comments.Where(c => c.DeletedAt == null && c.Status == (int)Comment.StatusComment.Active).OrderBy(c=>c.CreatedAt).ToList();
             return View(recipe);
         }
 

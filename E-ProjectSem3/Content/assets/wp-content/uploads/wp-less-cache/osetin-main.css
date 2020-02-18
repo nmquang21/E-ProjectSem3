@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -10005,10 +10005,10 @@ div.userpro .userpro-centered div.userpro-profile-icons.top {
     margin-right: 2px;
 }
 
-.br-theme-fontawesome-stars .br-widget a:after {
-    content: "\f005";
-    color: #a3a3a3;
-}
+    .br-theme-fontawesome-stars .br-widget a:after {
+        content: "\f005";
+        color: #585858;
+    }
 
 .br-theme-fontawesome-stars .br-widget a.br-active:after {
     color: #f6bf29;
@@ -10131,9 +10131,9 @@ div.userpro .userpro-centered div.userpro-profile-icons.top {
 }
 
 .existing-reviews-w .review-box-w {
-    padding-bottom: 30px;
+    /*padding-bottom: 30px;*/
     margin-bottom: 30px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    /*border-bottom: 1px solid rgba(0, 0, 0, 0.1);*/
 }
 
 .existing-reviews-w .review-box-w:last-child {
