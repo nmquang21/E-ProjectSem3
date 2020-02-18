@@ -54,7 +54,7 @@ namespace E_ProjectSem3.Controllers
             order.UserId = User.Identity.GetUserId();
             order.Amount = Math.Round(getAmount);
             order.OrderDescription = description;
-            order.CreatedAt = DateTime.Now.ToString();
+            order.CreatedAt = DateTime.Now;
 
 
             db.OrderInfos.Add(order);

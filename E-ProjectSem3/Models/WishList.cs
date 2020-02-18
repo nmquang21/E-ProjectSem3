@@ -15,8 +15,8 @@ namespace E_ProjectSem3.Models
         [Key, ForeignKey("ApplicationUser"), Column(Order = 1)]
         public string UserId { get; set; }
 
-        public Recipe Recipe { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public virtual Recipe Recipe { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

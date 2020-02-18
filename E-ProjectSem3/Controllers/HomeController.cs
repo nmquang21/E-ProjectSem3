@@ -180,7 +180,8 @@ namespace E_ProjectSem3.Controllers
             recipe.ViewCount++;
             db.Recipes.AddOrUpdate(recipe);
             db.SaveChanges();
-
+            Debug.WriteLine(recipe);
+            ViewBag.ListComment = recipe.Comments.Where(c => c.DeletedAt == null && c.Status == (int)Comment.StatusComment.Active).ToList();
             return View(recipe);
         }
 
