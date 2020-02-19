@@ -1,0 +1,84 @@
+﻿@model IEnumerable<E_ProjectSem3.Models.Comment>
+
+@{
+    ViewBag.Title = "Comment Not Approved";
+}
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
+<div class="col-lg-12 mb-4 mt-5" style="padding-left: 0px; padding-right: 0px;">
+    <div class="card">
+        <div class="card-header">
+            <h6 class="text-uppercase mb-0">List Comment Verfied</h6>
+        </div>
+        <div class="card-body">
+            <table class="data-table table table-striped table-hover card-text">
+                <thead>
+                    <tr>
+                        <th>Content</th>
+                        <th>Star</th>
+                        <th>Recipe</th>
+                        <th>User Commnet</th>
+                        <th>Approve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Content)
+                            </td>
+
+                            <td>
+                                @for (int i = 0; i < item.Rate; i++)
+                                {
+                                    <span class="fa fa-star checked"></span>
+                                }
+                                @for (int i = item.Rate; i < 5; i++)
+                                {
+                                    <span class="fa fa-star"></span>
+                                }
+                            </td>
+                            <td>
+                                <a style="display: flex; align-items: center" href="/Home/RecipeDetail/@(item.Recipe.Id)">
+                                    <img style="width: 50px; height: 50px; margin-right:10px" src="@(item.Recipe.FeaturedImage)" alt="Alternate Text" />
+                                    <div>@Html.DisplayFor(modelItem => item.Recipe.Title)</div>
+                                </a>
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                            </td>
+                            <td class="text-center">
+                               <input type="checkbox"/ class="approve-comment" data-user-id="@(item.UserId)" data-recipe-id="@(item.RecipeId)">
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Content/js/data-table.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.data-table').DataTable();
+            $('.approve-comment').change(function() {
+                if(this.checked) {
+                    var userId = $(this).data('user-id');
+                    var recipeId = $(this).data('recipe-id');
+                    location.href = `/admin/ApproveComment?user_id=${userId}&recipe_id=${recipeId}`;
+                }
+            });
+        });
+
+    </script>
+}
+
+
