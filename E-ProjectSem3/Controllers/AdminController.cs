@@ -21,5 +21,11 @@ namespace E_ProjectSem3.Controllers
             var listRecipe = db.Recipes.Where(r => r.DeletedAt == null).ToList();
             return View(listRecipe);
         }
+
+        public ActionResult Active()
+        {
+            var listActive = db.Recipes.Where(r => r.DeletedAt == null).ToList();
+            return View(listActive);
+        }
     }
 }
