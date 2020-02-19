@@ -26,7 +26,7 @@
     <!-- navbar-->
     <header class="header">
         <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow">
-            <a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a><a href="#" class="navbar-brand font-weight-bold text-uppercase text-base ">Student management</a>
+            <a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a><a href="#" class="navbar-brand font-weight-bold text-uppercase text-base "> JamesThewDOTcom</a>
             <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
                 <li class="nav-item">
 
@@ -81,69 +81,47 @@
         <div id="sidebar" class="sidebar py-3">
             <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
             <ul class="sidebar-menu list-unstyled">
-                <li class="sidebar-list-item home" data-link="home"><a href="/" class="sidebar-link text-muted"><i class="fas fa-home mr-3 text-gray"></i><span>Home</span></a></li>
-                <li class="sidebar-list-item lop" data-link="lop"><a href="/Classes" class="sidebar-link text-muted"><i class="fas fa-university mr-3 text-gray"></i><span>Class</span></a></li>
-                <li class="sidebar-list-item student" data-link="student"><a href="/Students" class="sidebar-link text-muted"><i class="fas fa-user-graduate mr-3 text-gray"></i><span>Student</span></a></li>
+                <li class="sidebar-list-item home" data-link="home"><a href="/admin" class="sidebar-link text-muted"><i class="fas fa-home mr-3 text-gray"></i><span>Home</span></a></li>
+                <li class="sidebar-list-item student" data-link="student"><a href="/Students" class="sidebar-link text-muted"><i class="fas fa-user-graduate mr-3 text-gray"></i><span>User</span></a></li>
+
+
                 <li class="sidebar-list-item">
-                    <a href="#" data-toggle="collapse" data-target="#discipline" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="fas fa-clipboard-list mr-3 text-gray"></i><span>Discipline</span></a>
-                    <div id="discipline" class="collapse">
+                    <a href="#" data-toggle="collapse" data-target="#member" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="fas fa-clipboard-list mr-3 text-gray"></i><span>Member</span></a>
+                    <div id="member" class="collapse">
                         <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                            <li class="sidebar-list-item"><a href="/DisciplineStudents" class="sidebar-link text-muted pl-lg-5">List</a></li>
-                            <li class="sidebar-list-item add-discipline"><a href="" data-toggle="modal" data-target="#Modal-Add-Discipline" class="sidebar-link text-muted pl-lg-5">Add</a></li>
-                            @*<li class="sidebar-list-item add-discipline"><div href="" class="sidebar-link text-muted pl-lg-5">Add</div></li>*@
-                            <li class="sidebar-list-item"><a href="/DisciplineDefaults" class="sidebar-link text-muted pl-lg-5">Default Discipline value</a></li>
+
+                            <li class="sidebar-list-item add-discipline"><a href="" data-toggle="modal" data-target="#Modal-Add-Discipline" class="sidebar-link text-muted pl-lg-5">Normal Member</a></li>
+                            <li class="sidebar-list-item"><a href="/DisciplineDefaults" class="sidebar-link text-muted pl-lg-5">Vip Member</a></li>
                         </ul>
                     </div>
                 </li>
-                @*<li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Charts</span></a></li>*@
-            </ul>
+                <li class="sidebar-list-item">
+                    <a href="#" data-toggle="collapse" data-target="#Recipes" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="fas fa-clipboard-list mr-3 text-gray"></i><span>Recipes</span></a>
+                    <div id="Recipes" class="collapse">
+                        <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+                            <li class="sidebar-list-item"><a href="/DisciplineStudents" class="sidebar-link text-muted pl-lg-5">Not Approved</a></li>
+                            <li class="sidebar-list-item add-discipline"><a href="recipes"  class="sidebar-link text-muted pl-lg-5">Approved</a></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="#" data-toggle="collapse" data-target="#Comment" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="fas fa-clipboard-list mr-3 text-gray"></i><span>Commnet</span></a>
+                    <div id="Comment" class="collapse">
+                        <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+                            <li class="sidebar-list-item"><a href="/admin/CommentNotApprove" class="sidebar-link text-muted pl-lg-5">Not Approved</a></li>
+                            <li class="sidebar-list-item"><a href="/admin/CommentApproved" class="sidebar-link text-muted pl-lg-5">Approved</a></li>
+
+                        </ul>
+                    </div>
+                </li>            </ul>
         </div>
         <div class="page-holder w-100 d-flex flex-wrap">
             <div class="container-fluid px-xl-5">
 
                 @RenderBody()
 
-                <!--Modal Thêm thông tin đi muộn-->
-                <div id="Modal-Add-Discipline" role="dialog" class="modal fade text-left">
-                    <div role="document" class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 id="exampleModalLabel" class="modal-title">Add Student Discipline</h4>
-                                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Search Student and select Discipline such as money, squart,...</p>
-                                <form>
-                                    <div class="form-group">
-                                        <label>Search Student</label>
-                                        <div class="input-group mb-3">
-                                            <select class="form-control select-name" style="width:100%">
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Select Discipline</label>
-                                        <div class="input-group mb-3">
-                                            <select class="form-control select-discipline" style="width:40%">
-                                            </select>
-                                        </div>
-
-
-
-                                    </div>
-
-                                    <div class="text-danger message-discipline"></div>
-                                    <div class="check-discipline text-danger"></div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" data-dismiss="modal" class="btn btn-secondary ">Close</button>
-                                <button type="button" class="btn btn-primary btn-check-discipline">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Modal-->
+               
             </div>
             <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
                 <div class="container-fluid">
