@@ -159,6 +159,24 @@
         //    });
 
 
+    $('.upload_step').click(function () {
+        var btn = $(this);
+        console.log("Click")
+        cloudinary.createUploadWidget({
+            cloudName: 'dev20',
+            uploadPreset: 'gfj9avei'
+        },
+            (error, result) => {
+                if (!error && result && result.event === "success") {
+                    btn.parent('.btn').next('.image-step').val(result.info.url);
+                    var html = `<img src="${result.info.url}" id="image-recipe" alt="Alternate Text" style="width: 250px; height: 200px !important;"/>`;
+                    btn.parent('.btn').prev('.image-preview-step').html(html);
+                }
+            }
+        ).open();
+    });
+
+
 
 
 })

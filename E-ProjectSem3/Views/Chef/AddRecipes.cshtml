@@ -276,31 +276,49 @@
 
                                                     <td class="acf-fields">
 
-                                                        <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 50%" data-width="30" data-name="step_description" data-type="textarea">
+
+                                                        <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 30%" data-width="30" data-name="step_description" data-type="textarea">
+                                                            <div class="acf-label">
+                                                                <label for="image-step">Image</label>
+                                                            </div>
+                                                            <div class="imgUp" style="width: 250px;">
+                                                                <div class="image-preview-step"></div>
+                                                                <label class="btn btn-primary">
+                                                                    Upload<input type="button" class="upload_step uploadFile img" value="Upload Photo" style="width: 0px; height: 0px; overflow: hidden; opacity: 0;">
+                                                                </label>
+                                                                <input type="hidden" class="image-step" name="listStep[0].ImagePath" required="required" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 70%" data-width="30" data-name="step_description" data-type="textarea">
+                                                            
+
                                                             <div class="acf-label">
                                                                 <label for="step_title">Title</label>
                                                             </div>
                                                             <div class="acf-input">
                                                                 <input type="text" id="step_title" name="listStep[0].Title">
                                                             </div>
-                                                        </div>
-                                                        <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 50%" data-width="30" data-name="step_description" data-type="textarea">
+
+
                                                             <div class="acf-label">
-                                                                <label for="image-step">Image</label>
+                                                                <label for="step_description">Description</label>
                                                             </div>
                                                             <div class="acf-input">
-                                                                <input type="text" id="image-step" name="listStep[0].ImagePath">
+                                                                <textarea id="step_description" name="listStep[0].Description" rows="7"></textarea>
                                                             </div>
+
                                                         </div>
 
-                                                        <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" data-name="step_description" data-type="textarea">
+
+                                                        @*<div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" data-name="step_description" data-type="textarea">
                                                             <div class="acf-label">
                                                                 <label for="step_description">Description</label>
                                                             </div>
                                                             <div class="acf-input">
                                                                 <textarea id="step_description" name="listStep[0].Description" rows="4"></textarea>
                                                             </div>
-                                                        </div>
+                                                        </div>*@
 
 
                                                     </td>
@@ -393,11 +411,11 @@
 @section Scripts{
     <script src="~/Content/js/SubmitRecipe.js"></script>
 
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         jQuery(document).ready(function($) {
             
         })
-    </script>
+    </script>*@
 }
 
 

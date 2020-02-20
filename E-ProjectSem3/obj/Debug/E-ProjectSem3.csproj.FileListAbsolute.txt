@@ -207,7 +207,6 @@ C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\EntityFramework.SqlServ
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csprojAssemblyReference.cache
-C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Init.resources
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.GenerateResource.cache
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.CopyComplete
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.dll
@@ -333,7 +332,8 @@ C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\LinqKit.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\log4net.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.xml
 C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\bin\PagedList.Mvc.xml
-C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.Comment.resources
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.time.resources
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E-ProjectSem3.csproj.GenerateResource.cache
 C:\Users\tvngi\OneDrive\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.time1.resources
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.time.resources
+C:\Users\Ominext\Desktop\E-ProjectSem3\E-ProjectSem3\obj\Debug\E_ProjectSem3.Migrations.time1.resources
