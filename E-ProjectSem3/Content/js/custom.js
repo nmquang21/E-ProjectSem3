@@ -7,7 +7,6 @@
 
 
 function drawLineChart(contronllerName) {
-    var id = $('#datefilter').data('id');
 
     var startDate = new Date();
     startDate.setFullYear(startDate.getFullYear() - 1);
@@ -48,51 +47,25 @@ function drawLineChart(contronllerName) {
         });
 
     $.ajax({
-        url: `/${contronllerName}/GetChartData?id=${id}&start=${startPara}&end=${endPara}`,
+        url: `/${contronllerName}/GetChartDataRevenue?start=${startPara}&end=${endPara}`,
         type: 'GET',
         success: function (responseData) {
-            google.charts.load('current', { 'packages': ['line', 'corechart'] });
+            google.charts.load('current', { 'packages': ['corechart'] });
             google.charts.setOnLoadCallback(drawChart);
-
             function drawChart() {
-                var chartDiv = document.getElementById('chart_div');
-
                 var data = new google.visualization.DataTable();
                 data.addColumn('date', 'Month');
-                data.addColumn('number', "Money");
-                data.addColumn('number', "Push-up");
-                var total = 0, totalMoney = 0, totalPushUp = 0;
+                data.addColumn('number', 'Total');
                 for (var i = 0; i < responseData.length; i++) {
-                    data.addRow([new Date(responseData[i].Date), responseData[i].Money, responseData[i].PushUp]);
-                    total += responseData[i].Count;
-                    totalMoney += responseData[i].Money;
-                    totalPushUp += responseData[i].PushUp;
+                    data.addRow([new Date(responseData[i].Date), responseData[i].Total]);
                 }
-                $('#late-counter').html(total);
-                totalMoney = totalMoney.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
-                $('#total-money').html(totalMoney);
-                $('#total-pushup').html(totalPushUp);
-
-                var classicOptions = {
-                    //title: 'Thống kê số tiền (push-up) đi học muộn của sinh viên',
-                    series: {
-                        0: { targetAxisIndex: 0 },
-                        1: { targetAxisIndex: 1 }
-                    },
-                    vAxes: {
-                        0: { title: 'Money (VND)' },
-                        1: { title: 'Push-up (Times)' }
-                    },
-                    hAxis: {
-                    },
-                    vAxis: {
-                    }
+                var options = {
+                    title: 'Company Performance',
+                    curveType: 'function',
+                    legend: {position: 'bottom' }
                 };
-                function drawClassicChart() {
-                    var classicChart = new google.visualization.LineChart(chartDiv);
-                    classicChart.draw(data, classicOptions);
-                }
-                drawClassicChart();
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                chart.draw(data, options);
             }
         }
     });

@@ -55,13 +55,20 @@
     <div class="row mb-4">
         <div class="col-lg-12 mb-4 mb-lg-0">
             <div class="card">
-                <div class="card-header">
-                    <h2 class="h6 text-uppercase mb-0">Current server uptime</h2>
+                <div class="card-header col-lg-12 row">
+                    <div class="col-md-6">
+                        <h2 class="h6 text-uppercase mb-0">Current server uptime</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-lg-7 mb-6 position-relative" style="padding-left: 25px;">
+                            <input type="text" name="datefilter" id="datefilter" value="" class="form-control input-custom col-lg-12" />
+                            <i class="far fa-calendar-alt text-gray position-absolute icon-calendar"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     <div class="chart-holder">
-                        <div id="myChart"></div>
+                        <div id="curve_chart"></div>
                     </div>
                 </div>
             </div>
@@ -322,84 +329,10 @@
     </div>
 </section>
 
-@section scripts {
+@section scripts{
     <script>
-        $.ajax({
-            url: `/Admin/GetChartDataRevenue?start=2020-02-01&end=2020-02-17`,
-            method: 'GET',
-            success: function (responseData) {
-                console.log(responseData);
-            }
-        });
+            drawLineChart("Admin");
     </script>
 }
-
-@*@section scripts {
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script>
-        Highcharts.chart('myChart', {
-
-            title: {
-                text: 'Solar Employment Growth by Sector, 2010-2016'
-            },
-
-            subtitle: {
-                text: 'Source: thesolarfoundation.com'
-            },
-
-            yAxis: {
-                title: {
-                    text: 'Number of Revenues'
-                }
-            },
-
-            xAxis: {
-                accessibility: {
-                    rangeDescription: 'Range: 1 to 12'
-                }
-            },
-
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
-
-            plotOptions: {
-                series: {
-                    label: {
-                        connectorAllowed: false
-                    },
-                    pointStart: 1
-                }
-            },
-
-            series: [{
-                name: 'Revenue',
-                data: [20000, 30000, 43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175, 160000, 180000]
-            }],
-
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
-                        }
-                    }
-                }]
-            }
-
-        });
-    </script>
-}*@
 
 
