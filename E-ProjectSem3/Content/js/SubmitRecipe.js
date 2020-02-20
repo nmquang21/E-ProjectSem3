@@ -115,7 +115,51 @@
         $(this).closest('.step').remove();
     });
     $(document).on('click', '.delete-nutri', function () {
-        $(this).closest('.nutrition').remove();
-    });
+        $(this).closest('.nutrition').remove();});
+
+    //Upload cloudinary:
+    var myWidget = cloudinary.createUploadWidget({
+            cloudName: 'dev20',
+            uploadPreset: 'gfj9avei'
+        },
+        (error, result) => {
+            if (!error && result && result.event === "success") {
+
+                $('#post_image').val(result.info.url);
+                var html = `<img src="${result.info.url}" id="image-recipe" alt="Alternate Text" style="width: 350px; heigth: auto;"/>`;
+                $('.imagePreview').html(html);
+                console.log(this)
+            }
+        }
+    )
+
+    document.getElementById("upload_widget").addEventListener("click",
+        function () {
+            
+            myWidget.open();
+            //this.parentElement.previousElementSibling.value = ;
+            //this.parentElement.nextElementSibling;
+        },
+        false);
+
+
+
+        //$('#upload_widget').cloudinary_upload_widget(
+        //    {
+        //        cloud_name: 'dev20',
+        //        upload_preset: 'gfj9avei',
+        //    },
+        //    function (error, result) {
+        //        if (!error && result && result.event === "success") {
+        //            //$('#post_image').val(result.info.url);
+        //            //var html = `<img src="${result.info.url}" id="image-recipe" alt="Alternate Text" style="width: 350px; heigth: auto;"/>`;
+        //            //$('.imagePreview').html(html);
+        //            console.log($(this))
+        //        }
+        //    });
+
+
+
+
 })
 
