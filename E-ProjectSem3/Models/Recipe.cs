@@ -11,7 +11,7 @@ namespace E_ProjectSem3.Models
     {
         [Key]
         public int Id { get; set; }
-        public int ApproveId { get; set; }
+        public string ApproveId { get; set; }
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter title")]
         public string Title { get; set; }
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter description")]
