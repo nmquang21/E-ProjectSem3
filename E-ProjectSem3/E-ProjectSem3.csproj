@@ -195,13 +195,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002171554353_time.cs" />
-    <Compile Include="Migrations\202002171554353_time.Designer.cs">
-      <DependentUpon>202002171554353_time.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002171756089_time1.cs" />
-    <Compile Include="Migrations\202002171756089_time1.Designer.cs">
-      <DependentUpon>202002171756089_time1.cs</DependentUpon>
+    <Compile Include="Migrations\202002220428029_Init.cs" />
+    <Compile Include="Migrations\202002220428029_Init.Designer.cs">
+      <DependentUpon>202002220428029_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
@@ -781,11 +777,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002171554353_time.resx">
-      <DependentUpon>202002171554353_time.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002171756089_time1.resx">
-      <DependentUpon>202002171756089_time1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002220428029_Init.resx">
+      <DependentUpon>202002220428029_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
