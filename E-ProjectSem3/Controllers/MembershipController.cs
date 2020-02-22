@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using E_ProjectSem3.Models;
 using log4net;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using WebGrease;
 using LogManager = log4net.LogManager;
 
@@ -44,14 +45,16 @@ namespace E_ProjectSem3.Controllers
             string vnp_TmnCode = "P1V8JH37"; //Ma website
             string vnp_HashSecret = "XAUJIMFNKYUUWWNWOLLNIHJCUGLOIGEF"; //Chuoi bi mat
 
-
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Get payment input
             OrderInfo order = new OrderInfo();
             //Save order to db
             order.OrderId = "DH" + DateTime.Now.Ticks.ToString();
             TempData["OrderId"] = order.OrderId;
             order.Status = Convert.ToInt16(OrderStatus.Pending);
-            order.UserId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
+            order.UserId = userId;
+            order.ApplicationUser = UserManager.FindById(userId);
             order.Amount = Math.Round(getAmount);
             order.OrderDescription = description;
             order.CreatedAt = DateTime.Now;
