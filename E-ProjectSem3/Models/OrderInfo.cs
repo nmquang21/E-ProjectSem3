@@ -11,6 +11,7 @@ namespace E_ProjectSem3.Models
         [Key]
         public string OrderId { get; set; }
         public string UserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public decimal Amount { get; set; }
         public int Status { get; set; }
         public DateTime CreatedAt { get; set; }
