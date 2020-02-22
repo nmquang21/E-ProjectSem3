@@ -199,6 +199,10 @@
     <Compile Include="Migrations\202002220428029_Init.Designer.cs">
       <DependentUpon>202002220428029_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002221518582_update-database.cs" />
+    <Compile Include="Migrations\202002221518582_update-database.Designer.cs">
+      <DependentUpon>202002221518582_update-database.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -485,6 +489,7 @@
     <Content Include="Content\js\alert\alerts.js" />
     <Content Include="Content\js\alert\avgrund.js" />
     <Content Include="Content\js\alert\desktop-notification.js" />
+    <Content Include="Content\js\statistics-vip.js" />
     <Content Include="Content\js\alert\jquery.avgrund.min.js" />
     <Content Include="Content\js\alert\jquery.toast.min.js" />
     <Content Include="Content\js\alert\sweetalert.min.js" />
@@ -757,6 +762,9 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Recipes.cshtml" />
     <Content Include="Views\Admin\View.cshtml" />
+    <Content Include="Views\Admin\CommentApproved.cshtml" />
+    <Content Include="Views\Admin\CommentNotApprove.cshtml" />
+    <Content Include="Views\Admin\StatisticsVip.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -779,6 +787,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002220428029_Init.resx">
       <DependentUpon>202002220428029_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002221518582_update-database.resx">
+      <DependentUpon>202002221518582_update-database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
