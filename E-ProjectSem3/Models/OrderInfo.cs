@@ -30,6 +30,7 @@ namespace E_ProjectSem3.Models
             Paid = 2,
             Done = 1,
             Cancel = 0,
-            Deleted = -1
+            Deleted = -1,
+            Error = 6
         }
 }

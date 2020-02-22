@@ -219,6 +219,7 @@
     <Compile Include="Models\OrderInfo.cs" />
     <Compile Include="Models\Prize.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\RecipeSessionSeen.cs" />
     <Compile Include="Models\Step.cs" />
     <Compile Include="Models\VnPayLibrary.cs" />
     <Compile Include="Models\WishList.cs" />
