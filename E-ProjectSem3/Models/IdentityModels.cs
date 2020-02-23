@@ -12,6 +12,13 @@ namespace E_ProjectSem3.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Avatar { get; set; }
+        public string Biography { get; set; }
+        public int Gender { get; set; }
+        public string Country { get; set; }
+        public string Facebook { get; set; }
+        public string Twitter { get; set; }
+        public string Google { get; set; }
+        public string Website { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -40,6 +47,7 @@ namespace E_ProjectSem3.Models
         public DbSet<OrderInfo> OrderInfos { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Membership> Memberships { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         public static ApplicationDbContext Create()
         {

@@ -199,6 +199,10 @@
     <Compile Include="Migrations\202002220428029_Init.Designer.cs">
       <DependentUpon>202002220428029_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002231210337_Profile.cs" />
+    <Compile Include="Migrations\202002231210337_Profile.Designer.cs">
+      <DependentUpon>202002231210337_Profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -206,6 +210,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Contest.cs" />
     <Compile Include="Models\ContestUser.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -504,6 +509,7 @@
     <Content Include="Content\js\Like.js" />
     <Content Include="Content\js\PopularRecipe.js" />
     <Content Include="Content\js\SubmitRecipe.js" />
+    <Content Include="Content\js\UpdateRecipe.js" />
     <Content Include="Content\js\utils.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -760,6 +766,7 @@
     <Content Include="Views\Admin\Recipes.cshtml" />
     <Content Include="Views\Admin\View.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Chef\UpdateRecipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -782,6 +789,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002220428029_Init.resx">
       <DependentUpon>202002220428029_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002231210337_Profile.resx">
+      <DependentUpon>202002231210337_Profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,8 +1,11 @@
-﻿
+﻿@using E_ProjectSem3.Models
+@using Microsoft.AspNet.Identity
+@model E_ProjectSem3.Models.Recipe
 @{
-    ViewBag.Title = "AddRecipes";
+    ViewBag.Title = "UpdateRecipe";
     Layout = "~/Views/Shared/_LayoutRecipe.cshtml";
 }
+
 <style>
     .acf-input select, input[type="number"] {
         height: 40px;
@@ -22,7 +25,7 @@
     <div class="top-bar ">
         <ul class="bar-breadcrumbs">
             <li><a href="http://neptune.pinsupreme.com">Home</a></li>
-            <li>Submit Recipe</li>
+            <li>Update Recipe</li>
         </ul>
         <ul class="bar-social" style="">
             <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
@@ -35,7 +38,7 @@
 
 <div class="os-container">
     <div class="page-intro-header with-background" style="background-image:url(/Content/assets/wp-content/uploads/2015/09/pattern_01-500x500.png); background-repeat: repeat; background-position: top left; ">
-        <h2>Submit Recipe</h2>
+        <h2>Update Recipe</h2>
     </div>
 </div>
 <div class="os-container">
@@ -44,8 +47,8 @@
         <div class="page-content">
             <article id="page-568" class="post-568 page type-page status-publish has-post-thumbnail hentry">
                 <div class="frontend-publisher-w">
-                    <h2 class="form-header">Submit your recipe</h2>
-                    <form id="frontend-publisher" class="acf-form" action="@Url.Action("SubmitRecipe","Chef")" method="post">
+                    <h2 class="form-header">Update your recipe</h2>
+                    <form id="frontend-publisher" class="acf-form" action="@Url.Action("OnSubmitUpdateRecipe","Chef")" method="post">
                         <div class="acf-fields acf-form-fields -top">
 
 
@@ -55,7 +58,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="text" id="acf-_post_title" name="title" required="required" />
+                                        <input type="text" id="acf-_post_title" name="title" required="required" value="@(Model.Title)" />
                                     </div>
                                 </div>
                             </div>
@@ -66,8 +69,8 @@
                                 </div>
                                 <div class="acf-input">
                                     <select id="acf-field_5585b766453f9" class="" name="recipeType" placeholder="Select" required="required">
-                                        <option value="1">Free</option>
-                                        <option value="0">Not-Free</option>
+                                        <option value="1" @(Model.Type == 1 ? "selected" : "")>Free</option>
+                                        <option value="0" @(Model.Type == 0 ? "selected" : "")>Not-Free</option>
                                     </select>
                                 </div>
                             </div>
@@ -78,21 +81,22 @@
                                 </div>
                                 <div class="acf-input">
                                     @*<div id="acf-hidden-wp-editor" class="acf-hidden">
-                                        <div id="wp-acf_content-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
-                                            <link rel='stylesheet' id='dashicons-css' href='http://neptune.pinsupreme.com/wp-includes/css/dashicons.min.css' type='text/css' media='all' />
-                                            <link rel='stylesheet' id='editor-buttons-css' href='http://neptune.pinsupreme.com/wp-includes/css/editor.min.css' type='text/css' media='all' />
-                                            <div id="wp-acf_content-editor-tools" class="wp-editor-tools hide-if-no-js">
-                                                <div class="wp-editor-tabs">
-                                                    <button type="button" id="acf_content-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="acf_content">Visual</button>
-                                                    <button type="button" id="acf_content-html" class="wp-switch-editor switch-html" data-wp-editor-id="acf_content">Text</button>
+                                            <div id="wp-acf_content-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+                                                <link rel='stylesheet' id='dashicons-css' href='http://neptune.pinsupreme.com/wp-includes/css/dashicons.min.css' type='text/css' media='all' />
+                                                <link rel='stylesheet' id='editor-buttons-css' href='http://neptune.pinsupreme.com/wp-includes/css/editor.min.css' type='text/css' media='all' />
+                                                <div id="wp-acf_content-editor-tools" class="wp-editor-tools hide-if-no-js">
+                                                    <div class="wp-editor-tabs">
+                                                        <button type="button" id="acf_content-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="acf_content">Visual</button>
+                                                        <button type="button" id="acf_content-html" class="wp-switch-editor switch-html" data-wp-editor-id="acf_content">Text</button>
+                                                    </div>
+                                                </div>
+                                                <div id="wp-acf_content-editor-container" class="wp-editor-container">
+                                                    <div id="qt_acf_content_toolbar" class="quicktags-toolbar"></div>
+                                                    <textarea class="wp-editor-area" rows="20" autocomplete="off" cols="40" name="acf_content" id="acf_content"></textarea>
                                                 </div>
                                             </div>
-                                            <div id="wp-acf_content-editor-container" class="wp-editor-container">
-                                                <div id="qt_acf_content_toolbar" class="quicktags-toolbar"></div><textarea class="wp-editor-area" rows="20" autocomplete="off" cols="40" name="acf_content" id="acf_content"></textarea>
-                                            </div>
-                                        </div>
 
-                                    </div>*@
+                                        </div>*@
                                     <div id="wp-acf-editor-5e42d70de27d4-wrap" class="acf-editor-wrap wp-core-ui wp-editor-wrap tmce-active" data-toolbar="full">
                                         <div id="wp-acf-editor-5e42d70de27d4-editor-tools" class="wp-editor-tools hide-if-no-js">
                                             <div class="wp-editor-tabs">
@@ -101,7 +105,9 @@
                                             </div>
                                         </div>
                                         <div id="wp-acf-editor-5e42d70de27d4-editor-container" class="wp-editor-container">
-                                            <textarea id="acf-editor-5e42d70de27d4" class="wp-editor-area" name="content" style="height:300px;" required="required"></textarea>
+                                            <textarea id="acf-editor-5e42d70de27d4" class="wp-editor-area" name="content" style="height: 300px;" required="required">
+                                                @(Model.Content)
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -113,11 +119,13 @@
                                     <label for="post_image">Image <span class="acf-required">*</span></label>
                                 </div>
                                 <div class="imgUp">
-                                    <div class="imagePreview"></div>
+                                    <div class="imagePreview">
+                                        <img src="@(Model.FeaturedImage)" alt="Alternate Text" style="width: 350px; height: auto;" />
+                                    </div>
                                     <label class="btn btn-primary">
                                         Upload<input type="button" id="upload_widget" class="upload_widget uploadFile img" value="Upload Photo" style="width: 0px; height: 0px; overflow: hidden; opacity: 0;">
                                     </label>
-                                    <input type="hidden" id="post_image" class="image-posted" name="featuredImage" required="required" />
+                                    <input type="hidden" id="post_image" class="image-posted" name="featuredImage" required="required" value="@(Model.FeaturedImage)" />
                                 </div>
 
 
@@ -132,7 +140,7 @@
                                     <select id="acf-field_5585b766453f9" class="" name="categoryId" placeholder="Select" required="required">
                                         @foreach (var cate in ViewBag.Categories)
                                         {
-                                            <option value="@(cate.Id)">@(cate.Name)</option>
+                                            <option value="@(cate.Id)" @(Model.Category.Id == cate.Id ? "selected" : "")>@(cate.Name)</option>
                                         }
                                     </select>
                                 </div>
@@ -143,9 +151,9 @@
                                 </div>
                                 <div class="acf-input">
                                     <select id="acf-field_5585b766453f9" class="" name="difficulty" placeholder="Select" required="required">
-                                        <option value="Easy">Easy</option>
-                                        <option value="Medium">Medium</option>
-                                        <option value="Hard">Hard</option>
+                                        <option value="Easy" @(Model.Difficulty == "Easy" ? "selected" : "")>Easy</option>
+                                        <option value="Medium" @(Model.Difficulty == "Medium" ? "selected" : "")>Medium</option>
+                                        <option value="Hard" @(Model.Difficulty == "Hard" ? "selected" : "")>Hard</option>
                                     </select>
                                 </div>
                             </div>
@@ -155,7 +163,9 @@
                                     <label for="acf-field_5588af3018cb3">Description</label>
                                 </div>
                                 <div class="acf-input">
-                                    <textarea id="acf-field_5588af3018cb3" name="description" rows="3" required="required"></textarea>
+                                    <textarea id="acf-field_5588af3018cb3" name="description" rows="3" required="required">
+                                        @(Model.Description)
+                                    </textarea>
                                 </div>
                             </div>
 
@@ -166,7 +176,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="number" id="acf-field_563041000427e" name="preparationMinute" required="required" />
+                                        <input type="number" id="acf-field_563041000427e" name="preparationMinute" required="required" value="@(Model.PreparationMinute)" />
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +188,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="number" id="acf-field_56303fcf0427d" name="cookingMinute" required="required" />
+                                        <input type="number" id="acf-field_56303fcf0427d" name="cookingMinute" required="required" value="@(Model.CookingMinute)" />
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +200,7 @@
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-input-wrap">
-                                        <input type="number" id="acf-field_563062b0f356d" name="cookingTemp" required="required" />
+                                        <input type="number" id="acf-field_563062b0f356d" name="cookingTemp" required="required" value="@(Model.CookingTemp)" />
                                     </div>
                                 </div>
                             </div>
@@ -217,30 +227,34 @@
                                                 </tr>
                                             </thead>
 
-                                            <tbody class="list-ct">
-                                                <tr class="acf-row acf-clone ct">
-                                                    <td class="acf-row-handle order" title="Drag to reorder">
-                                                        <span>1</span>
-                                                    </td>
-                                                    <td class="acf-field acf-field-text acf-field-5585317d9b50b">
-                                                        <div class="acf-input">
-                                                            <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listIngredient[0].Name" required="required"/>
+                                            <tbody class="list-ct" data-count="@(Model.Ingredients.Count)">
+                                                @for (var i = Model.Ingredients.Count - 1; i >= 0; i--)
+                                                {
+                                                    var ct = Model.Ingredients.ElementAt(i);
+                                                    <tr class="acf-row acf-clone ct">
+                                                        <td class="acf-row-handle order" title="Drag to reorder">
+                                                            <span>@(i + 1)</span>
+                                                        </td>
+                                                        <td class="acf-field acf-field-text acf-field-5585317d9b50b">
+                                                            <div class="acf-input">
+                                                                <div class="acf-input-wrap">
+                                                                    <input type="text" name="listIngredient[@(i)].Name" value="@(ct.Name)" required="required"/>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
+                                                        </td>
 
-                                                    <td class="acf-field acf-field-text acf-field-558531f69b50c">
-                                                        <div class="acf-input">
-                                                            <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listIngredient[0].Amount" required="required"/>
+                                                        <td class="acf-field acf-field-text acf-field-558531f69b50c">
+                                                            <div class="acf-input">
+                                                                <div class="acf-input-wrap">
+                                                                    <input type="text" name="listIngredient[@(i)].Amount" value="@(ct.Amount)" required="required"/>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="acf-row-handle remove">
-                                                        <i class="fas fa-trash-alt delete-ct" style="cursor: pointer"></i>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                        <td class="acf-row-handle remove">
+                                                            <i class="fas fa-trash-alt delete-ct" style="cursor: pointer"></i>
+                                                        </td>
+                                                    </tr>
+                                                }
                                             </tbody>
                                         </table>
 
@@ -267,57 +281,60 @@
                                                     <th></th>
                                             </thead>
 
-                                            <tbody class="list-step">
-                                                <tr class="acf-row step">
+                                            <tbody class="list-step" data-count="@(Model.Steps.Count)">
+                                                @for (var i = Model.Steps.Count - 1; i >= 0; i--)
+                                                {
+                                                    var step = Model.Steps.ElementAt(i);
+                                                    <tr class="acf-row step">
 
-                                                    <td class="acf-row-handle order ui-sortable-handle">
-                                                        <input type="text" id="" name="listStep[0].Index" value="1" required="required">
-                                                    </td>
+                                                        <td class="acf-row-handle order ui-sortable-handle">
+                                                            <input type="text" name="listStep[@(i)].Index" value="@(i+1)" required="required"/>
+                                                        </td>
 
-                                                    <td class="acf-fields">
-
-
-                                                        <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 30%" data-width="30" data-name="step_description" data-type="textarea">
-                                                            <div class="acf-label">
-                                                                <label for="image-step">Image</label>
-                                                            </div>
-                                                            <div class="imgUp" style="width: 250px;">
-                                                                <div class="image-preview-step"></div>
-                                                                <label class="btn btn-primary">
-                                                                    Upload<input type="button" class="upload_step uploadFile img" value="Upload Photo" style="width: 0px; height: 0px; overflow: hidden; opacity: 0;">
-                                                                </label>
-                                                                <input type="hidden" class="image-step" name="listStep[0].ImagePath" required="required" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 70%" data-width="30" data-name="step_description" data-type="textarea">
-                                                            
-
-                                                            <div class="acf-label">
-                                                                <label for="step_title">Title</label>
-                                                            </div>
-                                                            <div class="acf-input">
-                                                                <input type="text" id="step_title" name="listStep[0].Title" required="required" />
+                                                        <td class="acf-fields">
+                                                            <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 30%" data-width="30" data-name="step_description" data-type="textarea">
+                                                                <div class="acf-label">
+                                                                    <label for="image-step">Image</label>
+                                                                </div>
+                                                                <div class="imgUp" style="width: 250px;">
+                                                                    <div class="image-preview-step">
+                                                                        <img src="@(step.ImagePath)" alt="Alternate Text" style="width: 250px; height: 200px !important;" />
+                                                                    </div>
+                                                                    <label class="btn btn-primary">
+                                                                        Upload<input type="button" class="upload_step uploadFile img" value="Upload Photo" style="width: 0px; height: 0px; overflow: hidden; opacity: 0;">
+                                                                    </label>
+                                                                    <input type="hidden" class="image-step" name="listStep[@(i)].ImagePath" required="required" value="@(step.ImagePath)" />
+                                                                </div>
                                                             </div>
 
+                                                            <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 70%" data-width="30" data-name="step_description" data-type="textarea">
+                                                                <div class="acf-label">
+                                                                    <label for="step_title">Title</label>
+                                                                </div>
+                                                                <div class="acf-input">
+                                                                    <input type="text" id="step_title" name="listStep[@(i)].Title" value="@(step.Title)" required="required"/>
+                                                                </div>
 
-                                                            <div class="acf-label">
-                                                                <label for="step_description">Description</label>
+
+                                                                <div class="acf-label">
+                                                                    <label for="step_description">Description</label>
+                                                                </div>
+                                                                <div class="acf-input">
+                                                                    <textarea id="step_description" name="listStep[@(i)].Description" rows="7" required="required">@(step.Description)</textarea>
+                                                                </div>
+
                                                             </div>
-                                                            <div class="acf-input">
-                                                                <textarea id="step_description" name="listStep[0].Description" rows="7" required="required"></textarea>
-                                                            </div>
 
-                                                        </div>
-                                                    </td>
-                                                    <td class="acf-row-handle remove">
-                                                        <i class="fas fa-trash-alt delete-step" style="cursor: pointer"></i>
-                                                    </td>
+                                                        </td>
+                                                        <td class="acf-row-handle remove">
+                                                            <i class="fas fa-trash-alt delete-step" style="cursor: pointer"></i>
+                                                        </td>
 
-                                                </tr>
+                                                    </tr>
+                                                }
                                             </tbody>
                                         </table>
-
+                                        <input type="hidden" name="recipeId" value="@(Model.Id)" />
                                         <div class="acf-actions">
                                             <a class="acf-button button button-primary" id="btn-add-step">Add Step</a>
                                         </div>
@@ -345,34 +362,38 @@
                                                 </tr>
                                             </thead>
 
-                                            <tbody class="list-nutrition">
-                                                <tr class="acf-row acf-clone nutrition">
+                                            <tbody class="list-nutrition" data-count="@(Model.Nutrition.Count)">
+                                                @for (var i = Model.Nutrition.Count - 1; i >= 0; i--)
+                                                {
+                                                    var nutri = Model.Nutrition.ElementAt(i);
+                                                    <tr class="acf-row acf-clone nutrition">
 
-                                                    <td class="acf-row-handle order">
-                                                        <span>1</span>
-                                                    </td>
+                                                        <td class="acf-row-handle order">
+                                                            <span>@(i + 1)</span>
+                                                        </td>
 
-                                                    <td class="acf-field acf-field-text acf-field-558bba3a6bc23 -collapsed-target" data-name="nutrition_name" data-type="text">
-                                                        <div class="acf-input">
-                                                            <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listNutrition[0].Name" required="required"/>
+                                                        <td class="acf-field acf-field-text acf-field-558bba3a6bc23 -collapsed-target" data-name="nutrition_name" data-type="text">
+                                                            <div class="acf-input">
+                                                                <div class="acf-input-wrap">
+                                                                    <input type="text" name="listNutrition[@(i)].Name" value="@(nutri.Name)" required="required"/>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
+                                                        </td>
 
-                                                    <td class="acf-field acf-field-text acf-field-558bba486bc24" data-name="nutrition_value" data-type="text">
-                                                        <div class="acf-input">
-                                                            <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listNutrition[0].Value" required="required"/>
+                                                        <td class="acf-field acf-field-text acf-field-558bba486bc24" data-name="nutrition_value" data-type="text">
+                                                            <div class="acf-input">
+                                                                <div class="acf-input-wrap">
+                                                                    <input type="text" name="listNutrition[@(i)].Value" value="@(nutri.Value)" required="required"/>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
+                                                        </td>
 
-                                                    <td class="acf-row-handle remove">
-                                                        <i class="fas fa-trash-alt delete-nutri" style="cursor: pointer"></i>
-                                                    </td>
+                                                        <td class="acf-row-handle remove">
+                                                            <i class="fas fa-trash-alt delete-nutri" style="cursor: pointer"></i>
+                                                        </td>
 
-                                                </tr>
+                                                    </tr>
+                                                }
                                             </tbody>
                                         </table>
 
@@ -385,7 +406,7 @@
                             </div>
                         </div>
                         <div class="acf-form-submit">
-                            <input type="submit" class="acf-button button button-primary button-large" value="Submit Recipe" /> <span class="acf-spinner"></span>
+                            <input type="submit" class="acf-button button button-primary button-large" value="Save recipe" /> <span class="acf-spinner"></span>
                         </div>
                     </form>
                 </div>
@@ -397,10 +418,9 @@
 <div id="add-success" data-msg="@(TempData["AddSuccess"])"></div>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 @section Scripts{
-    <script src="~/Content/js/SubmitRecipe.js"></script>
-
+    <script src="~/Content/js/UpdateRecipe.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($) {
+        jQuery(document).ready(function ($) {
             $("#frontend-publisher").validate({
                 onfocusout: false,
                 onkeyup: false,
@@ -428,9 +448,11 @@
                         number: true
                     }
                 }
-            }); 
+            });
         })
     </script>
 }
+
+
 
 

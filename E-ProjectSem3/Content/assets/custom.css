@@ -89,7 +89,10 @@ div.userpro-input label.userpro-checkbox span.checked {
     margin-bottom: 15px;
 }
 
-    .imgUp label {
-        width: 100%;
-        margin-top: -5px;
-    }
+.imgUp label {
+    width: 100%;
+    margin-top: -5px;
+}
+.acf-notice-dismiss {
+    display: none;
+}

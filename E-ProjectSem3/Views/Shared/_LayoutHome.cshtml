@@ -201,7 +201,7 @@
                                 {
                                     <li><span>Gold member</span></li>
                                 }
-                                <li><a href="#"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
+                                <li><a href="/Account/Profile/@(User.Identity.GetUserId())"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
                                 <li><a href="#"><i class="os-icon os-icon-ui-33"></i> <span>My Bookmarks</span></a></li>
                                 <li><a href="#"><i class="os-icon os-icon-phone-21"></i> <span>My Meal Plans</span></a></li>
                                 <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-12"></i> <span>Logout</span></a></li>
@@ -566,25 +566,27 @@
         /* ]]> */
     </script>
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js'></script>
-<script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
-<script>
-    jQuery(document).ready(function ($) {
-        $.ajax({
-            url: '/Recipe/GetPopularRecipesAjax',
-            type: 'GET',
-            success: function (responseData) {
-                var html = '';
-                for (var i = 0; i < responseData.data.length; i++) {
-                    html += `<li>
-                                <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
-                                <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
-                            </li>`;
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js" type="text/javascript"></script>
+    <script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $.ajax({
+                url: '/Recipe/GetPopularRecipesAjax',
+                type: 'GET',
+                success: function (responseData) {
+                    var html = '';
+                    for (var i = 0; i < responseData.data.length; i++) {
+                        html += `<li>
+                                    <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
+                                    <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
+                                </li>`;
+                    }
+                    $('.popular-ajax').html(html);
                 }
-                $('.popular-ajax').html(html);
-            }
-        });
-    })
-</script>
+            });
+        })
+    </script>
 </body>
 @RenderSection("Scripts", false)
 </html>
