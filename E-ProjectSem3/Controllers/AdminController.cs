@@ -60,5 +60,47 @@ namespace E_ProjectSem3.Controllers
         //    var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
         //    return View("Recipes", listRecipe);
         //}
+        public ActionResult StatisticsVip() {
+            var vips = db.OrderInfos.Where(v => v.Status == (int)OrderStatus.Paid).OrderBy(v => v.CreatedAt).Take(10).ToList();
+            return View(vips);
+        }
+        public ActionResult Test(string start, string end)
+        {
+            var startTime = DateTime.Now;
+            startTime = startTime.AddYears(-1);
+            try
+            {
+                startTime = DateTime.Parse(start);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            startTime = new DateTime(startTime.Year, startTime.Month, startTime.Day, 0, 0, 0, 0);
+
+            var endTime = DateTime.Now;
+            try
+            {
+                endTime = DateTime.Parse(end);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            endTime = new DateTime(endTime.Year, endTime.Month, endTime.Day, 23, 59, 59, 0);
+
+            var vips = db.OrderInfos.Where(v => v.Status == (int)OrderStatus.Paid && (v.CreatedAt >= startTime && v.CreatedAt <= endTime)).OrderBy(v => v.CreatedAt).ToList();
+
+            return new JsonResult()
+            {
+                Data = vips.Select(v => new { 
+                    username = v.ApplicationUser.FirstName+" "+ v.ApplicationUser.LastName,
+                    amount = v.Amount,
+                    type = v.OrderDescription,
+                    created_at = v.CreatedAt.ToShortDateString(),
+                }),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

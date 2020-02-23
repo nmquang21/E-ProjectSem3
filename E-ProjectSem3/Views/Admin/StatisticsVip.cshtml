@@ -2,53 +2,63 @@
 
 @{
     ViewBag.Title = "StatisticsVip";
-    int i = 1;
+    var i = 1;
 }
 
 <div class="col-lg-12 mb-4 mt-5" style="padding-left: 0px; padding-right: 0px;">
     <div class="card">
-        <div class="card-header">
-            <h6 class="text-uppercase mb-0">Statistics Vip</h6>
+        <div class="card-header d-flex" style="align-items: center">
+            <h6 class="text-uppercase mb-0 " style="white-space:nowrap">Statistics Vip</h6>
+            <div class="col-lg-12">
+                <div class="col-lg-7 mb-6 position-relative" style="padding-left: 25px;margin: 0 auto;">
+                    <input type="text" name="datefilter" id="datefilter" value="" class="form-control input-custom col-lg-12" data-id="1" />
+                    <i class="far fa-calendar-alt text-gray position-absolute icon-calendar"></i>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <table class="data-table table table-striped table-hover card-text">
-                <tr>
-                    <th>
-                        STT
-                    </th>
-                    <th>
-                        User
-                    </th>
-                    <th>Amount</th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.OrderDescription)
-                    </th>
-                   
-                    <th>CreatedAt</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>
+                            STT
+                        </th>
+                        <th>
+                            User
+                        </th>
+                        <th>Amount</th>
+                        <th>
+                            Type
+                        </th>
 
-                @foreach (var item in Model)
-                {
-            <tr>
-                <td>
-                    @(i)
+                        <th>Date Of Purchase</th>
+                    </tr>
+                </thead>
+                <tbody class="statistics-vip-content">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @(i)
+                            </td>
+                            <td>
+                                @(item.ApplicationUser.FirstName + " " + item.ApplicationUser.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedAt)
+                            </td>
+                        </tr>
+                        @(i++);
+                    }
+                </tbody>
 
-                </td>
-                <td>
-                   @* @(item.ApplicationUser.FirstName + " " + item.ApplicationUser.FirstName)*@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedAt)
-                </td>
-            </tr>
-                            @(i++);
-                        }
+                
 
             </table>
         </div>
@@ -58,6 +68,8 @@
 @section scripts{
 
     <script src="~/Content/js/data-table.js"></script>
+    <script src="~/Content/js/statistics-vip.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('.data-table').DataTable();

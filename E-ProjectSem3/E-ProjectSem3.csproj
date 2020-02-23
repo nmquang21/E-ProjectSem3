@@ -458,6 +458,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\statistic-vip.css" />
     <Content Include="Content\css\custom-select-option.css" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\data-table.css" />
