@@ -96,3 +96,7 @@ div.userpro-input label.userpro-checkbox span.checked {
 .acf-notice-dismiss {
     display: none;
 }
+div.userpro-input label.userpro-radio input[type=radio]{
+    display: inline !important;
+    cursor: pointer;
+}

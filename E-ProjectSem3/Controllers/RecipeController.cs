@@ -90,5 +90,12 @@ namespace E_ProjectSem3.Controllers
                 .OrderByDescending(r => r.ViewCount).Take(3).ToList();
             return Json(new { data = listRecipe}, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult GetUsernameAjax()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            return Json(new { data = user.UserName }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

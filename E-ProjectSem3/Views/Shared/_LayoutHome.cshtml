@@ -191,7 +191,7 @@
                         {
                             @Html.AntiForgeryToken()
                             <ul>
-                                <li><span>Logged in as <strong>@(User.Identity.GetUserName())</strong></span></li>
+                                <li><span>Logged in as <strong class="username"></strong></span></li>
 
                                 @if (UserManager.IsInRole(User.Identity.GetUserId(), "silver"))
                                 {
@@ -583,6 +583,13 @@
                                 </li>`;
                     }
                     $('.popular-ajax').html(html);
+                }
+            });
+            $.ajax({
+                url: '/Recipe/GetUsernameAjax',
+                type: 'GET',
+                success: function (responseData) {
+                    $('.username').html(responseData.data);
                 }
             });
         })
