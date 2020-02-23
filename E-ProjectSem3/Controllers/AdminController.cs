@@ -102,5 +102,10 @@ namespace E_ProjectSem3.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public ActionResult User()
+        {
+            var listUser = db.Users.ToList();
+            return View(listUser);
+        }
     }
 }
