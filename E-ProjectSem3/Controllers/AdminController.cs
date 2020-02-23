@@ -104,7 +104,7 @@ namespace E_ProjectSem3.Controllers
                 ).Select(g => new
                 {
                     Date = g.FirstOrDefault().CreatedAt,
-                    Revenue = g.Sum(o => (double?)o.Amount) ?? 0,
+                    Total = g.Sum(o => (double?)o.Amount) ?? 0,
                 }).OrderBy(o => o.Date).ToList();
 
             return new JsonResult()
@@ -112,7 +112,7 @@ namespace E_ProjectSem3.Controllers
                 Data = data.Select(o => new
                 {
                     Date = o.Date.ToString("d"),
-                    Revenue = o.Revenue,
+                    Total = o.Total,
                 }),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };

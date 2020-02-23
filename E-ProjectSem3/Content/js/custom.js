@@ -53,9 +53,9 @@ function drawLineChart(contronllerName) {
             function drawChart() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('date', 'Month');
-                data.addColumn('number', 'Revenue');
+                data.addColumn('number', 'Total');
                 for (var i = 0; i < responseData.length; i++) {
-                    data.addRow([new Date(responseData[i].Date), responseData[i].Revenue]);
+                    data.addRow([new Date(responseData[i].Date), responseData[i].Total]);
                 }
                 var options = {
                     title: 'Company Performance',
@@ -67,7 +67,6 @@ function drawLineChart(contronllerName) {
             }
         }
     });
-
 }
 
 
