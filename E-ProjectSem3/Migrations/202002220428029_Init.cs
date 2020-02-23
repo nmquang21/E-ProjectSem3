@@ -3,7 +3,7 @@ namespace E_ProjectSem3.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class time : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -27,7 +27,7 @@ namespace E_ProjectSem3.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ApproveId = c.Int(nullable: false),
+                        ApproveId = c.String(),
                         Title = c.String(),
                         Description = c.String(),
                         Content = c.String(),
@@ -125,7 +125,7 @@ namespace E_ProjectSem3.Migrations
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
-                        ApproveId = c.Int(nullable: false),
+                        ApproveId = c.String(),
                         Status = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.RecipeId, t.UserId })

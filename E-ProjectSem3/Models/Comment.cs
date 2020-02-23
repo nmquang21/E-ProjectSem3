@@ -24,7 +24,7 @@ namespace E_ProjectSem3.Models
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         
-        public int ApproveId { get; set; }
+        public string ApproveId { get; set; }
         public int Status { get; set; }
 
         public enum StatusComment

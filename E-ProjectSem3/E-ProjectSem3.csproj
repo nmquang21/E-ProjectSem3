@@ -195,13 +195,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002171554353_time.cs" />
-    <Compile Include="Migrations\202002171554353_time.Designer.cs">
-      <DependentUpon>202002171554353_time.cs</DependentUpon>
+    <Compile Include="Migrations\202002220428029_Init.cs" />
+    <Compile Include="Migrations\202002220428029_Init.Designer.cs">
+      <DependentUpon>202002220428029_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002171756089_time1.cs" />
-    <Compile Include="Migrations\202002171756089_time1.Designer.cs">
-      <DependentUpon>202002171756089_time1.cs</DependentUpon>
+    <Compile Include="Migrations\202002231210337_Profile.cs" />
+    <Compile Include="Migrations\202002231210337_Profile.Designer.cs">
+      <DependentUpon>202002231210337_Profile.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
@@ -210,6 +210,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Contest.cs" />
     <Compile Include="Models\ContestUser.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Models\OrderInfo.cs" />
     <Compile Include="Models\Prize.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\RecipeSessionSeen.cs" />
     <Compile Include="Models\Step.cs" />
     <Compile Include="Models\VnPayLibrary.cs" />
     <Compile Include="Models\WishList.cs" />
@@ -457,6 +459,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\statistic-vip.css" />
     <Content Include="Content\css\custom-select-option.css" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\data-table.css" />
@@ -505,6 +508,8 @@
     <Content Include="Content\js\jquery.dataTables.js" />
     <Content Include="Content\js\Like.js" />
     <Content Include="Content\js\PopularRecipe.js" />
+    <Content Include="Content\js\SubmitRecipe.js" />
+    <Content Include="Content\js\UpdateRecipe.js" />
     <Content Include="Content\js\utils.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -760,6 +765,8 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Recipes.cshtml" />
     <Content Include="Views\Admin\View.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Chef\UpdateRecipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -780,11 +787,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002171554353_time.resx">
-      <DependentUpon>202002171554353_time.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002220428029_Init.resx">
+      <DependentUpon>202002220428029_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002171756089_time1.resx">
-      <DependentUpon>202002171756089_time1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002231210337_Profile.resx">
+      <DependentUpon>202002231210337_Profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

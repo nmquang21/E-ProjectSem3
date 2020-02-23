@@ -190,22 +190,22 @@
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
                         {
                             @Html.AntiForgeryToken()
-                    <ul>
-                        <li><span>Logged in as <strong>@(User.Identity.GetUserName())</strong></span></li>
+                            <ul>
+                                <li><span>Logged in as <strong>@(User.Identity.GetUserName())</strong></span></li>
 
-                        @if(UserManager.IsInRole(User.Identity.GetUserId(), "silver"))
-                        {
-                        <li><span>Silver member</span></li>
-                        }
-                        @if (UserManager.IsInRole(User.Identity.GetUserId(), "gold"))
-                        {
-                            <li><span>Gold member</span></li>
-                        }
-                        <li><a href="#"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
-                        <li><a href="#"><i class="os-icon os-icon-ui-33"></i> <span>My Bookmarks</span></a></li>
-                        <li><a href="#"><i class="os-icon os-icon-phone-21"></i> <span>My Meal Plans</span></a></li>
-                        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-12"></i> <span>Logout</span></a></li>
-                    </ul>
+                                @if (UserManager.IsInRole(User.Identity.GetUserId(), "silver"))
+                                {
+                                    <li><span>Silver member</span></li>
+                                }
+                                @if (UserManager.IsInRole(User.Identity.GetUserId(), "gold"))
+                                {
+                                    <li><span>Gold member</span></li>
+                                }
+                                <li><a href="/Account/Profile/@(User.Identity.GetUserId())"><i class="os-icon os-icon-head"></i> <span>My Profile</span></a></li>
+                                <li><a href="#"><i class="os-icon os-icon-ui-33"></i> <span>My Bookmarks</span></a></li>
+                                <li><a href="#"><i class="os-icon os-icon-phone-21"></i> <span>My Meal Plans</span></a></li>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-12"></i> <span>Logout</span></a></li>
+                            </ul>
                         }
                     }
                     else
@@ -299,6 +299,71 @@
         <!-- Body -->
         @RenderBody()
 
+        <div class="os-container">
+            <div class="pre-footer widgets-count-4" style="background-image:background-repeat: repeat; background-position: top left;; ">
+                <aside id="text-3" class="widget-odd widget-first widget-1 widget widget_text">
+                    <h3 class="widget-title"><span>Instagram Feed</span></h3>
+                    <div class="textwidget">
+                        <div id="sb_instagram" class="sbi sbi_col_1  sbi_width_resp sbi_disable_mobile" style="width: 100%;" data-feedid="sbi_#10" data-res="auto" data-cols="1" data-num="10" data-shortcode-atts="{&quot;id&quot;:&quot;3532778&quot;}">
+
+                            <div id="sbi_images">
+                            </div>
+
+
+                            <span class="sbi_resized_image_data" data-feed-id="sbi_#10" data-resized="[]"></span>
+                            <div id="sbi_mod_error">
+                                <span>This error message is only visible to WordPress admins</span><br />
+                                <p><b>Error: There is no connected account for the user 3532778 Feed will not update.</b>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <aside id="text-4" class="widget-even widget-2 widget widget_text">
+                    <h3 class="widget-title"><span>Facebook Fans</span></h3>
+                    <div class="textwidget">
+                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjamieoliver%2F&tabs&width=210&height=230&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=270013879684272"
+                                style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                    </div>
+                </aside>
+                <aside id="widget_tptn_pop-2" class="widget-odd widget-3 widget tptn_posts_list_widget">
+                    <h3 class="widget-title"><span>Popular Recipes</span></h3>
+                    <div class="tptn_posts  tptn_posts_widget tptn_posts_widget2">
+                        <ul class="popular-ajax">
+                        </ul>
+                        <div class="tptn_clear"></div>
+                    </div>
+                </aside>
+                <aside id="osetin_categories_widget-2" class="widget-even widget-last widget-4 widget widget_osetin_categories_widget">
+                    <h3 class="widget-title"><span>Popular Categories</span></h3>
+                    <div class="shortcode-categories-icons">
+                        <table class="category-ajax">
+                        </table>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <div class="os-container">
+            <div class="main-footer with-social color-scheme-light" style="background-image:background-repeat: repeat; background-position: top left;; ">
+                <div class="footer-copy-and-menu-w">
+                    <div class="footer-menu">
+                        <ul id="footer-menu" class="menu">
+                            <li id="menu-item-328" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-328"><a href="#">Terms of Service</a></li>
+                            <li id="menu-item-329" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-329"><a href="#">Privacy Policy</a></li>
+                            <li id="menu-item-330" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-330"><a href="#">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-copyright"></div>
+                </div>
+                <div class="footer-social-w">
+                    <ul class="bar-social" style="">
+                        <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
+                        <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-facebook"></i></a></li>
+                        <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-pinterest"></i></a></li>
+                        <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="main-search-form-overlay"></div>
         <div class="main-search-form">
             <form method="get" class="search-form" action="@Url.Action("Recipes","Home")" autocomplete="off">
@@ -311,7 +376,7 @@
         </div>
         <div class="display-type"></div>
     </div>
-    <!-- Instagram Feed JS -->
+
     <script type="text/javascript">
         var sbiajaxurl = "http://neptune.pinsupreme.com/wp-admin/admin-ajax.php";
     </script>
@@ -501,25 +566,27 @@
         /* ]]> */
     </script>
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js'></script>
-<script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
-<script>
-    jQuery(document).ready(function ($) {
-        $.ajax({
-            url: '/Recipe/GetPopularRecipesAjax',
-            type: 'GET',
-            success: function (responseData) {
-                var html = '';
-                for (var i = 0; i < responseData.data.length; i++) {
-                    html += `<li>
-                                <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
-                                <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
-                            </li>`;
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js" type="text/javascript"></script>
+    <script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $.ajax({
+                url: '/Recipe/GetPopularRecipesAjax',
+                type: 'GET',
+                success: function (responseData) {
+                    var html = '';
+                    for (var i = 0; i < responseData.data.length; i++) {
+                        html += `<li>
+                                    <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
+                                    <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
+                                </li>`;
+                    }
+                    $('.popular-ajax').html(html);
                 }
-                $('.popular-ajax').html(html);
-            }
-        });
-    })
-</script>
+            });
+        })
+    </script>
 </body>
 @RenderSection("Scripts", false)
 </html>

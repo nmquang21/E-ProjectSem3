@@ -4,7 +4,7 @@
         resetToastPosition();
         $.toast({
             heading: 'Success',
-            text: `You are ${$('#show-message').data('success')} member.`,
+            text: `You are a member.`,
             showHideTransition: 'slide',
             icon: 'success',
             loaderBg: '#f96868',

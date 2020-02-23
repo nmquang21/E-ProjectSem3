@@ -22,7 +22,7 @@ namespace E_ProjectSem3.Controllers
                 return Json(new { data = "NotLogIn" }, JsonRequestBehavior.AllowGet);
             }
             Recipe recipe = db.Recipes.Find(id);
-            if (recipe == null)
+            if (recipe == null || recipe.DeletedAt != null)
             {
                 return RedirectToAction("NotFound", "Home");
             }

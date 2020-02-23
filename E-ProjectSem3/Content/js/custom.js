@@ -3,8 +3,6 @@
     var url = new URL(url_string);
     return url.searchParams.get(parameter);
 }
-    
-
 
 function drawLineChart(contronllerName) {
 
@@ -55,9 +53,9 @@ function drawLineChart(contronllerName) {
             function drawChart() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('date', 'Month');
-                data.addColumn('number', 'Total');
+                data.addColumn('number', 'Revenue');
                 for (var i = 0; i < responseData.length; i++) {
-                    data.addRow([new Date(responseData[i].Date), responseData[i].Total]);
+                    data.addRow([new Date(responseData[i].Date), responseData[i].Revenue]);
                 }
                 var options = {
                     title: 'Company Performance',

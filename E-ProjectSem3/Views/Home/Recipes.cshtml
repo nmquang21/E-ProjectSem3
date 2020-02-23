@@ -223,7 +223,7 @@
                                                 <li><a href="@Url.Action("Recipes","Home", new {category = recipe.Category.Id, page = ViewBag.CurrentPage, search = ViewBag.Search})" rel="category tag">@(recipe.Category.Name)</a></li>
                                             </ul>
                                         </div>
-                                        @if (recipe.ApplicationUser.Id == User.Identity.GetUserId())
+                                        @if (Request.IsAuthenticated && recipe.ApplicationUser.Id == User.Identity.GetUserId())
                                         {
                                             <ul class="archive-item-meta-cuisines">
                                                 <li>
