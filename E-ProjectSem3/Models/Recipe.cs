@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace E_ProjectSem3.Models
 {
@@ -17,6 +18,7 @@ namespace E_ProjectSem3.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter description")]
         public string Description { get; set; }
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter content")]
+        [AllowHtml]
         public string Content { get; set; }
         [DisplayName("FeaturedImage")]
         public string FeaturedImage { get; set; }
