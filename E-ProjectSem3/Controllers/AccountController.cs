@@ -90,6 +90,10 @@ namespace E_ProjectSem3.Controllers
             }
         }
 
+        public ActionResult Profile()
+        {
+            return View();
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
