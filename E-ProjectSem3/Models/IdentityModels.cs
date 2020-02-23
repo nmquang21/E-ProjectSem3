@@ -13,7 +13,7 @@ namespace E_ProjectSem3.Models
         public string LastName { get; set; }
         public string Avatar { get; set; }
         public string Biography { get; set; }
-        public int Gender { get; set; }
+        public string Gender { get; set; }
         public string Country { get; set; }
         public string Facebook { get; set; }
         public string Twitter { get; set; }
