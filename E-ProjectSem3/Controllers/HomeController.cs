@@ -21,7 +21,7 @@ namespace E_ProjectSem3.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private MemberService memberService = new MemberService();
         private List<int> _listSeen = new List<int>();
-        public ActionResult Index(int? page)
+        public async Task<ActionResult> Index(int? page)
         {
             ViewBag.ListCategories = db.Categories.Where(c => c.Icon != null && c.DeletedAt == null).OrderBy(c => c.Name).ToList();
             ViewBag.DataSliderSmall = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
@@ -44,88 +44,7 @@ namespace E_ProjectSem3.Controllers
             int pageNumber = (page ?? 1);
             ViewBag.CurrentPage = page ?? 1;
             ViewBag.PageTotal = Math.Ceiling((double)listRecipe.Count() / pageSize);
-
-            if (Request.QueryString.Count > 0 && Request.QueryString["vnp_SecureHash"] != null)
-            {
-                string vnp_HashSecret = "XAUJIMFNKYUUWWNWOLLNIHJCUGLOIGEF"; //Secret key
-                var vnpayData = Request.QueryString;
-                VnPayLibrary vnpay = new VnPayLibrary();
-
-                foreach (string s in vnpayData)
-                {
-                    //get all querystring data
-                    if (!string.IsNullOrEmpty(s) && s.StartsWith("vnp_"))
-                    {
-                        vnpay.AddResponseData(s, vnpayData[s]);
-                    }
-                }
-                //Lay danh sach tham so tra ve tu VNPAY
-
-                string orderId = vnpay.GetResponseData("vnp_TxnRef");
-                string BankCode = vnpay.GetResponseData("vnp_BankCode");
-                string vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
-                String vnp_SecureHash = Request.QueryString["vnp_SecureHash"];
-                bool checkSignature = vnpay.ValidateSignature(vnp_SecureHash, vnp_HashSecret);
-
-                if (checkSignature)
-                {
-                    //Cap nhat ket qua GD
-                    OrderInfo order = db.OrderInfos.Find(orderId);
-                    if (order != null)
-                    {
-                        if (order.Status == (int)OrderStatus.Pending)
-                        {
-                            if (vnp_ResponseCode == "00")
-                            {
-                                //Thanh toan thanh cong
-                                ViewBag.ThanhToan = order.OrderDescription;
-                                order.Status = (int)OrderStatus.Paid;
-                                order.BankCode = BankCode;
-                                db.OrderInfos.AddOrUpdate(order);
-                                if (User.Identity.IsAuthenticated)
-                                {
-                                    //Luu membership
-                                    var listMemberType = db.Members.ToList();
-                                    var memberShip = new Membership();
-                                    foreach (var memberType in listMemberType)
-                                    {
-                                        if (order.Amount == memberType.Price && order.OrderDescription == memberType.MemberType)
-                                        {
-                                            memberShip.Member = memberType;
-                                        }
-                                    }
-                                    var id = User.Identity.GetUserId();
-                                    memberShip.ApplicationUser = UserManager.FindById(id);
-                                    memberShip.CreatedAt = DateTime.Now;
-                                    db.Memberships.Add(memberShip);
-                                    //Add role member:
-                                    UserManager.AddToRole(id, memberShip.Member.RoleName);
-                                }
-                                db.SaveChanges();
-                            }
-                            else
-                            {
-                                //Thanh toan khong thanh cong. Ma loi: vnp_ResponseCode
-                                order.Status = (int)OrderStatus.Error;
-                                db.OrderInfos.AddOrUpdate(order);
-                                db.SaveChanges();
-                            }
-                        }
-                        else
-                        {
-                            return RedirectToAction("NotFound");
-                        }
-                    }
-                    else
-                    {
-                        return RedirectToAction("NotFound");
-                    }
-                }
-                else
-                {
-                    return RedirectToAction("NotFound");
-                }
-            }
+            ViewBag.ThanhToan = await VnPaySuccess();
 
             return View(listRecipe.ToPagedList(pageNumber, pageSize));
         }
@@ -197,9 +116,9 @@ namespace E_ProjectSem3.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Recipe recipe = db.Recipes.Find(id);
-            if (recipe == null)
+            if (recipe == null || recipe.DeletedAt != null || recipe.Status != (int)Recipe.RecipeStatus.Active)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound");
             }
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Check expired member ship:
@@ -263,6 +182,81 @@ namespace E_ProjectSem3.Controllers
                 _listSeen.Add(recipe.Id);
                 Session["RepicesSeen"] = _listSeen;
             }
+        }
+
+        public async Task<bool> VnPaySuccess()
+        {
+            if (Request.QueryString.Count > 0 && Request.QueryString["vnp_SecureHash"] != null)
+            {
+                string vnp_HashSecret = "XAUJIMFNKYUUWWNWOLLNIHJCUGLOIGEF"; //Secret key
+                var vnpayData = Request.QueryString;
+                VnPayLibrary vnpay = new VnPayLibrary();
+
+                foreach (string s in vnpayData)
+                {
+                    //get all querystring data
+                    if (!string.IsNullOrEmpty(s) && s.StartsWith("vnp_"))
+                    {
+                        vnpay.AddResponseData(s, vnpayData[s]);
+                    }
+                }
+                //Lay danh sach tham so tra ve tu VNPAY
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                string orderId = vnpay.GetResponseData("vnp_TxnRef");
+                string BankCode = vnpay.GetResponseData("vnp_BankCode");
+                string vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
+                String vnp_SecureHash = Request.QueryString["vnp_SecureHash"];
+                bool checkSignature = vnpay.ValidateSignature(vnp_SecureHash, vnp_HashSecret);
+
+                if (checkSignature)
+                {
+                    //Cap nhat ket qua GD
+                    OrderInfo order = db.OrderInfos.Find(orderId);
+                    if (order != null)
+                    {
+                        if (order.Status == (int)OrderStatus.Pending)
+                        {
+                            if (vnp_ResponseCode == "00")
+                            {
+                                //Thanh toan thanh cong
+                                order.Status = (int)OrderStatus.Paid;
+                                order.BankCode = BankCode;
+                                db.OrderInfos.AddOrUpdate(order);
+                                if (User.Identity.IsAuthenticated)
+                                {
+                                    //Luu membership
+                                    var listMemberType = db.Members.ToList();
+                                    var memberShip = new Membership();
+                                    foreach (var memberType in listMemberType)
+                                    {
+                                        if (order.Amount == memberType.Price && order.OrderDescription == memberType.MemberType)
+                                        {
+                                            memberShip.Member = memberType;
+                                        }
+                                    }
+                                    var id = User.Identity.GetUserId();
+                                    memberShip.ApplicationUser = UserManager.FindById(id);
+                                    memberShip.CreatedAt = DateTime.Now;
+                                    db.Memberships.Add(memberShip);
+                                    //Add role member:
+                                    UserManager.AddToRole(id, memberShip.Member.RoleName);
+                                }
+                                db.SaveChanges();
+                                return true;
+                            }
+                            else
+                            {
+                                //Thanh toan khong thanh cong. Ma loi: vnp_ResponseCode
+                                order.Status = (int)OrderStatus.Error;
+                                db.OrderInfos.AddOrUpdate(order);
+                                db.SaveChanges();
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }

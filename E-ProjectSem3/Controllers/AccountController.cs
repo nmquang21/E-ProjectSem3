@@ -90,9 +90,14 @@ namespace E_ProjectSem3.Controllers
             }
         }
 
-        public ActionResult Profile()
+        public ActionResult Profile(string id)
         {
-            return View();
+            var user = UserManager.FindById(id);
+            if (user == null)
+            {
+                return RedirectToAction("NotFound", "Home");
+            }
+            return View(user);
         }
         //
         // GET: /Account/VerifyCode
