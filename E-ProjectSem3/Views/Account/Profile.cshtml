@@ -1,9 +1,10 @@
 ﻿@using E_ProjectSem3.Models
 @using Microsoft.AspNet.Identity
-@model E_ProjectSem3.Models.ApplicationUser
+@model E_ProjectSem3.Models.ResetPasswordViewModel
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var user = ViewBag.User as ApplicationUser;
 }
 
 <div class="os-container top-bar-w">
@@ -34,34 +35,33 @@
 
                     <div class="userpro-centered ">
                         <div class="userpro-profile-img" data-key="profilepicture">
-                            <a href="@(Model.Avatar)" class="userpro-tip-fade lightview" data-lightview-caption="giazzz35 did not upload a photo yet." original-title="View member photo"><img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="80" height="80" alt="" class="default avatar"></a>
+                            <a href="@(user.Avatar)" class="userpro-tip-fade lightview" data-lightview-caption="giazzz35 did not upload a photo yet." original-title="View member photo">
+                                <img src="@(user.Avatar)" width="80" height="80" alt="" class="default avatar">
+                            </a>
                         </div>
-                        <div class="userpro-profile-img-after">
+                        <div class="userpro-profile-img-after" style="margin-top: 35px;">
                             <div class="userpro-profile-name">
-                                <a href="/Account/Profile/@(Model.Id)">@(Model.LastName + " " + Model.FirstName)</a>
+                                <a href="/Account/Profile/@(user.Id)">@(user.LastName + " " + user.FirstName)</a>
                                 <span class="userpro-badges"></span>
                             </div>
                         </div>
-                        <div class="userpro-profile-icons top">
-                            <a class="userpro-small-link" href="http://neptune.pinsupreme.com/wp-login.php?action=logout&amp;redirect_to=http%3A%2F%2Fneptune.pinsupreme.com%2Fprofile%2F&amp;_wpnonce=459cc5c4ad" title="Logout">Logout</a>
-                        </div>
                         <div class="userpro-clear"></div>
                     </div>
-                
+
 
                     <div class="userpro-body">
-                        <form action="" method="post" data-action="edit">
+                        <form action="@Url.Action("SaveChangeProfile","Account")" method="post">
                             <div class="userpro-section userpro-column userpro-collapsible-1 userpro-collapsed-0">
                                 <span><i class="userpro-icon-angle-down"></i></span>Profile Details
                             </div>
-
+                            <input type="hidden" name="id" value="@(user.Id)" />
                             <div class="userpro-field  userpro-field-display_name " data-key="display_name">
                                 <div class="userpro-label">
                                     <label for="display_name-242">Profile Display Name</label>
                                     <span class="userpro-tip" original-title="Your profile name/nickname that is displayed to public."></span>
                                 </div>
                                 <div class="userpro-input">
-                                    <input type="text" name="display_name-242" id="display_name-242" value="giazzz35" placeholder="" class="ok">
+                                    <input type="text" name="username" id="display_name-242" value="@(user.UserName)" placeholder="" class="ok">
                                     <div class="userpro-clear"></div>
                                     <div class="icon-ok"><i class="userpro-icon-ok"></i></div>
                                 </div>
@@ -69,72 +69,71 @@
                             <div class="userpro-clear"></div>
 
 
-                            <div class="userpro-field  userpro-field-profilepicture" data-key="profilepicture">
+                            <div class="userpro-field  userpro-field-profilepicture">
                                 <div class="userpro-label">
                                     <label for="profilepicture-242">Profile Picture</label>
                                     <span class="userpro-tip" original-title="Upload a picture that presents you across the site."></span>
                                 </div>
                                 <div class="userpro-input">
-                                    <div class="userpro-pic userpro-pic-profilepicture" data-remove_text="Remove">
-                                        <img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="64" height="64" alt="" class="default avatar">
+                                    <div class="userpro-pic userpro-pic-profilepicture">
+                                        <img src="@(user.Avatar)" width="64" height="64" alt="" class="default avatar">
                                     </div>
-                                    <div class="userpro-pic-upload ajax-file-upload" data-filetype="picture" data-allowed_extensions="png,gif,jpg,jpeg">Upload a profile picture</div>
-                                    <input data-required="0" type="hidden" name="profilepicture-242" id="profilepicture-242" value="">
+                                    <div class="userpro-pic-upload ajax-file-upload" id="upload_widget">Upload a profile picture</div>
+                                    <input type="hidden" name="avatar" id="profilepicture-242" value="@(user.Avatar)">
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
 
 
-                            <div class="userpro-field  userpro-field-first_name " data-key="first_name">
+                            <div class="userpro-field  userpro-field-first_name ">
 
                                 <div class="userpro-label">
                                     <label for="first_name-242">First Name</label>
                                 </div>
                                 <div class="userpro-input">
-                                    <input type="text" name="first_name-242" id="first_name-242" value="" placeholder="" />
+                                    <input type="text" name="firstname" id="first_name-242" value="@(user.FirstName)" placeholder="" />
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
 
-                            <div class="userpro-field  userpro-field-last_name " data-key="last_name">
+                            <div class="userpro-field  userpro-field-last_name ">
 
-                                <div class="userpro-label"><label for="last_name-242">Last Name</label></div>
+                                <div class="userpro-label">
+                                    <label for="last_name-242">Last Name</label>
+                                </div>
                                 <div class="userpro-input">
-                                    <input type="text" name="last_name-242" id="last_name-242" value="" placeholder="" da-ajaxcheck="">
+                                    <input type="text" name="lastname" id="last_name-242" value="@(user.LastName)" placeholder="">
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
 
-                            <div class="userpro-field  userpro-field-description " data-key="description">
-
+                            <div class="userpro-field  userpro-field-description ">
                                 <div class="userpro-label">
                                     <label for="description-242">Biography</label>
                                     <span class="userpro-tip" original-title="Describe yourself."></span>
                                 </div>
                                 <div class="userpro-input">
-                                    <textarea class="normal" type="text" name="description-242" placeholder="" id="description-242" data-_builtin="1" data-type="textarea" data-label="Biography" data-help="Describe yourself." data-html="1" ></textarea>
+                                    <textarea class="normal" type="text" name="biography" id="description-242">@(user.Biography)</textarea>
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
-
-                            <div class="userpro-field  userpro-field-gender " data-key="gender">
-
+                            <div class="userpro-field  userpro-field-gender ">
                                 <div class="userpro-label">
                                     <label for="gender-242">Gender</label>
                                 </div>
                                 <div class="userpro-input">
-                                    <div class="userpro-radio-wrap" data-required="0">
+                                    <div class="userpro-radio-wrap">
                                         <label class="userpro-radio">
                                             <span></span>
-                                            <input type="radio" data-condition_rule="" data-condition_fields="" data-condition_value="" data-add_condition="" value="Male" name="gender-242">Male
+                                            <input type="radio" value="Male" name="gender" @(user.Gender == "Male" ? "checked" : "")>Male
                                         </label>
                                         <label class="userpro-radio">
                                             <span></span>
-                                            <input type="radio" data-condition_rule="" data-condition_fields="" data-condition_value="" data-add_condition="" value="Female" name="gender-242">Female
+                                            <input type="radio" value="Female" name="gender" @(user.Gender == "Female" ? "checked" : "")>Female
                                         </label>
                                     </div>
                                     <div class="userpro-clear"></div>
@@ -142,69 +141,57 @@
                             </div>
                             <div class="userpro-clear"></div>
 
-                            <div class="userpro-field  userpro-field-country " data-key="country">
+                            <div class="userpro-field  userpro-field-country">
                                 <div class="userpro-label">
                                     <label for="country-242">Country/Region</label>
                                 </div>
                                 <div class="userpro-input">
-                                    <select name="country-242" id="country-242" class="chosen-select">
-                                        <option value=""></option>
-                                        <option value="" selected="selected"></option>
-                                        <option value="Afghanistan">Afghanistan</option>
+                                    <select name="country" id="country-242" class="chosen-select">
 
+                                        <option value=""></option>
+                                        @foreach (var country in ViewBag.Countries)
+                                        {
+                                            <option value="@(country.Country_code)" @(user.Country == country.Country_code ? "selected" : "")>@(country.Country_name)</option>
+                                        }
                                     </select>
-                                    <div class="chosen-container chosen-container-single" style="width: 100%;" title="" id="country_242_chosen">
-                                        <a class="chosen-single chosen-default" tabindex="-1">
-                                            <span>Select your Country</span>
-                                            <div>
-                                                <b></b>
-                                            </div>
-                                        </a>
-                                        <div class="chosen-drop">
-                                            <div class="chosen-search">
-                                                <input type="text" autocomplete="off">
-                                            </div>
-                                            <ul class="chosen-results"></ul>
-                                        </div>
-                                    </div>
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
+
 
                             <div class="userpro-section userpro-column userpro-collapsible-1 userpro-collapsed-0">
                                 <span><i class="userpro-icon-angle-down"></i></span>Social Profiles
                             </div>
-
-                            <div class="userpro-field  userpro-field-facebook " data-key="facebook">
-
+                            <div class="userpro-field  userpro-field-facebook ">
                                 <div class="userpro-label">
                                     <label for="facebook-242">Facebook Page</label>
                                 </div>
                                 <div class="userpro-input">
-                                    <input type="text" name="facebook-242" id="facebook-242" value="" placeholder="">
+                                    <input type="text" name="facebook" id="facebook-242" value="@(user.Facebook)" placeholder="">
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
+
 
                             <div class="userpro-field  userpro-field-twitter " data-key="twitter">
                                 <div class="userpro-label">
                                     <label for="twitter-242">Twitter</label>
                                 </div>
                                 <div class="userpro-input">
-                                    <input type="text" name="twitter-242" id="twitter-242" value="" placeholder="">
+                                    <input type="text" name="twitter" id="twitter-242" value="@(user.Twitter)" placeholder="">
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
 
-                            <div class="userpro-field  userpro-field-google_plus " data-key="google_plus">
+                            <div class="userpro-field  userpro-field-google_plus ">
                                 <div class="userpro-label">
                                     <label for="google_plus-242">Google+</label>
                                 </div>
                                 <div class="userpro-input">
-                                    <input type="text" name="google_plus-242" id="google_plus-242" value="" placeholder="">
+                                    <input type="text" name="google" id="google_plus-242" value="@(user.Google)" placeholder="">
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
@@ -215,70 +202,12 @@
                                     <label for="user_url-242">Website (URL)</label>
                                 </div>
                                 <div class="userpro-input">
-                                    <input type="text" name="user_url-242" id="user_url-242" value="" placeholder="">
+                                    <input type="text" name="website" id="user_url-242" value="@(user.Website)" placeholder="">
                                     <div class="userpro-clear"></div>
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
 
-                            <div class="userpro-section userpro-column userpro-collapsible-1 userpro-collapsed-0">
-                                <span><i class="userpro-icon-angle-down"></i></span>Account Details
-                            </div>
-
-                            <div class="userpro-field  userpro-field-user_email " data-key="user_email">
-
-                                <div class="userpro-label">
-                                    <label for="user_email-242">E-mail Address</label>
-                                </div>
-                                <div class="userpro-input">
-                                    <input type="text" name="user_email-242" id="user_email-242" value="tvngiagia@gmail.com" placeholder="">
-                                    <label class="userpro-checkbox hide-field">
-                                        <span></span><input type="checkbox" value="1" name="hide_user_email-242">Make this field hidden from public
-                                    </label>
-                                    <div class="userpro-clear"></div>
-                                </div>
-                            </div>
-                            <div class="userpro-clear"></div>
-
-                            <div class="userpro-field  userpro-field-user_pass " data-key="user_pass">
-                                <div class="userpro-label">
-                                    <label for="user_pass-242">Password</label>
-                                    <span class="userpro-tip" original-title="Your password must be 8 characters long at least."></span>
-                                </div>
-                                <div class="userpro-input">
-                                    <input type="password" name="user_pass-242" id="user_pass-242" value="" placeholder="">
-                                    <div class="userpro-clear"></div>
-                                </div>
-                                </div><div class="userpro-clear">
-                            </div>
-
-                            <div class="userpro-field  userpro-field-user_pass_confirm " data-key="user_pass_confirm">
-                                <div class="userpro-label">
-                                    <label for="user_pass_confirm-242">Confirm your Password</label>
-                                </div>
-                                <div class="userpro-input">
-                                    <input type="password" name="user_pass_confirm-242" id="user_pass_confirm-242" value="" placeholder="">
-                                    <div class="userpro-clear"></div>
-                                </div>
-                            </div>
-                            <div class="userpro-clear"></div>
-
-                        <div class="userpro-field  userpro-field-passwordstrength " data-key="passwordstrength">
-                            <div class="userpro-input">
-                                <span class="strength-text" data-_builtin="1" data-type="passwordstrength" data-label="Password Strength Meter" data-too_short="Password too short" data-very_strong="Very Strong" data-strong="Strong" data-good="Good" data-weak="Weak" data-very_weak="Very Weak">Password Strength</span>
-                                <div class="userpro-clear"></div>
-                                <span class="strength-container">
-                                    <span class="strength-plain"></span>
-                                    <span class="strength-plain"></span>
-                                    <span class="strength-plain"></span>
-                                    <span class="strength-plain"></span>
-                                    <span class="strength-plain"></span>
-                                </span>
-                                <div class="userpro-clear"></div>
-                                <div class="userpro-clear"></div>
-                            </div>
-                        </div>
-                        <div class="userpro-clear"></div>
 
 
 
@@ -287,6 +216,48 @@
                                 <div class="userpro-clear"></div>
                             </div>
                         </form>
+                    </div>
+                    <div class="userpro-body">
+                        <div class="userpro-section userpro-column userpro-collapsible-1 userpro-collapsed-0">
+                            <span><i class="userpro-icon-angle-down"></i></span>Reset password
+                        </div>
+
+                        @using (Html.BeginForm("ResetPassword", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Code)
+                            <div class="userpro-field  userpro-field-facebook">
+                                <div class="userpro-label">
+                                    <label for="user_email-242">E-mail Address</label>
+                                </div>
+                                <div class="userpro-input">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", value = user.Email })
+                                </div>
+                            </div>
+                            <div class="userpro-clear"></div>
+                            <div class="userpro-field  userpro-field-user_pass">
+                                <div class="userpro-label">
+                                    <label for="user_pass-242">Password</label>
+                                </div>
+                                <div class="userpro-input">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="userpro-clear"></div>
+                            <div class="userpro-field  userpro-field-user_pass_confirm">
+                                <div class="userpro-label">
+                                    <label for="user_pass_confirm-242">Confirm your Password</label>
+                                </div>
+                                <div class="userpro-input">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="userpro-clear"></div>
+                            <div class="userpro-field userpro-submit userpro-column">
+                                <input type="submit" class="userpro-button fullwidth-block" value="Reset" />
+                            </div>
+                        }
                     </div>
                 </div>
 
@@ -633,7 +604,7 @@
 
     </div>
 </div>
-
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 @section Scripts{
     <script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
     <script>
@@ -645,13 +616,34 @@
                     var html = '';
                     for (var i = 0; i < responseData.data.length; i++) {
                         html += `<li>
-                                    <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
-                                    <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
-                                </li>`;
+                                        <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
+                                        <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
+                                    </li>`;
                     }
                     $('.popular-ajax').html(html);
                 }
             });
+
+            //Upload cloudinary:
+            var myWidget = cloudinary.createUploadWidget({
+                cloudName: 'dev20',
+                uploadPreset: 'gfj9avei'
+            },
+                (error, result) => {
+                    if (!error && result && result.event === "success") {
+
+                        $('#profilepicture-242').val(result.info.url);
+                        var html = `<img src="${result.info.url}" width="64" height="64" alt="" class="default avatar"/>`;
+                        $('.userpro-pic-profilepicture').html(html);
+                    }
+                }
+            )
+
+            document.getElementById("upload_widget").addEventListener("click",
+                function () {
+                    myWidget.open();
+                },
+                false);
         })
     </script>
 }
