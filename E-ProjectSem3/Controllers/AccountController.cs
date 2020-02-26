@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -17,6 +19,7 @@ namespace E_ProjectSem3.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -92,12 +95,49 @@ namespace E_ProjectSem3.Controllers
 
         public ActionResult Profile(string id)
         {
+            ViewBag.Countries = db.Countries.ToList();
             var user = UserManager.FindById(id);
             if (user == null)
             {
                 return RedirectToAction("NotFound", "Home");
             }
-            return View(user);
+            ViewBag.User = user;
+            return View();
+        }
+        public ActionResult SaveChangeProfile(string id, string username, string avatar, string firstname, string lastname, string biography, 
+            string gender, string country, string facebook, string twitter, string google, string website, string password)
+        {
+            var user = UserManager.FindById(id);
+            if (user == null)
+            {
+                return RedirectToAction("NotFound", "Home");
+            }
+            if (username != null && firstname != null && lastname != null && avatar != null)
+            {
+                user.UserName = username;
+                user.FirstName = firstname;
+                user.LastName = lastname;
+                user.Avatar = avatar;
+            }
+            user.Biography = biography;
+            user.Gender = gender;
+            user.Country = country;
+            user.Facebook = facebook;
+            user.Twitter = twitter;
+            user.Google = google;
+            user.Website = website;
+            db.Users.AddOrUpdate(user);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            return RedirectToAction("Profile",new{id = id});
         }
         //
         // GET: /Account/VerifyCode
@@ -268,7 +308,7 @@ namespace E_ProjectSem3.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return RedirectToAction("Profile",new{id=User.Identity.GetUserId()});
             }
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
