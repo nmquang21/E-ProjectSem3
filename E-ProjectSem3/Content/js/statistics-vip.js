@@ -45,7 +45,7 @@
                     $.each(data, function (index, item) {
                         $('.statistics-vip-content').append(BodyContent(u = index+1, item))
                     })
-                    
+                    $('.data-table').DataTable();
                 }
                 else {
                     $('.statistics-vip-content').html("<div style='color: red; '>There are no VIP members</div>")

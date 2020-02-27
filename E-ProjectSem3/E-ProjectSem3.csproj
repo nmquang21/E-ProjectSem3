@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202002231423544_gender.Designer.cs">
       <DependentUpon>202002231423544_gender.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002271456080_update-db.cs" />
+    <Compile Include="Migrations\202002271456080_update-db.Designer.cs">
+      <DependentUpon>202002271456080_update-db.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -799,6 +803,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002231423544_gender.resx">
       <DependentUpon>202002231423544_gender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271456080_update-db.resx">
+      <DependentUpon>202002271456080_update-db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

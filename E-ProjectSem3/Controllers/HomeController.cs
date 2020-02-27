@@ -258,5 +258,22 @@ namespace E_ProjectSem3.Controllers
             }
             return false;
         }
+        //public void UPdateDatabase()
+        //{
+        //    var list = db.OrderInfos.ToList();
+        //    foreach(var item in list)
+        //    {
+        //        if (item.Amount == 10)
+        //        {
+        //            item.OrderDescription = "Sliver";
+        //        }
+        //        else if(item.Amount == 100)
+        //        {
+        //            item.OrderDescription = "Gold";
+        //        }
+        //    }
+        //    db.SaveChanges();
+        //}
     }
+   
 }

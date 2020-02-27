@@ -18,6 +18,7 @@ namespace E_ProjectSem3.Models
         public virtual Recipe Recipe { get; set; }
         public virtual Contest Contest { get; set; }
         public virtual Prize Prizes { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
     }
 }

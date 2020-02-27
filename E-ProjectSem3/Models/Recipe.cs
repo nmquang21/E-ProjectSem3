@@ -59,6 +59,7 @@ namespace E_ProjectSem3.Models
         {
             NotFree = 0,
             Free = 1,
+            Iscompetition = 2
         }
 
     }
