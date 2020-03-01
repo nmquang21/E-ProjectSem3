@@ -225,6 +225,7 @@ namespace E_ProjectSem3.Controllers
             };
         }
 
+
         //Contest
         [HttpGet]
         public ActionResult AddContest()
@@ -236,6 +237,12 @@ namespace E_ProjectSem3.Controllers
         public ActionResult SaveContest(Contest contest, ICollection<Prize> prizes)
         {
             return null;
+        }
+        public ActionResult User()
+        {
+            var listUser = db.Users.ToList();
+            return View(listUser);
+
         }
     }
 }
