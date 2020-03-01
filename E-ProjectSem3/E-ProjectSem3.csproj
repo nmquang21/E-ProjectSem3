@@ -189,7 +189,6 @@
     <Compile Include="Controllers\ChefController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ContestController.cs" />
-    <Compile Include="Controllers\ContestsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
@@ -197,29 +196,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002220428029_Init.cs" />
-    <Compile Include="Migrations\202002220428029_Init.Designer.cs">
-      <DependentUpon>202002220428029_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002231210337_Profile.cs" />
-    <Compile Include="Migrations\202002231210337_Profile.Designer.cs">
-      <DependentUpon>202002231210337_Profile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002231423544_gender.cs" />
-    <Compile Include="Migrations\202002231423544_gender.Designer.cs">
-      <DependentUpon>202002231423544_gender.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002271456080_update-db.cs" />
-    <Compile Include="Migrations\202002271456080_update-db.Designer.cs">
-      <DependentUpon>202002271456080_update-db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002291632099_update-database.cs" />
-    <Compile Include="Migrations\202002291632099_update-database.Designer.cs">
-      <DependentUpon>202002291632099_update-database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003010152098_update-dbs.cs" />
-    <Compile Include="Migrations\202003010152098_update-dbs.Designer.cs">
-      <DependentUpon>202003010152098_update-dbs.cs</DependentUpon>
+    <Compile Include="Migrations\202003011642558_create31234234.cs" />
+    <Compile Include="Migrations\202003011642558_create31234234.Designer.cs">
+      <DependentUpon>202003011642558_create31234234.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
@@ -227,7 +206,8 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Contest.cs" />
-    <Compile Include="Models\ContestUser.cs" />
+    <Compile Include="Models\ContestPrize.cs" />
+    <Compile Include="Models\ContestRecipe.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingredient.cs" />
@@ -797,6 +777,7 @@
     <Content Include="Content\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Content\ckeditor\styles.js" />
     <Content Include="Content\ckeditor\vendor\promise.js" />
+    <Content Include="Content\css\add-contest.css" />
     <Content Include="Content\css\statistic-vip.css" />
     <Content Include="Content\css\custom-select-option.css" />
     <Content Include="Content\css\custom.css" />
@@ -825,7 +806,27 @@
     <Content Include="Content\img\avatar-6.jpg" />
     <Content Include="Content\img\favicon.png" />
     <Content Include="Content\img\illustration.svg" />
+    <Content Include="Content\img\left-arrow.png" />
+    <Content Include="Content\img\next.png" />
     <Content Include="Content\img\template-mac.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\AUTHORS.txt" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\external\jquery\jquery.js" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\index.html" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.js" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.min.js" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.structure.min.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.min.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\LICENSE.txt" />
     <Content Include="Content\js\add-discipline.js" />
     <Content Include="Content\js\alert\alerts.js" />
     <Content Include="Content\js\alert\avgrund.js" />
@@ -1056,6 +1057,7 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\package.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1125,14 +1127,10 @@
     <Content Include="Views\Admin\CommentNotApprove.cshtml" />
     <Content Include="Views\Admin\StatisticsVip.cshtml" />
     <Content Include="Views\Contest\AddRecipesContest.cshtml" />
-    <Content Include="Views\Contest\Index.cshtml" />
     <Content Include="Views\Admin\Contest\AddContest.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
-    <Content Include="Views\Contests\Create.cshtml" />
-    <Content Include="Views\Contests\Delete.cshtml" />
-    <Content Include="Views\Contests\Details.cshtml" />
-    <Content Include="Views\Contests\Edit.cshtml" />
-    <Content Include="Views\Contests\Index.cshtml" />
+    <Content Include="Views\Admin\Contest\ListContest.cshtml" />
+    <Content Include="Views\Admin\Contest\ContestDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1153,23 +1151,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002220428029_Init.resx">
-      <DependentUpon>202002220428029_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002231210337_Profile.resx">
-      <DependentUpon>202002231210337_Profile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002231423544_gender.resx">
-      <DependentUpon>202002231423544_gender.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002271456080_update-db.resx">
-      <DependentUpon>202002271456080_update-db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002291632099_update-database.resx">
-      <DependentUpon>202002291632099_update-database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003010152098_update-dbs.resx">
-      <DependentUpon>202003010152098_update-dbs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003011642558_create31234234.resx">
+      <DependentUpon>202003011642558_create31234234.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

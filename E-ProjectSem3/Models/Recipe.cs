@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -45,7 +46,7 @@ namespace E_ProjectSem3.Models
         public virtual ICollection<Nutrition> Nutrition { get; set; }
         public virtual ICollection<Step> Steps { get; set; }
         public virtual ICollection<Ingredient> Ingredients { get; set; }
-        public virtual ICollection<ContestUser> ContestUsers { get; set; }
+        public virtual ContestRecipe ContestRecipe { get; set; }
         public virtual ICollection<WishList> WishLists { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }

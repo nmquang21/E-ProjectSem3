@@ -48,7 +48,8 @@ namespace E_ProjectSem3.Models
         public DbSet<Member> Members { get; set; }
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<Country> Countries { get; set; }
-
+        public DbSet<ContestRecipe> ContestRecipes { get; set; }
+        public DbSet<ContestPrize> ContestPrizes { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

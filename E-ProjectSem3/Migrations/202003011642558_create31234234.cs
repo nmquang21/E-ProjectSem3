@@ -3,7 +3,7 @@ namespace E_ProjectSem3.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class create31234234 : DbMigration
     {
         public override void Up()
         {
@@ -61,6 +61,13 @@ namespace E_ProjectSem3.Migrations
                         FirstName = c.String(),
                         LastName = c.String(),
                         Avatar = c.String(),
+                        Biography = c.String(),
+                        Gender = c.String(),
+                        Country = c.String(),
+                        Facebook = c.String(),
+                        Twitter = c.String(),
+                        Google = c.String(),
+                        Website = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -135,33 +142,32 @@ namespace E_ProjectSem3.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.ContestUsers",
+                "dbo.ContestRecipes",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Score = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
                         Contest_Id = c.Int(),
-                        Prizes_PrizeId = c.Int(),
-                        Recipe_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Contests", t => t.Contest_Id)
-                .ForeignKey("dbo.Prizes", t => t.Prizes_PrizeId)
-                .ForeignKey("dbo.Recipes", t => t.Recipe_Id)
-                .Index(t => t.Contest_Id)
-                .Index(t => t.Prizes_PrizeId)
-                .Index(t => t.Recipe_Id);
+                .ForeignKey("dbo.Recipes", t => t.Id)
+                .Index(t => t.Id)
+                .Index(t => t.Contest_Id);
             
             CreateTable(
                 "dbo.Contests",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
-                        Description = c.String(nullable: false),
+                        Name = c.String(),
+                        Description = c.String(),
+                        Image = c.String(),
+                        StartDate = c.DateTime(),
+                        EndDate = c.DateTime(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
@@ -172,17 +178,20 @@ namespace E_ProjectSem3.Migrations
                 "dbo.Prizes",
                 c => new
                     {
-                        PrizeId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
                         Money = c.Double(nullable: false),
-                        Description = c.String(nullable: false),
+                        Description = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
+                        ContestRecipe_Id = c.Int(),
                         Contest_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.PrizeId)
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ContestRecipes", t => t.ContestRecipe_Id)
                 .ForeignKey("dbo.Contests", t => t.Contest_Id)
+                .Index(t => t.ContestRecipe_Id)
                 .Index(t => t.Contest_Id);
             
             CreateTable(
@@ -253,6 +262,33 @@ namespace E_ProjectSem3.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.ContestPrizes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CreatedAt = c.DateTime(),
+                        UpdatedAt = c.DateTime(),
+                        DeletedAt = c.DateTime(),
+                        ContestRecipe_Id = c.Int(nullable: false),
+                        Prize_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ContestRecipes", t => t.ContestRecipe_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Prizes", t => t.Prize_Id, cascadeDelete: true)
+                .Index(t => t.ContestRecipe_Id)
+                .Index(t => t.Prize_Id);
+            
+            CreateTable(
+                "dbo.Countries",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Country_code = c.String(),
+                        Country_name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Members",
                 c => new
                     {
@@ -295,8 +331,11 @@ namespace E_ProjectSem3.Migrations
                         vnp_TransactionNo = c.Decimal(nullable: false, precision: 18, scale: 2),
                         vpn_Message = c.String(),
                         vpn_TxnResponseCode = c.String(),
+                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.OrderId);
+                .PrimaryKey(t => t.OrderId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -316,17 +355,20 @@ namespace E_ProjectSem3.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.OrderInfoes", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.Memberships", "MemberId", "dbo.Members");
             DropForeignKey("dbo.Memberships", "ApplicationUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.ContestPrizes", "Prize_Id", "dbo.Prizes");
+            DropForeignKey("dbo.ContestPrizes", "ContestRecipe_Id", "dbo.ContestRecipes");
             DropForeignKey("dbo.WishLists", "RecipeId", "dbo.Recipes");
             DropForeignKey("dbo.WishLists", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Steps", "RecipeId", "dbo.Recipes");
             DropForeignKey("dbo.Nutritions", "RecipeId", "dbo.Recipes");
             DropForeignKey("dbo.Ingredients", "RecipeId", "dbo.Recipes");
-            DropForeignKey("dbo.ContestUsers", "Recipe_Id", "dbo.Recipes");
-            DropForeignKey("dbo.ContestUsers", "Prizes_PrizeId", "dbo.Prizes");
+            DropForeignKey("dbo.ContestRecipes", "Id", "dbo.Recipes");
             DropForeignKey("dbo.Prizes", "Contest_Id", "dbo.Contests");
-            DropForeignKey("dbo.ContestUsers", "Contest_Id", "dbo.Contests");
+            DropForeignKey("dbo.Prizes", "ContestRecipe_Id", "dbo.ContestRecipes");
+            DropForeignKey("dbo.ContestRecipes", "Contest_Id", "dbo.Contests");
             DropForeignKey("dbo.Comments", "RecipeId", "dbo.Recipes");
             DropForeignKey("dbo.Comments", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Recipes", "Category_Id", "dbo.Categories");
@@ -335,17 +377,20 @@ namespace E_ProjectSem3.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.OrderInfoes", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Memberships", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Memberships", new[] { "MemberId" });
+            DropIndex("dbo.ContestPrizes", new[] { "Prize_Id" });
+            DropIndex("dbo.ContestPrizes", new[] { "ContestRecipe_Id" });
             DropIndex("dbo.WishLists", new[] { "UserId" });
             DropIndex("dbo.WishLists", new[] { "RecipeId" });
             DropIndex("dbo.Steps", new[] { "RecipeId" });
             DropIndex("dbo.Nutritions", new[] { "RecipeId" });
             DropIndex("dbo.Ingredients", new[] { "RecipeId" });
             DropIndex("dbo.Prizes", new[] { "Contest_Id" });
-            DropIndex("dbo.ContestUsers", new[] { "Recipe_Id" });
-            DropIndex("dbo.ContestUsers", new[] { "Prizes_PrizeId" });
-            DropIndex("dbo.ContestUsers", new[] { "Contest_Id" });
+            DropIndex("dbo.Prizes", new[] { "ContestRecipe_Id" });
+            DropIndex("dbo.ContestRecipes", new[] { "Contest_Id" });
+            DropIndex("dbo.ContestRecipes", new[] { "Id" });
             DropIndex("dbo.Comments", new[] { "UserId" });
             DropIndex("dbo.Comments", new[] { "RecipeId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
@@ -359,13 +404,15 @@ namespace E_ProjectSem3.Migrations
             DropTable("dbo.OrderInfoes");
             DropTable("dbo.Memberships");
             DropTable("dbo.Members");
+            DropTable("dbo.Countries");
+            DropTable("dbo.ContestPrizes");
             DropTable("dbo.WishLists");
             DropTable("dbo.Steps");
             DropTable("dbo.Nutritions");
             DropTable("dbo.Ingredients");
             DropTable("dbo.Prizes");
             DropTable("dbo.Contests");
-            DropTable("dbo.ContestUsers");
+            DropTable("dbo.ContestRecipes");
             DropTable("dbo.Comments");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");

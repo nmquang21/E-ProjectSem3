@@ -1,0 +1,117 @@
+.error {
+    color: red;
+}
+
+.imagePreview, .image-preview-step {
+    width: 100% !important;
+    min-height: 200px !important;
+    height: auto !important;
+}
+
+label {
+    font-weight: 500;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.imgUp {
+    width: 100% !important;
+}
+
+table th {
+    /*font-weight: 900 !important;*/
+    vertical-align: middle !important;
+}
+
+.prize.form-control {
+    height: 32px !important;
+}
+
+
+.ui-datepicker {
+    border: none !important;
+    box-shadow: 0px 3px 4px 4px rgba(0,0,0,0.2);
+}
+
+.ui-datepicker-header {
+    background-color: #00AFF0;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+    background-color: #dd5d5d;
+}
+.ui-icon{
+    background: none !important;
+}
+    .ui-datepicker-prev:hover {
+        
+        background: url('/Content/img/left-arrow.png') no-repeat 6px;
+        background-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+.ui-datepicker-next:hover {
+    background: url('/Content/img/next.png') no-repeat 6px;
+    background-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+    .ui-datepicker-prev span, .ui-datepicker-next span {
+        color: #fff;
+    }
+
+.ui-datepicker {
+    padding: 0;
+}
+
+.ui-datepicker-next {
+    background: url('/Content/img/next.png') no-repeat 6px;
+    background-size: 16px;
+}
+
+.ui-datepicker-prev {
+    background: url('/Content/img/left-arrow.png') no-repeat 6px;
+    background-size: 16px;
+}
+
+.ui-datepicker table {
+    border-collapse: collapse;
+    border: none;
+}
+
+    .ui-datepicker table thead {
+        background-color: #e5e5e5;
+        border: none;
+        border-radius: 0;
+    }
+
+    .ui-datepicker table tbody td .ui-state-default {
+        border: none;
+        background-color: #fff;
+        text-align: center;
+        padding: 5px;
+        margin: 0;
+    }
+
+        .ui-datepicker table tbody td .ui-state-default:hover {
+            background-color: #00AFF0;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+.ui-datepicker-year, .ui-datepicker-month {
+    border: none;
+    color: #fff;
+}
+
+.ui-datepicker table tbody td .ui-state-active {
+    background-color: #00AFF0;
+    border-radius: 3px;
+}

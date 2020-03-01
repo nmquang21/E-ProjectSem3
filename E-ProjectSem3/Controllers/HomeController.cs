@@ -258,22 +258,22 @@ namespace E_ProjectSem3.Controllers
             }
             return false;
         }
-        //public void UPdateDatabase()
-        //{
-        //    var list = db.OrderInfos.ToList();
-        //    foreach(var item in list)
-        //    {
-        //        if (item.Amount == 10)
-        //        {
-        //            item.OrderDescription = "Sliver";
-        //        }
-        //        else if(item.Amount == 100)
-        //        {
-        //            item.OrderDescription = "Gold";
-        //        }
-        //    }
-        //    db.SaveChanges();
-        //}
+        public void UPdateDatabase()
+        {
+            Recipe recipe = new Recipe();
+            recipe.Title = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            recipe.Type = 2;
+
+            ContestRecipe contestRecipe = new ContestRecipe();
+            Contest contest = db.Contests.Find(1);
+
+
+            contestRecipe.Contest = contest;
+            contestRecipe.Recipe = recipe;
+
+            db.ContestRecipes.Add(contestRecipe);
+            db.SaveChanges();
+        }
     }
    
 }

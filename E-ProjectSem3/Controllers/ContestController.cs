@@ -17,7 +17,7 @@ namespace E_ProjectSem3.Controllers
             return View("~/Views/Contest/AddRecipesContest.cshtml");
         }
         public ActionResult SubmitRecipeContest(string title,string content, string featuredImage,
-            string categoryId, string difficulty, string description, int preparationMinute, int cookingMinute,
+        string difficulty, string description, int preparationMinute, int cookingMinute,
             int cookingTemp, List<Ingredient> listIngredient, List<Step> listStep, List<Nutrition> listNutrition)
         {
             var newRecipe = new Recipe();

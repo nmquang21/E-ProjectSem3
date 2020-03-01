@@ -225,6 +225,13 @@ namespace E_ProjectSem3.Controllers
             };
         }
 
+        public ActionResult User()
+        {
+            var listUser = db.Users.ToList();
+            return View(listUser);
+
+        }
+
 
         //Contest
         [HttpGet]
@@ -232,17 +239,41 @@ namespace E_ProjectSem3.Controllers
         {
             return View("~/Views/Admin/Contest/AddContest.cshtml");
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
+        public ActionResult ListContest()
+        {
+            var contests = db.Contests.ToList();
+            return View("~/Views/Admin/Contest/ListContest.cshtml",contests);
+        }
+        [HttpPost, ValidateInput(false)]
         public ActionResult SaveContest(Contest contest, ICollection<Prize> prizes)
         {
-            return null;
+            contest.CreatedAt = DateTime.Now;
+            contest.StartDate = Convert.ToDateTime(contest.StartDate);
+            contest.EndDate = Convert.ToDateTime(contest.EndDate);
+            db.Contests.Add(contest);
+            try
+            {
+                db.SaveChanges();
+                TempData["AddSuccess"] = "Success";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return RedirectToAction("ListContest");
+            
         }
-        public ActionResult User()
+        public ActionResult ContestDetail(int id)
         {
-            var listUser = db.Users.ToList();
-            return View(listUser);
-
+            var ContestRecipes = db.Contests.Find(id).ContestRecipes.ToList();
+            var Contest = db.Contests.Find(id);
+            var Prizes = db.Contests.Find(id).Prizes.ToList();
+            ViewBag.Contest = Contest;
+            ViewBag.Prizes = Prizes;
+            return View("~/Views/Admin/Contest/ContestDetail.cshtml", ContestRecipes);
         }
+       
     }
 }

@@ -8,17 +8,20 @@ namespace E_ProjectSem3.Models
 {
     public class Prize
     {
-        public int PrizeId { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter name")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter name")]
         public string Name { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter money")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter money")]
         public double Money { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter description")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter description")]
         public string Description { get; set; }
-
+        //public virtual Contest Contest { get; set; }
+        //public virtual ContestPrize ContestPrize { get; set; }
+        public virtual ContestRecipe ContestRecipe { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
