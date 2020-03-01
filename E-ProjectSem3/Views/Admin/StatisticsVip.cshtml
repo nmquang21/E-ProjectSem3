@@ -16,6 +16,9 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="chart-holder">
+                <div id="curve_chart"></div>
+            </div>
             <table class="data-table table table-striped table-hover card-text">
                 <thead>
                     <tr>
@@ -36,28 +39,27 @@
                 <tbody class="statistics-vip-content">
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                @(item.ApplicationUser.FirstName + " " + item.ApplicationUser.FirstName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Amount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.OrderDescription)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedAt)
-                            </td>
-                        </tr>
-                        
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            @(item.ApplicationUser.FirstName + " " + item.ApplicationUser.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                    </tr>
+
                     }
                 </tbody>
 
-                
+
 
             </table>
         </div>

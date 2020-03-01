@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="~/Content/assets/xmlrpc.php">
-    <title>Submit Recipe &#8211; Themes</title>
+    <title>@ViewBag.Title</title>
     <link rel='dns-prefetch' href='//neptune.pinsupreme.com' />
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
     <link rel='dns-prefetch' href='//s.w.org' />
@@ -264,7 +264,7 @@
                         <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                             <a href="/Home/Recipes">Recipes</a>
                         </li>
-                        @if (UserManager.IsInRole(User.Identity.GetUserId(),"chef") || UserManager.IsInRole(User.Identity.GetUserId(),"admin"))
+                        @if (UserManager.IsInRole(User.Identity.GetUserId(), "chef") || UserManager.IsInRole(User.Identity.GetUserId(), "admin"))
                         {
                             <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                                 <a href="/Chef/AddRecipes">Submit recipe</a>
@@ -276,13 +276,18 @@
                         <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
                             <a href="#">About Me</a>
                         </li>
-                        @if (!UserManager.IsInRole(User.Identity.GetUserId(),"silver") && !UserManager.IsInRole(User.Identity.GetUserId(),"gold"))
-                        {
-                            <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
-                                <a href="/Home/MemberShip">Membership</a>
+                       
+                            <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
+                                <a href="#">Contacts</a>
                             </li>
-                        }
-                    </ul>
+                        
+                        @if (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold"))
+                            {
+                                <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                                    <a href="/Home/MemberShip">Membership</a>
+                                </li>
+                            }
+                        </ul>
                 </div>
                 <div class="search-trigger"><i class="os-icon os-icon-thin-search"></i></div>
             </div>

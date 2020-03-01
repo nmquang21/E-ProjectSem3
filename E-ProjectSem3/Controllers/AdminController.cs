@@ -190,17 +190,52 @@ namespace E_ProjectSem3.Controllers
             endTime = new DateTime(endTime.Year, endTime.Month, endTime.Day, 23, 59, 59, 0);
 
             var vips = db.OrderInfos.Where(v => v.Status == (int)OrderStatus.Paid && (v.CreatedAt >= startTime && v.CreatedAt <= endTime)).OrderBy(v => v.CreatedAt).ToList();
+            
+            
+            var dataVip = vips.Select(v => new {
+                username = v.ApplicationUser.FirstName + " " + v.ApplicationUser.LastName,
+                amount = v.Amount,
+                type = v.OrderDescription,
+                created_at = v.CreatedAt.ToShortDateString(),
+
+            });
+            var charts = db.OrderInfos.Where(o => (o.DeletedAt == null) && (o.CreatedAt >= startTime && o.CreatedAt <= endTime))
+               .GroupBy(
+                   o => new
+                   {
+                       Year = o.CreatedAt.Year,
+                       Month = o.CreatedAt.Month,
+                   }
+               ).ToList();
+
+            //var dataChart = charts.Select(o => new
+            ////{
+            ////    Date = o.Date.ToString("d"),
+            ////    gold = o.Total,
+            ////    silver = o.
+            //});
 
             return new JsonResult()
             {
-                Data = vips.Select(v => new { 
-                    username = v.ApplicationUser.FirstName+" "+ v.ApplicationUser.LastName,
-                    amount = v.Amount,
-                    type = v.OrderDescription,
-                    created_at = v.CreatedAt.ToShortDateString(),
-                }),
+                Data = new {
+                    dataVip = dataVip,
+                    //dataChart = dataChart,
+                },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
+        }
+
+        //Contest
+        [HttpGet]
+        public ActionResult AddContest()
+        {
+            return View("~/Views/Admin/Contest/AddContest.cshtml");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveContest(Contest contest, ICollection<Prize> prizes)
+        {
+            return null;
         }
     }
 }

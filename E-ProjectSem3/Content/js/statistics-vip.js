@@ -39,16 +39,35 @@
                 start: start,
                 end: end,
             },
-            success: function (data) {
+            success: function (datas) {
                 $('.statistics-vip-content').empty();
-                if (data.length > 0) {
-                    $.each(data, function (index, item) {
+                if (datas.data.length > 0) {
+                    $.each(datas.data, function (index, item) {
                         $('.statistics-vip-content').append(BodyContent(u = index+1, item))
                     })
                     $('.data-table').DataTable();
                 }
                 else {
                     $('.statistics-vip-content').html("<div style='color: red; '>There are no VIP members</div>")
+                }
+
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('date', 'Month');
+                    data.addColumn('number', 'Silver');
+                    data.addColumn('number', 'Gold');
+                    for (var i = 0; i < data.length; i++) {
+                        data.addRow([new Date(data[i].Date), datas.data[i].silver, datas.data[i].gold]);
+                    }
+                    var options = {
+                        title: 'Company Performance',
+                        curveType: 'function',
+                        legend: { position: 'bottom' }
+                    };
+                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                    chart.draw(data, options);
                 }
             }
         })
