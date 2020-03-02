@@ -1,0 +1,114 @@
+﻿@model E_ProjectSem3.Models.Contest
+@using System.Globalization
+@{
+    ViewBag.Title = "Contest Detail";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+<style>
+    blockquote{
+        padding-left: 20px;
+    }
+    blockquote:before{
+        display: none !important;
+    }
+</style>
+
+<div class="os-container top-bar-w">
+    <div class="top-bar ">
+        <ul class="bar-breadcrumbs"><li><a href="/">Home</a></li><li><a href="/" title="View all posts in Fish">Contest</a></li><li>@Model.Name</li></ul>      <ul class="bar-social" style=""><li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li><li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-facebook"></i></a></li><li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-pinterest"></i></a></li><li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-youtube"></i></a></li></ul>
+    </div>
+</div>
+
+
+
+
+<div class="os-container">
+
+    <div class="page-w bordered with-sidebar sidebar-location-right">
+        <div class="page-content">
+            <article id="post-332" class="post-332 post type-post status-publish format-standard has-post-thumbnail hentry category-fish tag-chicken tag-hot tag-whole-grains">
+                <h1 class="page-title">@Model.Name</h1>
+                <div class="single-post-meta ">
+                    <div class="post-date text-danger">Posted on <time class="entry-date updated">@Model.CreatedAt</time></div>
+
+                </div>
+                <div class="single-featured-image-w mt-3 mb-5" >
+                    <img width="1200" height="800" src="@Model.Image" alt="" />
+                </div>
+                <blockquote>
+                    <b>Time</b>
+                    <ul>
+                        <li>Start Date: @Model.StartDate</li>
+                        <li>End Date: @Model.EndDate</li>
+                    </ul>
+                    <b>Prize</b>
+                    <ul>
+                        @foreach(var item in Model.Prizes)
+                        {
+                            <li><span style="color: #ff6a00">@item.Name</span> - @item.Money - @item.Description</li>
+                        }
+                    </ul>
+                </blockquote>
+                <p>
+                    @(new HtmlString(Model.Description))
+                </p>
+                <div class="single-post-about-author">
+                    <div class="author-avatar-w">
+                        <img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" />
+                    </div>
+                    <div class="author-details">
+                        <h3 class="author-name">Julia May</h3>
+                        <p>I love cooking and blogging. Using a fork, break salmon. Halve reserved potatoes and eggs crosswise.</p>
+                        <div class="author-social-links">
+                            <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-twitter"></i></a>
+                            <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-facebook"></i></a>
+                            <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="disqus_thread">
+                </div>
+            </article>
+        </div>
+
+        <div class="page-sidebar">
+            <aside id="widget_tptn_pop-1" class="widget-odd widget-5 with-ribbon widget tptn_posts_list_widget">
+                <h3 class="widget-title"><span>Top Recipes</span></h3>
+                <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
+                    @if (Model.ContestRecipes.Count > 0)
+                    {
+                        foreach (var item in Model.ContestRecipes)
+                        {
+                            <ul>
+                                <li>
+                                    <a href="#" class="tptn_link">
+                                        <img width="150" height="150" src="@(item.Recipe.FeaturedImage)" class="tptn_thumb tptn_featured" />
+                                    </a>
+                                    <span class="tptn_after_thumb">
+                                        <a href="http://neptune.pinsupreme.com/recipe/gluten-free-beef-lasagne/" class="tptn_link">
+                                            <span class="tptn_title">@(item.Recipe.Title)</span>
+                                        </a>
+                                        <span class="tptn_excerpt">@(item.Recipe.Description)</span>
+                                    </span>
+                                </li>
+
+                            </ul>
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-danger">No Recipes!! </div>
+                    }
+                </div>
+            </aside>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+

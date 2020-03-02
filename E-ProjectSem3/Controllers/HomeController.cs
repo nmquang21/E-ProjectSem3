@@ -25,7 +25,11 @@ namespace E_ProjectSem3.Controllers
         {
             ViewBag.ListCategories = db.Categories.Where(c => c.Icon != null && c.DeletedAt == null).OrderBy(c => c.Name).ToList();
             ViewBag.DataSliderSmall = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
-            ViewBag.DataSliderBig = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active && (r.Id >= 9 && r.Id <= 12 )).ToList();
+            ViewBag.DataSliderBig = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active && (r.Id >= 9 && r.Id <= 12)).ToList();
+            ViewBag.ContestHappenning = db.Contests.Where(c => c.StartDate < DateTime.Now && c.EndDate > DateTime.Now).ToList();
+            ViewBag.ContestUpcoming = db.Contests.Where(c => c.StartDate > DateTime.Now && c.EndDate > DateTime.Now).ToList();
+            ViewBag.ContestTookOut = db.Contests.Where(c => c.StartDate < DateTime.Now && c.EndDate < DateTime.Now).ToList();
+
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Check expired member ship:
             ViewBag.Expired = "";
@@ -40,7 +44,7 @@ namespace E_ProjectSem3.Controllers
             }
 
             var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).OrderBy(r => r.Title).ToList();
-            int pageSize = 9;
+            int pageSize = 6;
             int pageNumber = (page ?? 1);
             ViewBag.CurrentPage = page ?? 1;
             ViewBag.PageTotal = Math.Ceiling((double)listRecipe.Count() / pageSize);
@@ -258,6 +262,8 @@ namespace E_ProjectSem3.Controllers
             }
             return false;
         }
+
+        
         public void UPdateDatabase()
         {
             Recipe recipe = new Recipe();

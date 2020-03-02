@@ -67,7 +67,7 @@
                                 </td>
 
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Recipe.ApplicationUser.FirstName + " " + item.Recipe.ApplicationUser.LastName)
+                                    @(item.Recipe.ApplicationUser.FirstName + " " + item.Recipe.ApplicationUser.LastName)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Recipe.CreatedAt)

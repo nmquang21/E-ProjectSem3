@@ -12,11 +12,12 @@ namespace E_ProjectSem3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Contest
-        public ActionResult Index()
+        public ActionResult Join(int id)
         {
+            ViewBag.ContestId = id;
             return View("~/Views/Contest/AddRecipesContest.cshtml");
         }
-        public ActionResult SubmitRecipeContest(string title,string content, string featuredImage,
+        public ActionResult SubmitRecipeContest(int contestId, string title,string content, string featuredImage,
         string difficulty, string description, int preparationMinute, int cookingMinute,
             int cookingTemp, List<Ingredient> listIngredient, List<Step> listStep, List<Nutrition> listNutrition)
         {
@@ -32,12 +33,16 @@ namespace E_ProjectSem3.Controllers
             newRecipe.CookingTemp = cookingTemp;
             newRecipe.ViewCount = 0;
 
+            
+
             var id = User.Identity.GetUserId();
             ApplicationUser appUser = new ApplicationUser();
             appUser = db.Users.Find(id);
             newRecipe.ApplicationUser = appUser;
             newRecipe.Status = (int)Recipe.RecipeStatus.NonActive;
             newRecipe.CreatedAt = DateTime.Now;
+
+          
 
             List<Ingredient> ingredients = new List<Ingredient>();
             if (listIngredient != null)
@@ -105,7 +110,13 @@ namespace E_ProjectSem3.Controllers
             {
                 newRecipe.Nutrition = nutritions;
             }
-            db.Recipes.Add(newRecipe);
+
+            ContestRecipe contestRecipe = new ContestRecipe();
+            Contest contest = db.Contests.Find(contestId);
+            contestRecipe.Contest = contest;
+            contestRecipe.Recipe = newRecipe;
+
+            db.ContestRecipes.Add(contestRecipe);
             try
             {
                 db.SaveChanges();
@@ -116,7 +127,13 @@ namespace E_ProjectSem3.Controllers
                 Console.WriteLine(e);
                 throw;
             }
-            return RedirectToAction("AddRecipes");
+            return RedirectToAction("/");
+        }
+
+        public ActionResult ContestDetail(int id)
+        {
+            var contest = db.Contests.Find(id);
+            return View("~/Views/Contest/ContestDetail.cshtml",contest);
         }
     }
 }

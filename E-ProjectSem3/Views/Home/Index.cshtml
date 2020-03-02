@@ -11,6 +11,20 @@
 
 }
 <link rel="stylesheet" href="~/Content/css/jquery.toast.min.css">
+
+<style>
+    #myTab{
+        font-size: 14px;
+        color: #495057;
+    }
+    #myTab .active{
+        border-top: 2px solid #ffd800;
+        color : #ff6a00;
+    }
+    .nav-link{
+        cursor: pointer;
+    }
+</style>
 <!-- Body -->
 <div class="os-container hero-roll-w">
     <div class="owl-carousel hero-posts-owl-slider">
@@ -18,111 +32,111 @@
         {
             var recipe = ViewBag.DataSliderBig[i] as Recipe;
             bool liked = recipe.WishLists.Where(w => w.UserId == User.Identity.GetUserId()).ToList().Count == 1;
-        <article class="archive-item any hero post-204 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fast-food category-pizza tag-chicken tag-hot tag-sushi tag-whole-grains recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-butter recipe_ingredient-chicken-breast recipe_ingredient-drained-capers-patted-dry recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-skin-on-salmon-fillet recipe_ingredient-small-purple-potatoes recipe_ingredient-whole-grain-dijon-mustard recipe_cuisine-french">
-            <div class="archive-item-i">
-                <div class="extra-styling-box"></div>
-                <div class="archive-item-share-w active">
-                    <div class="archive-item-share-trigger">
-                        <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
-                        <div class="archive-item-share-label">Share</div>
-                        <div class="archive-item-share-icons">
-                            <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fgreen-salad-with-cherries%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
-                            <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/&amp;text=++Hero+Posts" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
-                            <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1.jpg&#038;description=%20%20Hero%20Posts" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
-                            <a href="mailto:?Subject=  Hero Posts&amp;Body=%20http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="archive-item-media">
-                    <a href="/Home/RecipeDetail/@(recipe.Id)" class="archive-item-media-thumbnail fader-activator" style="background-image: url(@(recipe.FeaturedImage)); background-size: cover;">
-                        <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
-                    </a>
-                </div>
-                <div class="archive-item-content">
-                    <header class="archive-item-header">
-                        <h3 class="entry-title"><a href="/Home/RecipeDetail/@(recipe.Id)" rel="bookmark">@(recipe.Title)</a></h3>
-                    </header>
-                    <div class="archive-item-meta">
-                        <div class="archive-item-meta-cooking-time">
-                            Cooking Time: @(recipe.CookingMinute) min
-                        </div>
-
-                        <div class="archive-item-meta-categories">
-                            <ul class="post-categories">
-                                <li><a href="/Home/Recipes?category=@(recipe.Category.Id)" rel="category tag">@(recipe.Category.Name)</a></li>
-                            </ul>
-                        </div>
-                        <ul class="archive-item-meta-cuisines">
-                            <li>
-                                <a href="#" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
-                                    <span class="single-recipe-cuisine-label">French</span>
-                                    <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="archive-item-content-text">
-                        This salad recipe may seem a bit boring and insignificant, but this recipe is sort of the basic foundation of...
-                    </div>
-                    <div class="archive-item-author-meta">
-                        <div class="author-avatar-w">
-                            <a href="~/Content/assets/author/askjfds78dfdk/">
-                                <img src="@(recipe.ApplicationUser.Avatar)" width="96" height="96" alt="" class="default avatar"/>
-                            </a>
-                        </div>
-                        <div class="author-details">
-                            <h4 class="author-name"><a href="#">@(recipe.ApplicationUser.FirstName)</a></h4>
-                            <div class="archive-item-date-posted">@(Convert.ToDateTime(recipe.CreatedAt).ToString("M"))</div>
-                        </div>
-                        <div class="archive-item-views-count-likes">
-                            <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="204" data-vote-action="vote" data-votes-count="321">
-                                <span class="slide-button-i">
-
-                                    <span class="btn-unlike" data-id="@(recipe.Id)" style="display: @(liked?"contents":"none")">
-                                        <i class="fas fa-heart" style="font-size: 18px;"></i>
-                                        <span class="slide-button-label">
-                                            Liked
-                                        </span>
-                                    </span>
-
-                                    <span class="btn-like" data-id="@(recipe.Id)" style="display: @(liked?"none":"contents")">
-                                        <i class="far fa-heart" style="font-size: 18px;"></i>
-                                        <span class="slide-button-label">
-                                            Like
-                                        </span>
-                                    </span>
-
-
-                                    <span class="slide-button-sub-label like-count">
-                                        @(recipe.WishLists.Count)
-                                    </span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="archive-item-deep-meta">
-                        <div class="archive-item-rating-and-read-more">
-                            <div class="archive-item-read-more-btn">
-                                <div class="read-more-link"><a href="/Home/RecipeDetail/@(recipe.Id)">Read More</a></div>
+            <article class="archive-item any hero post-204 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fast-food category-pizza tag-chicken tag-hot tag-sushi tag-whole-grains recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-butter recipe_ingredient-chicken-breast recipe_ingredient-drained-capers-patted-dry recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-skin-on-salmon-fillet recipe_ingredient-small-purple-potatoes recipe_ingredient-whole-grain-dijon-mustard recipe_cuisine-french">
+                <div class="archive-item-i">
+                    <div class="extra-styling-box"></div>
+                    <div class="archive-item-share-w active">
+                        <div class="archive-item-share-trigger">
+                            <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
+                            <div class="archive-item-share-label">Share</div>
+                            <div class="archive-item-share-icons">
+                                <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fgreen-salad-with-cherries%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
+                                <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/&amp;text=++Hero+Posts" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
+                                <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1.jpg&#038;description=%20%20Hero%20Posts" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
+                                <a href="mailto:?Subject=  Hero Posts&amp;Body=%20http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
                             </div>
                         </div>
-
-                        <div class="archive-item-comments">
-                            <a href="#">
-                                <i class="os-icon os-icon-thin-comment"></i> 
-                                <span>
-                                    <span class="dsq-postid">Comment()</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>@(recipe.ViewCount) Views</span></div>
                     </div>
+                    <div class="archive-item-media">
+                        <a href="/Home/RecipeDetail/@(recipe.Id)" class="archive-item-media-thumbnail fader-activator" style="background-image: url(@(recipe.FeaturedImage)); background-size: cover;">
+                            <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                        </a>
+                    </div>
+                    <div class="archive-item-content">
+                        <header class="archive-item-header">
+                            <h3 class="entry-title"><a href="/Home/RecipeDetail/@(recipe.Id)" rel="bookmark">@(recipe.Title)</a></h3>
+                        </header>
+                        <div class="archive-item-meta">
+                            <div class="archive-item-meta-cooking-time">
+                                Cooking Time: @(recipe.CookingMinute) min
+                            </div>
+
+                            <div class="archive-item-meta-categories">
+                                <ul class="post-categories">
+                                    <li><a href="/Home/Recipes?category=@(recipe.Category.Id)" rel="category tag">@(recipe.Category.Name)</a></li>
+                                </ul>
+                            </div>
+                            <ul class="archive-item-meta-cuisines">
+                                <li>
+                                    <a href="#" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
+                                        <span class="single-recipe-cuisine-label">French</span>
+                                        <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="archive-item-content-text">
+                            This salad recipe may seem a bit boring and insignificant, but this recipe is sort of the basic foundation of...
+                        </div>
+                        <div class="archive-item-author-meta">
+                            <div class="author-avatar-w">
+                                <a href="~/Content/assets/author/askjfds78dfdk/">
+                                    <img src="@(recipe.ApplicationUser.Avatar)" width="96" height="96" alt="" class="default avatar" />
+                                </a>
+                            </div>
+                            <div class="author-details">
+                                <h4 class="author-name"><a href="#">@(recipe.ApplicationUser.FirstName)</a></h4>
+                                <div class="archive-item-date-posted">@(Convert.ToDateTime(recipe.CreatedAt).ToString("M"))</div>
+                            </div>
+                            <div class="archive-item-views-count-likes">
+                                <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="204" data-vote-action="vote" data-votes-count="321">
+                                    <span class="slide-button-i">
+
+                                        <span class="btn-unlike" data-id="@(recipe.Id)" style="display: @(liked?"contents":"none")">
+                                            <i class="fas fa-heart" style="font-size: 18px;"></i>
+                                            <span class="slide-button-label">
+                                                Liked
+                                            </span>
+                                        </span>
+
+                                        <span class="btn-like" data-id="@(recipe.Id)" style="display: @(liked?"none":"contents")">
+                                            <i class="far fa-heart" style="font-size: 18px;"></i>
+                                            <span class="slide-button-label">
+                                                Like
+                                            </span>
+                                        </span>
+
+
+                                        <span class="slide-button-sub-label like-count">
+                                            @(recipe.WishLists.Count)
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="archive-item-deep-meta">
+                            <div class="archive-item-rating-and-read-more">
+                                <div class="archive-item-read-more-btn">
+                                    <div class="read-more-link"><a href="/Home/RecipeDetail/@(recipe.Id)">Read More</a></div>
+                                </div>
+                            </div>
+
+                            <div class="archive-item-comments">
+                                <a href="#">
+                                    <i class="os-icon os-icon-thin-comment"></i>
+                                    <span>
+                                        <span class="dsq-postid">Comment()</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>@(recipe.ViewCount) Views</span></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-            </div>
-        </article>
+            </article>
         }
-        
+
 
     </div>
 </div>
@@ -300,7 +314,406 @@
 
                 </div>
             }
+            <div>
+                <h3>Contests are taking place</h3>
+                <ul class="nav nav-tabs mt-3 mb-5" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <div class="nav-link active" id="home-tab" data-toggle="tab" href="#Happenning" role="tab" aria-controls="home" aria-selected="true">Happenning</div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" id="profile-tab" data-toggle="tab" href="#Upcoming" role="tab" aria-controls="profile" aria-selected="false">Upcoming</div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" id="contact-tab" data-toggle="tab" href="#TookOut" role="tab" aria-controls="contact" aria-selected="false">Took Out</div>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="Happenning" role="tabpanel" aria-labelledby="home-tab">
+                        @if (ViewBag.ContestHappenning.Count < 0)
+                        {
+                        <div class="text-danger">No Contest Happenning!</div>
+                        }
+                        else
+                        {
+                            foreach (var item in ViewBag.ContestHappenning)
+                            {
+                                <div class="sticky-roll-w">
+                                    <div class="owl-carousel sticky-posts-owl-slider owl-theme owl-loaded">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1500px;">
+                                                <div class="owl-item active" style="width: 750px; margin-right: 0px;">
+                                                    <article class="archive-item any full_full_over post-177 osetin_recipe type-osetin_recipe status-publish format-gallery has-post-thumbnail hentry category-fast-food tag-quick tag-spicy tag-whole-grains recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-haricots-verts-trimmed recipe_cuisine-italian">
+                                                        <div class="archive-item-i">
+                                                            <div class="extra-styling-box"></div>
+                                                            <div class="archive-item-share-w active">
+                                                                <div class="archive-item-share-trigger">
+                                                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
+                                                                    <div class="archive-item-share-label">Share</div>
+                                                                    <div class="archive-item-share-icons">
+                                                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fcheesy-pasta-with-crispy-pangritata%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
+                                                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/&amp;text=++Half+Image" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
+                                                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/&amp;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14.jpg&amp;description=%20%20Half%20Image" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
+                                                                        <a href="mailto:?Subject=  Half Image&amp;Body=%20http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="archive-item-media">
+                                                                <a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14.jpg); background-size: cover;">
+                                                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="archive-item-content">
+                                                                <header class="archive-item-header">
+                                                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" rel="bookmark">@(item.Name)</a></h3>
+                                                                </header>
+                                                                <div class="archive-item-meta">
+                                                                    <div class="archive-item-meta-cooking-time">
+                                                                        Start Date: @(item.StartDate.ToString("dd/M/yyyy", CultureInfo.InvariantCulture))
+                                                                    </div>
 
+                                                                    <div class="archive-item-meta-cooking-time">
+                                                                        End Date: @(item.EndDate.ToString("dd/M/yyyy", CultureInfo.InvariantCulture))
+                                                                    </div>
+                                                                    <ul class="archive-item-meta-cuisines">
+                                                                        <li>
+                                                                            <a href="http://neptune.pinsupreme.com/cuisine/italian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
+                                                                                <span class="single-recipe-cuisine-label">Italian</span>
+                                                                                <span class="single-recipe-cuisine-image"><img src="http://neptune.pinsupreme.com/wp-content/uploads/2015/11/it.png" alt="Italian"></span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="archive-item-content-text" style="max-height: 110px; max-width: 100%; text-overflow: ellipsis">
+                                                                    @(new HtmlString(item.Description))
+                                                                </div>
+                                                                <div class="archive-item-author-meta">
+                                                                    <div class="author-avatar-w">
+                                                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar"></a>
+                                                                    </div>
+                                                                    <div class="author-details">
+                                                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
+                                                                        <div class="archive-item-date-posted">July 17, 2015</div>
+                                                                    </div>
+                                                                    <div class="archive-item-views-count-likes">
+                                                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="177" data-vote-action="vote" data-votes-count="287">
+                                                                            <span class="slide-button-i">
+                                                                                <i class="os-icon os-icon-ui-03"></i>
+                                                                                <span class="slide-button-label osetin-vote-action-label">
+                                                                                    Like
+                                                                                </span>
+                                                                                <span class="slide-button-sub-label osetin-vote-count ">
+                                                                                    287
+                                                                                </span>
+                                                                            </span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="archive-item-deep-meta">
+                                                                    <div class="archive-item-rating-and-read-more">
+                                                                        <div class="archive-item-read-more-btn" style="display: flex!important">
+                                                                            <div class="read-more-link"><a href="/Contest/ContestDetail/@(item.Id)">Read More</a></div>
+                                                                            <div class="read-more-link" style="margin-left:20px"><a href="/contest/join/@(item.Id)">Join</a></div>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>1,873 Views</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </article>
+                                                </div><div class="owl-item" style="width: 750px; margin-right: 0px;">
+                                                    <article class="archive-item any full_full_over post-200 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fish category-salads tag-quick tag-spicy tag-sushi tag-whole-grains recipe_feature-gluten-free recipe_feature-vegan recipe_cuisine-mexican">
+                                                        <div class="archive-item-i">
+                                                            <div class="extra-styling-box"></div>
+                                                            <div class="archive-item-share-w active">
+                                                                <div class="archive-item-share-trigger">
+                                                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
+                                                                    <div class="archive-item-share-label">Share</div>
+                                                                    <div class="archive-item-share-icons">
+                                                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fgreen-veggies-with-flavoured-butter%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
+                                                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/&amp;text=++Half+Image" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
+                                                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/&amp;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16.jpg&amp;description=%20%20Half%20Image" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
+                                                                        <a href="mailto:?Subject=  Half Image&amp;Body=%20http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="archive-item-media">
+                                                                <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-868x1300.jpg); background-size: cover;">
+                                                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="archive-item-content">
+                                                                <header class="archive-item-header">
+                                                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" rel="bookmark">Green veggies with flavoured butter</a></h3>
+                                                                </header>
+                                                                <div class="archive-item-meta">
+                                                                    <div class="archive-item-meta-cooking-time">
+                                                                        Cooking Time: 20 min
+                                                                    </div>
+
+                                                                    <div class="archive-item-meta-categories">
+                                                                        <ul class="post-categories">
+                                                                            <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
+                                                                            <li><a href="http://neptune.pinsupreme.com/category/salads/" rel="category tag">Salads</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <ul class="archive-item-meta-cuisines">
+                                                                        <li>
+                                                                            <a href="http://neptune.pinsupreme.com/cuisine/mexican/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Mexican">
+                                                                                <span class="single-recipe-cuisine-label">Mexican</span>
+                                                                                <span class="single-recipe-cuisine-image"><img src="http://neptune.pinsupreme.com/wp-content/uploads/2015/11/mx.png" alt="Mexican"></span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="archive-item-content-text">
+                                                                    This wonderfully herby butter gives festive greens loads of flavour, and you can prep it in advance. This wonderfully herby butter gives festive greens loads of flavour, and you can...
+                                                                </div>
+                                                                <div class="archive-item-author-meta">
+                                                                    <div class="author-avatar-w">
+                                                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar"></a>
+                                                                    </div>
+                                                                    <div class="author-details">
+                                                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
+                                                                        <div class="archive-item-date-posted">July 23, 2015</div>
+                                                                    </div>
+                                                                    <div class="archive-item-views-count-likes">
+                                                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="200" data-vote-action="vote" data-votes-count="162">
+                                                                            <span class="slide-button-i">
+                                                                                <i class="os-icon os-icon-ui-03"></i>
+                                                                                <span class="slide-button-label osetin-vote-action-label">
+                                                                                    Like
+                                                                                </span>
+                                                                                <span class="slide-button-sub-label osetin-vote-count ">
+                                                                                    162
+                                                                                </span>
+                                                                            </span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="archive-item-deep-meta">
+                                                                    <div class="archive-item-rating-and-read-more">
+                                                                        <div class="archive-item-read-more-btn">
+                                                                            <div class="read-more-link"><a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/">Read More</a></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="archive-item-comments">
+                                                                        <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/#singlePostComments"><i class="os-icon os-icon-thin-comment"></i> <span><span class="dsq-postid" data-dsqidentifier="200 http://local.neptune:8888/?post_type=osetin_recipe&amp;p=200">Comment</span></span></a>
+                                                                    </div>
+                                                                    <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>942 Views</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style=""><i class="os-icon os-icon-chevron-left"></i></div><div class="owl-next" style=""><i class="os-icon os-icon-chevron-right"></i></div></div><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="Upcoming" role="tabpanel" aria-labelledby="profile-tab">
+                        @if (ViewBag.ContestUpcoming.Count < 0)
+                        {
+                        <div class="text-danger">No Contest Upcoming!</div>
+                        }
+                        else
+                        {
+                            foreach (var item in ViewBag.ContestUpcoming)
+                            {
+                                <div class="sticky-roll-w">
+                                    <div class="owl-carousel sticky-posts-owl-slider owl-theme owl-loaded">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1500px;">
+                                                <div class="owl-item active" style="width: 750px; margin-right: 0px;">
+                                                    <article class="archive-item any full_full_over post-177 osetin_recipe type-osetin_recipe status-publish format-gallery has-post-thumbnail hentry category-fast-food tag-quick tag-spicy tag-whole-grains recipe_feature-gluten-free recipe_feature-spicy recipe_feature-vegan recipe_ingredient-chicken-breast recipe_ingredient-fresh-broccoli recipe_ingredient-ground-beef recipe_ingredient-haricots-verts-trimmed recipe_cuisine-italian">
+                                                        <div class="archive-item-i">
+                                                            <div class="extra-styling-box"></div>
+                                                            <div class="archive-item-share-w active">
+                                                                <div class="archive-item-share-trigger">
+                                                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
+                                                                    <div class="archive-item-share-label">Share</div>
+                                                                    <div class="archive-item-share-icons">
+                                                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fcheesy-pasta-with-crispy-pangritata%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
+                                                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/&amp;text=++Half+Image" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
+                                                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/&amp;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14.jpg&amp;description=%20%20Half%20Image" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
+                                                                        <a href="mailto:?Subject=  Half Image&amp;Body=%20http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="archive-item-media">
+                                                                <a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe14.jpg); background-size: cover;">
+                                                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="archive-item-content">
+                                                                <header class="archive-item-header">
+                                                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/" rel="bookmark">@(item.Name)</a></h3>
+                                                                </header>
+                                                                <div class="archive-item-meta">
+                                                                    <div class="archive-item-meta-cooking-time">
+                                                                        Cooking Time: 10 min
+                                                                    </div>
+
+                                                                    <div class="archive-item-meta-categories">
+                                                                        <ul class="post-categories">
+                                                                            <li><a href="http://neptune.pinsupreme.com/category/fast-food/" rel="category tag">Fast Food</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <ul class="archive-item-meta-cuisines">
+                                                                        <li>
+                                                                            <a href="http://neptune.pinsupreme.com/cuisine/italian/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Italian">
+                                                                                <span class="single-recipe-cuisine-label">Italian</span>
+                                                                                <span class="single-recipe-cuisine-image"><img src="http://neptune.pinsupreme.com/wp-content/uploads/2015/11/it.png" alt="Italian"></span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="archive-item-content-text" style="max-height: 110px; max-width: 100%; text-overflow: ellipsis">
+                                                                    @(new HtmlString(item.Description))
+                                                                </div>
+                                                                <div class="archive-item-author-meta">
+                                                                    <div class="author-avatar-w">
+                                                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar"></a>
+                                                                    </div>
+                                                                    <div class="author-details">
+                                                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
+                                                                        <div class="archive-item-date-posted">July 17, 2015</div>
+                                                                    </div>
+                                                                    <div class="archive-item-views-count-likes">
+                                                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="177" data-vote-action="vote" data-votes-count="287">
+                                                                            <span class="slide-button-i">
+                                                                                <i class="os-icon os-icon-ui-03"></i>
+                                                                                <span class="slide-button-label osetin-vote-action-label">
+                                                                                    Like
+                                                                                </span>
+                                                                                <span class="slide-button-sub-label osetin-vote-count ">
+                                                                                    287
+                                                                                </span>
+                                                                            </span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="archive-item-deep-meta">
+                                                                    <div class="archive-item-rating-and-read-more">
+                                                                        <div class="archive-item-read-more-btn" style="display: flex!important">
+                                                                            <div class="read-more-link"><a href="http://neptune.pinsupreme.com/recipe/cheesy-pasta-with-crispy-pangritata/">Read More</a></div>
+                       
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>1,873 Views</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </article>
+                                                </div><div class="owl-item" style="width: 750px; margin-right: 0px;">
+                                                    <article class="archive-item any full_full_over post-200 osetin_recipe type-osetin_recipe status-publish format-standard has-post-thumbnail hentry category-fish category-salads tag-quick tag-spicy tag-sushi tag-whole-grains recipe_feature-gluten-free recipe_feature-vegan recipe_cuisine-mexican">
+                                                        <div class="archive-item-i">
+                                                            <div class="extra-styling-box"></div>
+                                                            <div class="archive-item-share-w active">
+                                                                <div class="archive-item-share-trigger">
+                                                                    <div class="archive-item-share-plus"><i class="os-icon os-icon-plus"></i></div>
+                                                                    <div class="archive-item-share-label">Share</div>
+                                                                    <div class="archive-item-share-icons">
+                                                                        <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fgreen-veggies-with-flavoured-butter%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-facebook"></i></a>
+                                                                        <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/&amp;text=++Half+Image" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-twitter"></i></a>
+                                                                        <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/&amp;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16.jpg&amp;description=%20%20Half%20Image" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
+                                                                        <a href="mailto:?Subject=  Half Image&amp;Body=%20http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-basic-mail-envelope"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="archive-item-media">
+                                                                <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" class="archive-item-media-thumbnail fader-activator" style="background-image:url(http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-868x1300.jpg); background-size: cover;">
+                                                                    <span class="image-fader"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="archive-item-content">
+                                                                <header class="archive-item-header">
+                                                                    <h3 class="entry-title"><a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/" rel="bookmark">Green veggies with flavoured butter</a></h3>
+                                                                </header>
+                                                                <div class="archive-item-meta">
+                                                                    <div class="archive-item-meta-cooking-time">
+                                                                        Cooking Time: 20 min
+                                                                    </div>
+
+                                                                    <div class="archive-item-meta-categories">
+                                                                        <ul class="post-categories">
+                                                                            <li><a href="http://neptune.pinsupreme.com/category/fish/" rel="category tag">Fish</a></li>
+                                                                            <li><a href="http://neptune.pinsupreme.com/category/salads/" rel="category tag">Salads</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <ul class="archive-item-meta-cuisines">
+                                                                        <li>
+                                                                            <a href="http://neptune.pinsupreme.com/cuisine/mexican/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="Mexican">
+                                                                                <span class="single-recipe-cuisine-label">Mexican</span>
+                                                                                <span class="single-recipe-cuisine-image"><img src="http://neptune.pinsupreme.com/wp-content/uploads/2015/11/mx.png" alt="Mexican"></span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="archive-item-content-text">
+                                                                    This wonderfully herby butter gives festive greens loads of flavour, and you can prep it in advance. This wonderfully herby butter gives festive greens loads of flavour, and you can...
+                                                                </div>
+                                                                <div class="archive-item-author-meta">
+                                                                    <div class="author-avatar-w">
+                                                                        <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/"><img src="http://neptune.pinsupreme.com/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar"></a>
+                                                                    </div>
+                                                                    <div class="author-details">
+                                                                        <h4 class="author-name"><a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">Julia May</a></h4>
+                                                                        <div class="archive-item-date-posted">July 23, 2015</div>
+                                                                    </div>
+                                                                    <div class="archive-item-views-count-likes">
+                                                                        <a href="#" class="slide-button slide-like-button osetin-vote-trigger osetin-vote-not-voted" data-has-voted-label="Liked" data-not-voted-label="Like" data-post-id="200" data-vote-action="vote" data-votes-count="162">
+                                                                            <span class="slide-button-i">
+                                                                                <i class="os-icon os-icon-ui-03"></i>
+                                                                                <span class="slide-button-label osetin-vote-action-label">
+                                                                                    Like
+                                                                                </span>
+                                                                                <span class="slide-button-sub-label osetin-vote-count ">
+                                                                                    162
+                                                                                </span>
+                                                                            </span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="archive-item-deep-meta">
+                                                                    <div class="archive-item-rating-and-read-more">
+                                                                        <div class="archive-item-read-more-btn">
+                                                                            <div class="read-more-link"><a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/">Read More</a></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="archive-item-comments">
+                                                                        <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/#singlePostComments"><i class="os-icon os-icon-thin-comment"></i> <span><span class="dsq-postid" data-dsqidentifier="200 http://local.neptune:8888/?post_type=osetin_recipe&amp;p=200">Comment</span></span></a>
+                                                                    </div>
+                                                                    <div class="archive-item-views-count"><i class="os-icon os-icon-eye"></i> <span>942 Views</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style=""><i class="os-icon os-icon-chevron-left"></i></div><div class="owl-next" style=""><i class="os-icon os-icon-chevron-right"></i></div></div><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="TookOut" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                </div>
+               
+            </div>
         </div>
         <div class="archive-sidebar color-scheme-light " style="">
             <aside id="osetin_author_widget-1" class="widget-odd widget-first widget-1 with-ribbon widget widget_osetin_author_widget">
@@ -324,17 +737,17 @@
                 <h3 class="widget-title"><span>Our Newsletter</span></h3>
                 <script>
                     (function () {
-                        if (!window.mc4wp) {
-                            window.mc4wp = {
-                                listeners: [],
+                                    if (!window.mc4wp) {
+                                        window.mc4wp = {
+                                        listeners: [],
                                 forms: {
-                                    on: function (event, callback) {
-                                        window.mc4wp.listeners.push({
+                                            on: function (event, callback) {
+                                    window.mc4wp.listeners.push({
                                             event: event,
                                             callback: callback
-                                        });
+                                });
                                     }
-                                }
+                        }
                             }
                         }
                     })();
@@ -365,7 +778,6 @@
                 <h3 class="widget-title"><span>Popular Recipes</span></h3>
                 <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
                     <ul class="popular-ajax-page">
-                        
                     </ul>
                     <div class="tptn_clear"></div>
                 </div>
@@ -436,6 +848,9 @@
 <script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
 <script type="text/javascript" src="~/Content/js/PopularRecipe.js"></script>
 <script type="text/javascript" src="~/Content/js/Like.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+<script type="text/javascript" src="~/Scripts/popper.min.js"></script>
+
 @section Scripts
 {
     <script>
@@ -446,7 +861,7 @@
             //if ($('#show-expired').data('expired') != "") {
             //    showInfoToast();
             //};
-            
+
         })
     </script>
 }

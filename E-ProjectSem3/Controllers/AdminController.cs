@@ -17,56 +17,11 @@ namespace E_ProjectSem3.Controllers
             return View();
         }
         
-        public ActionResult Recipes( string start, string end)
+        public ActionResult Recipes()
         {
-            var _start = DateTime.Parse(start);
-                //var listRecipe = db.Recipes.Where(r => r.DeletedAt == null).ToList();
-            //return View(listRecipe);
-            var startTime = DateTime.Now;
-            startTime = startTime.AddYears(-1);
-            try
-            {
-                startTime = DateTime.Parse(start);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            startTime = new DateTime(startTime.Year, startTime.Month, startTime.Day, 0, 0, 0, 0);
-
-            var endTime = DateTime.Now;
-            try
-            {
-                endTime = DateTime.Parse(end);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            endTime = new DateTime(endTime.Year, endTime.Month, endTime.Day, 23, 59, 59, 0);
-
-            var data = db.OrderInfos.Where(o => (Convert.ToDateTime(o.DeletedAt) == null) && (Convert.ToDateTime(o.CreatedAt) >= startTime && Convert.ToDateTime(o.CreatedAt) <= endTime))
-                .GroupBy(
-                    o => new
-                    {
-                        Year = Convert.ToDateTime(o.CreatedAt).Year,
-                        Month = Convert.ToDateTime(o.CreatedAt).Month,
-                    }
-                ).Select(g => new
-                {
-                    Date = Convert.ToDateTime(g.FirstOrDefault().CreatedAt),
-                    Money = g.Sum(o => (double?)o.Amount) ?? 0,
-                }).OrderBy(o => o.Date).ToList();
-
-            return new JsonResult()
-            {
-                Data = data.Select(o => new
-                {
-                    Date = o.Date.ToString("d"),
-                    Money = o.Money,
-                }),
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
+            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null).ToList();
+            return View(listRecipe);
+           
         }
 
         public ActionResult GetChartDataRevenue(string start, string end)
@@ -152,14 +107,14 @@ namespace E_ProjectSem3.Controllers
             var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
             return View("RecipeNotApprove", listRecipe);
         }
-        //public ActionResult ApproveNotRecipe(string approve_id, int recipe_id)
-        //{
-        //    var recipes = db.Recipes.FirstOrDefault(c => c.ApproveId == approve_id && c.Id == recipe_id);
-        //    recipes.Status = 0;
-        //    db.SaveChanges();
-        //    var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
-        //    return View("Recipes", listRecipe);
-        //}
+        public ActionResult ApproveNotRecipe(string approve_id, int recipe_id)
+        {
+            var recipes = db.Recipes.FirstOrDefault(c => c.ApproveId == approve_id && c.Id == recipe_id);
+            recipes.Status = 0;
+            db.SaveChanges();
+            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
+            return View("Recipes", listRecipe);
+        }
         public ActionResult StatisticsVip() {
             var vips = db.OrderInfos.Where(v => v.Status == (int)OrderStatus.Paid).OrderBy(v => v.CreatedAt).Take(10).ToList();
             return View(vips);

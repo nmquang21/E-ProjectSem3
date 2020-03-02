@@ -3,6 +3,7 @@
     ViewBag.Title = "Contest | Submit Recipes";
     Layout = "~/Views/Shared/_LayoutRecipe.cshtml";
     var ContestName = ViewBag.ContestName;
+    var ContestId = ViewBag.ContestId;
 }
 <style>
     .acf-input select, input[type="number"] {
@@ -48,7 +49,7 @@
                     <h2 class="form-header">Submit your recipe</h2>
                     <form id="frontend-publisher" class="acf-form" action="@Url.Action("SubmitRecipeContest","Contest")" method="post">
                         <div class="acf-fields acf-form-fields -top">
-
+                            <input type="hidden" value="@(ContestId)" name="contestId"/>
 
                             <div class="acf-field acf-field-text acf-field--post-title is-required" data-required="1" style="width: 80%; padding-right: 15px;" data-width="30">
                                 <div class="acf-label">

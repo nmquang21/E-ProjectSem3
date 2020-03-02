@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="http://neptune.pinsupreme.com/xmlrpc.php">
     <title>Hero Posts &#8211; Themes</title>
@@ -43,10 +44,10 @@
             function l(e) {
                 if (!s || !s.fillText) return !1;
                 switch (s.textBaseline = "top", s.font = "600 32px Arial", e) {
-                case "flag":
-                    return !c([127987, 65039, 8205, 9895, 65039], [127987, 65039, 8203, 9895, 65039]) && (!c([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819]) && !c([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447]));
-                case "emoji":
-                    return !c([55357, 56424, 55356, 57342, 8205, 55358, 56605, 8205, 55357, 56424, 55356, 57340], [55357, 56424, 55356, 57342, 8203, 55358, 56605, 8203, 55357, 56424, 55356, 57340])
+                    case "flag":
+                        return !c([127987, 65039, 8205, 9895, 65039], [127987, 65039, 8203, 9895, 65039]) && (!c([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819]) && !c([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447]));
+                    case "emoji":
+                        return !c([55357, 56424, 55356, 57342, 8205, 55358, 56605, 8205, 55357, 56424, 55356, 57340], [55357, 56424, 55356, 57342, 8203, 55358, 56605, 8203, 55357, 56424, 55356, 57340])
                 }
                 return !1
             }
@@ -120,7 +121,7 @@
     <link rel='stylesheet' id='userpro_jquery_ui_style-css' href='~/Content/assets/wp-content/plugins/userpro/css/userpro-jquery-ui.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-bookmarks.css' type='text/css' media='all' />
     <link rel='stylesheet' id='userpro_fav_list-css' href='~/Content/assets/wp-content/plugins/userpro-bookmarks/css/userpro-collections.css' type='text/css' media='all' />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" rel="stylesheet" />
     <link href="~/Content/assets/custom.css" rel="stylesheet" />
 
     <script type='text/javascript' src='~/Content/assets/wp-includes/js/jquery/jquery.js'></script>
@@ -582,9 +583,9 @@
                     var html = '';
                     for (var i = 0; i < responseData.data.length; i++) {
                         html += `<li>
-                                    <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
-                                    <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
-                                </li>`;
+                                        <a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><img style="width: 50px; height: 50px;" src="${responseData.data[i].FeaturedImage}" class="tptn_thumb tptn_featured" alt="Classic tomato salsa with basil" title="${responseData.data[i].Title}" sizes="(max-width: 50px) 100vw, 50px" /></a>
+                                        <span class="tptn_after_thumb"><a href="/Home/RecipeDetail/${responseData.data[i].Id}" class="tptn_link"><span class="tptn_title">${responseData.data[i].Title}</span></a></span>
+                                    </li>`;
                     }
                     $('.popular-ajax').html(html);
                 }
@@ -598,6 +599,9 @@
             });
         })
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 @RenderSection("Scripts", false)
 </html>
