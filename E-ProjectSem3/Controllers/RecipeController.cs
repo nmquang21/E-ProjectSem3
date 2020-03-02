@@ -95,6 +95,10 @@ namespace E_ProjectSem3.Controllers
             db.Configuration.ProxyCreationEnabled = false;
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
+            if (user == null)
+            {
+                return Json(new { data = " " }, JsonRequestBehavior.AllowGet);
+            }
             return Json(new { data = user.UserName }, JsonRequestBehavior.AllowGet);
         }
     }
