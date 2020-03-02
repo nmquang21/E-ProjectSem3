@@ -9,12 +9,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="~/Content/img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="http://neptune.pinsupreme.com/xmlrpc.php">
-    <title>Hero Posts &#8211; Themes</title>
+    <title>@ViewBag.Title</title>
     <link rel='dns-prefetch' href='//neptune.pinsupreme.com' />
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
     <link rel='dns-prefetch' href='//s.w.org' />
@@ -145,9 +146,6 @@
     <link rel='shortlink' href='~/Content/assets/?p=722' />
     <link rel="alternate" type="application/json+oembed" href="~/Content/assets/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fneptune.pinsupreme.com%2Fhero-posts%2F" />
     <link rel="alternate" type="text/xml+oembed" href="~/Content/assets/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fneptune.pinsupreme.com%2Fhero-posts%2F&#038;format=xml" />
-    <style type="text/css">
-        0
-    </style>
     <script type="text/javascript">
         var site_is_rtl = '';
     </script>
@@ -178,7 +176,9 @@
     <div class="all-wrapper with-animations">
         <div class="print-w">
             <div class="print-logo-w">
-                <div><img src="http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/img/neptune-logo.png" alt=""></div>
+                <div>
+                    <img src="http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/img/neptune-logo.png" alt="">
+                </div>
                 <div>http://neptune.pinsupreme.com</div>
             </div>
         </div>
@@ -225,7 +225,7 @@
         <div class="os-container main-header-w main-header-version_1">
             <div class="main-header color-scheme-light " style="background-color:#FFFFFF; ">
                 <div class="logo" style="width: 210px;">
-                    <a href="http://neptune.pinsupreme.com/" rel="home">
+                    <a href="/Home" rel="home">
                         <img src="http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/img/neptune-logo.png" alt="">
                     </a>
                 </div>
@@ -273,7 +273,7 @@
                     <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                         <a href="/Home/Recipes">Recipes</a>
                     </li>
-                    @if (User.IsInRole("chef") || User.IsInRole("admin"))
+                    @if (Request.IsAuthenticated && (UserManager.IsInRole(User.Identity.GetUserId(), "chef") || UserManager.IsInRole(User.Identity.GetUserId(), "admin")))
                     {
                         <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                             <a href="/Home/AddRecipes">Submit recipe</a>
@@ -292,7 +292,7 @@
                     <i class="os-icon os-icon-thin-hamburger"></i>
                 </div>
                 <div class="mobile-logo" style="width: 210px;">
-                    <a href="http://neptune.pinsupreme.com/" rel="home"><img src="http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/img/neptune-logo.png" alt=""></a>
+                    <a href="/Home" rel="home"><img src="http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/img/neptune-logo.png" alt=""></a>
                 </div>
                 <div class="mobile-menu-search-toggler">
                     <i class="os-icon os-icon-thin-search"></i>
@@ -571,7 +571,7 @@
         /* ]]> */
     </script>
     <script type='text/javascript' src='~/Content/assets/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js'></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    @*<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js" type="text/javascript"></script>
     <script type='text/javascript' src='~/Content/js/CategoriesAjax.js'></script>
     <script>
@@ -599,9 +599,9 @@
             });
         })
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>*@
 </body>
 @RenderSection("Scripts", false)
 </html>

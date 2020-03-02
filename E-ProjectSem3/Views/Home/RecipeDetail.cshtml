@@ -2,7 +2,7 @@
 @using Microsoft.AspNet.Identity
 @model E_ProjectSem3.Models.Recipe
 @{
-    ViewBag.Title = "RecipeDetail";
+    ViewBag.Title = "JamesThew - "+ Model.Title;
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
     bool liked = Model.WishLists.Where(w => w.UserId == User.Identity.GetUserId()).ToList().Count == 1;
     var listComment = ViewBag.ListComment as List<Comment>;

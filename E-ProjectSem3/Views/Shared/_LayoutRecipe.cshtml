@@ -8,6 +8,7 @@
 }
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="~/Content/img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="profile" href="http://gmpg.org/xfn/11">
@@ -217,7 +218,7 @@
         <div class="os-container top-profile-links-box-container">
             <div class="top-profile-links-box-w">
                 <div class="top-profile-links-box" style="">
-                    @if (Request.IsAuthenticated)
+                    @if(Request.IsAuthenticated)
                     {
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
                         {
@@ -264,7 +265,7 @@
                         <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                             <a href="/Home/Recipes">Recipes</a>
                         </li>
-                        @if (UserManager.IsInRole(User.Identity.GetUserId(), "chef") || UserManager.IsInRole(User.Identity.GetUserId(), "admin"))
+                        @if (Request.IsAuthenticated && (UserManager.IsInRole(User.Identity.GetUserId(), "chef") || UserManager.IsInRole(User.Identity.GetUserId(), "admin")))
                         {
                             <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                                 <a href="/Chef/AddRecipes">Submit recipe</a>
@@ -276,18 +277,18 @@
                         <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
                             <a href="#">About Me</a>
                         </li>
-                       
-                            <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
-                                <a href="#">Contacts</a>
+
+                        <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
+                            <a href="#">Contacts</a>
+                        </li>
+
+                        @if (!Request.IsAuthenticated || (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold")))
+                        {
+                            <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
+                                <a href="/Home/MemberShip">Membership</a>
                             </li>
-                        
-                        @if (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold"))
-                            {
-                                <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
-                                    <a href="/Home/MemberShip">Membership</a>
-                                </li>
-                            }
-                        </ul>
+                        }
+                    </ul>
                 </div>
                 <div class="search-trigger"><i class="os-icon os-icon-thin-search"></i></div>
             </div>
@@ -301,7 +302,7 @@
                     <li class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                         <a href="/Home/Recipes">Recipes</a>
                     </li>
-                    @if (User.IsInRole("chef") || User.IsInRole("admin"))
+                    @if (Request.IsAuthenticated && (UserManager.IsInRole(User.Identity.GetUserId(), "chef") || UserManager.IsInRole(User.Identity.GetUserId(), "admin")))
                     {
                         <li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-osetin_recipe menu-item-has-children menu-item-342">
                             <a href="/Home/AddRecipes">Submit recipe</a>
