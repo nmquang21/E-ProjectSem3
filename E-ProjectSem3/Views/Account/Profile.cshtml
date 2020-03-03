@@ -2,7 +2,7 @@
 @using Microsoft.AspNet.Identity
 @model E_ProjectSem3.Models.ResetPasswordViewModel
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "JamesThew - Profile";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
     var user = ViewBag.User as ApplicationUser;
 }
@@ -232,7 +232,7 @@
                                     <label for="user_email-242">E-mail Address</label>
                                 </div>
                                 <div class="userpro-input">
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", value = user.Email })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", value = user.UserName, disabled="disabled"})
                                 </div>
                             </div>
                             <div class="userpro-clear"></div>
