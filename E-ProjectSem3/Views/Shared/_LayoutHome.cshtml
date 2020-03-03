@@ -251,7 +251,7 @@
                             <a href="@Url.Action("","Contest")">Contests</a>
                         </li>
                         <li id="menu-item-540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-540">
-                            <a href="#">About Me</a>
+                            <a href="/Home/About">About Me</a>
                         </li>
                         @if (!Request.IsAuthenticated || (!UserManager.IsInRole(User.Identity.GetUserId(), "silver") && !UserManager.IsInRole(User.Identity.GetUserId(), "gold")))
                         {
