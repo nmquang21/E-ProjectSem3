@@ -200,9 +200,9 @@
     <Compile Include="Migrations\202003011642558_create31234234.Designer.cs">
       <DependentUpon>202003011642558_create31234234.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003031441345_update555.cs" />
-    <Compile Include="Migrations\202003031441345_update555.Designer.cs">
-      <DependentUpon>202003031441345_update555.cs</DependentUpon>
+    <Compile Include="Migrations\202003031522373_contact.cs" />
+    <Compile Include="Migrations\202003031522373_contact.Designer.cs">
+      <DependentUpon>202003031522373_contact.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202003031533598_update555dư.cs" />
     <Compile Include="Migrations\202003031533598_update555dư.Designer.cs">
@@ -213,6 +213,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Contest.cs" />
     <Compile Include="Models\ContestPrize.cs" />
     <Compile Include="Models\ContestRecipe.cs" />
@@ -1142,11 +1143,6 @@
     <Content Include="Views\Admin\Contest\ContestDetail.cshtml" />
     <Content Include="Views\Contest\ContestDetail.cshtml" />
     <Content Include="Views\Admin\User.cshtml" />
-    <Content Include="Views\Recipes\Create.cshtml" />
-    <Content Include="Views\Recipes\Delete.cshtml" />
-    <Content Include="Views\Contest\RecipeContest.cshtml" />
-    <Content Include="Views\Recipes\Edit.cshtml" />
-    <Content Include="Views\Recipes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1170,8 +1166,8 @@
     <EmbeddedResource Include="Migrations\202003011642558_create31234234.resx">
       <DependentUpon>202003011642558_create31234234.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003031441345_update555.resx">
-      <DependentUpon>202003031441345_update555.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003031522373_contact.resx">
+      <DependentUpon>202003031522373_contact.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031533598_update555dư.resx">
       <DependentUpon>202003031533598_update555dư.cs</DependentUpon>

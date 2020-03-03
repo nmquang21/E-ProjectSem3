@@ -24,7 +24,7 @@ namespace E_ProjectSem3.Controllers
         public async Task<ActionResult> Index(int? page)
         {
             ViewBag.ListCategories = db.Categories.Where(c => c.Icon != null && c.DeletedAt == null).OrderBy(c => c.Name).ToList();
-            ViewBag.DataSliderSmall = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active).Take(6).ToList();
+            ViewBag.DataSliderSmall = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active && r.Type != 2).Take(6).ToList();
             ViewBag.DataSliderBig = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active && (r.Id >= 9 && r.Id <= 12)).ToList();
             ViewBag.ContestHappenning = db.Contests.Where(c => c.StartDate < DateTime.Now && c.EndDate > DateTime.Now).ToList();
             ViewBag.ContestUpcoming = db.Contests.Where(c => c.StartDate > DateTime.Now && c.EndDate > DateTime.Now).ToList();
@@ -43,7 +43,7 @@ namespace E_ProjectSem3.Controllers
                 }
             }
 
-            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).OrderBy(r => r.Title).ToList();
+            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active && r.Type != 2).OrderBy(r => r.Title).ToList();
             int pageSize = 6;
             int pageNumber = (page ?? 1);
             ViewBag.CurrentPage = page ?? 1;
@@ -68,7 +68,7 @@ namespace E_ProjectSem3.Controllers
             ViewBag.ListCategories = db.Categories.Where(c => c.Icon != null && c.DeletedAt == null).OrderBy(c => c.Name).ToList();
             ViewBag.CurrentCategory = category;
             ViewBag.Search = search;
-            ViewBag.DataSlider = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active).Take(8).ToList();
+            ViewBag.DataSlider = db.Recipes.Where(r => r.DeletedAt == null && r.Status == (int) Recipe.RecipeStatus.Active && r.Type != 2).Take(8).ToList();
 
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Check expired member ship:
@@ -101,6 +101,7 @@ namespace E_ProjectSem3.Controllers
 
             predicate = predicate.And(c => c.Status == (int)Recipe.RecipeStatus.Active);
             predicate = predicate.And(c => c.DeletedAt == null);
+            predicate = predicate.And(c => c.Type != 2);
             listRecipe = listRecipe.Where(predicate).OrderBy(r => r.Title);
 
             int pageSize = 9;

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<E_ProjectSem3.Models.Recipe>
+
+@{
+    ViewBag.Title = "Recipes";
+    var i = 1;
+}
+
+<h2>Recipes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="col-lg-12 mb-4" style="padding-left: 0px; padding-right: 0px;">
+    <div class="card">
+        <div class="card-header">
+            <h6 class="text-uppercase mb-0">List Recipes</h6>
+        </div>
+        <div class="card-body">
+            <table class="data-table table table-striped table-hover card-text">
+                <thead>
+                    <tr>
+                        <th>
+                            Stt
+                        </th>
+                        <th>Image</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>Chef</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)<br>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @(i)
+                            </td>
+                            <td>
+                                <img style="width: 50px; height: 50px" src="@(item.FeaturedImage)" alt="Alternate Text" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                            </td>
+                            <td>
+                                @(item.Type == 1 ? "Free" : "NotFree")
+                            </td>
+                            <td>
+                                <input type="checkbox" class="approve-recipe" data-approve-id="@(item.ApproveId)" data-recipe-id="@(item.Id)">
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Content/js/data-table.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.data-table').DataTable();
+            $('.approve-recipe').change(function () {
+                if (this.checked) {
+                    var ApproveId = $(this).data('approve-id');
+                    var recipeId = $(this).data('recipe-id');
+                    location.href = `/admin/ApproveRecipe?approve_id=${ApproveId}&recipe_id=${recipeId}`;
+                }
+            });
+        });
+    </script>
+}
