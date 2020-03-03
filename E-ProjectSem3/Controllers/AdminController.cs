@@ -99,9 +99,25 @@ namespace E_ProjectSem3.Controllers
             var listComment = db.Comments.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
             return View("CommentNotApprove", listComment);
         }
-        public ActionResult ApproveRecipe(string approve_id, int recipe_id)
+        //public ActionResult ApproveRecipe(string approve_id, int recipe_id)
+        //{
+        //    var recipes = db.Recipes.FirstOrDefault(c => c.ApproveId == approve_id && c.Id == recipe_id);
+        //    recipes.Status = 1;
+        //    db.SaveChanges();
+        //    var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
+        //    return View("RecipeNotApprove", listRecipe);
+        //}
+        //public ActionResult ApproveNotRecipe(string approve_id, int recipe_id)
+        //{
+        //    var recipes = db.Recipes.FirstOrDefault(c => c.ApproveId == approve_id && c.Id == recipe_id);
+        //    recipes.Status = 0;
+        //    db.SaveChanges();
+        //    var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
+        //    return View("Recipes", listRecipe);
+        //}
+        public ActionResult ApproveRecipe( int recipe_id)
         {
-            var recipes = db.Recipes.FirstOrDefault(c => c.ApproveId == approve_id && c.Id == recipe_id);
+            var recipes = db.Recipes.FirstOrDefault(c=>c.Id == recipe_id);
             recipes.Status = 1;
             db.SaveChanges();
             var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
