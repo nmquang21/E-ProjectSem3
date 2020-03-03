@@ -11,7 +11,7 @@ namespace E_ProjectSem3.Models
     {
        
         public int Id { get; set; }
-        public int Score { get; set; }
+        public int Score { get; set; } = -1;
         [Required]
         public virtual Recipe Recipe { get; set; }
         
