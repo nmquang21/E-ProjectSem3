@@ -17,6 +17,8 @@ namespace E_ProjectSem3.Models
         public string Name { get; set; }
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Please enter description ")]
         public string Description { get; set; }
+        public string SortDescription { get; set; }
+
         public string Image { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }

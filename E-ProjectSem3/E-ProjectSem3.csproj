@@ -200,6 +200,10 @@
     <Compile Include="Migrations\202003011642558_create31234234.Designer.cs">
       <DependentUpon>202003011642558_create31234234.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003031441345_update555.cs" />
+    <Compile Include="Migrations\202003031441345_update555.Designer.cs">
+      <DependentUpon>202003031441345_update555.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1161,6 +1165,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003011642558_create31234234.resx">
       <DependentUpon>202003011642558_create31234234.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003031441345_update555.resx">
+      <DependentUpon>202003031441345_update555.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
