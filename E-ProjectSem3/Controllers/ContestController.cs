@@ -2,7 +2,9 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +12,7 @@ namespace E_ProjectSem3.Controllers
 {
     public class ContestController : Controller
     {
+        private List<int> _listSeen = new List<int>();
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Contest
         public ActionResult Join(int id)
@@ -130,10 +133,22 @@ namespace E_ProjectSem3.Controllers
             return RedirectToAction("/");
         }
 
+
+    
         public ActionResult ContestDetail(int id)
         {
             var contest = db.Contests.Find(id);
             return View("~/Views/Contest/ContestDetail.cshtml",contest);
+        }
+        public ActionResult RecipeContest(int id)
+        {
+            var recipe = db.Recipes.Find(id);
+            if(recipe.Type == (int)Recipe.RecipeType.Iscompetition)
+            {
+                ViewBag.ListComment = recipe.Comments.Where(c => c.DeletedAt == null && c.Status == (int)Comment.StatusComment.Active).OrderBy(c => c.CreatedAt).ToList();
+                return View("~/Views/Contest/RecipeContest.cshtml", recipe);
+            }
+            return null;
         }
     }
 }

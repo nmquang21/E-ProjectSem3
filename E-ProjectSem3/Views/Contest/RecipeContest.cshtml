@@ -1,0 +1,675 @@
+﻿@model E_ProjectSem3.Models.Recipe
+@using E_ProjectSem3.Models
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var listComment = ViewBag.ListComment as List<Comment>;
+    var rateStar = listComment.Count == 0 ? 0 : (double)listComment.Select(c => c.Rate).Sum() / listComment.Count;
+}
+
+<div class="os-container top-bar-w">
+    <div class="top-bar">
+        <ul class="bar-breadcrumbs">
+            <li><a href="/Home">Home</a></li>
+            <li>@(Model.Title)</li>
+        </ul>
+        <ul class="bar-social" style="">
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-instagram"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-facebook"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-pinterest"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="os-icon os-icon-social-youtube"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div class="recipe-floating-box">
+    <div class="cooking-mode-btn-w">
+        <a href="#" class="cooking-mode-toggler cooking-mode-btn"><i class="os-icon os-icon-ui-34"></i> <span>Start Reading Mode</span></a>
+    </div>
+    <div class="print-share-recipe-btn-w">
+        <a href="#" class="print-recipe-btn">
+            <i class="os-icon os-icon-tech-11"></i>
+            <span>Print</span>
+        </a>
+        <a href="#" class="share-recipe-btn">
+            <i class="os-icon os-icon-ui-35"></i>
+            <span>Share</span>
+        </a>
+    </div>
+    <div class="timer-w">
+        <i class="os-icon os-icon-clock2"></i>
+        <div class="timer-counter"></div>
+        <button id="pause-resume-timer-btn" data-label-resume="Resume" data-label-pause="Pause">Pause</button>
+        <input id="timer-minutes" name="timer-minutes" type="text" value="@(Model.CookingMinute)">
+        <label id="timer-minutes-label" for="timer-minutes">min</label>
+        <button id="stop-timer-btn" data-label-stop="Stop" data-label-start="Start Timer">Stop</button>
+        <button id="start-timer-btn">Start Timer</button>
+        <audio id="timer-alarm-media">
+            <source src="~/Content/assets/wp-content/themes/neptune-by-osetin/assets/audio/ticktac.mp3" type="audio/mpeg" />
+            <source src="~/Content/assets/wp-content/themes/neptune-by-osetin/assets/audio/ticktac.ogg" type="audio/ogg" />
+        </audio>
+    </div>
+    <div class="thumbs-votes-w">
+
+
+        <div id="vote_box" data-voting-in-progress="no">
+
+            <a class="user_vote_like" href="#">
+                <i class="os-icon os-icon-ui-05"></i>
+                <span id=""> @(Model.WishLists.Count) </span>
+            </a>
+
+            <span style="display: none;" id="user_vote_label" data-loading-label=Loading… data-label=Vote>Vote</span>
+        </div>
+    </div>
+    <div class="add-to-meal-plan-btn-w">
+        <a href="#" class="trigger-add-to-meal-plan add-to-mean-plan-btn" data-nonce="fa093960ea" data-post-id="202">
+            <i class="mp-icon-ui-22"></i><span>Add to Meal Plan</span>
+        </a>
+    </div>
+</div>
+<div class="single-panel os-container">
+    <div class="single-panel-details move-on-scroll">
+        <div class="single-panel-details-i">
+            <div class="single-main-media">
+                <div class="single-main-media-image-w active fader-activator  osetin-lightbox-trigger" data-lightbox-caption="@(Model.Title)" data-lightbox-img-src="@(Model.FeaturedImage)">
+                    <span class="image-fader lighter"><span class="hover-icon-w"><i class="os-icon os-icon-plus"></i></span></span>
+                    <img class="" src="@(Model.FeaturedImage)" alt="@(Model.Title)" />
+                </div>
+            </div>
+            <div class="side-meta-box">
+                <ul>
+                    <li class="single-meta-share">
+                        <a href="#" class="post-control-share">
+                            <i class="os-icon os-icon-ui-35"></i>
+                            <span>Share</span>
+                        </a>
+                    </li>
+                    <li class="single-meta-views"><span>@(Model.ViewCount) Views</span></li>
+
+                </ul>
+            </div>
+            <div class="post-share-box">
+                <div class="psb-close"><i class="os-icon os-icon-thin-close-round"></i></div>
+                <h3 class="post-share-header">Share it on your social network:</h3>
+                <div class="psb-links">
+                    <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fpluto.pinsupreme.com%2Frecipe%2Fsquash-soup-with-parmesan-croutons%2F" target="_blank" class="psb-link psb-facebook"><i class="os-icon os-icon-facebook"></i></a>
+                    <a href="http://twitter.com/share?url=http://pluto.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&amp;text=++Squash+soup+with+Parmesan+croutons" target="_blank" class="psb-link psb-twitter"><i class="os-icon os-icon-twitter"></i></a>
+                    <a href="//www.pinterest.com/pin/create/button/?url=http://pluto.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3.jpg&#038;description=%20%20Squash%20soup%20with%20Parmesan%20croutons"
+                       target="_blank" class="psb-link psb-pinterest"><i class="os-icon os-icon-pinterest"></i></a>
+                    <a href="mailto:?Subject=  Squash soup with Parmesan croutons&amp;Body=%20http://pluto.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" target="_blank" class="psb-link psb-mail"><i class="os-icon os-icon-basic-mail-send"></i></a>
+                </div>
+                <div class="psb-url">
+                    <div class="psb-url-heading">Or you can just copy and share this url</div>
+                    <input type="text" class="psb-url-input" value="">
+                </div>
+            </div>
+            <div class="single-recipe-ingredients-nutritions">
+
+                <div class="single-ingredients hidden-on-mobile">
+                    <div class="close-btn"><i class="os-icon os-icon-plus"></i></div>
+                    <h3><i class="os-icon os-icon-thin-paper-holes-text"></i> Ingredients</h3>
+
+                    <div class="ingredient-serves">
+                        <div class="ingredient-serves-label">Adjust Servings:</div>
+                        <div class="servings-adjuster-control">
+                            <div class="ingredient-serves-decr"><i class="os-icon os-icon-basic2-273_remove_delete_minus"></i></div>
+                            <input class="ingredient-serves-num" type="text" data-initial-service-num="1" data-current-serves-num="1" value="1" />
+                            <div class="ingredient-serves-incr"><i class="os-icon os-icon-basic2-272_add_new_plus"></i></div>
+                        </div>
+                    </div>
+                    <table class="ingredients-table">
+                        @foreach (var ct in Model.Ingredients)
+                        {
+                            <tr>
+                                <td class="ingredient-action">
+                                    <span class="ingredient-mark-icon"><i class="os-icon os-icon-circle-o"></i></span>
+                                </td>
+                                <td>
+                                    <span class="ingredient-amount" data-initial-amount="@(ct.Amount) of">@(ct.Amount) of</span>
+                                    <span class="ingredient-name">@(ct.Name)</span>
+                                    @if (ct.Note != null)
+                                    {
+                                        <span class="ingredient-info-icon">
+                                            <i class="os-icon os-icon-info-round"></i>
+                                            <span class="ingredient-info-popup">@(ct.Note)</span>
+                                        </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+
+                    </table>
+                </div>
+
+
+                <div class="single-nutritions hidden-on-mobile">
+                    <div class="close-btn"><i class="os-icon os-icon-plus"></i></div>
+                    <h3><i class="os-icon os-icon-thin-info"></i> Nutritional information</h3>
+                    <div class="single-nutritions-list">
+                        @foreach (var nutri in Model.Nutrition)
+                        {
+                            <div class="single-nutrition">
+                                <div class="single-nutrition-value">@(nutri.Value)</div>
+                                <div class="single-nutrition-name">@(nutri.Name)</div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="single-recipe-bookmark-box">
+                <div class="close-btn"><i class="os-icon os-icon-plus"></i></div>
+                <h3><i class="os-icon os-icon-thin-book-bookmarked"></i> Bookmark this recipe</h3>
+                <div class="userpro-bm userpro-bm-nobottommargin-0 userpro-bm-notopmargin-0 userpro-bm-inline-0 userpro-bm-left userpro-bm-widgetized-0" style="width:100% !important;" data-add_new_collection="Add New Collection" data-default_collection="Default Collection"
+                     data-new_collection_placeholder="Enter collection name..." data-dialog_unbookmarked="This content is no longer in your bookmarks." data-dialog_bookmarked="Thanks for bookmarking this content!" data-add_to_collection="Add to Collection"
+                     data-remove_bookmark="Remove Bookmark" data-post_id="202" data-category_id="20" data-remove_bookmark_category="Remove Category Bookmark" data-bookmark_category="Bookmark Category">
+                    <div class="userpro-bm-inner">
+                        <div><img src="~/Content/assets/wp-content/plugins/userpro-bookmarks/img/heart.png" title="This post is bookmarked by 34 users." /> <span class="userpro-bm-count">34</span></div>
+                        <div class="userpro-bm-list"><select class="chosen-select-collections" name="userpro_bm_collection" id="userpro_bm_collection" data-placeholder=""><option value="0" selected='selected'>Default Collection</option></select></div>
+                        <div class="userpro-bm-act">
+                            <div class="userpro-bm-btn-contain" style="width:45% !important;"><a href="#" class="userpro-bm-btn primary unbookmarked" data-action="bookmark">Add to Collection</a></div>
+                            <div class="userpro-bm-btn-contain bm-right" style="width:45% !important;"><a href="#" class="userpro-bm-btn secondary" data-action="newcollection">New Collection</a></div>
+                        </div>
+                        <div class="userpro-clear"></div>
+                    </div>
+                </div>
+                <div class="userpro-clear"></div>
+            </div>
+          
+        </div>
+    </div>
+    <div class="single-panel-main">
+        
+        <div class="single-title">
+            <h1>@(Model.Title)</h1>
+            <h3>Smooth</h3>
+        </div>
+
+        <div class="single-recipe-custom-taxonomies position-split">
+            <div class="single-recipe-features">
+                <div class="single-recipe-features-header">Features:</div>
+                <ul>
+                    <li><a href="#"><span class="tooltip-trigger" data-tooltip-header="Gluten Free"><img src="~/Content/assets/wp-content/uploads/2015/09/415.png" alt="Gluten Free" /></span></a></li>
+                    <li><a href="#"><span class="tooltip-trigger" data-tooltip-header="Spicy"><img src="~/Content/assets/wp-content/uploads/2015/09/342.png" alt="Spicy" /></span></a></li>
+                    <li><a href="#"><span class="tooltip-trigger" data-tooltip-header="Vegan"><img src="~/Content/assets/wp-content/uploads/2015/09/263.png" alt="Vegan" /></span></a></li>
+                </ul>
+            </div>
+            <div class="single-recipe-cuisines">
+                <div class="single-recipe-cuisines-header">Cuisine:</div>
+                <ul>
+                    <li>
+                        <a href="http://neptune.pinsupreme.com/cuisine/french/" class="single-recipe-cuisine-label-w tooltip-trigger" data-tooltip-header="French">
+                            <span class="single-recipe-cuisine-label">French</span>
+                            <span class="single-recipe-cuisine-image"><img src="~/Content/assets/wp-content/uploads/2015/11/fr.png" alt="French" /></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="quick-description-quote position-split">
+            <p>@(Model.Description)</p>
+        </div>
+        <div class="single-meta">
+            <ul>
+                <li class="single-meta-cooking-time"><i class="os-icon os-icon-thin-clock-busy"></i> <span>@(Model.CookingMinute) min</span></li>
+                <li class="single-meta-serves"><i class="os-icon os-icon-thin-serve"></i> <span>Serves 1</span></li>
+                <li class="single-meta-difficulty"><i class="os-icon os-icon-thin-cook"></i> <span>@(Model.Difficulty)</span></li>
+            </ul>
+        </div>
+
+        <div class="single-content" data-font-change-count="0">
+            @*<div class="cooking-mode-close-btn-w">
+                    <a href="#" class="cooking-mode-toggler cooking-mode-close-btn"><i class="os-icon os-icon-thin-close-round"></i></a>
+                </div>
+
+                <div class="single-print-ingredients">
+                    <h2 class="bordered-title"><i class="os-icon os-icon-thin-paper-holes-text"></i> <span>Ingredients</span></h2>
+                    <ul>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">100g of</span>
+                                <div class="ingredient-print-note">It should be raw, do not cook it</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">1 pound of</span>
+                                <span class="ingredient-name">Fresh Broccoli</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">2 pieces of</span>
+                                <div class="ingredient-print-note">It should be raw, do not cook it</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">100g of</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">150g of</span>
+                                <div class="ingredient-print-note">It should be raw, do not cook it</div>
+                            </div>
+                        </li>
+                        <li>
+                            <h3>For Dressing</h3>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">3 pieces of</span>
+                                <span class="ingredient-name">Chicken Breast</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">2lbs of</span>
+                                <span class="ingredient-name">Drained capers patted dry</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">1 box of</span>
+                                <span class="ingredient-name">Ground Beef</span>
+                                <div class="ingredient-print-note">It should be raw, do not cook it</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="print-ingredient">
+                                <span class="ingredient-amount">200g of</span>
+                                <span class="ingredient-name">Potatoes</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>*@
+
+
+
+            <h2 class="bordered-title"><i class="os-icon os-icon-thin-paper-list"></i> <span>Directions</span></h2>
+            <div class="single-content-self">
+                <div class="single-sharing-box">
+                    <div class="split-share">
+                        <a href="mailto:?Subject=  Squash soup with Parmesan croutons&amp;Body=%20http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" target="_blank" class="archive-item-share-link aisl-mail"><i class="os-icon os-icon-mail"></i></a>
+                        <a href="#" class="archive-item-share-link aisl-print"><i class="os-icon os-icon-printer"></i></a>
+                        <a href="#" target="_blank" class="archive-item-share-link aisl-font"><i class="os-icon os-icon-font"></i></a>
+                    </div>
+                    <span>Share</span>
+                    <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fneptune.pinsupreme.com%2Frecipe%2Fsquash-soup-with-parmesan-croutons%2F" target="_blank" class="archive-item-share-link aisl-facebook"><i class="os-icon os-icon-social-facebook"></i></a>
+                    <a href="http://www.yummly.com/urb/verify?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&#038;title=%20%20Squash%20soup%20with%20Parmesan%20croutons&#038;yumtype=button" target="_blank" class="archive-item-share-link aisl-linkedin">
+                        <img src="~/Content/assets/wp-content/themes/neptune-by-osetin/assets/img/yum-small.png" />
+                    </a>
+                    <a href="http://twitter.com/share?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&amp;text=++Squash+soup+with+Parmesan+croutons" target="_blank" class="archive-item-share-link aisl-twitter"><i class="os-icon os-icon-social-twitter"></i></a>
+                    <a href="//www.pinterest.com/pin/create/button/?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/&#038;media=http://neptune.pinsupreme.com/wp-content/uploads/2015/06/recipe3.jpg&#038;description=%20%20Squash%20soup%20with%20Parmesan%20croutons"
+                       data-pin-custom="true" target="_blank" class="archive-item-share-link aisl-pinterest"><i class="os-icon os-icon-social-pinterest"></i></a>
+                    <a href="https://plus.google.com/share?url=http://neptune.pinsupreme.com/recipe/squash-soup-with-parmesan-croutons/" target="_blank" class="archive-item-share-link aisl-googleplus"><i class="os-icon os-icon-social-googleplus"></i></a>
+                </div>
+                <p>
+                    @(Html.Raw(Model.Content))
+                </p>
+            </div>
+
+
+            <div class="single-steps">
+                <h2 class="bordered-title"><span>Steps</span></h2>
+                <table class="recipe-steps-table">
+                    @for (var i = 0; i < Model.Steps.Count; i++)
+                    {
+                        var step = Model.Steps.ElementAt(i);
+                        <tr class="single-step">
+                            <td class="single-step-number">
+                                <div class="single-step-number-i">
+                                    <div class="single-step-number-value">@(i + 1)</div>
+                                    <div class="single-step-control">
+                                        <i class="os-icon os-icon-circle-o"></i>
+                                        <div class="single-step-complete-label">Done</div>
+                                    </div>
+                                </div>
+                                @*<div class="single-step-duration"><i class="os-icon os-icon-clock"></i> 10 min</div>*@
+                            </td>
+                            <td class="single-step-description">
+                                <div class="single-step-description-i">
+                                    <ul class="single-step-media single-media-1-image">
+                                        <li>
+                                            <a class="osetin-lightbox-trigger-step-images">
+                                                <img src="@(step.ImagePath)" alt="" style="width: 150px; height: 150px;">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <p>
+                                        @(step.Description)
+                                    </p>
+                                    <div class="step-off-fader"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+
+
+
+                    @*<tr class="single-step">
+                            <td class="single-step-number">
+                                <div class="single-step-number-i">
+                                    <div class="single-step-number-value">2</div>
+                                    <div class="single-step-control">
+                                        <i class="os-icon os-icon-circle-o"></i>
+                                        <div class="single-step-complete-label">Done</div>
+                                    </div>
+                                </div>
+                                <div class="single-step-duration"><i class="os-icon os-icon-clock"></i> 15 min</div>
+                            </td>
+                            <td class="single-step-description">
+                                <div class="single-step-description-i">
+                                    <p>
+                                        The slight planning brief the doctor one long literature couldn't ticking descriptions, she palace for are which the very once projects debt who voice come he be without finds experience the approach it self-interest,
+                                        from the world while field knowing came before texts. Vows, the after a the to curiously.
+                                    </p>
+                                    <p>
+                                        He not didn't go knowing make task. Readers led a world; Need character he copy. Of the clothes, nature, ask solitary that from kicked seven be of the which its the gilded okay. A so more of its boundless abandon
+                                        o'clock been people. The bulk; To harmonics; Phase and volume briefs thought, set not from hesitated steadily was better set his young yes, involved. A the you prudently, didn't blue surely their he particular,
+                                        on drawers. God position. His we this, do posterity history; Page value asking occupied cut time would create wanted in following so in you your pointing.
+                                    </p>
+                                    <div class="step-off-fader"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="single-step">
+                            <td class="single-step-number">
+                                <div class="single-step-number-i">
+                                    <div class="single-step-number-value">3</div>
+                                    <div class="single-step-control">
+                                        <i class="os-icon os-icon-circle-o"></i>
+                                        <div class="single-step-complete-label">Done</div>
+                                    </div>
+                                </div>
+                                <div class="single-step-duration"><i class="os-icon os-icon-clock"></i> 5 min</div>
+                            </td>
+                            <td class="single-step-description">
+                                <h4 class="single-step-title">Making Dressing</h4>
+                                <div class="single-step-description-i">
+                                    <ul class="single-step-media single-media-2-image">
+                                        <li>
+                                            <a class="osetin-lightbox-trigger-step-images" href="~/Content/assets/wp-content/uploads/2015/07/step4.jpg" data-lightbox-thumb-src="~/Content/assets/wp-content/uploads/2015/07/step4-400x400.jpg" data-lightbox-img-src="~/Content/assets/wp-content/uploads/2015/07/step4.jpg">
+                                                <img src="~/Content/assets/wp-content/uploads/2015/07/step4-400x400.jpg" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="osetin-lightbox-trigger-step-images" href="~/Content/assets/wp-content/uploads/2015/07/step3-867x1300.jpg" data-lightbox-thumb-src="~/Content/assets/wp-content/uploads/2015/07/step3-400x400.jpg" data-lightbox-img-src="~/Content/assets/wp-content/uploads/2015/07/step3-867x1300.jpg">
+                                                <img src="~/Content/assets/wp-content/uploads/2015/07/step3-400x400.jpg" alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <p>
+                                        Such their on another, it plot how lady entered theory in as and above of than arrive subjective first himself one eyes refinement my that can designer; But avoid derived through table ambushed trade, to of nonsense,
+                                        feedback a this attached lots he emphasis on officers. The team- frequency have avoids what's self-interest there listed is this that, responded thousand on my or are indulged lots sovereignty. Even the to alphabet
+                                        fantastic to ensure up large future remedies. Their stuffed they the in seemed even tuned nor a of his and any little did of nations big one have the.
+                                    </p>
+                                    <div class="step-off-fader"></div>
+                                </div>
+                            </td>
+                        </tr>*@
+                </table>
+            </div>
+        </div>
+        <div class="single-meta single-meta-at-bottom">
+            <ul>
+                <li class="social-bottom-comments">
+                    <i class="os-icon os-icon-thin-comments"></i>
+                    <a href="#singlePostComments"><span class="dsq-postid">Comment(@(listComment.Count))</span></a>
+                </li>
+                <li class="social-links">
+                    <a href="https://facebook.com" class=""><i class="os-icon os-icon-social-twitter"></i></a><a href="https://facebook.com" class=""><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com" class=""><i class="os-icon os-icon-social-instagram"></i></a>
+                </li>
+                <li class="social-bottom-author">
+                    <a href="#">
+                        <img src="@(Model.ApplicationUser.Avatar)" width="40" height="40" alt="" class="default avatar" />
+                    </a>
+                    <a href="#" title="Posts by @(Model.ApplicationUser.FirstName)" rel="author">@(Model.ApplicationUser.FirstName)</a>
+                </li>
+            </ul>
+        </div>
+        <div class="single-post-about-author">
+            <div class="author-avatar-w">
+                <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">
+                    <img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" />
+                </a>
+            </div>
+            <div class="author-details">
+                <h3 class="author-name"><a href="#">@(Model.ApplicationUser.FirstName)</a></h3>
+                <div style="display:none;">
+                    <div class="post-date">
+                        <time class="entry-date updated" datetime="@(Convert.ToDateTime(Model.CreatedAt).ToString("M"))">@(Convert.ToDateTime(Model.CreatedAt).ToString("M"))</time>
+                    </div>
+                    <div class="post-author">
+                        <strong class="author vcard">
+                            <a href="#" class="url fn n" rel="author">@(Model.ApplicationUser.FirstName)</a>
+                        </strong>
+                    </div>
+                </div>
+                <p>I love cooking and blogging. Using a fork, break salmon. Halve reserved potatoes and eggs crosswise.</p>
+                <div class="author-social-links">
+                    <a href="https://facebook.com" class="profile-url">
+                        <i class="os-icon os-icon-social-twitter"></i>
+                    </a>
+                    <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com"></a>
+                </div>
+            </div>
+        </div>
+        <div id="osetinRecipeReviews" class="single-post-reviews-w">
+
+            <div class="existing-reviews-w">
+                <h3 class="box-heading"><i class="os-icon os-icon-thin-comment"></i> Recipe Reviews</h3>
+                <div class="reviews-summary">
+                    <div class="review-summary-average">
+                        <span class="review-summary-label">Average Rating: </span>
+                        <div class="review-stars-w">
+
+                            <div class="star-box">
+                                <div class="star-rate" style="width: @(rateStar/5*100 == 0 ? 100 : rateStar/5*100)%;"> </div>
+                            </div>
+
+                        </div><span class="review-summary-average-stars">(@(Math.Round(rateStar, 1)))</span>
+                    </div>
+                    <div class="review-summary-total"><span class="review-summary-label">Total Reviews: </span><span class="review-summary-value">@(listComment.Count)</span></div>
+                </div>
+                <div class="review-wrap">
+                    @if (listComment.Count > 0)
+                    {
+                        foreach (var comment in listComment)
+                        {
+                            <div class="review-box-w">
+                                <div class="review-head">
+                                    <div class="review-author-avatar">
+                                        <img src="@(comment.ApplicationUser.Avatar)" width="96" height="96" alt="" class="default avatar" />
+                                    </div>
+                                    <div class="review-author-meta">
+                                        <div class="review-author-name">@(comment.ApplicationUser.FirstName)</div>
+                                        <div class="review-post-date">@(Convert.ToDateTime(comment.CreatedAt).ToString("f"))</div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <select class="review-rating-select">
+                                            @for (int i = 1; i < 6; i++)
+                                            {
+                                                if (i == comment.Rate)
+                                                {
+                                                    <option value="@(i)" selected="selected">@(i)</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@(i)">@(i)</option>
+                                                }
+
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="review-body">
+                                    <p>
+                                    <p>@(comment.Content)</p>
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="review-panel">
+                @if (Request.IsAuthenticated && Model.Comments.Where(c => c.UserId == User.Identity.GetUserId() && c.Status == (int)Comment.StatusComment.NonActive).ToList().Count == 1)
+                {
+                    <div class="thanks-for-review">Thank you for submitting your review, you can find it in a list above as soon as we process it.</div>
+                }
+                else if (Request.IsAuthenticated && Model.Comments.Where(c => c.UserId == User.Identity.GetUserId()).ToList().Count == 0)
+                {
+                    <div class="recipe-review-form-w" data-post-id="202">
+                        <h3 class="form-header"><i class="os-icon os-icon-thin-comment"></i> Write your own review</h3>
+
+
+                        @*<form id="acf-form" class="acf-form" action="@Url.Action("Create", "Comments")">*@
+                        <form id="review-form" class="acf-form">
+                            <div class="acf-fields acf-form-fields -top">
+                                <div class="acf-field acf-field-textarea acf-field-562459f8a9dc4 is-required" data-name="body" data-type="textarea" data-required="1">
+                                    <div class="acf-label">
+                                        <label for="content">Review Text <span class="acf-required">*</span></label>
+                                    </div>
+                                    <div class="acf-input">
+                                        <textarea id="content" name="content" rows="4" required="required" style="width: 100%;"></textarea>
+                                    </div>
+                                </div>
+                                <div class="acf-field acf-field-select acf-field-56244ec4bbe80 is-required" data-name="rating" data-type="select" data-required="1">
+                                    <div class="acf-label">
+                                        <label for="rate">Rating <span class="acf-required">*</span></label>
+                                    </div>
+                                    <div class="acf-input">
+                                        <select id="rate" class="" name="rate" data-placeholder="Select" required="required">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5" selected="selected">5</option>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" name="recipeId" id="recipeId" value="@(Model.Id)" />
+                                </div>
+
+
+                            </div>
+                            <div class="acf-form-submit">
+                                <input type="button" id="submit-review" class="acf-button button button-primary button-large" value="Submit Review" /> <span class="acf-spinner"></span>
+                            </div>
+                        </form>
+
+                    </div>
+                }
+            </div>
+
+
+        </div>
+        <div class="single-post-navigation">
+            <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/">
+                <figure>
+                    <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-100x100.jpg 100w"
+                         sizes="(max-width: 400px) 100vw, 400px" />
+                    <div class="fader">
+                        <span class="fader-label"><i class="os-icon os-icon-chevron-left"></i> <span>previous</span></span>
+                    </div>
+                </figure>
+                <span>Green veggies with flavoured butter</span>
+            </a>
+            <a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/">
+                <figure>
+                    <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-100x100.jpg 100w"
+                         sizes="(max-width: 400px) 100vw, 400px" />
+                    <div class="fader">
+                        <span class="fader-label"><i class="os-icon os-icon-chevron-right"></i> <span>next</span></span>
+                    </div>
+                </figure>
+                <span>Green salad with cherries</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="floating-prev-post">
+    <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/">
+        <figure>
+            <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-100x100.jpg 100w"
+                 sizes="(max-width: 400px) 100vw, 400px" />
+            <div class="fader">
+                <span class="fader-label"><i class="os-icon os-icon-chevron-left"></i> <span>previous</span></span>
+            </div>
+        </figure>
+        <span>Green veggies with flavoured butter</span>
+    </a>
+</div>
+<div class="floating-next-post">
+    <a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/">
+        <figure>
+            <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-100x100.jpg 100w"
+                 sizes="(max-width: 400px) 100vw, 400px" />
+            <div class="fader">
+                <span class="fader-label"><i class="os-icon os-icon-chevron-right"></i> <span>next</span></span>
+            </div>
+        </figure>
+        <span>Green salad with cherries</span>
+    </a>
+</div>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript" src="~/Content/js/Like.js"></script>
+@section Scripts{
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#submit-review').click(function () {
+                console.log($('#review-form'))
+
+                $("#review-form").validate({
+                    onfocusout: false,
+                    onkeyup: false,
+                    onclick: false,
+                    rules: {
+                        "content": {
+                            required: true,
+                            maxlength: 255,
+                            minlength: 2
+                        }
+                    },
+                    messages: {
+                        "content": {
+                            required: "Review không được để trống!",
+                            maxlength: "Review quá dài!",
+                            minlength: "Review quá ngắn!"
+                        }
+                    }
+                });
+                var content = $('#content').val();
+                var recipeId = $('#recipeId').val();
+                var rate = $('#rate').val();
+                if ($("#review-form").valid()) {
+
+                    $.ajax({
+                        url: `/Comments/CreateAjax?recipeId=${recipeId}&content=${content}&rate=${rate}`,
+                        type: 'POST',
+                        success: function (response) {
+                            if (response.data == "Success") {
+                                var html = `<div class="thanks-for-review">Thank you for submitting your review, you can find it in a list above as soon as we process it.</div>`;
+                                $('.review-panel').html(html);
+                            }
+                        }
+                    });
+                }
+
+            })
+        })
+    </script>
+}
+
