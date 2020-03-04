@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace E_ProjectSem3.Controllers
 {
+    [Authorize(Roles = "admin, chef")]
     public class ChefController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

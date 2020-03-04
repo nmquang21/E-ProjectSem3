@@ -12,6 +12,7 @@ using LogManager = log4net.LogManager;
 
 namespace E_ProjectSem3.Controllers
 {
+    [Authorize]
     public class MembershipController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
