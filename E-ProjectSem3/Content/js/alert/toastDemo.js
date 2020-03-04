@@ -29,6 +29,21 @@
             }
         })
     };
+    showSuccessUpdateRecipe = function () {
+        'use strict';
+        resetToastPosition();
+        $.toast({
+            heading: 'Success',
+            text: ' Updated and waiting for approve.',
+            showHideTransition: 'slide',
+            icon: 'success',
+            loaderBg: '#f96868',
+            position: {
+                left: 20,
+                top: 20
+            }
+        })
+    };
     showSuccessAddContact = function () {
         'use strict';
         resetToastPosition();

@@ -140,6 +140,7 @@ namespace E_ProjectSem3.Controllers
             var contest = db.Contests.Find(id);
             return View("~/Views/Contest/ContestDetail.cshtml",contest);
         }
+        [AllowAnonymous]
         public ActionResult RecipeContest(int id)
         {
             var recipe = db.Recipes.Find(id);
