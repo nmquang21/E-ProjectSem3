@@ -438,30 +438,28 @@
             </ul>
         </div>
         <div class="single-post-about-author">
-            <div class="author-avatar-w">
-                <a href="http://neptune.pinsupreme.com/author/askjfds78dfdk/">
-                    <img src="~/Content/assets/wp-content/plugins/userpro/img/default_avatar_male.jpg" width="96" height="96" alt="" class="default avatar" />
-                </a>
-            </div>
-            <div class="author-details">
-                <h3 class="author-name"><a href="#">@(Model.ApplicationUser.FirstName)</a></h3>
-                <div style="display:none;">
-                    <div class="post-date">
-                        <time class="entry-date updated" datetime="@(Convert.ToDateTime(Model.CreatedAt).ToString("M"))">@(Convert.ToDateTime(Model.CreatedAt).ToString("M"))</time>
+            @if(Model.ContestRecipe.Score == -1){
+                <div class="mark-recipe">
+                    <div style="text-align:center; margin-bottom: 20px; font-size: 25px; font-weight: 700">
+                        SCORING RECIPES
                     </div>
-                    <div class="post-author">
-                        <strong class="author vcard">
-                            <a href="#" class="url fn n" rel="author">@(Model.ApplicationUser.FirstName)</a>
-                        </strong>
+                    <input style="display: none" class="contestRecipeId" value="@(Model.Id)" />
+                    <div style="text-align:center; display: flex; align-items: center; justify-content:center">
+                        <h3 style="margin: 0px"> SCORE: </h3>
+                        <div class="acf-input">
+                            <input type="number" id="step_title" name="score" required="required" style="height: 50px;width: 70px;border: 1px solid #adc9da;border-radius: 4px; outline: none; padding: 5px;font-size: 24px; font-weight: 700; color: red; margin: 0px 20px">
+                        </div>
+                        <div class="timer-w"><button class="submit-mark" type="button">Mark</button></div>
                     </div>
                 </div>
-                <p>I love cooking and blogging. Using a fork, break salmon. Halve reserved potatoes and eggs crosswise.</p>
-                <div class="author-social-links">
-                    <a href="https://facebook.com" class="profile-url">
-                        <i class="os-icon os-icon-social-twitter"></i>
-                    </a>
-                    <a href="https://facebook.com" class="profile-url"><i class="os-icon os-icon-social-facebook"></i></a><a href="https://facebook.com"></a>
+            }
+            else{
+                <div style="font-size: 24px; font-weight: 700; color: red; text-align: center">
+                    SCORE : @(Model.ContestRecipe.Score)
                 </div>
+            }
+            <div class="marks" style="font-size: 24px; font-weight: 700; color: red;display: none; text-align: center">
+
             </div>
         </div>
         <div id="osetinRecipeReviews" class="single-post-reviews-w">
@@ -668,6 +666,24 @@
                     });
                 }
 
+            })
+            $('.submit-mark').on('click', function () {
+                let score = $('input[name="score"]').val();
+                let contestRecipeId = $('.contestRecipeId').val();;
+                $.ajax({
+                    url: "/Contest/MarkRecipe",
+                    method: 'Post',
+                    data: {
+                        score: score,
+                        contestRecipeId:contestRecipeId 
+                    }
+                }).done(function (data) {
+                    if (data == 1) {
+                        $('.mark-recipe').hide();
+                        $('.mark').text('SCORE:  '+score);
+                        $('.mark').show();
+                    }
+                })
             })
         })
     </script>

@@ -150,5 +150,20 @@ namespace E_ProjectSem3.Controllers
             }
             return null;
         }
+        [HttpPost]
+        public int MarkRecipe(int score, int contestRecipeId)
+        {
+            var contestRecipe = db.ContestRecipes.Find(contestRecipeId);
+            contestRecipe.Score = score;
+            try
+            {
+                db.SaveChanges();
+                return 1; 
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
     }
 }

@@ -58,7 +58,7 @@
                                 </td>
 
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Recipe.Title)
+                                    <a href="/Contest/RecipeContest/@(item.Id)">@(item.Recipe.Title)</a>
                                 </td>
                                 <td>
                                     <div style="display: flex; align-items: center">
@@ -73,7 +73,11 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Recipe.CreatedAt)
                                 </td>
-                                <td>@(item.Score == 0)</td>
+                                <td>@if (item.Score == -1)
+                                {
+                                    <a href="/Contest/RecipeContest/@(item.Id)"><button class="btn btn-primary">Mark</button></a>
+                                }
+                                else { <span>@(item.Score)</span>}  </td>
                             </tr>
                         }
                     </tbody>

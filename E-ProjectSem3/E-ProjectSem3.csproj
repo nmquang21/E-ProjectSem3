@@ -208,6 +208,10 @@
     <Compile Include="Migrations\202003031533598_update555dư.Designer.cs">
       <DependentUpon>202003031533598_update555dư.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003031548334_update555dưdsf.cs" />
+    <Compile Include="Migrations\202003031548334_update555dưdsf.Designer.cs">
+      <DependentUpon>202003031548334_update555dưdsf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRole.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1171,6 +1175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031533598_update555dư.resx">
       <DependentUpon>202003031533598_update555dư.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003031548334_update555dưdsf.resx">
+      <DependentUpon>202003031548334_update555dưdsf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
