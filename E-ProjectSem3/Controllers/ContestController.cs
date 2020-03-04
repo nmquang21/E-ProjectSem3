@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace E_ProjectSem3.Controllers
 {
+    [Authorize]
     public class ContestController : Controller
     {
         private List<int> _listSeen = new List<int>();
@@ -132,9 +133,7 @@ namespace E_ProjectSem3.Controllers
             }
             return RedirectToAction("/");
         }
-
-
-    
+        [AllowAnonymous]
         public ActionResult ContestDetail(int id)
         {
             var contest = db.Contests.Find(id);
@@ -150,6 +149,7 @@ namespace E_ProjectSem3.Controllers
             }
             return null;
         }
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public int MarkRecipe(int score, int contestRecipeId)
         {

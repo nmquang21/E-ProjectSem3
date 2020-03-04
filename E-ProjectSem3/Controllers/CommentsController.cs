@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace E_ProjectSem3.Controllers
 {
+    [Authorize]
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -22,7 +23,7 @@ namespace E_ProjectSem3.Controllers
         {
             return View(db.Comments.ToList());
         }
-        [Authorize]
+        
         // GET: Comments/Create
         public ActionResult Create(string content, int rate, int recipeId)
         {
