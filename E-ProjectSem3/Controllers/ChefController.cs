@@ -20,6 +20,7 @@ namespace E_ProjectSem3.Controllers
             ViewBag.Categories = db.Categories.Where(c => c.DeletedAt == null).OrderBy(c => c.Name).ToList();
             return View();
         }
+        [HttpPost, ValidateInput(false)]
         public ActionResult SubmitRecipe(string title, string recipeType, string content, string featuredImage,
             string categoryId, string difficulty, string description, int preparationMinute, int cookingMinute,
             int cookingTemp, List<Ingredient> listIngredient, List<Step> listStep, List<Nutrition> listNutrition)

@@ -21,6 +21,7 @@ namespace E_ProjectSem3.Controllers
             ViewBag.ContestId = id;
             return View("~/Views/Contest/AddRecipesContest.cshtml");
         }
+        [HttpPost, ValidateInput(false)]
         public ActionResult SubmitRecipeContest(int contestId, string title,string content, string featuredImage,
         string difficulty, string description, int preparationMinute, int cookingMinute,
             int cookingTemp, List<Ingredient> listIngredient, List<Step> listStep, List<Nutrition> listNutrition)
@@ -131,7 +132,7 @@ namespace E_ProjectSem3.Controllers
                 Console.WriteLine(e);
                 throw;
             }
-            return RedirectToAction("/");
+            return RedirectToAction("/Home");
         }
         [AllowAnonymous]
         public ActionResult ContestDetail(int id)

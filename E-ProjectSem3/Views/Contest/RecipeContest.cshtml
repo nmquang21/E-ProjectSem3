@@ -445,7 +445,7 @@
                     </div>
                     <div class="single-post-about-author">
                         @if(Model.ContestRecipe.Score == -1){
-                            @*if(Request.IsAuthenticated && UserManager.IsInRole(User.Identity.GetUserId(), "admin" ){*@
+                            if(Request.IsAuthenticated && UserManager.IsInRole(User.Identity.GetUserId(), "admin" )){
                                 <div class="mark-recipe">
                                     <div style="text-align:center; margin-bottom: 20px; font-size: 25px; font-weight: 700">
                                         SCORING RECIPES
@@ -459,17 +459,17 @@
                                         <div class="timer-w"><button class="submit-mark" type="button">Mark</button></div>
                                     </div>
                                 </div>
-                            @*}
+                            }
                             else{
                                 <div style="font-size: 24px; font-weight: 700; color: red; text-align: center">
-                                    Chua cham diem
+                                    Have not been scored
                                 </div>
-                            }*@
+                            }
                         }
                         else{
-                        <div style="font-size: 24px; font-weight: 700; color: red; text-align: center">
-                            SCORE : @(Model.ContestRecipe.Score)
-                        </div>
+                            <div style="font-size: 24px; font-weight: 700; color: red; text-align: center">
+                                SCORE : @(Model.ContestRecipe.Score)
+                            </div>
                         }
                         <div class="marks" style="font-size: 24px; font-weight: 700; color: red;display: none; text-align: center">
 
