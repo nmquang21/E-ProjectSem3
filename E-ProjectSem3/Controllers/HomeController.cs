@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -62,6 +63,22 @@ namespace E_ProjectSem3.Controllers
         {
             return View();
         }
+        public ActionResult SubmitContact(string name, string email, string subject, string content)
+        {
+            if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(subject) && !String.IsNullOrEmpty(content))
+            {
+                var contact = new Contact();
+                contact.Name = name;
+                contact.Email = email;
+                contact.Subject = subject;
+                contact.Content = content;
+                contact.CreatedAt = DateTime.Now;
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+                TempData["Success"] = "Success";
+            }
+            return View("Contact");
+        }
         [AllowAnonymous]
         public ActionResult Recipes(string search, int? page, int? category)
         {
@@ -116,6 +133,8 @@ namespace E_ProjectSem3.Controllers
         }
         public async Task<ActionResult> RecipeDetail(int? id)
         {
+            ViewBag.Next = db.Recipes.FirstOrDefault(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active && r.Type != 2 && r.Id <=8 && r.Id != id);
+            ViewBag.Prev = db.Recipes.FirstOrDefault(r => r.DeletedAt == null && r.Status == (int)Recipe.RecipeStatus.Active && r.Type != 2 && r.Id > 8 && r.Id != id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

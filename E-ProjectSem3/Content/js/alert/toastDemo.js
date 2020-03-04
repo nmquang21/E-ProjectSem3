@@ -29,6 +29,21 @@
             }
         })
     };
+    showSuccessAddContact = function () {
+        'use strict';
+        resetToastPosition();
+        $.toast({
+            heading: 'Success',
+            text: ' Your feedback has been send..',
+            showHideTransition: 'slide',
+            icon: 'success',
+            loaderBg: '#f96868',
+            position: {
+                left: 20,
+                top: 20
+            }
+        })
+    };
     showInfoToast = function () {
         'use strict';
         resetToastPosition();

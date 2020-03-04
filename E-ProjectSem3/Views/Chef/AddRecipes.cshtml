@@ -3,6 +3,9 @@
     ViewBag.Title = "JamesThew - AddRecipes";
     Layout = "~/Views/Shared/_LayoutRecipe.cshtml";
 }
+<link rel="stylesheet" href="~/Content/css/jquery.toast.min.css">
+
+
 <style>
     .acf-input select, input[type="number"] {
         height: 40px;
@@ -78,21 +81,21 @@
                                 </div>
                                 <div class="acf-input">
                                     @*<div id="acf-hidden-wp-editor" class="acf-hidden">
-                                        <div id="wp-acf_content-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
-                                            <link rel='stylesheet' id='dashicons-css' href='http://neptune.pinsupreme.com/wp-includes/css/dashicons.min.css' type='text/css' media='all' />
-                                            <link rel='stylesheet' id='editor-buttons-css' href='http://neptune.pinsupreme.com/wp-includes/css/editor.min.css' type='text/css' media='all' />
-                                            <div id="wp-acf_content-editor-tools" class="wp-editor-tools hide-if-no-js">
-                                                <div class="wp-editor-tabs">
-                                                    <button type="button" id="acf_content-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="acf_content">Visual</button>
-                                                    <button type="button" id="acf_content-html" class="wp-switch-editor switch-html" data-wp-editor-id="acf_content">Text</button>
+                                            <div id="wp-acf_content-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+                                                <link rel='stylesheet' id='dashicons-css' href='http://neptune.pinsupreme.com/wp-includes/css/dashicons.min.css' type='text/css' media='all' />
+                                                <link rel='stylesheet' id='editor-buttons-css' href='http://neptune.pinsupreme.com/wp-includes/css/editor.min.css' type='text/css' media='all' />
+                                                <div id="wp-acf_content-editor-tools" class="wp-editor-tools hide-if-no-js">
+                                                    <div class="wp-editor-tabs">
+                                                        <button type="button" id="acf_content-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="acf_content">Visual</button>
+                                                        <button type="button" id="acf_content-html" class="wp-switch-editor switch-html" data-wp-editor-id="acf_content">Text</button>
+                                                    </div>
+                                                </div>
+                                                <div id="wp-acf_content-editor-container" class="wp-editor-container">
+                                                    <div id="qt_acf_content_toolbar" class="quicktags-toolbar"></div><textarea class="wp-editor-area" rows="20" autocomplete="off" cols="40" name="acf_content" id="acf_content"></textarea>
                                                 </div>
                                             </div>
-                                            <div id="wp-acf_content-editor-container" class="wp-editor-container">
-                                                <div id="qt_acf_content_toolbar" class="quicktags-toolbar"></div><textarea class="wp-editor-area" rows="20" autocomplete="off" cols="40" name="acf_content" id="acf_content"></textarea>
-                                            </div>
-                                        </div>
 
-                                    </div>*@
+                                        </div>*@
                                     <div id="wp-acf-editor-5e42d70de27d4-wrap" class="acf-editor-wrap wp-core-ui wp-editor-wrap tmce-active" data-toolbar="full">
                                         <div id="wp-acf-editor-5e42d70de27d4-editor-tools" class="wp-editor-tools hide-if-no-js">
                                             <div class="wp-editor-tabs">
@@ -225,7 +228,7 @@
                                                     <td class="acf-field acf-field-text acf-field-5585317d9b50b">
                                                         <div class="acf-input">
                                                             <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listIngredient[0].Name" required="required"/>
+                                                                <input type="text" id="" name="listIngredient[0].Name" required="required" />
                                                             </div>
                                                         </div>
                                                     </td>
@@ -233,7 +236,7 @@
                                                     <td class="acf-field acf-field-text acf-field-558531f69b50c">
                                                         <div class="acf-input">
                                                             <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listIngredient[0].Amount" required="required"/>
+                                                                <input type="text" id="" name="listIngredient[0].Amount" required="required" />
                                                             </div>
                                                         </div>
                                                     </td>
@@ -291,7 +294,7 @@
                                                         </div>
 
                                                         <div class="acf-field acf-field-textarea acf-field-5588b30c2df0d -collapsed-target" style="width: 70%" data-width="30" data-name="step_description" data-type="textarea">
-                                                            
+
 
                                                             <div class="acf-label">
                                                                 <label for="step_title">Title</label>
@@ -355,7 +358,7 @@
                                                     <td class="acf-field acf-field-text acf-field-558bba3a6bc23 -collapsed-target" data-name="nutrition_name" data-type="text">
                                                         <div class="acf-input">
                                                             <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listNutrition[0].Name" required="required"/>
+                                                                <input type="text" id="" name="listNutrition[0].Name" required="required" />
                                                             </div>
                                                         </div>
                                                     </td>
@@ -363,7 +366,7 @@
                                                     <td class="acf-field acf-field-text acf-field-558bba486bc24" data-name="nutrition_value" data-type="text">
                                                         <div class="acf-input">
                                                             <div class="acf-input-wrap">
-                                                                <input type="text" id="" name="listNutrition[0].Value" required="required"/>
+                                                                <input type="text" id="" name="listNutrition[0].Value" required="required" />
                                                             </div>
                                                         </div>
                                                     </td>
@@ -395,12 +398,19 @@
     </div>
 </div>
 <div id="add-success" data-msg="@(TempData["AddSuccess"])"></div>
+<!-- Notification -->
+<script src="~/Content/js/alert/jquery.toast.min.js"></script>
+<script src="~/Content/js/alert/toastDemo.js"></script>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 @section Scripts{
     <script src="~/Content/js/SubmitRecipe.js"></script>
 
     <script type="text/javascript">
-        jQuery(document).ready(function($) {
+        jQuery(document).ready(function ($) {
+            if ($('#add-success').data('msg') == "Success") {
+                showSuccessAddRecipe();
+            };
+
             $("#frontend-publisher").validate({
                 onfocusout: false,
                 onkeyup: false,
@@ -428,7 +438,7 @@
                         number: true
                     }
                 }
-            }); 
+            });
         })
     </script>
 }

@@ -7,6 +7,8 @@
     bool liked = Model.WishLists.Where(w => w.UserId == User.Identity.GetUserId()).ToList().Count == 1;
     var listComment = ViewBag.ListComment as List<Comment>;
     var rateStar = listComment.Count == 0 ? 0 : (double) listComment.Select(c => c.Rate).Sum() / listComment.Count;
+    var nextRecipe = ViewBag.Next as Recipe;
+    var prevRecipe = ViewBag.Prev as Recipe;
 }
 <style>
     .edit-recipe {
@@ -267,79 +269,6 @@
         </div>
 
         <div class="single-content" data-font-change-count="0">
-            @*<div class="cooking-mode-close-btn-w">
-                <a href="#" class="cooking-mode-toggler cooking-mode-close-btn"><i class="os-icon os-icon-thin-close-round"></i></a>
-            </div>
-
-            <div class="single-print-ingredients">
-                <h2 class="bordered-title"><i class="os-icon os-icon-thin-paper-holes-text"></i> <span>Ingredients</span></h2>
-                <ul>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">100g of</span>
-                            <div class="ingredient-print-note">It should be raw, do not cook it</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">1 pound of</span>
-                            <span class="ingredient-name">Fresh Broccoli</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">2 pieces of</span>
-                            <div class="ingredient-print-note">It should be raw, do not cook it</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">100g of</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">2</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">150g of</span>
-                            <div class="ingredient-print-note">It should be raw, do not cook it</div>
-                        </div>
-                    </li>
-                    <li>
-                        <h3>For Dressing</h3>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">3 pieces of</span>
-                            <span class="ingredient-name">Chicken Breast</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">2lbs of</span>
-                            <span class="ingredient-name">Drained capers patted dry</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">1 box of</span>
-                            <span class="ingredient-name">Ground Beef</span>
-                            <div class="ingredient-print-note">It should be raw, do not cook it</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="print-ingredient">
-                            <span class="ingredient-amount">200g of</span>
-                            <span class="ingredient-name">Potatoes</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>*@
-
-
-
             <h2 class="bordered-title"><i class="os-icon os-icon-thin-paper-list"></i> <span>Directions</span></h2>
             <div class="single-content-self">
                 <div class="single-sharing-box">
@@ -399,71 +328,6 @@
                         </tr>
                     }
 
-
-
-
-
-                    @*<tr class="single-step">
-            <td class="single-step-number">
-                <div class="single-step-number-i">
-                    <div class="single-step-number-value">2</div>
-                    <div class="single-step-control">
-                        <i class="os-icon os-icon-circle-o"></i>
-                        <div class="single-step-complete-label">Done</div>
-                    </div>
-                </div>
-                <div class="single-step-duration"><i class="os-icon os-icon-clock"></i> 15 min</div>
-            </td>
-            <td class="single-step-description">
-                <div class="single-step-description-i">
-                    <p>
-                        The slight planning brief the doctor one long literature couldn't ticking descriptions, she palace for are which the very once projects debt who voice come he be without finds experience the approach it self-interest,
-                        from the world while field knowing came before texts. Vows, the after a the to curiously.
-                    </p>
-                    <p>
-                        He not didn't go knowing make task. Readers led a world; Need character he copy. Of the clothes, nature, ask solitary that from kicked seven be of the which its the gilded okay. A so more of its boundless abandon
-                        o'clock been people. The bulk; To harmonics; Phase and volume briefs thought, set not from hesitated steadily was better set his young yes, involved. A the you prudently, didn't blue surely their he particular,
-                        on drawers. God position. His we this, do posterity history; Page value asking occupied cut time would create wanted in following so in you your pointing.
-                    </p>
-                    <div class="step-off-fader"></div>
-                </div>
-            </td>
-        </tr>
-        <tr class="single-step">
-            <td class="single-step-number">
-                <div class="single-step-number-i">
-                    <div class="single-step-number-value">3</div>
-                    <div class="single-step-control">
-                        <i class="os-icon os-icon-circle-o"></i>
-                        <div class="single-step-complete-label">Done</div>
-                    </div>
-                </div>
-                <div class="single-step-duration"><i class="os-icon os-icon-clock"></i> 5 min</div>
-            </td>
-            <td class="single-step-description">
-                <h4 class="single-step-title">Making Dressing</h4>
-                <div class="single-step-description-i">
-                    <ul class="single-step-media single-media-2-image">
-                        <li>
-                            <a class="osetin-lightbox-trigger-step-images" href="~/Content/assets/wp-content/uploads/2015/07/step4.jpg" data-lightbox-thumb-src="~/Content/assets/wp-content/uploads/2015/07/step4-400x400.jpg" data-lightbox-img-src="~/Content/assets/wp-content/uploads/2015/07/step4.jpg">
-                                <img src="~/Content/assets/wp-content/uploads/2015/07/step4-400x400.jpg" alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a class="osetin-lightbox-trigger-step-images" href="~/Content/assets/wp-content/uploads/2015/07/step3-867x1300.jpg" data-lightbox-thumb-src="~/Content/assets/wp-content/uploads/2015/07/step3-400x400.jpg" data-lightbox-img-src="~/Content/assets/wp-content/uploads/2015/07/step3-867x1300.jpg">
-                                <img src="~/Content/assets/wp-content/uploads/2015/07/step3-400x400.jpg" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                    <p>
-                        Such their on another, it plot how lady entered theory in as and above of than arrive subjective first himself one eyes refinement my that can designer; But avoid derived through table ambushed trade, to of nonsense,
-                        feedback a this attached lots he emphasis on officers. The team- frequency have avoids what's self-interest there listed is this that, responded thousand on my or are indulged lots sovereignty. Even the to alphabet
-                        fantastic to ensure up large future remedies. Their stuffed they the in seemed even tuned nor a of his and any little did of nations big one have the.
-                    </p>
-                    <div class="step-off-fader"></div>
-                </div>
-            </td>
-        </tr>*@
                 </table>
             </div>
         </div>
@@ -622,52 +486,48 @@
 
     </div>
         <div class="single-post-navigation">
-            <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/">
+            <a href="/Home/RecipeDetail/@(prevRecipe.Id)">
                 <figure>
-                    <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-100x100.jpg 100w"
-                         sizes="(max-width: 400px) 100vw, 400px" />
+                    <img style="height: 200px; width: 200px;" src="@(prevRecipe.FeaturedImage)" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image"/>
                     <div class="fader">
                         <span class="fader-label"><i class="os-icon os-icon-chevron-left"></i> <span>previous</span></span>
                     </div>
                 </figure>
-                <span>Green veggies with flavoured butter</span>
+                <span>@(prevRecipe.Title)</span>
             </a>
-            <a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/">
+            <a href="/Home/RecipeDetail/@(nextRecipe.Id)">
                 <figure>
-                    <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-100x100.jpg 100w"
-                         sizes="(max-width: 400px) 100vw, 400px" />
+                    <img style="height: 200px; width: 200px;" src="@(nextRecipe.FeaturedImage)" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image"/>
                     <div class="fader">
                         <span class="fader-label"><i class="os-icon os-icon-chevron-right"></i> <span>next</span></span>
                     </div>
                 </figure>
-                <span>Green salad with cherries</span>
+                <span>@(nextRecipe.Title)</span>
             </a>
         </div>
     </div>
 </div>
 
 <div class="floating-prev-post">
-    <a href="http://neptune.pinsupreme.com/recipe/green-veggies-with-flavoured-butter/">
+    <a href="/Home/RecipeDetail/@(prevRecipe.Id)">
         <figure>
-            <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe16-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe16-100x100.jpg 100w"
-                 sizes="(max-width: 400px) 100vw, 400px" />
+            <img style="height: 150px" src="@(prevRecipe.FeaturedImage)" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image"/>
             <div class="fader">
                 <span class="fader-label"><i class="os-icon os-icon-chevron-left"></i> <span>previous</span></span>
             </div>
         </figure>
-        <span>Green veggies with flavoured butter</span>
+        <span>@(prevRecipe.Title)</span>
     </a>
 </div>
 <div class="floating-next-post">
-    <a href="http://neptune.pinsupreme.com/recipe/green-salad-with-cherries/">
+    <a href="/Home/RecipeDetail/@(nextRecipe.Id)">
         <figure>
-            <img width="400" height="400" src="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image" alt="" srcset="~/Content/assets/wp-content/uploads/2015/07/recipe1-400x400.jpg 400w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-150x150.jpg 150w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-250x250.jpg 250w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-300x300.jpg 300w, http://neptune.pinsupreme.com/wp-content/uploads/2015/07/recipe1-100x100.jpg 100w"
-                 sizes="(max-width: 400px) 100vw, 400px" />
+            <img style="height: 150px" src="@(nextRecipe.FeaturedImage)" class="attachment-osetin-medium-square-thumbnail size-osetin-medium-square-thumbnail wp-post-image"/>
             <div class="fader">
                 <span class="fader-label"><i class="os-icon os-icon-chevron-right"></i> <span>next</span></span>
             </div>
         </figure>
-        <span>Green salad with cherries</span>
+        <span>@(nextRecipe.Title)</span>
     </a>
 </div>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
