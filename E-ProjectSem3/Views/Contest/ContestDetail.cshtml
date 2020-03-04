@@ -74,6 +74,38 @@
 
         <div class="page-sidebar">
             <aside id="widget_tptn_pop-1" class="widget-odd widget-5 with-ribbon widget tptn_posts_list_widget">
+                <h3 class="widget-title"><span>Awards</span></h3>
+                <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
+                    @foreach (var prize in Model.Prizes)
+                    {
+                    <ul>
+                        @if (prize.ContestRecipe != null)
+                        {
+                            <li style="align-items: center">
+                                <h3>@prize.Name</h3>
+                                <div>
+                                    <a href="/Contest/RecipeContest/@(prize.ContestRecipe.Id)" class="tptn_link">
+                                        <img width="150" height="150" src="@(prize.ContestRecipe.Recipe.FeaturedImage)" class="tptn_thumb tptn_featured" />
+                                    </a>
+                                    <span class="tptn_after_thumb">
+                                        <a href="/Contest/RecipeContest/@(prize.ContestRecipe.Recipe.Id)" class="tptn_link">
+                                            <span class="tptn_title">@(prize.ContestRecipe.Recipe.Title)</span>
+                                        </a>
+                                        <span style="color: red">@(prize.ContestRecipe.Score != -1 ? "Score: " + prize.ContestRecipe.Score.ToString() : "Have not been scored")</span>
+                                    </span>
+                                </div>
+
+                            </li>
+                        }
+
+
+                    </ul>
+                    }
+
+
+                </div>
+            </aside>
+            <aside id="widget_tptn_pop-1" class="widget-odd widget-5 with-ribbon widget tptn_posts_list_widget">
                 <h3 class="widget-title"><span>Top Recipes</span></h3>
                 <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
                     @if (Model.ContestRecipes.Count > 0)
@@ -90,7 +122,7 @@
                                             <span class="tptn_title">@(item.Recipe.Title)</span>
                                         </a>
                                         @*<span class="tptn_excerpt">@(item.Recipe.Description)</span>*@
-                                        <span style="color: red">@(item.Score != -1? "Score: "+item.Score.ToString() : "Have not been scored")</span>
+                                        <span style="color: red">@(item.Score != -1 ? "Score: " + item.Score.ToString() : "Have not been scored")</span>
                                     </span>
                                 </li>
 
@@ -103,6 +135,7 @@
                     }
                 </div>
             </aside>
+
         </div>
 
 
