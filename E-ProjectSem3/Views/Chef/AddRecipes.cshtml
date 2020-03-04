@@ -398,6 +398,7 @@
     </div>
 </div>
 <div id="add-success" data-msg="@(TempData["AddSuccess"])"></div>
+<div id="save-success" data-msg="@(TempData["SaveSuccess"])"></div>
 <!-- Notification -->
 <script src="~/Content/js/alert/jquery.toast.min.js"></script>
 <script src="~/Content/js/alert/toastDemo.js"></script>
@@ -410,7 +411,9 @@
             if ($('#add-success').data('msg') == "Success") {
                 showSuccessAddRecipe();
             };
-
+            if ($('#save-success').data('msg') == "Success") {
+                showSuccessUpdateRecipe();
+            };
             $("#frontend-publisher").validate({
                 onfocusout: false,
                 onkeyup: false,

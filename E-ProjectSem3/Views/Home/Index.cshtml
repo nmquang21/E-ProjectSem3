@@ -24,7 +24,7 @@
     .nav-link{
         cursor: pointer;
     }
-    .owl-controls{
+    .contest-slide .owl-controls{
         display: none !important;
     }
 </style>
@@ -341,7 +341,8 @@
                             foreach (var item in ViewBag.ContestHappenning)
                             {
                                 <div class="sticky-roll-w">
-                                    <div class="">
+                                    <div class="owl-carousel sticky-posts-owl-slider owl-theme owl-loaded contest-slide">
+
                                         <div class="owl-stage-outer">
                                             <div class="owl-stage">
                                                 <div class="owl-item active" style="width: 750px; margin-right: 0px;">
