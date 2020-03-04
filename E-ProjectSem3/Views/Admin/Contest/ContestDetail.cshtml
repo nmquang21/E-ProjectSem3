@@ -27,11 +27,31 @@
                         </div>
                         <div style="font-weight: bold">Prizes</div>
                         <ul>
-                            @foreach(var item in ViewBag.Prizes)
+                            @foreach (var item in ViewBag.Prizes)
                             {
-                            <li><span style="color: darkorange">@(item.Name)</span> - @(item.Money) - @(item.Description)</li>
+                                <li><span style="color: darkorange">@(item.Name)</span> - @(item.Money) - @(item.Description)</li>
                             }
                         </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="card mt-5" >
+                <div class="card-body">
+                    <h5 class="card-title">Awards</h5>
+                    <p class="card-text">
+                        <div class="text-center">
+                            
+
+                        </div>
+                        <div class="content">
+                            <ul>
+                                @foreach (var item in ViewBag.Prizes)
+                                {
+                                    <li><span style="color: darkorange">@(item.Name)</span> - @(item.Money) - @(item.Description)</li>
+                                }
+                            </ul>
+                        </div>
+                       
                     </p>
                 </div>
             </div>
@@ -73,13 +93,16 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Recipe.CreatedAt)
                                 </td>
-                                <td>@if (item.Score == -1)
-                                {
-                                    <a href="/Contest/RecipeContest/@(item.Id)"><button class="btn btn-primary">Mark</button></a>
-                                }
-                                else { <span>@(item.Score)</span>}  </td>
-                            </tr>
-                        }
+                                <td>
+                                    @if (item.Score == -1)
+                                    {
+                                        <a href="/Contest/RecipeContest/@(item.Id)"><button class="btn btn-primary">Mark</button></a>
+                                    }
+                                    else
+                                    { <span>@(item.Score)</span>}
+                            </td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
             }
