@@ -32,6 +32,7 @@
                     <div class="post-date text-danger">Posted on <time class="entry-date updated">@Model.CreatedAt</time></div>
 
                 </div>
+                <p style="margin-top: 15px;font-weight: 600">@(Model.SortDescription)</p>
                 <div class="single-featured-image-w mt-3 mb-5" >
                     <img width="1200" height="800" src="@Model.Image" alt="" />
                 </div>
@@ -77,7 +78,7 @@
                 <div class="tptn_posts  tptn_posts_widget tptn_posts_widget1">
                     @if (Model.ContestRecipes.Count > 0)
                     {
-                        foreach (var item in Model.ContestRecipes)
+                        foreach (var item in Model.ContestRecipes.OrderByDescending(c => c.Score))
                         {
                             <ul>
                                 <li>
@@ -88,7 +89,8 @@
                                         <a href="/Contest/RecipeContest/@(item.Recipe.Id)" class="tptn_link">
                                             <span class="tptn_title">@(item.Recipe.Title)</span>
                                         </a>
-                                        <span class="tptn_excerpt">@(item.Recipe.Description)</span>
+                                        @*<span class="tptn_excerpt">@(item.Recipe.Description)</span>*@
+                                        <span style="color: red">@(item.Score != -1? "Score: "+item.Score.ToString() : "Have not been scored")</span>
                                     </span>
                                 </li>
 
