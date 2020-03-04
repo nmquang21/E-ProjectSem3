@@ -12,6 +12,7 @@ namespace E_ProjectSem3.Controllers
     {
         // GET: Admin
         private ApplicationDbContext db = new ApplicationDbContext();
+        
         public ActionResult Index()
         {
             return View();
