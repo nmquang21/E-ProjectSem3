@@ -17,6 +17,7 @@ using PagedList;
 
 namespace E_ProjectSem3.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -53,12 +54,10 @@ namespace E_ProjectSem3.Controllers
 
             return View(listRecipe.ToPagedList(pageNumber, pageSize));
         }
-
         public ActionResult About()
         {
             return View();
         }
-
         public ActionResult Contact()
         {
             return View();
@@ -79,7 +78,6 @@ namespace E_ProjectSem3.Controllers
             }
             return View("Contact");
         }
-        [AllowAnonymous]
         public ActionResult Recipes(string search, int? page, int? category)
         {
             ViewBag.ListCategories = db.Categories.Where(c => c.Icon != null && c.DeletedAt == null).OrderBy(c => c.Name).ToList();
@@ -169,7 +167,6 @@ namespace E_ProjectSem3.Controllers
             ViewBag.ListComment = recipe.Comments.Where(c => c.DeletedAt == null && c.Status == (int)Comment.StatusComment.Active).OrderBy(c=>c.CreatedAt).ToList();
             return View(recipe);
         }
-
         public ActionResult Categories()
         {
             return View(db.Categories.Where(c=>c.Description == "Main" && c.DeletedAt == null).ToList());
@@ -178,6 +175,7 @@ namespace E_ProjectSem3.Controllers
         {
             return View();
         }
+
         [Authorize]
         public ActionResult MemberShip()
         {
@@ -186,11 +184,6 @@ namespace E_ProjectSem3.Controllers
             //Check expired member ship:
             var id = User.Identity.GetUserId();
             var user = UserManager.FindById(id);
-            //if (memberService.CheckExpiredMember(user) == false)
-            //{
-            //    ViewBag.UserMemberShip = db.Memberships.Where(m => m.ApplicationUser.Id == id).ToList()[0];
-            //}
-
             ViewBag.ListMemberType = db.Members.ToList();
             return View();
         }
@@ -283,23 +276,5 @@ namespace E_ProjectSem3.Controllers
             return false;
         }
 
-        
-        public void UPdateDatabase()
-        {
-            Recipe recipe = new Recipe();
-            recipe.Title = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            recipe.Type = 2;
-
-            ContestRecipe contestRecipe = new ContestRecipe();
-            Contest contest = db.Contests.Find(1);
-
-
-            contestRecipe.Contest = contest;
-            contestRecipe.Recipe = recipe;
-
-            db.ContestRecipes.Add(contestRecipe);
-            db.SaveChanges();
-        }
     }
-   
 }

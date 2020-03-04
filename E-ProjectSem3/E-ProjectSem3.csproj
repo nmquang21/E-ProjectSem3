@@ -192,6 +192,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
+    <Compile Include="Controllers\PaypalController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1147,12 +1148,12 @@
     <Content Include="Views\Admin\Contest\ContestDetail.cshtml" />
     <Content Include="Views\Contest\ContestDetail.cshtml" />
     <Content Include="Views\Admin\User.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Account\AdminLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Membership\" />
+    <Folder Include="Views\Paypal\" />
     <Folder Include="Views\Recipe\" />
   </ItemGroup>
   <ItemGroup>

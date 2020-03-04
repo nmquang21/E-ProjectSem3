@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace E_ProjectSem3.Controllers
 {
+    [Authorize]
     public class RecipeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

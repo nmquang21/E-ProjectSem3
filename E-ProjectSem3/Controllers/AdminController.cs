@@ -7,7 +7,7 @@ using E_ProjectSem3.Models;
 
 namespace E_ProjectSem3.Controllers
 {
-
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -202,10 +202,6 @@ namespace E_ProjectSem3.Controllers
             var listUser = db.Users.ToList();
             return View(listUser);
 
-        }
-        public ActionResult Login()
-        {
-            return View();
         }
 
         //Contest
