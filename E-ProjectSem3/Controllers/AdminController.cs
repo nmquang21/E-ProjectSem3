@@ -203,7 +203,10 @@ namespace E_ProjectSem3.Controllers
             return View(listUser);
 
         }
-
+        public ActionResult Login()
+        {
+            return View();
+        }
 
         //Contest
         [HttpGet]
@@ -246,6 +249,7 @@ namespace E_ProjectSem3.Controllers
             ViewBag.Prizes = Prizes;
             return View("~/Views/Admin/Contest/ContestDetail.cshtml", ContestRecipes);
         }
+        
        
     }
 }
