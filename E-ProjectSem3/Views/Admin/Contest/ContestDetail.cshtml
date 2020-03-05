@@ -48,6 +48,12 @@
                                 @foreach (var item in ViewBag.Prizes)
                                 {
                                     <li><span style="color: darkorange">@(item.Name)</span> - @(item.Money) - @(item.Description)</li>
+                                    <form action="@Url.Action("PrizeChoose","Admin")" method="post">
+                                        <input type="hidden" name="prize_id" value="@(item.Id)"/>
+                                        <input type="hidden" name="recipe_id" value="" required="required"/>
+                                        <input type="button" value="Chọn" />
+                                        <input type="submit" value="Trao giải" />
+                                    </form>
                                 }
                             </ul>
                         </div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -220,7 +221,19 @@ namespace E_ProjectSem3.Controllers
             ViewBag.Prizes = Prizes;
             return View("~/Views/Admin/Contest/ContestDetail.cshtml", ContestRecipes);
         }
-        
-       
+        public ActionResult PrizeChoose(string prize_id, string recipe_id)
+        {
+            var prize = db.Prizes.Find(Convert.ToInt16(prize_id));
+            var recipe = db.Recipes.Find(Convert.ToInt16(recipe_id));
+            var rId = Convert.ToInt16(recipe_id);
+            ContestRecipe contestRecipe = db.ContestRecipes.Where(cr => cr.Recipe.Id == rId).FirstOrDefault();
+            if (prize == null || prize.ContestRecipe != null || contestRecipe == null ) return View("Index");
+            prize.ContestRecipe = contestRecipe;
+            db.Prizes.AddOrUpdate(prize);
+            db.SaveChanges();
+            return View("Index");
+        }
+
+
     }
 }
