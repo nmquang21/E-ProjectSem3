@@ -824,7 +824,7 @@ blockquote {
 }
 
 blockquote:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -991,7 +991,7 @@ h6,
 }
 
 @font-face {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     src: url('http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/fonts/osfont/osfont.eot?z52hks23');
     src: url('http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/fonts/osfont/osfont.eot?#iefixz52hks23') format('embedded-opentype'), url('http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/fonts/osfont/osfont.woff2?z52hks23') format('woff2'), url('http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/fonts/osfont/osfont.ttf?z52hks23') format('truetype'), url('http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/fonts/osfont/osfont.woff?z52hks23') format('woff'), url('http://neptune.pinsupreme.com/wp-content/themes/neptune-by-osetin/assets/fonts/osfont/osfont.svg?z52hks23#osfont') format('svg');
     font-weight: normal;
@@ -999,7 +999,7 @@ h6,
 }
 
 .os-icon {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -1063,11 +1063,13 @@ h6,
 }
 
 .os-icon-home-03:before {
-    content: "\e926";
+    font-family: 'FontAwesome';
+    content: "\f234";
 }
 
 .os-icon-signs-12:before {
-    content: "\e927";
+    font-family: 'FontAwesome';
+    content: "\f13e";
 }
 
 .os-icon-mail-14:before {
@@ -1343,7 +1345,7 @@ h6,
 }
 
 .os-icon-thin-search:before {
-    content: "\e63d";
+    content: url('https://res.cloudinary.com/dev20/image/upload/v1583422100/Jame/search_yggji3.png') !important;
 }
 
 .os-icon-thin-close-bordered:before {
@@ -1411,7 +1413,8 @@ h6,
 }
 
 .os-icon-thin-comment:before {
-    content: "\e60e";
+    font-family: 'FontAwesome';
+    content: "\f075";
 }
 
 .os-icon-thin-comments:before {
@@ -1475,7 +1478,8 @@ h6,
 }
 
 .os-icon-social-instagram:before {
-    content: "\e61c";
+    font-family: FontAwesome;
+    content: "\f16d";
 }
 
 .os-icon-social-behance:before {
@@ -1487,7 +1491,7 @@ h6,
 }
 
 .os-icon-social-pinterest:before {
-    content: "\e61f";
+    content: "\f0d3";
 }
 
 .os-icon-social-blogger:before {
@@ -1515,7 +1519,7 @@ h6,
 }
 
 .os-icon-social-youtube:before {
-    content: "\e626";
+    content: "\f167";
 }
 
 .os-icon-social-tumblr:before {
@@ -1535,7 +1539,7 @@ h6,
 }
 
 .os-icon-social-facebook:before {
-    content: "\e62b";
+    content: "\f082";
 }
 
 .os-icon-social-flickr:before {
@@ -1563,15 +1567,15 @@ h6,
 }
 
 .os-icon-pinterest:before {
-    content: "\e608";
+    content: "\f0d2";
 }
 
 .os-icon-facebook:before {
-    content: "\e60c";
+    content: "\f09a";
 }
 
 .os-icon-twitter:before {
-    content: "\e639";
+    content: "\f099";
 }
 
 .os-icon-dribbble:before {
@@ -1619,7 +1623,7 @@ h6,
 }
 
 .os-icon-basic-mail-envelope:before {
-    content: "\e63c";
+    content: "\f0e0";
 }
 
 .os-icon-basic-mail-send:before {
@@ -1675,7 +1679,7 @@ h6,
 }
 
 .os-icon-head:before {
-    content: "\e074";
+    content: "\f007";
 }
 
 .os-icon-share:before {
@@ -1849,7 +1853,7 @@ h6,
 }
 
 .mobile-header-w .mobile-header-menu-w>ul>li.menu-item-has-children>a:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -1871,7 +1875,7 @@ h6,
 }
 
 .mobile-header-w .mobile-header-menu-w>ul>li.menu-item-has-children .sub-menu .menu-item-has-children>a:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -2083,7 +2087,7 @@ h6,
 }
 
 .fixed-header-w .fixed-top-menu-w>ul>li.menu-item-has-children>a:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -2107,7 +2111,7 @@ h6,
 
 .fixed-header-w .fixed-top-menu-w>ul>li.menu-item-has-children .sub-menu .menu-item-has-children>a:before {
     content: "\f054";
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -2279,7 +2283,7 @@ body.fix-top-menu .fixed-header-w {
 }
 
 .main-header .top-menu>ul>li.menu-item-has-children>a:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -2303,7 +2307,7 @@ body.fix-top-menu .fixed-header-w {
 
 .main-header .top-menu>ul>li.menu-item-has-children .sub-menu .menu-item-has-children>a:before {
     content: "\f054";
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -2713,7 +2717,7 @@ body.fix-top-menu .fixed-header-w {
 
 .top-bar .bar-breadcrumbs li a:after,
 .top-bar .bbp-breadcrumb li a:after {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -2764,7 +2768,7 @@ body.fix-top-menu .fixed-header-w {
 
 .top-bar .bar-breadcrumbs p a:after,
 .top-bar .bbp-breadcrumb p a:after {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -5894,7 +5898,7 @@ article.page img {
 .archive-pagination .archive-pagination-prev a:before {
     margin-right: 10px;
     content: "\f053";
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -5914,7 +5918,7 @@ article.page img {
 .archive-pagination .archive-pagination-next a:after {
     margin-left: 10px;
     content: "\f054";
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -6859,7 +6863,7 @@ article.page img {
 }
 
 .single-panel .single-panel-main .quick-description-quote:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -6878,7 +6882,7 @@ article.page img {
 }
 
 .single-panel .single-panel-main .quick-description-quote:after {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -8030,7 +8034,7 @@ article.page img {
 }
 
 .widget.widget_calendar .details-heading:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -8184,7 +8188,7 @@ article.page img {
 }
 
 .widget.widget_rss .details-heading:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -8233,7 +8237,7 @@ article.page img {
 }
 
 .widget.widget_text .details-heading:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -8273,7 +8277,7 @@ article.page img {
 }
 
 .widget.widget_search .details-heading:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -8798,7 +8802,7 @@ article.page img {
 }
 
 .main-search-form form .search-field-w:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -8987,7 +8991,7 @@ article.page img {
 }
 
 .frontend-publisher-w #message.updated:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -9419,7 +9423,7 @@ div.userpro-overlay-inner .userpro-sc-bar .userpro-sc-right .userpro-button.seco
 
 div.all-wrapper .userpro-sc-bar .userpro-sc-right .userpro-button.secondary:before,
 div.userpro-overlay-inner .userpro-sc-bar .userpro-sc-right .userpro-button.secondary:before {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -9464,23 +9468,23 @@ div.userpro-overlay-inner div.userpro-head div.userpro-left {
     padding-left: 30px;
 }
 
-div.all-wrapper div.userpro-head div.userpro-left:before,
-div.userpro-overlay-inner div.userpro-head div.userpro-left:before {
-    font-family: 'osfont';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    content: "\e638";
-    position: absolute;
-    font-size: 32px;
-    left: 0px;
-    top: -4px;
-}
+    div.all-wrapper div.userpro-head div.userpro-left:before,
+    div.userpro-overlay-inner div.userpro-head div.userpro-left:before {
+        font-family: 'FontAwesome';
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: "\f0c0";
+        position: absolute;
+        font-size: 32px;
+        left: 0px;
+        top: -4px;
+    }
 
 div.all-wrapper div.userpro-head div.userpro-right,
 div.userpro-overlay-inner div.userpro-head div.userpro-right {
@@ -9993,7 +9997,7 @@ div.userpro .userpro-centered div.userpro-profile-icons.top {
 }
 
 .br-theme-fontawesome-stars .br-widget a {
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -10286,7 +10290,7 @@ div.userpro .userpro-centered div.userpro-profile-icons.top {
 .recipe-review-form-w .acf-gallery .add-attachment:before,
 .recipe-review-form-w .acf-gallery .acf-gallery-add:before {
     content: "\f067";
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -11047,7 +11051,7 @@ input[type="search"] {
 .woocommerce .woocommerce-pagination .archive-pagination-prev a:before {
     margin-right: 10px;
     content: "\f053";
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -11067,7 +11071,7 @@ input[type="search"] {
 .woocommerce .woocommerce-pagination .archive-pagination-next a:after {
     margin-left: 10px;
     content: "\f054";
-    font-family: 'osfont';
+    font-family: 'FontAwesome';
     speak: none;
     font-style: normal;
     font-weight: normal;
