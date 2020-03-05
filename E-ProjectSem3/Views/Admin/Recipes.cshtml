@@ -34,7 +34,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Status)<br>
                         </th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -56,11 +56,14 @@
                             <td>
                                 @(item.Type == 1 ? "Free" : "NotFree")
                             </td>
-                            <td>
+                            @*<td>
                                 <div class="custom-control custom-radio custom-control-inline text-center">
                                     <input type="radio" id="customRadioInline2@(item.Id)" name="customRadioInline1@(item.Id)" class="custom-control-input">
                                     <label class="custom-control-label" for="customRadioInline2@(item.Id)">DeActive</label>
                                 </div>
+                            </td>*@
+                            <td>
+                                <input type="checkbox" class="not-approve-recipe" data-approve-id="@(item.ApproveId)" data-recipe-id="@(item.Id)">
                             </td>
                         </tr>
                         i++;
@@ -71,12 +74,19 @@
     </div>
 </div>
 
-@section scripts{
 
+@section scripts{
     <script src="~/Content/js/data-table.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.data-table').DataTable();
+            $('.not-approve-recipe').change(function () {
+                if (this.checked) {
+                    var approveId = $(this).data('approve-id');
+                    var RecipeId = $(this).data('recipe-id');   
+                    location.href = `/admin/ApproveNotRecipe?approve_id=${approveId}&recipe_id=${RecipeId}`;
+                }
+            });
         });
     </script>
 }

@@ -20,9 +20,8 @@ namespace E_ProjectSem3.Controllers
         
         public ActionResult Recipes()
         {
-            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null).ToList();
+            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 1).ToList();
             return View(listRecipe);
-           
         }
 
         public ActionResult GetChartDataRevenue(string start, string end)
@@ -100,22 +99,6 @@ namespace E_ProjectSem3.Controllers
             var listComment = db.Comments.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
             return View("CommentNotApprove", listComment);
         }
-        //public ActionResult ApproveRecipe(string approve_id, int recipe_id)
-        //{
-        //    var recipes = db.Recipes.FirstOrDefault(c => c.ApproveId == approve_id && c.Id == recipe_id);
-        //    recipes.Status = 1;
-        //    db.SaveChanges();
-        //    var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
-        //    return View("RecipeNotApprove", listRecipe);
-        //}
-        //public ActionResult ApproveNotRecipe(string approve_id, int recipe_id)
-        //{
-        //    var recipes = db.Recipes.FirstOrDefault(c => c.ApproveId == approve_id && c.Id == recipe_id);
-        //    recipes.Status = 0;
-        //    db.SaveChanges();
-        //    var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
-        //    return View("Recipes", listRecipe);
-        //}
         public ActionResult ApproveRecipe( int recipe_id)
         {
             var recipes = db.Recipes.FirstOrDefault(c=>c.Id == recipe_id);
@@ -126,10 +109,10 @@ namespace E_ProjectSem3.Controllers
         }
         public ActionResult ApproveNotRecipe(string approve_id, int recipe_id)
         {
-            var recipes = db.Recipes.FirstOrDefault(c => c.ApproveId == approve_id && c.Id == recipe_id);
+            var recipes = db.Recipes.FirstOrDefault(c=>c.ApproveId == approve_id && c.Id == recipe_id);
             recipes.Status = 0;
             db.SaveChanges();
-            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 0).ToList();
+            var listRecipe = db.Recipes.Where(r => r.DeletedAt == null && r.Status == 1).ToList();
             return View("Recipes", listRecipe);
         }
         public ActionResult StatisticsVip() {
@@ -179,14 +162,6 @@ namespace E_ProjectSem3.Controllers
                        Month = o.CreatedAt.Month,
                    }
                ).ToList();
-
-            //var dataChart = charts.Select(o => new
-            ////{
-            ////    Date = o.Date.ToString("d"),
-            ////    gold = o.Total,
-            ////    silver = o.
-            //});
-
             return new JsonResult()
             {
                 Data = new {
